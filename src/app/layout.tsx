@@ -29,6 +29,9 @@ export const metadata: Metadata = {
     title: 'AndInnovatech | Empowering Business with IT & SEO',
     description: 'Empowering Your Business with IT & SEO Excellence.',
   },
+  verification: {
+    google: 'Raoc_zOx3RRFvtK-d-PKnPlTwzUNPpEa1MQZOFyud9U',
+  },
 };
 
 export const viewport: Viewport = {
