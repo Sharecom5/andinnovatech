@@ -21,7 +21,7 @@ const footerLinks = {
         { label: 'Website Development', href: '/services/website-development' },
         { label: 'Software Development', href: '/services/software-development' },
         { label: 'SEO Services', href: '/services/seo-services' },
-        { label: 'IT Solutions', href: '/services/it-solutions' },
+        { label: 'IT Solutions', href: '/services/it-consulting' },
         { label: 'Cloud Computing', href: '/services/cloud-computing' },
         { label: 'IT Consulting', href: '/services/it-consulting' },
     ],
@@ -133,11 +133,11 @@ export default function Footer() {
                         {/* Contact Info */}
                         <div className="space-y-3">
                             <a
-                                href="mailto:andinnovatech@gmail.com"
+                                href="mailto:hello@andinnovatech.com"
                                 className="flex items-center gap-3 text-sm hover:text-primary-400 transition-colors"
                             >
                                 <Mail size={16} className="text-primary-400" />
-                                andinnovatech@gmail.com
+                                hello@andinnovatech.com
                             </a>
                             <a
                                 href="tel:+1234567890"

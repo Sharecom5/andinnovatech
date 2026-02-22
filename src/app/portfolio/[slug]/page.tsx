@@ -1,27 +1,18 @@
 import { Metadata } from 'next';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import Hero from '@/components/sections/Hero';
 import ContactForm from '@/components/sections/ContactForm';
 import {
     CheckCircle2,
-    ArrowLeft,
-    Globe,
-    Smartphone,
     Layers,
-    BarChart,
     Cpu,
     ShieldCheck,
     Zap,
-    ExternalLink,
-    Code2,
-    Palette,
     Rocket,
-    Layout,
-    Search
 } from 'lucide-react';
 import Link from 'next/link';
 import Button from '@/components/ui/Button';
-import Badge from '@/components/ui/Badge';
 import SectionHeading from '@/components/ui/SectionHeading';
 
 interface ProjectDetail {
@@ -401,11 +392,12 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
             {/* Project Image */}
             <section className="relative -mt-16 z-20">
                 <div className="section-container">
-                    <div className="rounded-[3rem] overflow-hidden shadow-2xl border border-white/10">
-                        <img
+                    <div className="rounded-[3rem] overflow-hidden shadow-2xl border border-white/10 relative aspect-[21/9]">
+                        <Image
                             src={project.image}
                             alt={project.title}
-                            className="w-full aspect-[21/9] object-cover"
+                            fill
+                            className="object-cover"
                         />
                     </div>
                 </div>

@@ -48,7 +48,7 @@ export default function Footer() {
                                 <Linkedin className="h-5 w-5" />
                             </a>
                             <a
-                                href="mailto:andinnovatech@gmail.com"
+                                href="mailto:hello@andinnovatech.com"
                                 className="bg-gray-800 p-2 rounded-full hover:bg-blue-600 transition-colors"
                                 aria-label="Email"
                             >
@@ -86,8 +86,8 @@ export default function Footer() {
                             </li>
                             <li className="flex items-center space-x-3">
                                 <Mail className="h-5 w-5 text-blue-500 shrink-0" />
-                                <a href="mailto:andinnovatech@gmail.com" className="hover:text-white transition-colors">
-                                    andinnovatech@gmail.com
+                                <a href="mailto:hello@andinnovatech.com" className="hover:text-white transition-colors">
+                                    hello@andinnovatech.com
                                 </a>
                             </li>
                         </ul>

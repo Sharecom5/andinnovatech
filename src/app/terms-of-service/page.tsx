@@ -59,7 +59,7 @@ export default function TermsOfService() {
 
                         <h2 className="text-navy dark:text-white mt-12 mb-6">8. Contact Us</h2>
                         <p>
-                            In order to resolve a complaint regarding the site or to receive further information regarding use of the site, please contact us at andinnovatech@gmail.com.
+                            In order to resolve a complaint regarding the site or to receive further information regarding use of the site, please contact us at hello@andinnovatech.com.
                         </p>
                     </div>
                 </div>

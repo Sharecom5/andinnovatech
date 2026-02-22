@@ -20,7 +20,7 @@ export default function ServicesPage() {
                 badgeText="🛠️ Comprehensive Solutions"
                 ctaText="View Service Details"
                 showStats={false}
-                category="software"
+                category="consulting"
             />
 
             {/* Main Services Grid (Reusing the premium section) */}

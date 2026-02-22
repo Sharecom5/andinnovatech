@@ -13,7 +13,17 @@ import {
     TrendingUp,
     Layout,
     ShieldCheck,
+    Monitor,
+    MousePointer2,
+    Code2,
+    Database,
+    Zap,
+    Smartphone,
+    Lightbulb,
+    FileText,
+    Users
 } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 import Button from '@/components/ui/Button';
 import Badge from '@/components/ui/Badge';
@@ -38,7 +48,8 @@ interface HeroProps {
     ctaHref?: string;
     showStats?: boolean;
     rightContent?: React.ReactNode;
-    category?: 'ecommerce' | 'software' | 'seo' | 'marketing' | 'it' | 'default';
+    imageSrc?: string;
+    category?: 'ecommerce' | 'software' | 'seo' | 'marketing' | 'it' | 'website' | 'cloud' | 'mobile' | 'consulting' | 'default';
 }
 
 function EcommerceMockup() {
@@ -174,6 +185,102 @@ function SEOMockup() {
     );
 }
 
+function WebsiteMockup() {
+    return (
+        <div className="relative group">
+            <div className="animate-float-slow bg-white/10 backdrop-blur-xl rounded-[2.5rem] border border-white/20 p-2 overflow-hidden shadow-2xl">
+                <div className="bg-slate-900 rounded-[2rem] overflow-hidden">
+                    <div className="h-8 bg-slate-800 flex items-center px-4 gap-2">
+                        <div className="flex gap-1.5">
+                            <div className="w-2 h-2 rounded-full bg-red-500/50" />
+                            <div className="w-2 h-2 rounded-full bg-yellow-500/50" />
+                            <div className="w-2 h-2 rounded-full bg-green-500/50" />
+                        </div>
+                        <div className="w-32 h-3 bg-white/5 rounded-full" />
+                    </div>
+                    <div className="p-8 space-y-6">
+                        <div className="flex justify-between items-center">
+                            <div className="w-24 h-6 bg-primary/20 rounded-md" />
+                            <div className="flex gap-4">
+                                <div className="w-10 h-2 bg-white/10 rounded-full" />
+                                <div className="w-10 h-2 bg-white/10 rounded-full" />
+                            </div>
+                        </div>
+                        <div className="space-y-3">
+                            <div className="h-8 w-full bg-white/10 rounded-lg" />
+                            <div className="h-8 w-2/3 bg-white/5 rounded-lg" />
+                        </div>
+                        <div className="grid grid-cols-2 gap-4">
+                            <div className="aspect-video bg-white/5 rounded-xl border border-white/5 flex items-center justify-center">
+                                <Monitor size={24} className="text-white/10" />
+                            </div>
+                            <div className="aspect-video bg-white/5 rounded-xl border border-white/5 flex items-center justify-center">
+                                <Monitor size={24} className="text-white/10" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {/* Overlay cursor */}
+            <motion.div
+                animate={{
+                    x: [0, 40, 20],
+                    y: [0, -30, -10]
+                }}
+                transition={{ duration: 4, repeat: Infinity }}
+                className="absolute top-1/2 left-1/2 text-primary drop-shadow-lg"
+            >
+                <MousePointer2 size={32} fill="currentColor" />
+            </motion.div>
+        </div>
+    );
+}
+
+function CloudMockup() {
+    return (
+        <div className="relative">
+            <div className="animate-float bg-gradient-to-br from-slate-900 to-navy border border-white/10 rounded-3xl p-8 shadow-2xl overflow-hidden">
+                <div className="absolute top-0 right-0 p-4">
+                    <Zap className="text-yellow-400 opacity-20" size={100} />
+                </div>
+                <div className="relative z-10 space-y-6">
+                    <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center text-primary">
+                            <Database size={24} />
+                        </div>
+                        <div>
+                            <div className="text-white font-bold">Cloud Cluster</div>
+                            <div className="text-primary text-xs font-mono">Status: Optimal</div>
+                        </div>
+                    </div>
+                    <div className="space-y-3">
+                        {[
+                            { name: 'Microservices', val: 98 },
+                            { name: 'Load Balancer', val: 76 },
+                            { name: 'PostgreSQL', val: 89 }
+                        ].map((node) => (
+                            <div key={node.name} className="space-y-1.5">
+                                <div className="flex justify-between text-[10px] text-slate-400 uppercase font-bold">
+                                    <span>{node.name}</span>
+                                    <span>{node.val}%</span>
+                                </div>
+                                <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+                                    <motion.div
+                                        initial={{ width: 0 }}
+                                        animate={{ width: `${node.val}%` }}
+                                        transition={{ duration: 1, delay: 0.5 }}
+                                        className="h-full bg-primary"
+                                    />
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
 function DefaultMockup() {
     return (
         <div className="relative">
@@ -257,6 +364,78 @@ function DefaultMockup() {
     );
 }
 
+function MobileMockup() {
+    return (
+        <div className="relative mx-auto max-w-[280px]">
+            <div className="animate-float relative aspect-[9/19] bg-slate-900 rounded-[3rem] border-[8px] border-slate-800 shadow-2xl overflow-hidden">
+                <div className="absolute top-0 inset-x-0 h-6 bg-slate-800 flex justify-center items-end pb-1">
+                    <div className="w-16 h-1 bg-black/20 rounded-full" />
+                </div>
+                <div className="p-6 pt-12 space-y-6">
+                    <div className="w-12 h-12 rounded-2xl bg-primary/20 flex items-center justify-center text-primary">
+                        <Smartphone size={24} />
+                    </div>
+                    <div className="space-y-2">
+                        <div className="h-4 w-full bg-white/10 rounded-full" />
+                        <div className="h-4 w-2/3 bg-white/5 rounded-full" />
+                    </div>
+                    <div className="space-y-3 pt-4">
+                        {[1, 2, 3].map(i => (
+                            <div key={i} className="flex gap-3 items-center">
+                                <div className="w-10 h-10 rounded-full bg-white/5" />
+                                <div className="space-y-1 flex-1">
+                                    <div className="h-2 w-full bg-white/10 rounded-full" />
+                                    <div className="h-2 w-1/2 bg-white/5 rounded-full" />
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                    <div className="absolute bottom-6 inset-x-6">
+                        <div className="h-10 w-full bg-primary rounded-xl" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function ConsultingMockup() {
+    return (
+        <div className="relative">
+            <div className="animate-float bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 shadow-2xl">
+                <div className="flex gap-4 mb-8">
+                    <div className="p-3 bg-accent/20 rounded-lg text-accent">
+                        <Lightbulb size={24} />
+                    </div>
+                    <div>
+                        <div className="text-white font-bold">Strategy Roadmap</div>
+                        <div className="text-slate-400 text-xs text-uppercase tracking-wider">Phase 1: Architecture</div>
+                    </div>
+                </div>
+                <div className="space-y-4">
+                    {[
+                        { icon: Users, label: 'Discovery Session', status: 'Done' },
+                        { icon: FileText, label: 'Technical Audit', status: 'In Progress' },
+                        { icon: Star, label: 'Optimization Plan', status: 'Pending' }
+                    ].map((item, i) => (
+                        <div key={i} className="flex items-center justify-between p-3 bg-white/5 rounded-xl border border-white/5">
+                            <div className="flex items-center gap-3 text-slate-300">
+                                <item.icon size={16} className="text-primary" />
+                                <span className="text-sm">{item.label}</span>
+                            </div>
+                            <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${item.status === 'Done' ? 'bg-green-500/20 text-green-400' :
+                                item.status === 'In Progress' ? 'bg-primary/20 text-primary' : 'bg-slate-700 text-slate-400'
+                                }`}>
+                                {item.status}
+                            </span>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
+}
+
 export default function Hero({
     title = <>Empowering Your Business with <span className="gradient-text">IT & SEO Excellence</span></>,
     subtitle = "Custom software, stunning websites, and powerful SEO strategies that drive real growth for businesses across USA, India & Canada.",
@@ -265,10 +444,24 @@ export default function Hero({
     ctaHref = "/contact",
     showStats = true,
     rightContent,
+    imageSrc,
     category = 'default'
 }: HeroProps) {
     const renderMockup = () => {
         if (rightContent) return rightContent;
+        if (imageSrc) {
+            return (
+                <div className="relative aspect-video rounded-3xl overflow-hidden shadow-2xl border border-white/10 bg-slate-800">
+                    <Image
+                        src={imageSrc}
+                        alt="AnD Innovatech Hero"
+                        fill
+                        className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-navy/40 to-transparent" />
+                </div>
+            );
+        }
 
         switch (category) {
             case 'ecommerce':
@@ -278,6 +471,14 @@ export default function Hero({
             case 'seo':
             case 'marketing':
                 return <SEOMockup />;
+            case 'website':
+                return <WebsiteMockup />;
+            case 'cloud':
+                return <CloudMockup />;
+            case 'mobile':
+                return <MobileMockup />;
+            case 'consulting':
+                return <ConsultingMockup />;
             default:
                 return <DefaultMockup />;
         }

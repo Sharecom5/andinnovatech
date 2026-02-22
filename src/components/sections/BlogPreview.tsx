@@ -63,14 +63,14 @@ export default function BlogPreview() {
                             <Link href={`/blog/${post.slug}`}>
                                 <article className="group bg-white dark:bg-slate-800 rounded-2xl overflow-hidden border border-slate-100 dark:border-slate-700 shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
                                     {/* Image Container */}
-                                    <div className="relative h-52 overflow-hidden">
+                                    <div className="relative h-52 overflow-hidden bg-slate-800">
                                         <Image
-                                            src={post.image}
+                                            src={post.image || 'https://images.unsplash.com/photo-1557821552-17105176677c?q=80&w=800&h=500&auto=format&fit=crop'}
                                             alt={post.title}
                                             fill
                                             className="object-cover transition-transform duration-500 group-hover:scale-110"
                                         />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-navy/60 to-transparent" />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-navy/40 to-transparent" />
 
                                         {/* Category badge */}
                                         <div className="absolute top-4 left-4">

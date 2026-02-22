@@ -38,6 +38,7 @@ const budgetRanges = [
 ];
 
 export default function ContactForm() {
+    const [errorMessage, setErrorMessage] = useState<string>('');
     const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
     const {
@@ -50,8 +51,9 @@ export default function ContactForm() {
     });
 
     const onSubmit = async (data: ContactFormValues) => {
+        setErrorMessage('');
         try {
-            const response = await fetch('/api/contact/', {
+            const response = await fetch('/api/contact', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -64,14 +66,20 @@ export default function ContactForm() {
                 }),
             });
 
+            const result = await response.json();
+
             if (!response.ok) {
+                console.error('Submission failed. Status:', response.status, response.statusText);
+                console.error('Response body:', result);
                 setSubmitStatus('error');
+                setErrorMessage(result.error || 'Failed to send message');
             } else {
                 setSubmitStatus('success');
                 reset();
             }
-        } catch {
+        } catch (_err) {
             setSubmitStatus('error');
+            setErrorMessage('An unexpected error occurred');
         }
 
         // Reset status after 5 seconds
@@ -113,7 +121,7 @@ export default function ContactForm() {
                     className="flex items-center gap-3 p-4 rounded-xl bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400"
                 >
                     <AlertCircle size={20} />
-                    <span className="text-sm">Failed to send message. Please try again later.</span>
+                    <span className="text-sm">{errorMessage || 'Failed to send message. Please try again later.'}</span>
                 </motion.div>
             )}
 
@@ -142,7 +150,7 @@ export default function ContactForm() {
                     <input
                         id="email"
                         type="email"
-                        placeholder="john@example.com"
+                        placeholder="hello@andinnovatech.com"
                         className={cn(inputStyles, errors.email && 'border-red-500 focus:ring-red-500/50')}
                         {...register('email')}
                     />

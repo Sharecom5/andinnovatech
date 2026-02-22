@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import Hero from '@/components/sections/Hero';
 import ContactForm from '@/components/sections/ContactForm';
-import { CheckCircle2, Cloud, Server, Database, Lock, TrendingUp, RefreshCcw, ArrowRight, ShieldCheck, Zap } from 'lucide-react';
+import { CheckCircle2, Cloud, ArrowRight, ShieldCheck, Zap } from 'lucide-react';
 import SectionHeading from '@/components/ui/SectionHeading';
 import Badge from '@/components/ui/Badge';
 import Button from '@/components/ui/Button';
@@ -48,7 +48,7 @@ export default function CloudComputing() {
                 badgeText="☁️ Enterprise Cloud Excellence"
                 ctaText="Start Cloud Migration"
                 showStats={true}
-                category="software"
+                category="cloud"
             />
 
             <section className="section-padding bg-white dark:bg-navy">

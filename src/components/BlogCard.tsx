@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { Calendar, ArrowRight } from 'lucide-react';
 
@@ -18,10 +19,11 @@ export default function BlogCard({ title, date, description, slug, coverImage, c
             className="group bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-2xl transition-all h-full flex flex-col hover:-translate-y-2 duration-500"
         >
             <Link href={`/${slug}/`} className="block overflow-hidden relative h-52">
-                <img
+                <Image
                     src={coverImage || fallbackImage}
                     alt={title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-navy/80 to-transparent opacity-60" />
                 {category && (

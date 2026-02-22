@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import Hero from '@/components/sections/Hero';
 import ContactForm from '@/components/sections/ContactForm';
-import { CheckCircle2, Zap, ShieldCheck, ArrowRight, MousePointer2, Smartphone, Globe } from 'lucide-react';
+import { CheckCircle2, Zap, ShieldCheck, Smartphone } from 'lucide-react';
 import SectionHeading from '@/components/ui/SectionHeading';
 import Badge from '@/components/ui/Badge';
 import Button from '@/components/ui/Button';
@@ -30,7 +30,7 @@ export default function WebsiteDevelopment() {
                 badgeText="🌐 Web Excellence"
                 ctaText="Discuss Your Site"
                 showStats={false}
-                category="software"
+                category="website"
             />
 
             <section className="section-padding bg-white dark:bg-navy">

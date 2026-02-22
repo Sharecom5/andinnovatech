@@ -49,7 +49,7 @@ export default function MobileAppDevelopment() {
                 ctaText="Discuss Your App Idea"
                 ctaHref="/contact"
                 showStats={true}
-                category="software"
+                category="mobile"
             />
 
             <section className="section-padding bg-white dark:bg-navy">

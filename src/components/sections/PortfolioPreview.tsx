@@ -86,14 +86,14 @@ export default function PortfolioPreview() {
                             <Link href={`/portfolio/${item.slug}`}>
                                 <div className="group relative bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/10 hover:border-primary/50 transition-all duration-300 hover:-translate-y-2">
                                     {/* Image Container */}
-                                    <div className="relative h-60 overflow-hidden">
+                                    <div className="relative h-60 overflow-hidden bg-slate-800">
                                         <Image
-                                            src={item.image}
+                                            src={item.image || 'https://images.unsplash.com/photo-1557821552-17105176677c?q=80&w=800&h=500&auto=format&fit=crop'}
                                             alt={item.title}
                                             fill
                                             className="object-cover transition-transform duration-700 group-hover:scale-110"
                                         />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/20 to-transparent opacity-80" />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/20 to-transparent opacity-60" />
 
                                         {/* Category badge */}
                                         <div className="absolute top-4 left-4">

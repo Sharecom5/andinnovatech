@@ -1,7 +1,8 @@
 import { Metadata } from 'next';
 import Hero from '@/components/sections/Hero';
 import Stats from '@/components/sections/Stats';
-import { Target, Eye, Award, Zap, Puzzle, Heart, Coffee, Globe, ArrowRight, ShieldCheck, Cpu } from 'lucide-react';
+import { Target, Eye, Zap, Puzzle, Heart, Globe, ArrowRight, ShieldCheck, Cpu } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 import Button from '@/components/ui/Button';
 import SectionHeading from '@/components/ui/SectionHeading';
@@ -62,13 +63,14 @@ export default function AboutUs() {
                 <div className="section-container">
                     <div className="grid lg:grid-cols-2 gap-20 items-center">
                         <div className="relative">
-                            <div className="relative group">
-                                <img
+                            <div className="relative group aspect-[10/7] overflow-hidden rounded-[3rem]">
+                                <Image
                                     src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1000&auto=format&fit=crop"
                                     alt="Technical team collaborating"
-                                    className="rounded-[3rem] shadow-2xl relative z-10 grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700"
+                                    fill
+                                    className="object-cover relative z-10 grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700"
                                 />
-                                <div className="absolute inset-0 rounded-[3rem] bg-primary/10 group-hover:bg-transparent transition-all duration-700 z-20" />
+                                <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-all duration-700 z-20" />
                             </div>
 
                             <div className="absolute -bottom-10 -right-10 w-80 h-80 bg-accent/20 rounded-full blur-[100px] -z-10" />

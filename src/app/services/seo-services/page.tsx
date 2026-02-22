@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import Hero from '@/components/sections/Hero';
 import ContactForm from '@/components/sections/ContactForm';
-import { CheckCircle2, Search, TrendingUp, BarChart, Globe, Zap, MousePointer2, ArrowRight, Target } from 'lucide-react';
+import { CheckCircle2, Search, BarChart, Zap, ArrowRight, Target } from 'lucide-react';
 import SectionHeading from '@/components/ui/SectionHeading';
 import Badge from '@/components/ui/Badge';
 import Button from '@/components/ui/Button';

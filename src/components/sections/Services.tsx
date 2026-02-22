@@ -18,7 +18,7 @@ const fallbackServices = [
         icon: Server,
         title: 'IT Solutions',
         description: 'Comprehensive IT infrastructure solutions to streamline your business operations and boost efficiency.',
-        slug: 'it-solutions',
+        slug: 'it-consulting',
     },
     {
         icon: Code2,

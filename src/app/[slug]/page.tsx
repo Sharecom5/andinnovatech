@@ -15,13 +15,13 @@ interface DynamicPageProps {
 
 // ── SEO metadata title formulas ─────────────────────────────────
 const seoTitleFormulas = [
-    (name: string, stateCode: string, _s: string) => `SEO Services in ${name}, ${stateCode} | AndInnovatech`,
+    (name: string, stateCode: string) => `SEO Services in ${name}, ${stateCode} | AndInnovatech`,
     (name: string, _sc: string, state: string) => `SEO Agency ${name}, ${state} | AndInnovatech`,
-    (name: string, _sc: string, _s: string) => `${name} SEO Company | AndInnovatech`,
-    (name: string, _sc: string, _s: string) => `Local SEO Services ${name} | AndInnovatech`,
-    (name: string, _sc: string, _s: string) => `${name} Search Engine Optimization | AndInnovatech`,
-    (name: string, stateCode: string, _s: string) => `SEO Services ${name} ${stateCode} | AndInnovatech`,
-    (name: string, _sc: string, _s: string) => `${name} SEO Experts | AndInnovatech`,
+    (name: string) => `${name} SEO Company | AndInnovatech`,
+    (name: string) => `Local SEO Services ${name} | AndInnovatech`,
+    (name: string) => `${name} Search Engine Optimization | AndInnovatech`,
+    (name: string, stateCode: string) => `SEO Services ${name} ${stateCode} | AndInnovatech`,
+    (name: string) => `${name} SEO Experts | AndInnovatech`,
 ];
 
 export async function generateStaticParams() {

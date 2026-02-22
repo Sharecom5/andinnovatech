@@ -35,7 +35,7 @@ export default function ContactForm() {
         setIsSubmitting(true);
         setError(null);
         try {
-            const response = await fetch('/api/contact/', {
+            const response = await fetch('/api/contact', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data),
@@ -88,7 +88,7 @@ export default function ContactForm() {
                     <label className="text-sm font-semibold text-gray-700">Email Address</label>
                     <input
                         {...register('email')}
-                        placeholder="john@example.com"
+                        placeholder="hello@andinnovatech.com"
                         className={`w-full px-4 py-3 rounded-xl border ${errors.email ? 'border-red-500' : 'border-gray-200'} focus:ring-2 focus:ring-primary outline-none transition-all`}
                     />
                     {errors.email && <p className="text-red-500 text-xs">{errors.email.message}</p>}

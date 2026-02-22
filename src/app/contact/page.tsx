@@ -40,8 +40,8 @@ export default function ContactUs() {
                                             <Mail size={24} />
                                         </div>
                                         <h3 className="text-lg font-bold text-navy dark:text-white mb-2">Email Us</h3>
-                                        <a href="mailto:andinnovatech@gmail.com" className="text-primary hover:underline text-sm font-medium">
-                                            andinnovatech@gmail.com
+                                        <a href="mailto:hello@andinnovatech.com" className="text-primary hover:underline text-sm font-medium">
+                                            hello@andinnovatech.com
                                         </a>
                                         <p className="text-xs text-grey dark:text-slate-400 mt-2">Response within 24 hours.</p>
                                     </div>

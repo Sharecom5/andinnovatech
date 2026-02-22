@@ -6,9 +6,7 @@ import {
     MessageCircle,
     X,
     Send,
-    User,
     Bot,
-    Check,
     ArrowRight,
     Smartphone,
     Globe,
@@ -139,8 +137,8 @@ export default function AIChatbot() {
                         message: `Chatbot Lead: ${val}`,
                     }),
                 });
-            } catch (err) {
-                console.error("Chatbot submit error:", err);
+            } catch (_err) {
+                console.error("Chatbot submit error:", _err);
             }
 
             await botResponse("All set! I've sent your details to our strategy team. One of our experts will reach out to you within the next 2-4 hours to schedule a free consultation.");

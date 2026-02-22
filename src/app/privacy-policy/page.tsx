@@ -24,7 +24,7 @@ export default function PrivacyPolicy() {
 
                         <h2 className="text-navy dark:text-white mt-12 mb-6">1. Introduction</h2>
                         <p>
-                            Welcome to AnD Innovatech. We are committed to protecting your personal information and your right to privacy. If you have any questions or concerns about our policy, or our practices with regards to your personal information, please contact us at andinnovatech@gmail.com.
+                            Welcome to AnD Innovatech. We are committed to protecting your personal information and your right to privacy. If you have any questions or concerns about our policy, or our practices with regards to your personal information, please contact us at hello@andinnovatech.com.
                         </p>
 
                         <h2 className="text-navy dark:text-white mt-12 mb-6">2. Information We Collect</h2>
@@ -64,7 +64,7 @@ export default function PrivacyPolicy() {
 
                         <h2 className="text-navy dark:text-white mt-12 mb-6">7. Contact Us</h2>
                         <p>
-                            If you have questions or comments about this policy, you may email us at andinnovatech@gmail.com.
+                            If you have questions or comments about this policy, you may email us at hello@andinnovatech.com.
                         </p>
                     </div>
                 </div>

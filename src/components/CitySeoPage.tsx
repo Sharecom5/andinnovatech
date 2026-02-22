@@ -6,6 +6,7 @@ import {
     ArrowRight, Phone, TrendingUp, Users, Award, Clock,
     Search, Target, Zap
 } from 'lucide-react';
+import Image from 'next/image';
 import type { CitySEO } from '@/lib/city-seo-types';
 import Button from '@/components/ui/Button';
 import Badge from '@/components/ui/Badge';
@@ -64,12 +65,11 @@ function getSubheading(city: CitySEO, idx: number): string {
 }
 
 // ── Helper: Section 2 body ──────────────────────────────────────
-function getChallengeBody(city: CitySEO, idx: number): JSX.Element {
+function getChallengeBody(city: CitySEO, _idx: number): JSX.Element {
     const isEnterprise = city.avgBusinessSize === 'enterprise';
     const isStartup = city.avgBusinessSize === 'startup';
     const tourismCities = ['las-vegas', 'orlando', 'miami', 'new-orleans', 'san-antonio', 'honolulu', 'quebec-city', 'jaipur'];
     const isTourism = tourismCities.includes(city.slug);
-    const isTier2 = city.avgBusinessSize === 'SMB' && !isTourism;
 
     if (isEnterprise) {
         return (

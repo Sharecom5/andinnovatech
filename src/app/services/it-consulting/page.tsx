@@ -49,6 +49,7 @@ export default function ITConsulting() {
                 ctaText="Book a Strategy Session"
                 ctaHref="/contact"
                 showStats={true}
+                category="consulting"
             />
 
             <section className="section-padding bg-white dark:bg-navy">

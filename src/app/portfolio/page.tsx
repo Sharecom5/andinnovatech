@@ -116,16 +116,16 @@ export default function Portfolio() {
                     />
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-16">
-                        {projects.map((project, index) => (
+                        {projects.map((project) => (
                             <div key={project.name} className="group bg-white dark:bg-slate-800 rounded-[2.5rem] border border-slate-100 dark:border-slate-700/50 overflow-hidden shadow-sm hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500 hover:-translate-y-3 flex flex-col">
-                                <div className="relative h-64 overflow-hidden">
+                                <div className="relative h-64 overflow-hidden bg-slate-800">
                                     <Image
-                                        src={project.image}
+                                        src={project.image || 'https://images.unsplash.com/photo-1557821552-17105176677c?q=80&w=800&h=500&auto=format&fit=crop'}
                                         alt={project.name}
                                         fill
                                         className="object-cover transition-transform duration-1000 group-hover:scale-110"
                                     />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/20 to-transparent opacity-80" />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/20 to-transparent opacity-60" />
 
                                     <div className="absolute top-6 left-6 flex gap-2">
                                         <Badge className="bg-primary/90 text-white border-none shadow-lg backdrop-blur-md px-4 py-1.5 rounded-full font-bold uppercase tracking-widest text-[10px]">

@@ -18,7 +18,10 @@ export default function Home() {
   return (
     <main className="overflow-hidden">
       {/* Hero Section */}
-      <Hero />
+      {/* Hero Section */}
+      <Hero
+        imageSrc="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1470&auto=format&fit=crop"
+      />
 
       {/* Trusted By Logos */}
       <Clients />
