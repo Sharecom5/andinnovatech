@@ -4,7 +4,7 @@ import './globals.css';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import BackToTop from '@/components/ui/BackToTop';
-import WhatsAppButton from '@/components/ui/WhatsAppButton';
+import AIChatbot from '@/components/AIChatbot';
 import CookieConsent from '@/components/ui/CookieConsent';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -47,7 +47,7 @@ export default function RootLayout({
         <main>{children}</main>
         <Footer />
         <BackToTop />
-        <WhatsAppButton />
+        <AIChatbot />
         <CookieConsent />
       </body>
     </html>
