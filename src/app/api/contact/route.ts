@@ -107,10 +107,11 @@ export async function POST(request: Request) {
         }
 
         return NextResponse.json({ success: true, data: adminEmail.data });
-    } catch (error: any) {
+    } catch (error: unknown) {
+        const errMsg = error instanceof Error ? error.message : 'Unknown error';
         console.error('❌ API Error Catch Block:', error);
         return NextResponse.json(
-            { error: `API Internal Error: ${error.message || 'Unknown error'}` },
+            { error: `API Internal Error: ${errMsg}` },
             { status: 500 }
         );
     }
