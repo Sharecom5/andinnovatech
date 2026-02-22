@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, Calendar, Clock } from 'lucide-react';
 import SectionHeading from '@/components/ui/SectionHeading';
@@ -63,10 +64,11 @@ export default function BlogPreview() {
                                 <article className="group bg-white dark:bg-slate-800 rounded-2xl overflow-hidden border border-slate-100 dark:border-slate-700 shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
                                     {/* Image Container */}
                                     <div className="relative h-52 overflow-hidden">
-                                        <img
+                                        <Image
                                             src={post.image}
                                             alt={post.title}
-                                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                            fill
+                                            className="object-cover transition-transform duration-500 group-hover:scale-110"
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-t from-navy/60 to-transparent" />
 

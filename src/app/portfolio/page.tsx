@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Image from 'next/image';
 import Hero from '@/components/sections/Hero';
 import { ExternalLink, Layout, Smartphone, Search, Code2, ArrowRight, Layers, Globe, BarChart } from 'lucide-react';
 import Link from 'next/link';
@@ -118,10 +119,11 @@ export default function Portfolio() {
                         {projects.map((project, index) => (
                             <div key={project.name} className="group bg-white dark:bg-slate-800 rounded-[2.5rem] border border-slate-100 dark:border-slate-700/50 overflow-hidden shadow-sm hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500 hover:-translate-y-3 flex flex-col">
                                 <div className="relative h-64 overflow-hidden">
-                                    <img
+                                    <Image
                                         src={project.image}
                                         alt={project.name}
-                                        className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                                        fill
+                                        className="object-cover transition-transform duration-1000 group-hover:scale-110"
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/20 to-transparent opacity-80" />
 

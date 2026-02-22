@@ -9,12 +9,10 @@ import {
     Briefcase,
     SmilePlus,
     ShoppingCart,
-    Code2,
     Search,
     TrendingUp,
     Layout,
     ShieldCheck,
-    Zap
 } from 'lucide-react';
 import Link from 'next/link';
 import Button from '@/components/ui/Button';
@@ -104,7 +102,7 @@ function SoftwareMockup() {
                     <div className="pl-6 text-slate-400">
                         <span className="text-blue-400">const</span> results = <span className="text-purple-400">await</span> optimize();
                     </div>
-                    <div className="pl-6 text-green-400">// Deploying to production...</div>
+                    <div className="pl-6 text-green-400">{"// Deploying to production..."}</div>
                     <div className="pl-6 text-blue-400">return <span className="text-slate-300">growth;</span></div>
                     <div className="text-slate-400">{`}`}</div>
                 </div>
