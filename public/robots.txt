@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://andinnovatech.com
+
+# Sitemaps
+Sitemap: https://andinnovatech.com/sitemap.xml

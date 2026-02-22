@@ -1,0 +1,15 @@
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+    trailingSlash: true,
+    async redirects() {
+        return [
+            {
+                source: '/blog/:slug/',
+                destination: '/:slug/',
+                permanent: true,
+            },
+        ];
+    },
+};
+
+export default nextConfig;
