@@ -62,7 +62,7 @@ export default function Testimonials() {
                         <motion.div
                             key={testimonial.id}
                             initial={{ opacity: 0, y: 30 }}
-                            animate={isInView ? { opacity: 1, y: 0 } : {}}
+                            animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: index * 0.15, duration: 0.5 }}
                             className="group bg-white dark:bg-slate-800 rounded-2xl p-6 lg:p-8 shadow-card hover:shadow-card-hover transition-all duration-300 border border-slate-100 dark:border-slate-700 relative"
                         >

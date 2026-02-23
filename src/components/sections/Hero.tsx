@@ -494,8 +494,8 @@ export default function Hero({
             <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/15 rounded-full blur-[150px] animate-pulse-slow" />
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[200px]" />
 
-            <div className="section-container relative z-10 py-32">
-                <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div className="section-container relative z-10 py-20 md:py-28 lg:py-32">
+                <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
                     {/* Left Content */}
                     <div>
                         <motion.div {...fadeInUp} transition={{ delay: 0.1 }}>
@@ -507,32 +507,29 @@ export default function Hero({
                         <motion.h1
                             {...fadeInUp}
                             transition={{ delay: 0.2 }}
-                            className="text-4xl md:text-5xl lg:text-display font-heading font-extrabold text-white leading-tight mb-6"
-                        >
+                            className="text-3xl sm:text-4xl md:text-5xl lg:text-display font-heading font-extrabold text-white leading-tight mb-6">
                             {title}
                         </motion.h1>
 
                         <motion.p
                             {...fadeInUp}
                             transition={{ delay: 0.3 }}
-                            className="text-lg text-slate-300 leading-relaxed mb-8 max-w-xl"
-                        >
+                            className="text-base md:text-lg text-slate-300 leading-relaxed mb-8 max-w-xl">
                             {subtitle}
                         </motion.p>
 
                         <motion.div
                             {...fadeInUp}
                             transition={{ delay: 0.4 }}
-                            className="flex flex-wrap gap-4 mb-12"
-                        >
-                            <Link href={ctaHref}>
-                                <Button size="lg" className="gap-2 bg-primary hover:bg-primary-600 text-white shadow-glow border-none">
+                            className="flex flex-col sm:flex-row flex-wrap gap-4 mb-10 md:mb-12">
+                            <Link href={ctaHref} className="w-full sm:w-auto">
+                                <Button size="lg" className="gap-2 bg-primary hover:bg-primary-600 text-white shadow-glow border-none w-full sm:w-auto justify-center">
                                     {ctaText}
                                     <ArrowRight size={20} />
                                 </Button>
                             </Link>
-                            <Link href="/portfolio">
-                                <Button variant="outline" size="lg" className="gap-2 text-white border-white/20 hover:bg-white/5 font-bold">
+                            <Link href="/portfolio" className="w-full sm:w-auto">
+                                <Button variant="outline" size="lg" className="gap-2 text-white border-white/20 hover:bg-white/5 font-bold w-full sm:w-auto justify-center">
                                     View Our Work
                                     <ExternalLink size={18} />
                                 </Button>
@@ -544,7 +541,7 @@ export default function Hero({
                             <motion.div
                                 {...fadeInUp}
                                 transition={{ delay: 0.5 }}
-                                className="grid grid-cols-2 md:grid-cols-4 gap-4"
+                                className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4"
                             >
                                 {trustBadges.map((badge) => (
                                     <div
@@ -586,7 +583,7 @@ export default function Hero({
             </motion.div>
 
             {/* Bottom Diagonal Cut */}
-            <div className="absolute bottom-0 left-0 right-0 h-24 bg-white dark:bg-slate-900 clip-diagonal" />
+            <div className="absolute bottom-0 left-0 right-0 h-24 bg-white dark:bg-navy clip-diagonal" />
         </section>
     );
 }

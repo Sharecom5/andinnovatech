@@ -23,7 +23,7 @@ const inclusions = [
 
 export default function SoftwareDevelopment() {
     return (
-        <main className="overflow-hidden">
+        <div className="overflow-x-hidden">
             <Hero
                 title={<>Custom <span className="gradient-text">Software Engineering</span></>}
                 subtitle="Transforming complex business challenges into seamless digital solutions. We build scalable, secure, and future-ready enterprise applications."
@@ -105,6 +105,6 @@ export default function SoftwareDevelopment() {
                     </div>
                 </div>
             </section>
-        </main>
+        </div>
     );
 }

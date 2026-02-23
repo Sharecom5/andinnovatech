@@ -86,8 +86,8 @@ function NewsletterForm() {
     }
 
     return (
-        <form className="flex flex-col gap-2 mb-8" onSubmit={handleSubmit}>
-            <div className="flex gap-2">
+        <form className="flex flex-col gap-3 mb-8" onSubmit={handleSubmit}>
+            <div className="flex flex-col sm:flex-row gap-2">
                 <input
                     type="email"
                     required
@@ -100,7 +100,7 @@ function NewsletterForm() {
                 <button
                     type="submit"
                     disabled={status === 'loading'}
-                    className="px-5 py-2.5 rounded-full bg-gradient-primary text-white text-sm font-semibold hover:shadow-glow transition-all duration-300 disabled:opacity-50 flex items-center gap-2"
+                    className="px-6 py-2.5 rounded-full bg-gradient-primary text-white text-sm font-semibold hover:shadow-glow transition-all duration-300 disabled:opacity-50 flex items-center justify-center gap-2"
                 >
                     {status === 'loading' ? <Loader2 size={16} className="animate-spin" /> : 'Subscribe'}
                 </button>

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function ContactUs() {
     return (
-        <main className="overflow-hidden">
+        <div className="overflow-x-hidden">
             <Hero
                 title={<>Let&apos;s Build Your <span className="gradient-text">Digital Future</span></>}
                 subtitle="Have a question or a project in mind? We&apos;d love to hear from you. Reach out to our team today for a free expert consultation."
@@ -104,6 +104,6 @@ export default function ContactUs() {
                     </div>
                 </div>
             </section>
-        </main>
+        </div>
     );
 }

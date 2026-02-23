@@ -79,8 +79,7 @@ export default function PortfolioPreview() {
                         <motion.div
                             key={item.id}
                             initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: '-30px' }}
+                            animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: index * 0.1, duration: 0.5 }}
                         >
                             <Link href={`/portfolio/${item.slug}`}>
@@ -141,7 +140,7 @@ export default function PortfolioPreview() {
 
                 <div className="text-center">
                     <Link href="/portfolio">
-                        <Button variant="primary" size="lg" className="px-12 py-7 rounded-full text-xl shadow-glow-primary group">
+                        <Button variant="primary" size="lg" className="px-10 md:px-12 py-5 md:py-7 rounded-full text-lg md:text-xl shadow-glow-primary group">
                             View All Projects
                             <ArrowRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform" />
                         </Button>

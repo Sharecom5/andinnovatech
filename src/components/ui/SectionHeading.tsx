@@ -32,7 +32,7 @@ export default function SectionHeading({
         >
             <h2
                 className={cn(
-                    'text-h2 font-heading font-bold mb-4',
+                    'text-3xl md:text-h2 font-heading font-bold mb-4',
                     light ? 'text-white' : 'text-navy dark:text-white'
                 )}
             >

@@ -98,7 +98,7 @@ const projects = [
 
 export default function Portfolio() {
     return (
-        <main className="overflow-hidden bg-white dark:bg-navy">
+        <div className="overflow-x-hidden bg-white dark:bg-navy">
             <Hero
                 title={<>Showcasing Our <span className="gradient-text">Digital Craftsmanship</span></>}
                 subtitle="From enterprise-grade software to high-conversion websites, we turn complex challenges into seamless digital experiences."
@@ -168,13 +168,13 @@ export default function Portfolio() {
                     </div>
 
                     {/* Collaborative Section */}
-                    <div className="mt-32 relative rounded-[4rem] overflow-hidden bg-navy p-12 md:p-24 text-center">
+                    <div className="mt-16 md:mt-32 relative rounded-2xl md:rounded-[4rem] overflow-hidden bg-navy p-8 md:p-16 lg:p-24 text-center">
                         <div className="absolute inset-0 bg-gradient-mesh opacity-10" />
                         <div className="absolute top-0 right-0 w-[40rem] h-[40rem] bg-primary/10 rounded-full blur-[150px] -translate-y-1/2 translate-x-1/2" />
 
                         <div className="relative z-10 max-w-4xl mx-auto">
                             <Badge className="mb-6 bg-primary/20 text-primary-400 border-none font-bold uppercase tracking-[0.2em]">Partner with Us</Badge>
-                            <h2 className="text-4xl md:text-6xl font-extrabold text-white mb-8 tracking-tighter">
+                            <h2 className="text-3xl md:text-4xl lg:text-6xl font-extrabold text-white mb-6 md:mb-8 tracking-tighter">
                                 Let&apos;s Architect Your <span className="gradient-text">Success Story</span>
                             </h2>
                             <p className="text-slate-400 text-xl mb-12 leading-relaxed max-w-2xl mx-auto">
@@ -191,6 +191,6 @@ export default function Portfolio() {
                     </div>
                 </div>
             </section>
-        </main>
+        </div>
     );
 }

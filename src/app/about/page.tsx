@@ -48,7 +48,7 @@ const differences = [
 
 export default function AboutUs() {
     return (
-        <main className="overflow-hidden bg-white dark:bg-navy">
+        <div className="overflow-x-hidden bg-white dark:bg-navy">
             <Hero
                 title={<>Pioneering the <span className="gradient-text">Future of Digital</span> Solutions</>}
                 subtitle="Since 2017, AnD Innovatech has been at the forefront of technological transformation, helping brands navigate the complexities of the modern web."
@@ -156,6 +156,6 @@ export default function AboutUs() {
                     </Link>
                 </div>
             </section>
-        </main>
+        </div>
     );
 }

@@ -16,8 +16,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <main className="overflow-hidden">
-      {/* Hero Section */}
+    <div className="overflow-x-hidden">
       {/* Hero Section */}
       <Hero
         imageSrc="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1470&auto=format&fit=crop"
@@ -50,6 +49,6 @@ export default function Home() {
           <ContactFormSection />
         </div>
       </section>
-    </main>
+    </div>
   );
 }

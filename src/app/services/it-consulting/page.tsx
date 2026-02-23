@@ -41,7 +41,7 @@ const pillars = [
 
 export default function ITConsulting() {
     return (
-        <main className="overflow-hidden bg-white dark:bg-navy">
+        <div className="overflow-x-hidden bg-white dark:bg-navy">
             <Hero
                 title={<>Strategic <span className="gradient-text">IT Consulting</span> & Advisory</>}
                 subtitle="We bridge the gap between business vision and technical execution. Our consultants help you navigate the complex digital landscape with precision."
@@ -148,6 +148,6 @@ export default function ITConsulting() {
                     </div>
                 </div>
             </section>
-        </main>
+        </div>
     );
 }

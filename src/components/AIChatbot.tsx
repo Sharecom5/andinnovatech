@@ -150,14 +150,14 @@ export default function AIChatbot() {
     };
 
     return (
-        <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+        <div className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50 flex flex-col items-end">
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
                         initial={{ opacity: 0, y: 20, scale: 0.95, transformOrigin: 'bottom right' }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 20, scale: 0.95 }}
-                        className="mb-4 w-[380px] md:w-[420px] max-h-[600px] h-[80vh] bg-white dark:bg-navy rounded-[2.5rem] shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden flex flex-col"
+                        className="mb-4 w-[calc(100vw-2rem)] sm:w-[380px] md:w-[420px] max-h-[85vh] md:max-h-[600px] h-[80vh] bg-white dark:bg-navy rounded-[1.5rem] md:rounded-[2.5rem] shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden flex flex-col"
                     >
                         {/* Header */}
                         <div className="p-7 bg-primary text-white flex items-center justify-between relative overflow-hidden">

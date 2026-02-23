@@ -13,10 +13,38 @@
 
   html {
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
   }
 
   body {
     @apply bg-white text-gray-900;
+    overflow-x: hidden;
+  }
+
+  /* Prevent iOS font size zoom on input focus */
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
+
+  /* Minimum tap target size for accessibility on mobile */
+  button {
+    min-height: 44px;
+  }
+
+  /* Prevent accidental text overflow on mobile */
+  * {
+    max-width: 100%;
+    word-break: break-word;
+  }
+
+  img,
+  video,
+  iframe {
+    max-width: 100%;
+    height: auto;
   }
 }
 
@@ -52,7 +80,7 @@
   }
 
   .section-padding {
-    @apply py-20 md:py-32;
+    @apply py-14 md:py-20 lg:py-32;
   }
 
   .section-container {

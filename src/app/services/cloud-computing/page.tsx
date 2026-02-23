@@ -41,7 +41,7 @@ const pillars = [
 
 export default function CloudComputing() {
     return (
-        <main className="overflow-hidden bg-white dark:bg-navy">
+        <div className="overflow-x-hidden bg-white dark:bg-navy">
             <Hero
                 title={<>Future-Ready <span className="gradient-text">Cloud Computing</span> Solutions</>}
                 subtitle="Modernize your infrastructure with scalable, secure, and cost-effective cloud architectures. We migrate, manage, and optimize your digital workspace."
@@ -143,6 +143,6 @@ export default function CloudComputing() {
                     </Link>
                 </div>
             </section>
-        </main>
+        </div>
     );
 }

@@ -60,8 +60,7 @@ export default function Services() {
                         <motion.div
                             key={service.slug}
                             initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: '-30px' }}
+                            animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: index * 0.1, duration: 0.5 }}
                         >
                             <Link href={`/services/${service.slug}`}>

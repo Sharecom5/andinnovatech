@@ -13,7 +13,7 @@ export default async function BlogPage() {
     const posts = await getAllPosts();
 
     return (
-        <main className="overflow-hidden">
+        <div className="overflow-x-hidden">
             <Hero
                 title={<>Decoding the <span className="gradient-text">Future of Technology</span></>}
                 subtitle="Exploring the frontiers of innovation, digital growth, and software excellence. Join us for weekly insights from our experts."
@@ -48,6 +48,6 @@ export default async function BlogPage() {
                     )}
                 </div>
             </section>
-        </main>
+        </div>
     );
 }

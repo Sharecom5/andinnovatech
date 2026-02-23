@@ -41,7 +41,7 @@ const highlights = [
 
 export default function SEOServices() {
     return (
-        <main className="overflow-hidden bg-white dark:bg-navy">
+        <div className="overflow-x-hidden bg-white dark:bg-navy">
             <Hero
                 title={<>Data-Driven <span className="gradient-text">SEO Performance</span></>}
                 subtitle="Dominate search results and capture high-intent traffic with our proven SEO methodologies. We turn organic search into your most powerful lead generator."
@@ -144,6 +144,6 @@ export default function SEOServices() {
                     </Link>
                 </div>
             </section>
-        </main>
+        </div>
     );
 }

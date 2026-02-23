@@ -105,8 +105,7 @@ export default function WhyChooseUs() {
                             <motion.div
                                 key={feature.number}
                                 initial={{ opacity: 0, x: 30 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
+                                animate={{ opacity: 1, x: 0 }}
                                 transition={{ delay: index * 0.08, duration: 0.5 }}
                                 className="group flex gap-4 p-5 rounded-xl hover:bg-grey-light dark:hover:bg-slate-800/50 transition-colors duration-300"
                             >

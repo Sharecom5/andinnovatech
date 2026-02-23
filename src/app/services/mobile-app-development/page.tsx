@@ -41,7 +41,7 @@ const capabilities = [
 
 export default function MobileAppDevelopment() {
     return (
-        <main className="overflow-hidden bg-white dark:bg-navy">
+        <div className="overflow-x-hidden bg-white dark:bg-navy">
             <Hero
                 title={<>High-Performance <span className="gradient-text">Mobile Applications</span></>}
                 subtitle="We build seamless iOS and Android experiences that engage users and drive business growth. From concept to App Store launch, we've got you covered."
@@ -54,10 +54,10 @@ export default function MobileAppDevelopment() {
 
             <section className="section-padding bg-white dark:bg-navy">
                 <div className="section-container">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
                         <div>
                             <Badge className="mb-4 bg-primary/10 text-primary border-none font-bold uppercase tracking-widest">App Engineering</Badge>
-                            <h2 className="text-4xl md:text-5xl font-bold text-navy dark:text-white mb-8 leading-tight">
+                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-navy dark:text-white mb-8 leading-tight">
                                 Bring Your Vision to <span className="text-primary">Fingertips</span>
                             </h2>
                             <div className="prose prose-lg dark:prose-invert text-grey dark:text-slate-400 mb-12">
@@ -91,8 +91,8 @@ export default function MobileAppDevelopment() {
                             </div>
                         </div>
 
-                        <div className="lg:sticky lg:top-32 h-fit">
-                            <div className="bg-navy p-10 rounded-[3rem] border border-white/10 shadow-glow-primary relative overflow-hidden">
+                        <div className="lg:sticky lg:top-32 h-fit mt-6 lg:mt-0">
+                            <div className="bg-navy p-6 md:p-10 rounded-[2.5rem] border border-white/10 shadow-glow-primary relative overflow-hidden">
                                 <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-[100px] opacity-40" />
                                 <h3 className="text-3xl font-bold text-white mb-4 relative z-10">Start Your App Project</h3>
                                 <p className="text-slate-400 mb-10 relative z-10">Consult with our mobile architects today. Free estimation and roadmap.</p>
@@ -113,7 +113,7 @@ export default function MobileAppDevelopment() {
                     />
                     <div className="grid md:grid-cols-3 gap-8 mt-16">
                         {capabilities.map((cap, i) => (
-                            <div key={i} className="bg-white dark:bg-slate-800 p-10 rounded-3xl border border-slate-100 dark:border-slate-700 hover:shadow-2xl transition-all">
+                            <div key={i} className="bg-white dark:bg-slate-800 p-6 md:p-10 rounded-3xl border border-slate-100 dark:border-slate-700 hover:shadow-2xl transition-all">
                                 <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary mb-8">
                                     <cap.icon size={32} />
                                 </div>
@@ -133,7 +133,7 @@ export default function MobileAppDevelopment() {
                 <div className="section-container relative z-10">
                     <div className="max-w-4xl mx-auto text-center">
                         <Badge className="mb-4 bg-primary/20 text-primary-400 border-none">Ready to Launch?</Badge>
-                        <h2 className="text-4xl md:text-6xl font-extrabold text-white mb-8 tracking-tighter">
+                        <h2 className="text-3xl md:text-4xl lg:text-6xl font-extrabold text-white mb-6 md:mb-8 tracking-tighter">
                             Your Journey to the <span className="gradient-text">App Store</span> Starts Here
                         </h2>
                         <p className="text-slate-400 text-xl mb-12 leading-relaxed">
@@ -149,6 +149,6 @@ export default function MobileAppDevelopment() {
                     </div>
                 </div>
             </section>
-        </main>
+        </div>
     );
 }

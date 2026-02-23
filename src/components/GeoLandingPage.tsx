@@ -48,7 +48,7 @@ export default function GeoLandingPage({ country, service, h1, description, poin
     );
 
     return (
-        <main className="overflow-hidden bg-white dark:bg-navy">
+        <main className="overflow-x-hidden bg-white dark:bg-navy">
             <Hero
                 title={formattedH1}
                 subtitle={description}
@@ -60,11 +60,11 @@ export default function GeoLandingPage({ country, service, h1, description, poin
 
             <section className="section-padding bg-white dark:bg-navy">
                 <div className="section-container">
-                    <div className="grid lg:grid-cols-2 gap-20 items-start">
+                    <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-start">
                         <div className="space-y-12">
                             <div>
                                 <Badge className="mb-4 bg-primary/10 text-primary border-none font-bold uppercase tracking-widest">Global Partnership</Badge>
-                                <h2 className="text-4xl md:text-5xl font-bold text-navy dark:text-white leading-tight">
+                                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-navy dark:text-white leading-tight">
                                     Collaborate with <span className="text-primary">Confidence</span> in {country}
                                 </h2>
                             </div>
@@ -93,8 +93,8 @@ export default function GeoLandingPage({ country, service, h1, description, poin
                             </div>
                         </div>
 
-                        <div className="lg:sticky lg:top-32 h-fit">
-                            <div className="bg-navy p-10 rounded-[3rem] border border-white/10 shadow-glow-primary relative overflow-hidden">
+                        <div className="lg:sticky lg:top-32 h-fit mt-10 lg:mt-0">
+                            <div className="bg-navy p-6 md:p-10 rounded-[2.5rem] border border-white/10 shadow-glow-primary relative overflow-hidden">
                                 <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-[100px] opacity-40" />
                                 <h3 className="text-3xl font-bold text-white mb-4 relative z-10">Start Your Global Build</h3>
                                 <p className="text-slate-400 mb-10 relative z-10">Get a custom technical proposal and roadmap for the {country} market.</p>
@@ -110,7 +110,7 @@ export default function GeoLandingPage({ country, service, h1, description, poin
             {/* Bottom Section */}
             <section className="py-20 bg-slate-50 dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800">
                 <div className="section-container text-center">
-                    <h2 className="text-3xl md:text-5xl font-bold text-navy dark:text-white mb-8 tracking-tighter">
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-navy dark:text-white mb-8 tracking-tighter">
                         Leading <span className="text-primary">{service}</span> Partner for {country}
                     </h2>
                     <Link href="/portfolio">

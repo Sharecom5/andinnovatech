@@ -7,7 +7,7 @@ import Button from '@/components/ui/Button';
 
 export default function CTA() {
     return (
-        <section className="relative py-20 md:py-24 overflow-hidden">
+        <section className="relative section-padding overflow-hidden">
             {/* Gradient Background */}
             <div className="absolute inset-0 bg-gradient-primary" />
 
@@ -30,7 +30,7 @@ export default function CTA() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                 >
-                    <h2 className="text-3xl md:text-h2 font-heading font-bold text-white mb-4">
+                    <h2 className="text-3xl md:text-4xl lg:text-h2 font-heading font-bold text-white mb-4">
                         Ready to Transform Your Business?
                     </h2>
                     <p className="text-lg text-blue-100 max-w-2xl mx-auto mb-10">
@@ -39,14 +39,14 @@ export default function CTA() {
                     </p>
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <Link href="/contact">
-                            <Button variant="white" size="lg" className="gap-2">
+                        <Link href="/contact" className="w-full sm:w-auto">
+                            <Button variant="white" size="lg" className="w-full sm:w-auto gap-2">
                                 Start a Project
                                 <ArrowRight size={20} />
                             </Button>
                         </Link>
-                        <Link href="/contact">
-                            <Button variant="outline" size="lg" className="gap-2">
+                        <Link href="/contact" className="w-full sm:w-auto">
+                            <Button variant="outline" size="lg" className="w-full sm:w-auto gap-2">
                                 <Phone size={18} />
                                 Schedule a Call
                             </Button>

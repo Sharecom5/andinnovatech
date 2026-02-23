@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function TermsOfService() {
     return (
-        <main className="overflow-hidden bg-white dark:bg-navy">
+        <div className="overflow-x-hidden bg-white dark:bg-navy">
             <Hero
                 title={<>Terms of <span className="gradient-text">Service</span></>}
                 subtitle="Please read these terms carefully before using our services."
@@ -64,6 +64,6 @@ export default function TermsOfService() {
                     </div>
                 </div>
             </section>
-        </main>
+        </div>
     );
 }

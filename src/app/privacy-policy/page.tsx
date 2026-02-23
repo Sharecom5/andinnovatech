@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPolicy() {
     return (
-        <main className="overflow-hidden bg-white dark:bg-navy">
+        <div className="overflow-x-hidden bg-white dark:bg-navy">
             <Hero
                 title={<>Privacy <span className="gradient-text">Policy</span></>}
                 subtitle="Your privacy is critical to our mission. This policy outlines how we handle and protect your data."
@@ -69,6 +69,6 @@ export default function PrivacyPolicy() {
                     </div>
                 </div>
             </section>
-        </main>
+        </div>
     );
 }

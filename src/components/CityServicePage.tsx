@@ -87,7 +87,7 @@ export default function CityServicePage({ city }: CityServicePageProps) {
     ];
 
     return (
-        <main className="overflow-hidden bg-white dark:bg-navy">
+        <main className="overflow-x-hidden bg-white dark:bg-navy">
             {/* Hero Section */}
             <Hero
                 title={formattedH1}
@@ -101,10 +101,10 @@ export default function CityServicePage({ city }: CityServicePageProps) {
             {/* Strategic Advantages */}
             <section className="section-padding bg-white dark:bg-navy">
                 <div className="section-container">
-                    <div className="grid lg:grid-cols-2 gap-20 items-center">
+                    <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
                         <div>
                             <Badge className="mb-4 bg-primary/10 text-primary border-none font-bold uppercase tracking-widest">Market Insight</Badge>
-                            <h2 className="text-4xl md:text-5xl font-bold text-navy dark:text-white mb-8">
+                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-navy dark:text-white mb-8">
                                 Excellence for {city.name}'s <span className="text-primary">Business Climate</span>
                             </h2>
                             <div className="prose prose-lg dark:prose-invert text-grey dark:text-slate-400 space-y-6">
@@ -130,8 +130,8 @@ export default function CityServicePage({ city }: CityServicePageProps) {
                             </div>
                         </div>
 
-                        <div className="lg:sticky lg:top-32 h-fit">
-                            <div className="bg-navy p-10 rounded-[2.5rem] border border-white/10 shadow-2xl relative overflow-hidden">
+                        <div className="lg:sticky lg:top-32 h-fit mt-6 lg:mt-0">
+                            <div className="bg-navy p-6 md:p-10 rounded-[2.5rem] border border-white/10 shadow-2xl relative overflow-hidden">
                                 <div className="absolute top-0 right-0 w-40 h-40 bg-primary/20 rounded-full blur-3xl opacity-50" />
                                 <h3 className="text-2xl font-bold text-white mb-2 relative z-10">Start Your Build</h3>
                                 <p className="text-slate-400 text-sm mb-8 relative z-10">Get a custom proposal within 24 hours.</p>
@@ -151,9 +151,9 @@ export default function CityServicePage({ city }: CityServicePageProps) {
                         title={`Full-Stack Solutions for ${city.name}`}
                         subtitle={`We handle the complexities of the ${city.techHub ? 'advanced' : 'evolving'} ${city.name} market.`}
                     />
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10 md:mt-16">
                         {services.map((s, i) => (
-                            <div key={i} className="bg-white dark:bg-slate-800 p-10 rounded-3xl border border-slate-100 dark:border-slate-700 hover:shadow-2xl hover:-translate-y-1 transition-all">
+                            <div key={i} className="bg-white dark:bg-slate-800 p-6 md:p-10 rounded-3xl border border-slate-100 dark:border-slate-700 hover:shadow-2xl hover:-translate-y-1 transition-all">
                                 <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary mb-8">
                                     <s.icon size={32} />
                                 </div>
@@ -176,10 +176,10 @@ export default function CityServicePage({ city }: CityServicePageProps) {
                     <div className="absolute top-0 left-0 w-full h-full bg-[url('/grid.svg')]" />
                 </div>
                 <div className="section-container relative z-10">
-                    <div className="grid lg:grid-cols-2 gap-24 items-center">
+                    <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
                         <div>
                             <Badge className="mb-4 bg-primary/20 text-primary-400 border-none">Industry Experts</Badge>
-                            <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">Serving {city.name}'s Core Sectors</h2>
+                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8">Serving {city.name}'s Core Sectors</h2>
                             <p className="text-slate-300 text-lg mb-12 opacity-80 leading-relaxed">
                                 Our multidisciplinary team is experienced in the specific regulatory and commercial requirements of {city.stateCode}'s major industries.
                             </p>
@@ -192,9 +192,9 @@ export default function CityServicePage({ city }: CityServicePageProps) {
                                 ))}
                             </div>
                         </div>
-                        <div className="grid grid-cols-2 gap-6">
+                        <div className="grid grid-cols-2 gap-4 md:gap-6">
                             {stats.map((stat, i) => (
-                                <div key={i} className="bg-white/5 p-8 rounded-3xl border border-white/10 backdrop-blur-sm">
+                                <div key={i} className="bg-white/5 p-5 md:p-8 rounded-3xl border border-white/10 backdrop-blur-sm">
                                     <stat.icon className="text-primary-400 mb-6" size={32} />
                                     <div className="text-4xl font-extrabold text-white mb-2">{stat.val}</div>
                                     <div className="text-primary-400 font-bold uppercase tracking-widest text-[10px]">{stat.label}</div>
@@ -215,12 +215,12 @@ export default function CityServicePage({ city }: CityServicePageProps) {
                         />
                         <div className="space-y-6 mt-16">
                             {getFAQ().map((faq, i) => (
-                                <div key={i} className="bg-slate-50 dark:bg-slate-800/50 p-10 rounded-3xl border border-slate-100 dark:border-slate-700 transition-all">
-                                    <h4 className="text-xl font-bold text-navy dark:text-white mb-6 flex items-start gap-4">
+                                <div className="bg-slate-50 dark:bg-slate-800/50 p-6 md:p-10 rounded-3xl border border-slate-100 dark:border-slate-700 transition-all">
+                                    <h4 className="text-lg md:text-xl font-bold text-navy dark:text-white mb-4 md:mb-6 flex items-start gap-3">
                                         <HelpCircle className="text-primary shrink-0 mt-1" size={24} />
                                         {faq.q}
                                     </h4>
-                                    <p className="text-grey dark:text-slate-400 leading-relaxed pl-10">
+                                    <p className="text-grey dark:text-slate-400 leading-relaxed pl-0 md:pl-10">
                                         {faq.a}
                                     </p>
                                 </div>
@@ -233,7 +233,7 @@ export default function CityServicePage({ city }: CityServicePageProps) {
             {/* Final CTA */}
             <section className="section-padding bg-slate-50 dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800">
                 <div className="section-container text-center">
-                    <h2 className="text-4xl md:text-6xl font-extrabold text-navy dark:text-white mb-8 tracking-tighter">
+                    <h2 className="text-3xl md:text-4xl lg:text-6xl font-extrabold text-navy dark:text-white mb-6 md:mb-8 tracking-tighter">
                         Ready to lead in <span className="gradient-text">{city.name}</span>?
                     </h2>
                     <p className="text-lg text-grey dark:text-slate-400 mb-12 max-w-2xl mx-auto">

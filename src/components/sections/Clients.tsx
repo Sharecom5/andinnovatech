@@ -16,13 +16,12 @@ export default function Clients() {
     return (
         <section className="py-12 bg-white dark:bg-navy border-y border-slate-100 dark:border-slate-800">
             <div className="section-container">
-                <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+                <div className="flex flex-wrap items-center justify-center gap-6 md:gap-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
                     {clients.map((client, index) => (
                         <motion.div
                             key={client.name}
                             initial={{ opacity: 0, y: 10 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
+                            animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: index * 0.1 }}
                             className="flex items-center gap-2 group cursor-pointer"
                         >

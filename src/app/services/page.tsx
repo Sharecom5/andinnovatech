@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function ServicesPage() {
     return (
-        <main className="overflow-hidden">
+        <div className="overflow-x-hidden">
             <Hero
                 title={<>Scaling Your Business with <span className="gradient-text">Expert IT Services</span></>}
                 subtitle="We offer a diverse portfolio of services designed to address every aspect of your digital presence and operational efficiency."
@@ -101,6 +101,6 @@ export default function ServicesPage() {
                     </div>
                 </div>
             </section>
-        </main>
+        </div>
     );
 }
