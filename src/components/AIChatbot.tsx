@@ -130,11 +130,14 @@ export default function AIChatbot() {
             try {
                 await fetch('/api/contact', {
                     method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         name: formData.name,
                         email: formData.email,
                         service: formData.service,
-                        message: `Chatbot Lead: ${val}`,
+                        message: `[CHATBOT LEAD] ${val}`,
+                        budget: 'Chatbot Interactive',
+                        phone: 'Provided via email',
                     }),
                 });
             } catch (_err) {
@@ -246,7 +249,7 @@ export default function AIChatbot() {
                                     value={inputValue}
                                     onChange={(e) => setInputValue(e.target.value)}
                                     placeholder={step === 'service' ? "Click an option above..." : "Message Andi..."}
-                                    className="w-full pl-5 pr-14 py-4 bg-slate-50 dark:bg-slate-800/50 border-2 border-transparent focus:border-primary/20 rounded-2xl text-sm focus:bg-white dark:focus:bg-slate-800 transition-all outline-none disabled:opacity-50 text-navy dark:text-white placeholder:text-slate-400 font-medium"
+                                    className="w-full pl-5 pr-14 py-4 bg-slate-50 dark:bg-slate-800/50 border-2 border-transparent focus:border-primary/20 rounded-2xl text-[16px] focus:bg-white dark:focus:bg-slate-800 transition-all outline-none disabled:opacity-50 text-navy dark:text-white placeholder:text-slate-400 font-medium"
                                 />
                                 <button
                                     type="submit"
