@@ -11,7 +11,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
 
-interface GeoLandingPageProps {
+interface CanadaLocalSeoPageProps {
     country: string;
     service: string;
     city: string;
@@ -19,7 +19,7 @@ interface GeoLandingPageProps {
     provinceCode: string;
 }
 
-export default function GeoLandingPage({ country, service, city, province, provinceCode }: GeoLandingPageProps) {
+export default function CanadaLocalSeoPage({ country, service, city, province, provinceCode }: CanadaLocalSeoPageProps) {
     const [openFaq, setOpenFaq] = useState<number | null>(null);
 
     const scrollToForm = () => {
