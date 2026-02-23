@@ -10,7 +10,9 @@ import CityServicePage from '@/components/CityServicePage';
 import CitySeoPage from '@/components/CitySeoPage';
 
 import { canadaLocations } from '@/lib/canada-locations';
+import { usaLocations } from '@/lib/usa-locations';
 import GeoLandingPage from '@/components/GeoLandingPage';
+import UsaGeoLandingPage from '@/components/UsaGeoLandingPage';
 
 const servicesList = [
     'Cleaning',
@@ -67,7 +69,17 @@ export async function generateStaticParams() {
         });
     });
 
-    return [...blogParams, ...webDevParams, ...seoParams, ...canadaParams];
+    // USA Geo-landing pages
+    const usaParams: { slug: string }[] = [];
+    servicesList.forEach(service => {
+        usaLocations.forEach(loc => {
+            usaParams.push({
+                slug: `seo-for-${service.toLowerCase().replace(/\s+/g, '-')}-companies-${loc.slug}`,
+            });
+        });
+    });
+
+    return [...blogParams, ...webDevParams, ...seoParams, ...canadaParams, ...usaParams];
 }
 
 export async function generateMetadata({ params }: DynamicPageProps): Promise<Metadata> {
@@ -119,6 +131,25 @@ export async function generateMetadata({ params }: DynamicPageProps): Promise<Me
             openGraph: { title, description, url, type: 'website' },
             alternates: { canonical: url },
         };
+    }
+
+    // ── USA Geo-Landing Pages ─────────────────────────────
+    if (lowerSlug.startsWith('seo-for-') && lowerSlug.includes('-companies-')) {
+        const loc = usaLocations.find(l => lowerSlug.endsWith(l.slug));
+        if (loc) {
+            const serviceSlug = lowerSlug.replace('seo-for-', '').replace(`-companies-${loc.slug}`, '');
+            const service = serviceSlug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+
+            const title = `SEO for ${service} Companies in ${loc.city}, ${loc.stateCode} | Andinnovatech`;
+            const description = `Andinnovatech offers expert local SEO for ${service} businesses in ${loc.city}, ${loc.state}. Get found on Google & generate more leads. Claim your free SEO audit today!`;
+
+            return {
+                title,
+                description,
+                openGraph: { title, description, type: 'website' },
+                alternates: { canonical: `https://andinnovatech.com/${lowerSlug}/` }
+            };
+        }
     }
 
     // ── Canadian Geo-Landing Pages ─────────────────────────────
@@ -181,6 +212,25 @@ export default async function DynamicPage({ params }: DynamicPageProps) {
         const city = usaCitiesSeo[cityIndex];
         if (!city) notFound();
         return <CitySeoPage city={city} cityIndex={cityIndex} />;
+    }
+
+    // ── USA Geo-Landing Pages ─────────────────────────────
+    if (lowerSlug.startsWith('seo-for-') && lowerSlug.includes('-companies-')) {
+        const loc = usaLocations.find(l => lowerSlug.endsWith(l.slug));
+        if (loc) {
+            const serviceSlug = lowerSlug.replace('seo-for-', '').replace(`-companies-${loc.slug}`, '');
+            const service = serviceSlug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+
+            return (
+                <UsaGeoLandingPage
+                    country="USA"
+                    service={service}
+                    city={loc.city}
+                    state={loc.state}
+                    stateCode={loc.stateCode}
+                />
+            );
+        }
     }
 
     // ── Canadian Geo-Landing Pages ─────────────────────────────

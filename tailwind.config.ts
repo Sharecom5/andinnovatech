@@ -35,6 +35,11 @@ const config: Config = {
           red: "#D62828",
           gold: "#F4A261",
         },
+        brand: {
+          navy: "#0D1B2A",
+          blue: "#2563EB",
+          orange: "#F97316",
+        },
       },
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
