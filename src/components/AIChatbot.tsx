@@ -84,7 +84,7 @@ export default function AIChatbot() {
         await new Promise((resolve) => setTimeout(resolve, 800));
         setIsTyping(false);
         addMessage(
-            "Hi there! 👋 I'm Andi, your AI assistant from AnD Innovatech. I'd love to help you grow your business. What service are you interested in today?",
+            "Hi there! 👋 I'm your Ask AnD AI assistant. I'd love to help you grow your business. What service are you interested in today?",
             'bot'
         );
         setStep('service');
@@ -171,7 +171,7 @@ export default function AIChatbot() {
                                     <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 border-2 border-primary rounded-full" />
                                 </div>
                                 <div>
-                                    <div className="font-extrabold text-lg tracking-tight">Andi</div>
+                                    <div className="font-extrabold text-lg tracking-tight">Ask AnD AI</div>
                                     <div className="flex items-center gap-1.5">
                                         <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
                                         <div className="text-[10px] text-white/80 uppercase tracking-[0.2em] font-black">Online Helpdesk</div>
@@ -248,7 +248,7 @@ export default function AIChatbot() {
                                     disabled={step === 'service' || step === 'completing'}
                                     value={inputValue}
                                     onChange={(e) => setInputValue(e.target.value)}
-                                    placeholder={step === 'service' ? "Click an option above..." : "Message Andi..."}
+                                    placeholder={step === 'service' ? "Click an option above..." : "Ask AnD AI..."}
                                     className="w-full pl-5 pr-14 py-4 bg-slate-50 dark:bg-slate-800/50 border-2 border-transparent focus:border-primary/20 rounded-2xl text-[16px] focus:bg-white dark:focus:bg-slate-800 transition-all outline-none disabled:opacity-50 text-navy dark:text-white placeholder:text-slate-400 font-medium"
                                 />
                                 <button
