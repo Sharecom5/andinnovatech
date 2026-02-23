@@ -9,6 +9,24 @@ import Link from 'next/link';
 import CityServicePage from '@/components/CityServicePage';
 import CitySeoPage from '@/components/CitySeoPage';
 
+import { canadaLocations } from '@/lib/canada-locations';
+import GeoLandingPage from '@/components/GeoLandingPage';
+
+const servicesList = [
+    'Cleaning',
+    'Car Wash',
+    'Plumbing',
+    'HVAC',
+    'Electrician',
+    'Roofer',
+    'Dentist',
+    'Law Firm',
+    'Real Estate',
+    'Painting',
+    'Pest Control',
+    'IT',
+];
+
 interface DynamicPageProps {
     params: { slug: string };
 }
@@ -39,7 +57,17 @@ export async function generateStaticParams() {
         slug: `seo-services-${city.slug}`,
     }));
 
-    return [...blogParams, ...webDevParams, ...seoParams];
+    // Canadian Geo-landing pages
+    const canadaParams: { slug: string }[] = [];
+    servicesList.forEach(service => {
+        canadaLocations.forEach(loc => {
+            canadaParams.push({
+                slug: `seo-for-${service.toLowerCase().replace(/\s+/g, '-')}-${loc.slug}`,
+            });
+        });
+    });
+
+    return [...blogParams, ...webDevParams, ...seoParams, ...canadaParams];
 }
 
 export async function generateMetadata({ params }: DynamicPageProps): Promise<Metadata> {
@@ -93,6 +121,31 @@ export async function generateMetadata({ params }: DynamicPageProps): Promise<Me
         };
     }
 
+    // ── Canadian Geo-Landing Pages ─────────────────────────────
+    if (lowerSlug.startsWith('seo-for-')) {
+        const loc = canadaLocations.find(l => lowerSlug.endsWith(l.slug));
+        if (loc) {
+            const serviceSlug = lowerSlug.replace('seo-for-', '').replace(`-${loc.slug}`, '');
+            const service = serviceSlug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+
+            const title = `SEO for ${service} Companies in ${loc.city} | Andinnovatech`;
+            const description = `Andinnovatech offers expert SEO services for ${service} businesses in ${loc.city}, ${loc.province}. Rank higher on Google & get more local customers. Free audit available!`;
+
+            return {
+                title,
+                description,
+                openGraph: {
+                    title,
+                    description,
+                    type: 'website'
+                },
+                alternates: {
+                    canonical: `https://andinnovatech.com/${lowerSlug}/`
+                }
+            };
+        }
+    }
+
     // ── Blog Posts ──────────────────────────────────────────────
     const post = await getPostBySlug(slug);
     if (!post) return { title: 'Post Not Found' };
@@ -128,6 +181,25 @@ export default async function DynamicPage({ params }: DynamicPageProps) {
         const city = usaCitiesSeo[cityIndex];
         if (!city) notFound();
         return <CitySeoPage city={city} cityIndex={cityIndex} />;
+    }
+
+    // ── Canadian Geo-Landing Pages ─────────────────────────────
+    if (lowerSlug.startsWith('seo-for-')) {
+        const loc = canadaLocations.find(l => lowerSlug.endsWith(l.slug));
+        if (loc) {
+            const serviceSlug = lowerSlug.replace('seo-for-', '').replace(`-${loc.slug}`, '');
+            const service = serviceSlug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+
+            return (
+                <GeoLandingPage
+                    country="Canada"
+                    service={service}
+                    city={loc.city}
+                    province={loc.province}
+                    provinceCode={loc.provinceCode}
+                />
+            );
+        }
     }
 
     // ── Blog Posts ──────────────────────────────────────────────

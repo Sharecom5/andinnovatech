@@ -30,6 +30,11 @@ const config: Config = {
           light: "#F1F5F9",
         },
         accent: "#409191",
+        canada: {
+          navy: "#0D1B2A",
+          red: "#D62828",
+          gold: "#F4A261",
+        },
       },
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
