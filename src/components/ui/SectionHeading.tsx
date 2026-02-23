@@ -4,8 +4,8 @@ import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
 
 interface SectionHeadingProps {
-    title: string;
-    subtitle?: string;
+    title: string | React.ReactNode;
+    subtitle?: string | React.ReactNode;
     centered?: boolean;
     light?: boolean;
     className?: string;
