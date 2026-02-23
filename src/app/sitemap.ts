@@ -1,5 +1,8 @@
 import { MetadataRoute } from 'next';
 import { getAllPosts } from '@/lib/mdx';
+import { canadaLocations } from '@/lib/canada-locations';
+import { usaLocations } from '@/lib/usa-locations';
+import { servicesList } from '@/lib/services';
 import { usaCities } from '@/lib/usa-cities';
 import { usaCitiesSeo } from '@/lib/usa-cities-seo';
 
@@ -93,6 +96,32 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.6,
     }));
 
+    // Canadian Geo-landing pages
+    const canadaPages: MetadataRoute.Sitemap = [];
+    servicesList.forEach(service => {
+        canadaLocations.forEach(loc => {
+            canadaPages.push({
+                url: `${baseUrl}/seo-for-${service.toLowerCase().replace(/\s+/g, '-')}-${loc.slug}/`,
+                lastModified: new Date(),
+                changeFrequency: 'monthly' as const,
+                priority: 0.6,
+            });
+        });
+    });
+
+    // USA Geo-landing pages
+    const usaGeoPages: MetadataRoute.Sitemap = [];
+    servicesList.forEach(service => {
+        usaLocations.forEach(loc => {
+            usaGeoPages.push({
+                url: `${baseUrl}/seo-for-${service.toLowerCase().replace(/\s+/g, '-')}-companies-${loc.slug}/`,
+                lastModified: new Date(),
+                changeFrequency: 'monthly' as const,
+                priority: 0.6,
+            });
+        });
+    });
+
     return [
         ...staticPages,
         ...services,
@@ -100,5 +129,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         ...blogPages,
         ...webDevCityPages,
         ...seoCityPages,
+        ...canadaPages,
+        ...usaGeoPages,
     ];
 }

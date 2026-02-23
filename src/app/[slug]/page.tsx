@@ -11,23 +11,9 @@ import CitySeoPage from '@/components/CitySeoPage';
 
 import { canadaLocations } from '@/lib/canada-locations';
 import { usaLocations } from '@/lib/usa-locations';
+import { servicesList } from '@/lib/services';
 import CanadaLocalSeoPage from '@/components/CanadaLocalSeoPage';
 import UsaGeoLandingPage from '@/components/UsaGeoLandingPage';
-
-const servicesList = [
-    'Cleaning',
-    'Car Wash',
-    'Plumbing',
-    'HVAC',
-    'Electrician',
-    'Roofer',
-    'Dentist',
-    'Law Firm',
-    'Real Estate',
-    'Painting',
-    'Pest Control',
-    'IT',
-];
 
 interface DynamicPageProps {
     params: { slug: string };
