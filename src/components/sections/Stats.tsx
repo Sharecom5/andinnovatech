@@ -1,5 +1,6 @@
 'use client';
 
+import { motion } from 'framer-motion';
 import AnimatedCounter from '@/components/ui/AnimatedCounter';
 import { Award, Globe, Briefcase, SmilePlus } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -13,27 +14,36 @@ const stats = [
 
 export default function Stats() {
     return (
-        <section className="relative py-12 bg-white dark:bg-navy overflow-hidden">
+        <section className="relative py-12 md:py-16 bg-white dark:bg-navy overflow-hidden">
             <div className="section-container relative z-10">
-                <div className="bg-navy rounded-3xl p-8 md:p-12 border border-white/5 shadow-2xl relative overflow-hidden">
+                <div className="bg-navy rounded-[2rem] p-6 sm:p-10 md:p-14 border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.3)] relative overflow-hidden group">
                     {/* Background Glow */}
-                    <div className="absolute -top-24 -right-24 w-64 h-64 bg-primary/20 rounded-full blur-[100px]" />
-                    <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-accent/20 rounded-full blur-[100px]" />
+                    <div className="absolute -top-32 -right-32 w-80 h-80 bg-primary/20 rounded-full blur-[100px] group-hover:bg-primary/30 transition-colors duration-700" />
+                    <div className="absolute -bottom-32 -left-32 w-80 h-80 bg-accent/20 rounded-full blur-[100px] group-hover:bg-accent/30 transition-colors duration-700" />
 
-                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
+                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-10 sm:gap-10 relative z-10">
                         {stats.map((stat, index) => (
-                            <div key={stat.label} className={cn(
-                                "relative",
-                                index !== stats.length - 1 && "lg:after:content-[''] lg:after:absolute lg:after:right-[-16px] lg:after:top-1/4 lg:after:h-1/2 lg:after:w-[1px] lg:after:bg-white/10"
-                            )}>
+                            <motion.div
+                                key={stat.label}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: index * 0.1, duration: 0.6 }}
+                                className={cn(
+                                    "relative px-2 sm:px-4",
+                                    index % 2 !== 1 && "after:absolute after:right-[-4px] after:top-1/4 after:h-1/2 after:w-[1px] after:bg-white/10 sm:after:right-[-20px] md:after:right-[-32px] lg:after:right-[-20px]",
+                                    index === 1 && "lg:after:block",
+                                    index === 2 && "after:hidden lg:after:block"
+                                )}
+                            >
                                 <AnimatedCounter
                                     value={stat.value}
                                     suffix={stat.suffix}
                                     label={stat.label}
                                     icon={stat.icon}
-                                    className="text-white"
+                                    className="text-white scale-90 sm:scale-100"
                                 />
-                            </div>
+                            </motion.div>
                         ))}
                     </div>
                 </div>

@@ -58,7 +58,7 @@ export default function GeoLandingPage({ country, service, h1, description, poin
                 showStats={false}
             />
 
-            <section className="section-padding bg-white dark:bg-navy">
+            <section className="section-padding bg-white dark:bg-navy overflow-hidden">
                 <div className="section-container">
                     <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-start">
                         <div className="space-y-12">
@@ -108,7 +108,7 @@ export default function GeoLandingPage({ country, service, h1, description, poin
             </section>
 
             {/* Bottom Section */}
-            <section className="py-20 bg-slate-50 dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800">
+            <section className="py-20 bg-slate-50 dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 overflow-hidden">
                 <div className="section-container text-center">
                     <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-navy dark:text-white mb-8 tracking-tighter">
                         Leading <span className="text-primary">{service}</span> Partner for {country}

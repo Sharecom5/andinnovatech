@@ -44,7 +44,7 @@ const fallbackPosts = [
 
 export default function BlogPreview() {
     return (
-        <section className="section-padding bg-slate-50 dark:bg-navy">
+        <section className="section-padding bg-slate-50 dark:bg-navy overflow-hidden">
             <div className="section-container">
                 <SectionHeading
                     title="Latest Insights"

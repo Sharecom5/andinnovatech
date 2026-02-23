@@ -48,7 +48,7 @@ const fallbackServices = [
 
 export default function Services() {
     return (
-        <section className="section-padding bg-grey-light dark:bg-slate-900/50">
+        <section className="section-padding bg-grey-light dark:bg-slate-900/50 overflow-hidden">
             <div className="section-container">
                 <SectionHeading
                     title="Our Services"

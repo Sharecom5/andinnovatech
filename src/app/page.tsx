@@ -44,7 +44,7 @@ export default function Home() {
       <Testimonials />
 
       {/* Final Conversion Point */}
-      <section className="bg-slate-50 dark:bg-navy py-24" id="contact">
+      <section className="bg-slate-50 dark:bg-navy py-24 overflow-hidden" id="contact">
         <div className="section-container">
           <ContactFormSection />
         </div>

@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import {
     Mail,
     Phone,
@@ -76,131 +77,135 @@ function NewsletterForm() {
         setTimeout(() => setStatus('idle'), 5000);
     };
 
-    if (status === 'success') {
-        return (
-            <div className="flex items-center gap-2 text-green-400 bg-green-400/10 p-3 rounded-xl border border-green-400/20 mb-8 animate-in fade-in zoom-in duration-300">
-                <CheckCircle2 size={18} />
-                <span className="text-sm font-medium">Subscribed successfully!</span>
-            </div>
-        );
-    }
-
     return (
-        <form className="flex flex-col gap-3 mb-8" onSubmit={handleSubmit}>
-            <div className="flex flex-col sm:flex-row gap-2">
-                <input
-                    type="email"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Your email"
-                    className="flex-1 px-4 py-2.5 rounded-full bg-slate-800 border border-slate-700 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"
-                    disabled={status === 'loading'}
-                />
-                <button
-                    type="submit"
-                    disabled={status === 'loading'}
-                    className="px-6 py-2.5 rounded-full bg-gradient-primary text-white text-sm font-semibold hover:shadow-glow transition-all duration-300 disabled:opacity-50 flex items-center justify-center gap-2"
+        <div className="w-full">
+            {status === 'success' ? (
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="flex items-center gap-3 text-primary-400 bg-primary/10 p-4 rounded-2xl border border-primary/20 transition-all"
                 >
-                    {status === 'loading' ? <Loader2 size={16} className="animate-spin" /> : 'Subscribe'}
-                </button>
-            </div>
-            {status === 'error' && (
-                <p className="text-red-400 text-xs mt-1 ml-4">Something went wrong. Please try again.</p>
+                    <CheckCircle2 size={20} />
+                    <span className="text-sm font-bold">You're on the list!</span>
+                </motion.div>
+            ) : (
+                <form className="flex flex-col gap-4 w-full" onSubmit={handleSubmit}>
+                    <div className="w-full">
+                        <input
+                            type="email"
+                            required
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            placeholder="Enter your work email"
+                            className="w-full px-6 py-4 bg-slate-800/60 border border-white/10 rounded-2xl text-white placeholder:text-slate-500 focus:bg-slate-800 focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/10 transition-all duration-300"
+                            disabled={status === 'loading'}
+                        />
+                    </div>
+                    <button
+                        type="submit"
+                        disabled={status === 'loading'}
+                        className="w-full px-8 py-4 rounded-2xl bg-gradient-to-r from-primary to-primary-600 text-white font-black shadow-xl shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-1 active:translate-y-0 transition-all duration-300 disabled:opacity-50 flex items-center justify-center gap-3 group"
+                    >
+                        {status === 'loading' ? (
+                            <Loader2 size={20} className="animate-spin" />
+                        ) : (
+                            <>
+                                <span className="uppercase tracking-widest text-xs font-black">Subscribe Now</span>
+                                <ArrowUpRight size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                            </>
+                        )}
+                    </button>
+                    {status === 'error' && (
+                        <p className="text-red-400 text-xs mt-2 text-center font-bold">
+                            Submission failed. Please try again.
+                        </p>
+                    )}
+                </form>
             )}
-        </form>
+        </div>
     );
 }
 
 export default function Footer() {
     return (
-        <footer className="bg-navy text-slate-300">
-            {/* Main Footer */}
-            <div className="section-container section-padding">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
-                    {/* Brand Column */}
-                    <div className="lg:col-span-1">
-                        <Link href="/" className="inline-block mb-4">
-                            <span className="text-2xl font-heading font-extrabold gradient-text">
-                                AnD Innovatech
-                            </span>
-                        </Link>
-                        <p className="text-slate-400 text-sm leading-relaxed mb-6">
-                            Empowering businesses with cutting-edge IT solutions, stunning websites,
-                            and powerful SEO strategies that drive real growth across USA, India & Canada.
-                        </p>
+        <footer className="bg-navy text-slate-300 overflow-hidden relative border-t border-white/5">
+            {/* Background elements */}
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+            <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-primary/5 rounded-full blur-[120px]" />
+            <div className="absolute top-1/2 -right-24 w-72 h-72 bg-accent/5 rounded-full blur-[100px]" />
 
-                        {/* Contact Info */}
-                        <div className="space-y-3">
-                            <a
-                                href="mailto:hello@andinnovatech.com"
-                                className="flex items-center gap-3 text-sm hover:text-primary-400 transition-colors"
-                            >
-                                <Mail size={16} className="text-primary-400" />
-                                hello@andinnovatech.com
-                            </a>
-                            <a
-                                href="tel:+1234567890"
-                                className="flex items-center gap-3 text-sm hover:text-primary-400 transition-colors"
-                            >
-                                <Phone size={16} className="text-primary-400" />
-                                +1 (234) 567-890
-                            </a>
-                            <div className="flex items-start gap-3 text-sm">
-                                <MapPin size={16} className="text-primary-400 mt-0.5 shrink-0" />
-                                <span>Global presence in USA, India & Canada</span>
+            {/* Main Footer Content */}
+            <div className="section-container pt-20 pb-12 relative z-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8">
+                    {/* Brand Column */}
+                    <div className="lg:col-span-4 space-y-8">
+                        <div>
+                            <Link href="/" className="inline-block group">
+                                <span className="text-3xl font-heading font-black tracking-tighter text-white transition-colors duration-300">
+                                    AnD<span className="text-primary group-hover:text-primary-400 transition-colors"> Innovatech</span>
+                                </span>
+                            </Link>
+                            <p className="mt-6 text-slate-400 text-base leading-relaxed max-w-sm">
+                                Engineering the future with premium IT solutions, search dominance, and conversion-first digital experiences across the globe.
+                            </p>
+                        </div>
+
+                        {/* Social Links */}
+                        <div className="space-y-4">
+                            <h4 className="text-sm font-bold uppercase tracking-widest text-slate-500">Connect with us</h4>
+                            <div className="flex flex-wrap gap-3">
+                                {socialLinks.map((social) => (
+                                    <a
+                                        key={social.label}
+                                        href={social.href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="w-11 h-11 rounded-xl bg-slate-800/80 border border-slate-700/50 flex items-center justify-center hover:bg-primary hover:border-primary hover:-translate-y-1 hover:shadow-glow-primary transition-all duration-300 text-slate-300 hover:text-white"
+                                        aria-label={social.label}
+                                    >
+                                        <social.icon size={20} />
+                                    </a>
+                                ))}
                             </div>
                         </div>
                     </div>
 
-                    {/* Services Links */}
-                    <div>
-                        <h4 className="text-white font-heading font-semibold text-lg mb-5">Our Services</h4>
+                    {/* Quick Links Column */}
+                    <div className="lg:col-span-2 space-y-6">
+                        <h4 className="text-white font-heading font-bold text-lg">Services</h4>
                         <ul className="space-y-3">
                             {footerLinks.services.map((link) => (
                                 <li key={link.href}>
                                     <Link
                                         href={link.href}
-                                        className="text-sm hover:text-primary-400 transition-colors inline-flex items-center gap-1 group"
+                                        className="text-sm text-slate-400 hover:text-primary-400 transition-colors inline-block"
                                     >
                                         {link.label}
-                                        <ArrowUpRight
-                                            size={12}
-                                            className="opacity-0 group-hover:opacity-100 transition-opacity"
-                                        />
                                     </Link>
                                 </li>
                             ))}
                         </ul>
                     </div>
 
-                    {/* Company Links */}
-                    <div>
-                        <h4 className="text-white font-heading font-semibold text-lg mb-5">Company</h4>
+                    {/* About Column */}
+                    <div className="lg:col-span-2 space-y-6">
+                        <h4 className="text-white font-heading font-bold text-lg">Platform</h4>
                         <ul className="space-y-3">
                             {footerLinks.company.map((link) => (
                                 <li key={link.label}>
                                     <Link
                                         href={link.href}
-                                        className="text-sm hover:text-primary-400 transition-colors inline-flex items-center gap-1 group"
+                                        className="text-sm text-slate-400 hover:text-primary-400 transition-colors inline-block"
                                     >
                                         {link.label}
-                                        <ArrowUpRight
-                                            size={12}
-                                            className="opacity-0 group-hover:opacity-100 transition-opacity"
-                                        />
                                     </Link>
                                 </li>
                             ))}
-                        </ul>
-
-                        <h4 className="text-white font-heading font-semibold text-lg mt-8 mb-5">Legal</h4>
-                        <ul className="space-y-3">
-                            {footerLinks.support.map((link) => (
+                            {footerLinks.support.slice(0, 2).map((link) => (
                                 <li key={link.label}>
                                     <Link
                                         href={link.href}
-                                        className="text-sm hover:text-primary-400 transition-colors"
+                                        className="text-sm text-slate-400 hover:text-primary-400 transition-colors inline-block"
                                     >
                                         {link.label}
                                     </Link>
@@ -209,45 +214,53 @@ export default function Footer() {
                         </ul>
                     </div>
 
-                    {/* Newsletter + Social */}
-                    <div>
-                        <h4 className="text-white font-heading font-semibold text-lg mb-5">Stay Updated</h4>
-                        <p className="text-sm text-slate-400 mb-4">
-                            Subscribe to our newsletter for the latest insights and updates.
-                        </p>
+                    {/* Newsletter Column */}
+                    <div className="lg:col-span-4 space-y-8">
+                        <div className="p-6 md:p-8 rounded-3xl bg-slate-800/40 border border-white/5 backdrop-blur-sm relative overflow-hidden group">
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-2xl group-hover:bg-primary/10 transition-colors" />
 
-                        {/* Newsletter Form */}
-                        <NewsletterForm />
+                            <h4 className="text-white font-heading font-bold text-xl mb-3">Newsletter</h4>
+                            <p className="text-sm text-slate-400 mb-6 leading-relaxed">
+                                Join 5,000+ businesses getting our weekly growth insights and IT updates.
+                            </p>
 
-                        {/* Social Links */}
-                        <h4 className="text-white font-heading font-semibold text-lg mb-4">Follow Us</h4>
-                        <div className="flex gap-3">
-                            {socialLinks.map((social) => (
-                                <a
-                                    key={social.label}
-                                    href={social.href}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-gradient-primary hover:scale-110 transition-all duration-300"
-                                    aria-label={social.label}
-                                >
-                                    <social.icon size={18} />
+                            <NewsletterForm />
+                        </div>
+
+                        {/* Contact Quick Link */}
+                        <div className="flex items-center gap-4 p-4 rounded-3xl border border-white/5 bg-slate-800/20">
+                            <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary">
+                                <Mail size={24} />
+                            </div>
+                            <div>
+                                <p className="text-xs text-slate-500 font-bold uppercase tracking-wider">Direct Contact</p>
+                                <a href="mailto:hello@andinnovatech.com" className="text-sm font-bold text-white hover:text-primary transition-colors">
+                                    hello@andinnovatech.com
                                 </a>
-                            ))}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
             {/* Bottom Bar */}
-            <div className="border-t border-slate-800">
-                <div className="section-container py-6 flex flex-col md:flex-row items-center justify-between gap-4">
-                    <p className="text-sm text-slate-500">
-                        © {new Date().getFullYear()} AnD Innovatech. All rights reserved.
-                    </p>
-                    <p className="text-sm text-slate-500 flex items-center gap-1">
-                        Made with <Heart size={14} className="text-red-500 fill-red-500" /> in India
-                    </p>
+            <div className="border-t border-white/5 relative z-10">
+                <div className="section-container py-8 flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6 text-sm text-slate-500 font-medium">
+                        <p>© {new Date().getFullYear()} AnD Innovatech.</p>
+                        <div className="hidden md:block w-1 h-1 rounded-full bg-slate-700" />
+                        <p className="flex items-center gap-1.5">
+                            Crafted with <Heart size={14} className="text-red-500 fill-red-500" /> for the Global Web
+                        </p>
+                    </div>
+
+                    <div className="flex items-center gap-8 text-sm text-slate-500 font-medium">
+                        <Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy</Link>
+                        <Link href="/terms-of-service" className="hover:text-white transition-colors">Terms</Link>
+                        <a href="#top" className="p-2 rounded-lg bg-slate-800/50 hover:bg-primary hover:text-white transition-all">
+                            <ArrowUpRight size={18} />
+                        </a>
+                    </div>
                 </div>
             </div>
         </footer>

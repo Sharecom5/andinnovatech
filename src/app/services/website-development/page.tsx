@@ -33,7 +33,7 @@ export default function WebsiteDevelopment() {
                 category="website"
             />
 
-            <section className="section-padding bg-white dark:bg-navy">
+            <section className="section-padding bg-white dark:bg-navy overflow-hidden">
                 <div className="section-container">
                     <div className="grid lg:grid-cols-2 gap-16 items-start">
                         <div className="space-y-10">
@@ -78,7 +78,7 @@ export default function WebsiteDevelopment() {
             </section>
 
             {/* Features Row */}
-            <section className="section-padding bg-slate-50 dark:bg-slate-900/50">
+            <section className="section-padding bg-slate-50 dark:bg-slate-900/50 overflow-hidden">
                 <div className="section-container">
                     <div className="grid md:grid-cols-3 gap-8 text-center">
                         <div className="p-10 bg-white dark:bg-slate-800 rounded-3xl border border-slate-100 dark:border-slate-700 hover:shadow-xl transition-all">

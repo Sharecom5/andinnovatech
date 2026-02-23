@@ -179,18 +179,13 @@ export default function ContactForm() {
                     <label htmlFor="service" className="block text-sm font-medium text-navy dark:text-white mb-1.5">
                         Service Interested In <span className="text-red-500">*</span>
                     </label>
-                    <select
+                    <input
                         id="service"
+                        type="text"
+                        placeholder="e.g. Website Development"
                         className={cn(inputStyles, errors.service && 'border-red-500 focus:ring-red-500/50')}
                         {...register('service')}
-                    >
-                        <option value="">Select a service</option>
-                        {services.map((service) => (
-                            <option key={service} value={service}>
-                                {service}
-                            </option>
-                        ))}
-                    </select>
+                    />
                     {errors.service && (
                         <p className="text-red-500 text-xs mt-1">{errors.service.message}</p>
                     )}
