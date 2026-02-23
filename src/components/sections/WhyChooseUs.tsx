@@ -41,98 +41,84 @@ const features = [
 
 export default function WhyChooseUs() {
     return (
-        <section className="section-padding bg-slate-50 dark:bg-navy overflow-hidden relative">
-            <div className="absolute top-0 right-0 w-1/3 h-full bg-primary/5 -skew-x-12 translate-x-1/2 pointer-events-none" />
+        <section className="section-padding bg-white dark:bg-navy overflow-hidden relative">
+            <div className="absolute top-0 right-0 w-full h-full opacity-30 pointer-events-none">
+                <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px]" />
+                <div className="absolute bottom-[-10%] left-[-10%] w-[400px] h-[400px] bg-accent/10 rounded-full blur-[100px]" />
+            </div>
 
             <div className="section-container relative z-10">
-                <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-                    {/* Left Column */}
-                    <div className="space-y-10">
+                <div className="grid lg:grid-cols-12 gap-6">
+                    {/* Header Card */}
+                    <motion.div
+                        className="lg:col-span-8 p-10 md:p-14 rounded-[3rem] bg-navy border border-white/10 flex flex-col justify-center relative overflow-hidden group shadow-2xl"
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                    >
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-3xl group-hover:bg-primary/30 transition-colors" />
+                        <div className="relative z-10 space-y-8">
+                            <SectionHeading
+                                title={<span className="text-white">Engineering <span className="text-primary-400">Excellence</span> to Empower Your Vision.</span>}
+                                subtitle="At AnD Innovatech, we don't just build software; we build the future of your business through technical mastery and strategic innovation."
+                                centered={false}
+                            />
+                            <div className="flex flex-wrap gap-4 pt-4">
+                                <Link href="/contact">
+                                    <Button size="lg" className="bg-white text-navy hover:bg-slate-100 border-none rounded-2xl px-12 font-black uppercase tracking-widest text-[11px]">
+                                        Start Your Build
+                                    </Button>
+                                </Link>
+                                <Link href="/portfolio">
+                                    <Button variant="outline" size="lg" className="rounded-2xl border-white/20 hover:bg-white/5 px-10 font-bold text-[11px]">
+                                        View Portfolio
+                                    </Button>
+                                </Link>
+                            </div>
+                        </div>
+                    </motion.div>
+
+                    {/* Quick Stats Card */}
+                    <motion.div
+                        className="lg:col-span-4 grid grid-cols-1 gap-6"
+                        initial={{ opacity: 0, x: 20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                    >
+                        <div className="p-8 rounded-[2.5rem] bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 flex flex-col items-center justify-center text-center group hover:bg-white dark:hover:bg-slate-800 transition-all duration-500">
+                            <div className="text-5xl font-black text-primary mb-2 tracking-tighter">98%</div>
+                            <div className="text-[10px] uppercase font-black tracking-[0.3em] text-slate-400">Client Retention</div>
+                        </div>
+                        <div className="p-8 rounded-[2.5rem] bg-primary text-white flex flex-col items-center justify-center text-center shadow-xl shadow-primary/20 hover:scale-[1.02] transition-transform">
+                            <div className="text-5xl font-black mb-2 tracking-tighter">500+</div>
+                            <div className="text-[10px] uppercase font-black tracking-[0.3em] text-white/70">Global Projects</div>
+                        </div>
+                    </motion.div>
+
+                    {/* Feature Cards Loop */}
+                    {features.slice(0, 3).map((feature, i) => (
                         <motion.div
+                            key={feature.number}
+                            className="lg:col-span-4 p-8 rounded-[2.5rem] bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 hover:border-primary/50 hover:shadow-2xl transition-all duration-500 group"
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.6 }}
+                            transition={{ delay: i * 0.1 }}
                         >
-                            <SectionHeading
-                                title={<>Why Choose <span className="text-primary">AnD Innovatech</span></>}
-                                subtitle="We merge technical mastery with your business vision to create digital powerhouses."
-                                centered={false}
-                            />
-
-                            <p className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed max-w-xl">
-                                At AnD Innovatech, we don&apos;t just code; we engineer success. Our collaborative DNA ensures that every pixel and every line of code serves a strategic business purpose.
-                            </p>
+                            <div className="w-14 h-14 rounded-2xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-sm">
+                                <CheckCircle size={28} />
+                            </div>
+                            <h4 className="text-xl font-black text-navy dark:text-white mb-3 tracking-tight">{feature.title}</h4>
+                            <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">{feature.description}</p>
                         </motion.div>
+                    ))}
 
-                        <div className="grid grid-cols-2 gap-4">
-                            {[
-                                { val: '500+', label: 'Successful Projects' },
-                                { val: '98%', label: 'Client Satisfaction' },
-                                { val: '7+', label: 'Years of Excellence' },
-                                { val: '24/7', label: 'Dedicated Support' }
-                            ].map((stat, i) => (
-                                <motion.div
-                                    key={i}
-                                    initial={{ opacity: 0, scale: 0.9 }}
-                                    whileInView={{ opacity: 1, scale: 1 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.2 + i * 0.1 }}
-                                    className="p-6 rounded-3xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 shadow-sm"
-                                >
-                                    <div className="text-2xl font-black text-navy dark:text-white mb-1 tracking-tight">{stat.val}</div>
-                                    <div className="text-xs font-bold text-slate-400 uppercase tracking-widest">{stat.label}</div>
-                                </motion.div>
-                            ))}
-                        </div>
-
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.6 }}
-                        >
-                            <Link href="/contact">
-                                <Button size="lg" className="rounded-2xl px-10 gap-3 group">
-                                    Start Your Project
-                                    <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-                                </Button>
-                            </Link>
-                        </motion.div>
-                    </div>
-
-                    {/* Right Column — Features List */}
-                    <div className="grid gap-6">
-                        {features.map((feature, index) => (
-                            <motion.div
-                                key={feature.number}
-                                initial={{ opacity: 0, x: 40 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: index * 0.1, duration: 0.6 }}
-                                className="group relative p-7 rounded-[2rem] bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 hover:border-primary/30 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 overflow-hidden"
-                            >
-                                <div className="absolute top-0 right-0 p-4 opacity-[0.03] group-hover:opacity-[0.08] transition-opacity">
-                                    <span className="text-8xl font-black italic tracking-tighter">{feature.number}</span>
-                                </div>
-
-                                <div className="relative z-10 flex gap-6">
-                                    <div className="shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-primary-600 flex items-center justify-center text-white shadow-lg group-hover:rotate-6 transition-transform">
-                                        <CheckCircle size={28} />
-                                    </div>
-
-                                    <div className="space-y-2">
-                                        <h4 className="text-xl font-heading font-black text-navy dark:text-white tracking-tight">
-                                            {feature.title}
-                                        </h4>
-                                        <p className="text-slate-500 dark:text-slate-400 leading-relaxed text-sm">
-                                            {feature.description}
-                                        </p>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
+                    <motion.div
+                        className="lg:col-span-12 p-1 bg-gradient-to-r from-primary/20 via-primary/40 to-accent/20 rounded-full my-8 hidden lg:block"
+                        initial={{ scaleX: 0 }}
+                        whileInView={{ scaleX: 1 }}
+                        viewport={{ once: true }}
+                    />
                 </div>
             </div>
         </section>

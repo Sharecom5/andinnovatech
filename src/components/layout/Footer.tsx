@@ -79,49 +79,40 @@ function NewsletterForm() {
 
     return (
         <div className="w-full">
-            {status === 'success' ? (
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="flex items-center gap-3 text-primary-400 bg-primary/10 p-4 rounded-2xl border border-primary/20 transition-all"
-                >
-                    <CheckCircle2 size={20} />
-                    <span className="text-sm font-bold">You're on the list!</span>
-                </motion.div>
-            ) : (
-                <form className="flex flex-col gap-4 w-full" onSubmit={handleSubmit}>
-                    <div className="w-full">
+            <div className="w-full max-w-md">
+                <form className="block space-y-4" onSubmit={handleSubmit}>
+                    <div className="relative">
                         <input
                             type="email"
                             required
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            placeholder="Enter your work email"
-                            className="w-full px-6 py-4 bg-slate-800/60 border border-white/10 rounded-2xl text-white placeholder:text-slate-500 focus:bg-slate-800 focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/10 transition-all duration-300"
+                            placeholder="name@company.com"
+                            className="block w-full h-14 px-6 bg-navy border border-white/10 rounded-xl text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
                             disabled={status === 'loading'}
                         />
                     </div>
                     <button
                         type="submit"
                         disabled={status === 'loading'}
-                        className="w-full px-8 py-4 rounded-2xl bg-gradient-to-r from-primary to-primary-600 text-white font-black shadow-xl shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-1 active:translate-y-0 transition-all duration-300 disabled:opacity-50 flex items-center justify-center gap-3 group"
+                        className="block w-full h-14 bg-white text-navy font-bold rounded-xl hover:bg-slate-100 active:scale-[0.98] transition-all shadow-lg flex items-center justify-center gap-2 group"
                     >
                         {status === 'loading' ? (
                             <Loader2 size={20} className="animate-spin" />
                         ) : (
                             <>
-                                <span className="uppercase tracking-widest text-xs font-black">Subscribe Now</span>
-                                <ArrowUpRight size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                                <span className="uppercase tracking-widest text-[11px] font-black">Join Our Network</span>
+                                <ArrowUpRight size={18} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                             </>
                         )}
                     </button>
                     {status === 'error' && (
-                        <p className="text-red-400 text-xs mt-2 text-center font-bold">
-                            Submission failed. Please try again.
+                        <p className="text-red-400 text-[10px] text-center uppercase tracking-widest font-black">
+                            Error Submitting. Try again.
                         </p>
                     )}
                 </form>
-            )}
+            </div>
         </div>
     );
 }
