@@ -11,7 +11,7 @@ import CitySeoPage from '@/components/CitySeoPage';
 
 import { canadaLocations } from '@/lib/canada-locations';
 import { usaLocations } from '@/lib/usa-locations';
-import GeoLandingPage from '@/components/GeoLandingPage';
+import CanadaLocalSeoPage from '@/components/CanadaLocalSeoPage';
 import UsaGeoLandingPage from '@/components/UsaGeoLandingPage';
 
 const servicesList = [
@@ -241,7 +241,7 @@ export default async function DynamicPage({ params }: DynamicPageProps) {
             const service = serviceSlug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 
             return (
-                <GeoLandingPage
+                <CanadaLocalSeoPage
                     country="Canada"
                     service={service}
                     city={loc.city}
