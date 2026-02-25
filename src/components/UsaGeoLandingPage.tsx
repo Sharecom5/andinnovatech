@@ -156,7 +156,7 @@ export default function UsaGeoLandingPage({ service, city, state, stateCode, cou
                                 key={i}
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
+                                viewport={{ once: true, margin: '100px' }}
                                 transition={{ delay: i * 0.1 }}
                                 className="p-10 rounded-[2.5rem] bg-slate-50 border border-slate-100 hover:border-brand-blue/20 hover:shadow-2xl transition-all duration-500 group"
                             >
@@ -199,7 +199,7 @@ export default function UsaGeoLandingPage({ service, city, state, stateCode, cou
                                 key={i}
                                 initial={{ opacity: 0, scale: 0.95 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ once: true }}
+                                viewport={{ once: true, margin: '100px' }}
                                 transition={{ delay: i * 0.05 }}
                                 className="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-brand-blue/50 hover:bg-white/10 transition-all group"
                             >
@@ -333,7 +333,7 @@ export default function UsaGeoLandingPage({ service, city, state, stateCode, cou
                                     key={i}
                                     initial={{ opacity: 0, y: 20 }}
                                     whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
+                                    viewport={{ once: true, margin: '100px' }}
                                     transition={{ delay: i * 0.1 }}
                                     className="flex flex-col items-center text-center group"
                                 >

@@ -27,7 +27,7 @@ export default function Stats() {
                                 key={stat.label}
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
+                                viewport={{ once: true, margin: '100px' }}
                                 transition={{ delay: index * 0.1, duration: 0.6 }}
                                 className={cn(
                                     "relative px-2 sm:px-4",

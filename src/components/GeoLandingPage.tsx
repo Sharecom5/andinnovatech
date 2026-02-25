@@ -34,7 +34,7 @@ export default function GeoLandingPage({ country, service, h1, description, poin
                         <motion.div
                             initial={{ opacity: 0, x: -30 }}
                             whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
+                            viewport={{ once: true, margin: '100px' }}
                             transition={{ duration: 0.6 }}
                         >
                             <SectionHeading
@@ -65,7 +65,7 @@ export default function GeoLandingPage({ country, service, h1, description, poin
                         <motion.div
                             initial={{ opacity: 0, scale: 0.9 }}
                             whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
+                            viewport={{ once: true, margin: '100px' }}
                             transition={{ duration: 0.8 }}
                             className="relative"
                         >

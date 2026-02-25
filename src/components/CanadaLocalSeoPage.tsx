@@ -143,7 +143,7 @@ export default function CanadaLocalSeoPage({ country, service, city, province, p
                                 key={i}
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
+                                viewport={{ once: true, margin: '100px' }}
                                 transition={{ delay: i * 0.1 }}
                                 className="p-10 rounded-[2.5rem] bg-slate-50 border border-slate-100 hover:border-canada-red/20 hover:shadow-2xl transition-all duration-500 group"
                             >
@@ -194,7 +194,7 @@ export default function CanadaLocalSeoPage({ country, service, city, province, p
                                 key={i}
                                 initial={{ opacity: 0, scale: 0.95 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ once: true }}
+                                viewport={{ once: true, margin: '100px' }}
                                 transition={{ delay: i * 0.05 }}
                                 className="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-canada-gold/30 hover:bg-white/10 transition-all group"
                             >
@@ -319,7 +319,7 @@ export default function CanadaLocalSeoPage({ country, service, city, province, p
                                 key={i}
                                 initial={{ opacity: 0, x: i % 2 === 0 ? -40 : 40 }}
                                 whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
+                                viewport={{ once: true, margin: '100px' }}
                                 className="flex flex-col md:flex-row items-center gap-10 group"
                             >
                                 <div className="w-24 h-24 shrink-0 rounded-full border-4 border-canada-red flex items-center justify-center text-4xl font-black text-canada-navy group-hover:bg-canada-red group-hover:text-white transition-all duration-500">
