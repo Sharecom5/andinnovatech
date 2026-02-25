@@ -1,6 +1,3 @@
-'use client';
-
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { Globe, Server, Code2, TrendingUp, Cloud, Lightbulb, ArrowRight } from 'lucide-react';
 import SectionHeading from '@/components/ui/SectionHeading';
@@ -56,46 +53,39 @@ export default function Services() {
                 />
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-                    {fallbackServices.map((service, index) => (
-                        <motion.div
-                            key={service.slug}
-                            initial={false}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: index * 0.1, duration: 0.5 }}
-                        >
-                            <Link href={`/services/${service.slug}`}>
-                                <div
-                                    className={cn(
-                                        'group relative bg-white dark:bg-slate-800 rounded-xl p-6 lg:p-8',
-                                        'border border-slate-100 dark:border-slate-700',
-                                        'shadow-card hover:shadow-card-hover',
-                                        'transition-all duration-300 hover:-translate-y-1',
-                                        'hover:border-l-4 hover:border-l-primary'
-                                    )}
-                                >
-                                    {/* Icon */}
-                                    <div className="w-14 h-14 rounded-xl bg-gradient-primary flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
-                                        <service.icon size={28} className="text-white" />
-                                    </div>
-
-                                    {/* Title */}
-                                    <h3 className="text-h4 font-heading font-semibold text-navy dark:text-white mb-3">
-                                        {service.title}
-                                    </h3>
-
-                                    {/* Description */}
-                                    <p className="text-grey dark:text-slate-400 text-sm leading-relaxed mb-4">
-                                        {service.description}
-                                    </p>
-
-                                    {/* Learn More Link */}
-                                    <span className="inline-flex items-center gap-1.5 text-primary font-semibold text-sm group-hover:gap-3 transition-all duration-300">
-                                        Learn More
-                                        <ArrowRight size={16} />
-                                    </span>
+                    {fallbackServices.map((service) => (
+                        <Link key={service.slug + service.title} href={`/services/${service.slug}`}>
+                            <div
+                                className={cn(
+                                    'group relative bg-white dark:bg-slate-800 rounded-xl p-6 lg:p-8',
+                                    'border border-slate-100 dark:border-slate-700',
+                                    'shadow-card hover:shadow-card-hover',
+                                    'transition-all duration-300 hover:-translate-y-1',
+                                    'hover:border-l-4 hover:border-l-primary'
+                                )}
+                            >
+                                {/* Icon */}
+                                <div className="w-14 h-14 rounded-xl bg-gradient-primary flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+                                    <service.icon size={28} className="text-white" />
                                 </div>
-                            </Link>
-                        </motion.div>
+
+                                {/* Title */}
+                                <h3 className="text-h4 font-heading font-semibold text-navy dark:text-white mb-3">
+                                    {service.title}
+                                </h3>
+
+                                {/* Description */}
+                                <p className="text-grey dark:text-slate-400 text-sm leading-relaxed mb-4">
+                                    {service.description}
+                                </p>
+
+                                {/* Learn More Link */}
+                                <span className="inline-flex items-center gap-1.5 text-primary font-semibold text-sm group-hover:gap-3 transition-all duration-300">
+                                    Learn More
+                                    <ArrowRight size={16} />
+                                </span>
+                            </div>
+                        </Link>
                     ))}
                 </div>
             </div>

@@ -21,14 +21,16 @@ export default function AnimatedCounter({
     duration = 2,
     className,
 }: AnimatedCounterProps) {
-    const [count, setCount] = useState(0);
+    const [count, setCount] = useState(value); // Start at final value to prevent "0+" on mobile
     const ref = useRef<HTMLDivElement>(null);
     const isInView = useInView(ref, { once: true, margin: '200px' });
+    const hasAnimated = useRef(false);
 
     useEffect(() => {
-        // Start animation immediately for visibility
-        // if (!isInView) return; 
+        if (!isInView || hasAnimated.current) return;
+        hasAnimated.current = true;
 
+        setCount(0); // Reset to 0 when in view, then animate up
         let startTime: number;
         let animationFrame: number;
 

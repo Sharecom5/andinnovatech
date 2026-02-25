@@ -1,7 +1,3 @@
-'use client';
-
-import { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
 import { Star, Quote } from 'lucide-react';
 import SectionHeading from '@/components/ui/SectionHeading';
 import type { Testimonial } from '@/lib/types';
@@ -42,14 +38,8 @@ const testimonials: Testimonial[] = [
 ];
 
 export default function Testimonials() {
-    const ref = useRef(null);
-    const isInView = useInView(ref, { once: true });
-
     return (
-        <section
-            ref={ref}
-            className="section-padding bg-gradient-to-br from-primary-50 to-blue-50 dark:from-slate-900 dark:to-slate-800 overflow-hidden"
-        >
+        <section className="section-padding bg-gradient-to-br from-primary-50 to-blue-50 dark:from-slate-900 dark:to-slate-800 overflow-hidden">
             <div className="section-container">
                 <SectionHeading
                     title="What Our Clients Say"
@@ -58,12 +48,9 @@ export default function Testimonials() {
 
                 {/* Testimonials Grid */}
                 <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
-                    {testimonials.map((testimonial, index) => (
-                        <motion.div
+                    {testimonials.map((testimonial) => (
+                        <div
                             key={testimonial.id}
-                            initial={false}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: index * 0.15, duration: 0.5 }}
                             className="group bg-white dark:bg-slate-800 rounded-2xl p-6 lg:p-8 shadow-card hover:shadow-card-hover transition-all duration-300 border border-slate-100 dark:border-slate-700 relative"
                         >
                             {/* Quote icon */}
@@ -99,7 +86,7 @@ export default function Testimonials() {
                                     </p>
                                 </div>
                             </div>
-                        </motion.div>
+                        </div>
                     ))}
                 </div>
             </div>

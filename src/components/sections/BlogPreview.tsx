@@ -1,6 +1,3 @@
-'use client';
-
-import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, Calendar, Clock } from 'lucide-react';
@@ -52,67 +49,60 @@ export default function BlogPreview() {
                 />
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-12">
-                    {fallbackPosts.map((post, index) => (
-                        <motion.div
-                            key={post.id}
-                            initial={false}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: index * 0.1, duration: 0.5 }}
-                        >
-                            <Link href={`/blog/${post.slug}`}>
-                                <article className="group bg-white dark:bg-slate-800 rounded-2xl overflow-hidden border border-slate-100 dark:border-slate-700 shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
-                                    {/* Image Container */}
-                                    <div className="relative h-52 overflow-hidden bg-slate-800">
-                                        <Image
-                                            src={post.image || 'https://images.unsplash.com/photo-1557821552-17105176677c?q=80&w=800&h=500&auto=format&fit=crop'}
-                                            alt={post.title}
-                                            fill
-                                            className="object-cover transition-transform duration-500 group-hover:scale-110"
-                                        />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-navy/40 to-transparent" />
+                    {fallbackPosts.map((post) => (
+                        <Link key={post.id} href={`/blog/${post.slug}`}>
+                            <article className="group bg-white dark:bg-slate-800 rounded-2xl overflow-hidden border border-slate-100 dark:border-slate-700 shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
+                                {/* Image Container */}
+                                <div className="relative h-52 overflow-hidden bg-slate-800">
+                                    <Image
+                                        src={post.image || 'https://images.unsplash.com/photo-1557821552-17105176677c?q=80&w=800&h=500&auto=format&fit=crop'}
+                                        alt={post.title}
+                                        fill
+                                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-navy/40 to-transparent" />
 
-                                        {/* Category badge */}
-                                        <div className="absolute top-4 left-4">
-                                            <Badge className="bg-primary/90 text-white border-none backdrop-blur-md">
-                                                {post.category}
-                                            </Badge>
-                                        </div>
+                                    {/* Category badge */}
+                                    <div className="absolute top-4 left-4">
+                                        <Badge className="bg-primary/90 text-white border-none backdrop-blur-md">
+                                            {post.category}
+                                        </Badge>
                                     </div>
+                                </div>
 
-                                    {/* Content */}
-                                    <div className="p-5 lg:p-6 flex-1 flex flex-col">
-                                        {/* Meta info */}
-                                        <div className="flex items-center gap-4 text-xs text-grey dark:text-slate-400 mb-3">
-                                            <span className="flex items-center gap-1">
-                                                <Calendar size={12} />
-                                                {new Date(post.date).toLocaleDateString('en-US', {
-                                                    month: 'short',
-                                                    day: 'numeric',
-                                                    year: 'numeric',
-                                                })}
-                                            </span>
-                                            <span className="flex items-center gap-1">
-                                                <Clock size={12} />
-                                                {post.readTime}
-                                            </span>
-                                        </div>
-
-                                        <h3 className="text-lg font-heading font-semibold text-navy dark:text-white mb-3 group-hover:text-primary dark:group-hover:text-primary-400 transition-colors line-clamp-2">
-                                            {post.title}
-                                        </h3>
-
-                                        <p className="text-sm text-grey dark:text-slate-400 leading-relaxed mb-4 flex-1 line-clamp-3">
-                                            {post.excerpt}
-                                        </p>
-
-                                        <span className="inline-flex items-center gap-1.5 text-primary font-semibold text-sm group-hover:gap-3 transition-all duration-300 mt-auto">
-                                            Read More
-                                            <ArrowRight size={16} />
+                                {/* Content */}
+                                <div className="p-5 lg:p-6 flex-1 flex flex-col">
+                                    {/* Meta info */}
+                                    <div className="flex items-center gap-4 text-xs text-grey dark:text-slate-400 mb-3">
+                                        <span className="flex items-center gap-1">
+                                            <Calendar size={12} />
+                                            {new Date(post.date).toLocaleDateString('en-US', {
+                                                month: 'short',
+                                                day: 'numeric',
+                                                year: 'numeric',
+                                            })}
+                                        </span>
+                                        <span className="flex items-center gap-1">
+                                            <Clock size={12} />
+                                            {post.readTime}
                                         </span>
                                     </div>
-                                </article>
-                            </Link>
-                        </motion.div>
+
+                                    <h3 className="text-lg font-heading font-semibold text-navy dark:text-white mb-3 group-hover:text-primary dark:group-hover:text-primary-400 transition-colors line-clamp-2">
+                                        {post.title}
+                                    </h3>
+
+                                    <p className="text-sm text-grey dark:text-slate-400 leading-relaxed mb-4 flex-1 line-clamp-3">
+                                        {post.excerpt}
+                                    </p>
+
+                                    <span className="inline-flex items-center gap-1.5 text-primary font-semibold text-sm group-hover:gap-3 transition-all duration-300 mt-auto">
+                                        Read More
+                                        <ArrowRight size={16} />
+                                    </span>
+                                </div>
+                            </article>
+                        </Link>
                     ))}
                 </div>
 

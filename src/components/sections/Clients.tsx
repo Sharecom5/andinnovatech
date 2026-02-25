@@ -1,6 +1,3 @@
-'use client';
-
-import { motion } from 'framer-motion';
 import { ShieldCheck, Cpu, Zap, CloudLightning, Activity, Globe } from 'lucide-react';
 
 const clients = [
@@ -24,13 +21,9 @@ export default function Clients() {
                 </div>
 
                 <div className="flex flex-wrap items-center justify-center gap-10 md:gap-20">
-                    {clients.map((client, index) => (
-                        <motion.div
+                    {clients.map((client) => (
+                        <div
                             key={client.name}
-                            initial={false}
-                            whileInView={{ opacity: 1 }}
-                            viewport={{ once: true, margin: '200px', amount: 0 }}
-                            transition={{ delay: index * 0.1, duration: 0.8 }}
                             className="flex items-center gap-3 group cursor-default grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-700"
                         >
                             <div className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/30 group-hover:bg-primary/10 group-hover:scale-110 transition-all duration-500">
@@ -39,7 +32,7 @@ export default function Clients() {
                             <span className="text-2xl font-heading font-black tracking-tighter text-slate-600 dark:text-slate-400 group-hover:text-navy dark:group-hover:text-white transition-colors">
                                 {client.name}
                             </span>
-                        </motion.div>
+                        </div>
                     ))}
                 </div>
             </div>

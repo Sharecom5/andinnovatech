@@ -1,6 +1,3 @@
-'use client';
-
-import { motion } from 'framer-motion';
 import AnimatedCounter from '@/components/ui/AnimatedCounter';
 import { Award, Globe, Briefcase, SmilePlus } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -23,12 +20,8 @@ export default function Stats() {
 
                     <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-10 sm:gap-10 relative z-10">
                         {stats.map((stat, index) => (
-                            <motion.div
+                            <div
                                 key={stat.label}
-                                initial={false}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, margin: '200px', amount: 0 }}
-                                transition={{ delay: index * 0.1, duration: 0.6 }}
                                 className={cn(
                                     "relative px-2 sm:px-4",
                                     index % 2 !== 1 && "after:absolute after:right-[-4px] after:top-1/4 after:h-1/2 after:w-[1px] after:bg-white/10 sm:after:right-[-20px] md:after:right-[-32px] lg:after:right-[-20px]",
@@ -43,7 +36,7 @@ export default function Stats() {
                                     icon={stat.icon}
                                     className="text-white scale-90 sm:scale-100"
                                 />
-                            </motion.div>
+                            </div>
                         ))}
                     </div>
                 </div>
