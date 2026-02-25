@@ -52,9 +52,9 @@ export default function WhyChooseUs() {
                     {/* Header Card */}
                     <motion.div
                         className="lg:col-span-8 p-10 md:p-14 rounded-[3rem] bg-navy border border-white/10 flex flex-col justify-center relative overflow-hidden group shadow-2xl"
-                        initial={{ opacity: 0, scale: 0.95 }}
+                        initial={false}
                         whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true, margin: '100px' }}
+                        viewport={{ once: true, margin: '200px', amount: 0 }}
                     >
                         <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-3xl group-hover:bg-primary/30 transition-colors" />
                         <div className="relative z-10 space-y-8">
@@ -81,9 +81,9 @@ export default function WhyChooseUs() {
                     {/* Quick Stats Card */}
                     <motion.div
                         className="lg:col-span-4 grid grid-cols-1 gap-6"
-                        initial={{ opacity: 0, x: 20 }}
+                        initial={false}
                         whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true, margin: '100px' }}
+                        viewport={{ once: true, margin: '200px', amount: 0 }}
                     >
                         <div className="p-8 rounded-[2.5rem] bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 flex flex-col items-center justify-center text-center group hover:bg-white dark:hover:bg-slate-800 transition-all duration-500">
                             <div className="text-5xl font-black text-primary mb-2 tracking-tighter">98%</div>
@@ -100,9 +100,9 @@ export default function WhyChooseUs() {
                         <motion.div
                             key={feature.number}
                             className="lg:col-span-4 p-8 rounded-[2.5rem] bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 hover:border-primary/50 hover:shadow-2xl transition-all duration-500 group"
-                            initial={{ opacity: 0, y: 30 }}
+                            initial={false}
                             whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: '100px' }}
+                            viewport={{ once: true, margin: '200px', amount: 0 }}
                             transition={{ delay: i * 0.1 }}
                         >
                             <div className="w-14 h-14 rounded-2xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-sm">

@@ -20,9 +20,9 @@ export default function SectionHeading({
 }: SectionHeadingProps) {
     return (
         <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '100px' }}
+            viewport={{ once: true, margin: '200px', amount: 0 }}
             transition={{ duration: 0.5 }}
             className={cn(
                 'mb-12 md:mb-16',

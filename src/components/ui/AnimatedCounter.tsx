@@ -23,7 +23,7 @@ export default function AnimatedCounter({
 }: AnimatedCounterProps) {
     const [count, setCount] = useState(0);
     const ref = useRef<HTMLDivElement>(null);
-    const isInView = useInView(ref, { once: true, margin: '-50px' });
+    const isInView = useInView(ref, { once: true, margin: '200px' });
 
     useEffect(() => {
         // Start animation immediately for visibility
@@ -53,7 +53,7 @@ export default function AnimatedCounter({
     return (
         <motion.div
             ref={ref}
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             className={cn('text-center', className)}

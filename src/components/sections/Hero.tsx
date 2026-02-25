@@ -498,28 +498,31 @@ export default function Hero({
                 <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
                     {/* Left Content */}
                     <div>
-                        <motion.div {...fadeInUp} transition={{ delay: 0.1 }}>
+                        <motion.div initial={false} animate={fadeInUp.animate} transition={{ delay: 0.1 }}>
                             <Badge variant="outline" size="md" className="border-primary-400/40 text-primary-300 mb-6 font-bold">
                                 {badgeText}
                             </Badge>
                         </motion.div>
 
                         <motion.h1
-                            {...fadeInUp}
+                            initial={false}
+                            animate={fadeInUp.animate}
                             transition={{ delay: 0.2 }}
                             className="text-3xl sm:text-4xl md:text-5xl lg:text-display font-heading font-extrabold text-white leading-tight mb-6">
                             {title}
                         </motion.h1>
 
                         <motion.p
-                            {...fadeInUp}
+                            initial={false}
+                            animate={fadeInUp.animate}
                             transition={{ delay: 0.3 }}
                             className="text-base md:text-lg text-slate-300 leading-relaxed mb-8 max-w-xl">
                             {subtitle}
                         </motion.p>
 
                         <motion.div
-                            {...fadeInUp}
+                            initial={false}
+                            animate={fadeInUp.animate}
                             transition={{ delay: 0.4 }}
                             className="flex flex-col sm:flex-row flex-wrap gap-4 mb-10 md:mb-12">
                             <Link href={ctaHref} className="w-full sm:w-auto">
@@ -539,7 +542,8 @@ export default function Hero({
                         {/* Trust Badges */}
                         {showStats && (
                             <motion.div
-                                {...fadeInUp}
+                                initial={false}
+                                animate={fadeInUp.animate}
                                 transition={{ delay: 0.5 }}
                                 className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4"
                             >

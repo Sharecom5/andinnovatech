@@ -32,9 +32,9 @@ export default function GeoLandingPage({ country, service, h1, description, poin
                 <div className="section-container">
                     <div className="grid lg:grid-cols-2 gap-16 items-center">
                         <motion.div
-                            initial={{ opacity: 0, x: -30 }}
+                            initial={false}
                             whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true, margin: '100px' }}
+                            viewport={{ once: true, margin: '200px', amount: 0 }}
                             transition={{ duration: 0.6 }}
                         >
                             <SectionHeading
@@ -63,9 +63,9 @@ export default function GeoLandingPage({ country, service, h1, description, poin
                         </motion.div>
 
                         <motion.div
-                            initial={{ opacity: 0, scale: 0.9 }}
+                            initial={false}
                             whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true, margin: '100px' }}
+                            viewport={{ once: true, margin: '200px', amount: 0 }}
                             transition={{ duration: 0.8 }}
                             className="relative"
                         >

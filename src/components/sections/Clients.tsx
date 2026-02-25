@@ -27,9 +27,9 @@ export default function Clients() {
                     {clients.map((client, index) => (
                         <motion.div
                             key={client.name}
-                            initial={{ opacity: 0 }}
+                            initial={false}
                             whileInView={{ opacity: 1 }}
-                            viewport={{ once: true, margin: '100px' }}
+                            viewport={{ once: true, margin: '200px', amount: 0 }}
                             transition={{ delay: index * 0.1, duration: 0.8 }}
                             className="flex items-center gap-3 group cursor-default grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-700"
                         >
