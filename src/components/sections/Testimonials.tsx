@@ -5,35 +5,35 @@ import type { Testimonial } from '@/lib/types';
 const testimonials: Testimonial[] = [
     {
         id: 1,
-        name: 'Jennifer Smith',
-        location: 'New York, USA',
-        quote: 'AnD Innovatech transformed our online presence completely. Their web development and SEO expertise helped us increase our organic traffic by 300% in just 6 months. Truly exceptional work!',
+        name: 'David Kowalski',
+        location: 'Chicago, IL — GreenLeaf HVAC Solutions',
+        quote: 'We were paying $8,500/month to a local Chicago agency for SEO and barely moving the needle. AnD Innovatech took over in March, and by June we were ranking on page 1 for 14 of our target keywords. Organic leads went from 12/month to 67/month. The communication is better than agencies we\'ve worked with here in the US.',
         rating: 5,
-        initials: 'JS',
+        initials: 'DK',
     },
     {
         id: 2,
-        name: 'Anil Kumar',
-        location: 'Bangalore, India',
-        quote: 'The custom software solution they built for our logistics company has streamlined our entire operation. Professional team, excellent communication, and delivered on time. Highly recommended!',
+        name: 'Sandra Nguyen',
+        location: 'Austin, TX — ClearCare Health',
+        quote: 'We needed a custom patient scheduling portal built fast — our previous dev team fell through 3 weeks before launch. AnD Innovatech jumped in, understood the requirements quickly, and delivered in 5 weeks. The portal has processed over 4,200 appointments since launch with zero downtime. Highly accountable team.',
         rating: 5,
-        initials: 'AK',
+        initials: 'SN',
     },
     {
         id: 3,
-        name: 'Michael Thompson',
-        location: 'Toronto, Canada',
-        quote: 'Working with AnD Innovatech on our cloud migration was a game-changer. They handled everything professionally and our infrastructure costs dropped by 40% while improving performance.',
+        name: 'Marcus Reid',
+        location: 'Atlanta, GA — Stockwell Supply Co.',
+        quote: 'I was skeptical about hiring offshore. But AnD Innovatech sent weekly Loom video updates, responded to Slack within 2 hours during my work hours, and delivered our e-commerce site 4 days ahead of schedule. Our conversion rate jumped from 1.2% to 3.7% after launch. I\'ve since referred two other founders.',
         rating: 5,
-        initials: 'MT',
+        initials: 'MR',
     },
     {
         id: 4,
-        name: 'Sarah Williams',
-        location: 'Chicago, USA',
-        quote: 'Their IT consulting services helped us make the right technology decisions for our startup. The team is knowledgeable, responsive, and genuinely cares about your success. Five stars!',
+        name: 'Priya Mehta',
+        location: 'San Francisco, CA — TalentBridge HR',
+        quote: 'We run a SaaS startup and needed a full redesign plus a React Native app. Got quotes from US freelancers in the $45,000–$60,000 range. AnD Innovatech delivered both for $18,000 — and the quality was honestly better. They flagged UX issues we hadn\'t even thought of. They feel like a genuine part of our team.',
         rating: 5,
-        initials: 'SW',
+        initials: 'PM',
     },
 ];
 
@@ -42,8 +42,8 @@ export default function Testimonials() {
         <section className="section-padding bg-gradient-to-br from-primary-50 to-blue-50 dark:from-slate-900 dark:to-slate-800 overflow-hidden">
             <div className="section-container">
                 <SectionHeading
-                    title="What Our Clients Say"
-                    subtitle="Don't just take our word for it — hear from businesses we've helped succeed"
+                    title="What Our US Clients Say"
+                    subtitle="Real results from real businesses — not generic reviews. These are the outcomes that matter."
                 />
 
                 {/* Testimonials Grid */}

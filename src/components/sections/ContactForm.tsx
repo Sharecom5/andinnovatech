@@ -103,10 +103,10 @@ export default function ContactForm() {
             >
                 <CheckCircle size={64} className="text-green-500 mx-auto mb-4" />
                 <h3 className="text-2xl font-heading font-bold text-navy dark:text-white mb-2">
-                    Message Sent!
+                    Message Sent — We&apos;ll Be in Touch!
                 </h3>
                 <p className="text-grey dark:text-slate-400">
-                    Thank you for reaching out. We&apos;ll get back to you within 24 hours.
+                    Thank you for reaching out. A member of our team will reply within 4 business hours (Mon–Fri, 9am–6pm ET).
                 </p>
             </motion.div>
         );
@@ -232,8 +232,11 @@ export default function ContactForm() {
                 className="w-full gap-2"
             >
                 <Send size={18} />
-                Send Message
+                Send My Project Details →
             </Button>
+            <p className="text-center text-xs text-slate-400 dark:text-slate-500 mt-3">
+                🔒 Your information is never shared or sold. We reply within 4 business hours (Mon–Fri, 9am–6pm ET). No commitment required.
+            </p>
         </form>
     );
 }

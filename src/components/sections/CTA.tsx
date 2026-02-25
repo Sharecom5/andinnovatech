@@ -1,6 +1,3 @@
-'use client';
-
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { ArrowRight, Phone } from 'lucide-react';
 import Button from '@/components/ui/Button';
@@ -24,35 +21,31 @@ export default function CTA() {
             />
 
             <div className="section-container relative z-10 text-center">
-                <motion.div
-                    initial={false}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: '200px', amount: 0 }}
-                    transition={{ duration: 0.5 }}
-                >
-                    <h2 className="text-3xl md:text-4xl lg:text-h2 font-heading font-bold text-white mb-4">
-                        Ready to Transform Your Business?
-                    </h2>
-                    <p className="text-lg text-blue-100 max-w-2xl mx-auto mb-10">
-                        Let&apos;s discuss how our IT solutions and digital strategies can help you
-                        achieve your goals. Get started with a free consultation today.
-                    </p>
+                <p className="text-sm font-bold uppercase tracking-widest text-white/60 mb-4">No commitment. Real advice.</p>
+                <h2 className="text-3xl md:text-4xl lg:text-h2 font-heading font-bold text-white mb-4">
+                    Get a Fixed-Price Proposal in 48 Hours
+                </h2>
+                <p className="text-lg text-blue-100 max-w-2xl mx-auto mb-3">
+                    Tell us what you need. We&apos;ll send a detailed scope, timeline, and flat-rate price — no hourly billing surprises, no sales pressure.
+                </p>
+                <p className="text-sm text-white/50 mb-10">
+                    Available Mon–Fri, 9am–6pm ET &nbsp;·&nbsp; Reply within 4 business hours &nbsp;·&nbsp; English-fluent team
+                </p>
 
-                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <Link href="/contact" className="w-full sm:w-auto">
-                            <Button variant="white" size="lg" className="w-full sm:w-auto gap-2">
-                                Start a Project
-                                <ArrowRight size={20} />
-                            </Button>
-                        </Link>
-                        <Link href="/contact" className="w-full sm:w-auto">
-                            <Button variant="outline" size="lg" className="w-full sm:w-auto gap-2">
-                                <Phone size={18} />
-                                Schedule a Call
-                            </Button>
-                        </Link>
-                    </div>
-                </motion.div>
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <Link href="/contact-us/" className="w-full sm:w-auto">
+                        <Button variant="white" size="lg" className="w-full sm:w-auto gap-2 font-bold">
+                            Book a Free 30-Min Strategy Call
+                            <ArrowRight size={20} />
+                        </Button>
+                    </Link>
+                    <Link href="/contact-us/" className="w-full sm:w-auto">
+                        <Button variant="outline" size="lg" className="w-full sm:w-auto gap-2 border-white/30 text-white hover:bg-white/10">
+                            <Phone size={18} />
+                            Start With a Free Website Audit
+                        </Button>
+                    </Link>
+                </div>
             </div>
         </section>
     );

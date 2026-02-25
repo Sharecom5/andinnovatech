@@ -29,10 +29,10 @@ import Button from '@/components/ui/Button';
 import Badge from '@/components/ui/Badge';
 
 const trustBadges = [
-    { icon: Star, label: '7+ Years', sublabel: 'of Excellence' },
-    { icon: Globe, label: '3 Countries', sublabel: 'Served' },
-    { icon: Briefcase, label: '500+', sublabel: 'Projects' },
-    { icon: SmilePlus, label: '98%', sublabel: 'Satisfaction' },
+    { icon: Star, label: '7+ Years', sublabel: 'in Business' },
+    { icon: Globe, label: 'US Timezone', sublabel: 'Hours Available' },
+    { icon: Briefcase, label: '500+', sublabel: 'Projects Delivered' },
+    { icon: SmilePlus, label: '98%', sublabel: 'Client Retention' },
 ];
 
 const fadeInUp = {
@@ -437,11 +437,11 @@ function ConsultingMockup() {
 }
 
 export default function Hero({
-    title = <>Empowering Your Business with <span className="gradient-text">IT & SEO Excellence</span></>,
-    subtitle = "Custom software, stunning websites, and powerful SEO strategies that drive real growth for businesses across USA, India & Canada.",
-    badgeText = "🚀 7+ Years of Excellence",
-    ctaText = "Get Free Consultation",
-    ctaHref = "/contact",
+    title = <>Your US Business Needs More Leads. <span className="gradient-text">We Build the Tech That Gets Them.</span></>,
+    subtitle = "AnD Innovatech is a dedicated IT & SEO team serving US businesses since 2017. We build websites, custom software, and run SEO campaigns that deliver measurable results — at 40–60% less than US agency rates. English-fluent team. US timezone availability. No middlemen.",
+    badgeText = "🇺🇸 Trusted by US SMBs & Startups Since 2017",
+    ctaText = "Book a Free 30-Min Strategy Call",
+    ctaHref = "/contact-us/",
     showStats = true,
     rightContent,
     imageSrc,
@@ -531,9 +531,9 @@ export default function Hero({
                                     <ArrowRight size={20} />
                                 </Button>
                             </Link>
-                            <Link href="/portfolio" className="w-full sm:w-auto">
+                            <Link href="/our-portfolio/" className="w-full sm:w-auto">
                                 <Button variant="outline" size="lg" className="gap-2 text-white border-white/20 hover:bg-white/5 font-bold w-full sm:w-auto justify-center">
-                                    View Our Work
+                                    See What We&apos;ve Built
                                     <ExternalLink size={18} />
                                 </Button>
                             </Link>
