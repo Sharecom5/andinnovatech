@@ -12,8 +12,8 @@ import CTA from '@/components/sections/CTA';
 import FAQ from '@/components/sections/FAQ';
 
 export const metadata: Metadata = {
-  title: 'AnD Innovatech | IT & SEO Agency for US Businesses',
-  description: 'Dedicated IT & SEO team serving US SMBs since 2017. Websites, custom software, and SEO campaigns at 40–60% less than US agency rates. English-fluent. US timezone hours.',
+  title: 'AnD Innovatech | Full-Service IT & SEO Agency for US Businesses',
+  description: 'Dedicated IT & SEO team serving US SMBs since 2017. Custom software, website development, cloud solutions, and SEO campaigns at 40–60% less than US agency rates.',
 };
 
 export default function Home() {

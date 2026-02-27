@@ -5,18 +5,18 @@ import { Mail, Linkedin, Phone, MapPin, Clock } from 'lucide-react';
 import SectionHeading from '@/components/ui/SectionHeading';
 
 export const metadata: Metadata = {
-    title: 'Contact Us | AnD Innovatech',
-    description: 'Reach out to AnD Innovatech for a free consultation. Our expert team is ready to discuss your next IT project or SEO strategy.',
+    title: 'Contact Us | AnD Innovatech — Full-Service IT & SEO Partner',
+    description: 'Reach out to AnD Innovatech for a free strategy call. Our expert team is ready to discuss your custom software, website, or SEO project.',
 };
 
 export default function ContactUs() {
     return (
         <div className="overflow-x-hidden">
             <Hero
-                title={<>Let&apos;s Build Your <span className="gradient-text">Digital Future</span></>}
-                subtitle="Have a question or a project in mind? We&apos;d love to hear from you. Reach out to our team today for a free expert consultation."
+                title={<>Let&apos;s Talk About Your <span className="gradient-text">Project</span></>}
+                subtitle="Fill out the form below or reach out via email. We reply to all inquiries from US businesses within 4 business hours."
                 badgeText="📩 Contact Us"
-                ctaText="Get Appointment"
+                ctaText="Book a Free Call"
                 showStats={false}
             />
 
@@ -27,8 +27,8 @@ export default function ContactUs() {
                         <div className="space-y-12">
                             <div>
                                 <SectionHeading
-                                    title="Get in Touch"
-                                    subtitle="Our team is dedicated to providing high-impact digital solutions and SEO excellence."
+                                    title="Get a Fixed-Price Quote"
+                                    subtitle="Our team is dedicated to providing high-impact IT solutions and SEO excellence for US-based companies."
                                     centered={false}
                                 />
                             </div>
@@ -43,7 +43,7 @@ export default function ContactUs() {
                                         <a href="mailto:hello@andinnovatech.com" className="text-primary hover:underline text-sm font-medium">
                                             hello@andinnovatech.com
                                         </a>
-                                        <p className="text-xs text-grey dark:text-slate-400 mt-2">Response within 24 hours.</p>
+                                        <p className="text-xs text-grey dark:text-slate-400 mt-2">Response within 4 business hours (Mon-Fri, 9am–6pm ET).</p>
                                     </div>
 
                                     <div className="p-6 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700">

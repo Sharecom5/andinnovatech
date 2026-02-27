@@ -437,9 +437,9 @@ function ConsultingMockup() {
 }
 
 export default function Hero({
-    title = <>Your US Business Needs More Leads. <span className="gradient-text">We Build the Tech That Gets Them.</span></>,
-    subtitle = "AnD Innovatech is a dedicated IT & SEO team serving US businesses since 2017. We build websites, custom software, and run SEO campaigns that deliver measurable results — at 40–60% less than US agency rates. English-fluent team. US timezone availability. No middlemen.",
-    badgeText = "🇺🇸 Trusted by US SMBs & Startups Since 2017",
+    title = <>One Trusted Team for All Your <span className="gradient-text">IT & Digital Needs.</span></>,
+    subtitle = "AnD Innovatech handles everything from website development and custom software to cloud solutions, IT consulting, and SEO — so you don't have to manage 5 different vendors. One team. One point of contact. Real results.",
+    badgeText = "🇺🇸 Trusted IT Partner for US SMBs & Startups",
     ctaText = "Book a Free 30-Min Strategy Call",
     ctaHref = "/contact-us/",
     showStats = true,
