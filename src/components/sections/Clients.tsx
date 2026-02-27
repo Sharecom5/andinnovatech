@@ -1,12 +1,12 @@
 import { ShieldCheck, Cpu, Zap, CloudLightning, Activity, Globe } from 'lucide-react';
 
 const clients = [
-    { name: 'TechFlow', icon: ShieldCheck },
-    { name: 'Nexus IT', icon: Cpu },
-    { name: 'Velocity', icon: Zap },
-    { name: 'CloudPeak', icon: CloudLightning },
-    { name: 'Pulse', icon: Activity },
-    { name: 'GlobalNet', icon: Globe },
+    { name: 'GreenLeaf', icon: ShieldCheck },
+    { name: 'ClearCare', icon: Activity },
+    { name: 'TalentBridge', icon: Zap },
+    { name: 'Stockwell', icon: Cpu },
+    { name: 'Sevya Artisan', icon: Globe },
+    { name: 'KDB School', icon: ShieldCheck },
 ];
 
 export default function Clients() {

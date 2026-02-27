@@ -8,8 +8,8 @@ import Button from '@/components/ui/Button';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-    title: 'Custom Software Development Services | AnD Innovatech',
-    description: 'Custom software development services by AnD Innovatech. We build scalable, high-performance applications tailored to your business needs.',
+    title: 'Custom Software Development & Engineering | AnD Innovatech',
+    description: 'Scalable software engineering for modern enterprises. From custom ERPs to SaaS platforms, our US-centric team delivers robust, high-availability solutions.',
 };
 
 const inclusions = [

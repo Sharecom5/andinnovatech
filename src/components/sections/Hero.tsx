@@ -441,7 +441,7 @@ export default function Hero({
     subtitle = "AnD Innovatech handles everything from website development and custom software to cloud solutions, IT consulting, and SEO — so you don't have to manage 5 different vendors. One team. One point of contact. Real results.",
     badgeText = "🇺🇸 Trusted IT Partner for US SMBs & Startups",
     ctaText = "Book a Free 30-Min Strategy Call",
-    ctaHref = "/contact-us/",
+    ctaHref = "/contact",
     showStats = true,
     rightContent,
     imageSrc,
@@ -531,7 +531,7 @@ export default function Hero({
                                     <ArrowRight size={20} />
                                 </Button>
                             </Link>
-                            <Link href="/our-portfolio/" className="w-full sm:w-auto">
+                            <Link href="/portfolio" className="w-full sm:w-auto">
                                 <Button variant="outline" size="lg" className="gap-2 text-white border-white/20 hover:bg-white/5 font-bold w-full sm:w-auto justify-center">
                                     See What We&apos;ve Built
                                     <ExternalLink size={18} />

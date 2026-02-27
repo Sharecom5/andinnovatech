@@ -8,8 +8,8 @@ import Button from '@/components/ui/Button';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-    title: 'Results-Driven SEO Services | AnD Innovatech',
-    description: 'Boost your organic traffic and rankings with AnD Innovatech. Data-driven search engine optimization strategies tailored for ROI and growth.',
+    title: 'Data-Driven SEO Performance & Growth | AnD Innovatech',
+    description: 'Specialist SEO agency for US SMBs. We deliver organic search dominance through technical excellence, strategic keyword targeting, and high-authority link building.',
 };
 
 const inclusions = [

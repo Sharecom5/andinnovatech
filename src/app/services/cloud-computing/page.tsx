@@ -8,8 +8,8 @@ import Button from '@/components/ui/Button';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-    title: 'Cloud Computing Services | AWS, Azure, GCP | AnD Innovatech',
-    description: 'Scalable cloud computing solutions by AnD Innovatech. We offer cloud migration, management, and optimization services on AWS, Azure, and Google Cloud.',
+    title: 'Enterprise Cloud Solutions | AWS, Azure, GCP Experts | AnD Innovatech',
+    description: 'Modernize your digital infrastructure with scalable cloud solutions. Specialist AWS, Azure, and GCP migration, management, and cost optimization for US businesses.',
 };
 
 const inclusions = [

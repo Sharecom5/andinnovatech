@@ -9,8 +9,8 @@ import SectionHeading from '@/components/ui/SectionHeading';
 import Badge from '@/components/ui/Badge';
 
 export const metadata: Metadata = {
-    title: 'About Us | AnD Innovatech',
-    description: 'Learn about AnD Innovatech - a global IT solutions provider dedicated to empowering businesses with innovative technology and SEO excellence.',
+    title: 'About AnD Innovatech | Strategic IT & SEO Engineering Partner',
+    description: 'Since 2017, AnD Innovatech has empowered US SMBs with elite software engineering and results-driven SEO. Learn about our mission, heritage, and global delivery model.',
 };
 
 const differences = [

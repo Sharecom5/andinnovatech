@@ -8,8 +8,8 @@ import Button from '@/components/ui/Button';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-    title: 'Website Development Services | AnD Innovatech',
-    description: 'Custom website development services by AnD Innovatech. We create high-performance, responsive, and SEO-friendly websites for businesses worldwide.',
+    title: 'Custom Website Development Services | AnD Innovatech',
+    description: 'High-performance, ROI-focused website development for US startups and SMBs. We build secure, SEO-optimized digital experiences using Next.js, React, and Node.js.',
 };
 
 const inclusions = [

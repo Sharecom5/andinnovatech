@@ -11,23 +11,23 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: {
-    default: 'AndInnovatech | Empowering Your Business with IT & SEO Excellence',
-    template: '%s | AndInnovatech',
+    default: 'AnD Innovatech | Strategic IT & SEO Agency for US SMBs',
+    template: '%s | AnD Innovatech',
   },
-  description: 'Global IT company specializing in website development, custom software, and results-driven SEO services for USA, Canada, and India.',
+  description: 'AnD Innovatech is a results-driven IT agency specializing in custom software, high-performance web development, and ROI-focused SEO campaigns for US-based businesses. Save 40-60% vs. local firms.',
   metadataBase: new URL('https://andinnovatech.com'),
   openGraph: {
     type: 'website',
     locale: 'en_US',
     url: 'https://andinnovatech.com',
-    siteName: 'AndInnovatech',
-    title: 'AndInnovatech | Empowering Business with IT & SEO',
-    description: 'Empowering Your Business with IT & SEO Excellence.',
+    siteName: 'AnD Innovatech',
+    title: 'AnD Innovatech | Strategic IT & SEO Agency for US SMBs',
+    description: 'Empowering US businesses with innovative IT solutions and growth-focused SEO strategy. Real accountability. Proven results.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'AndInnovatech | Empowering Business with IT & SEO',
-    description: 'Empowering Your Business with IT & SEO Excellence.',
+    title: 'AnD Innovatech | Strategic IT & SEO Agency for US SMBs',
+    description: 'Empowering US businesses with innovative IT solutions and growth-focused SEO strategy.',
   },
   verification: {
     google: 'Raoc_zOx3RRFvtK-d-PKnPlTwzUNPpEa1MQZOFyud9U',

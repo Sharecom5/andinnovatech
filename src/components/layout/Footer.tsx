@@ -22,7 +22,6 @@ const footerLinks = {
         { label: 'Website Development', href: '/services/website-development' },
         { label: 'Software Development', href: '/services/software-development' },
         { label: 'SEO Services', href: '/services/seo-services' },
-        { label: 'IT Solutions', href: '/services/it-consulting' },
         { label: 'Cloud Computing', href: '/services/cloud-computing' },
         { label: 'IT Consulting', href: '/services/it-consulting' },
     ],

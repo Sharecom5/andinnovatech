@@ -8,8 +8,8 @@ import Button from '@/components/ui/Button';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-    title: 'Strategic IT Consulting Services | AnD Innovatech',
-    description: 'Expert IT consulting services by AnD Innovatech. We help businesses align their technology with their goals for sustainable growth and efficiency.',
+    title: 'Strategic IT Consulting & Advisory | AnD Innovatech',
+    description: 'Expert technical advisory for US startups and SMBs. We bridge the gap between business vision and technical execution with ROI-focused IT consulting.',
 };
 
 const inclusions = [

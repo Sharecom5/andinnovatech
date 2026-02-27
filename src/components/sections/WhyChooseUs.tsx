@@ -44,12 +44,12 @@ export default function WhyChooseUs() {
                                 centered={false}
                             />
                             <div className="flex flex-wrap gap-4 pt-4">
-                                <Link href="/contact-us/">
+                                <Link href="/contact">
                                     <Button size="lg" className="bg-white text-navy hover:bg-slate-100 border-none rounded-2xl px-12 font-black uppercase tracking-widest text-[11px]">
                                         Start Your Project
                                     </Button>
                                 </Link>
-                                <Link href="/our-portfolio/">
+                                <Link href="/portfolio">
                                     <Button variant="outline" size="lg" className="rounded-2xl border-white/20 hover:bg-white/5 px-10 font-bold text-[11px]">
                                         View Our Work
                                     </Button>

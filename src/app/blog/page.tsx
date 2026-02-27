@@ -5,8 +5,8 @@ import { getAllPosts } from '@/lib/mdx';
 import SectionHeading from '@/components/ui/SectionHeading';
 
 export const metadata: Metadata = {
-    title: 'Our Blog | Technical Insights & Industry News',
-    description: 'Stay updated with the latest trends in IT, software development, and SEO. Read our expert articles and grow your business knowledge.',
+    title: 'Insights & Technical Strategy Blog | AnD Innovatech',
+    description: 'Expert perspectives on software engineering, results-driven SEO, and digital transformation. Stay ahead of the curve with our weekly industry insights.',
 };
 
 export default async function BlogPage() {
