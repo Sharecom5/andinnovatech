@@ -1648,5 +1648,22 @@ export const usaCities: USACity[] = [
         nearbyCitySlug: "anchorage",
         timezone: "Hawaii-Aleutian Time (HST)",
         industries: ["Tourism", "Military", "Transportation", "Trade"]
+    },
+    {
+        slug: "chattanooga",
+        name: "Chattanooga",
+        state: "Tennessee",
+        stateCode: "TN",
+        population: "181,000",
+        knownFor: "gigabit internet, outdoor recreation, and advanced manufacturing",
+        businessScene: "tech-forward mid-size market with rising startup activity",
+        techHub: true,
+        region: "South",
+        localKeyword: "Chattanooga web development",
+        uniqueFact: "Chattanooga was the first US city to offer municipal gigabit internet, sparking a tech startup renaissance.",
+        nearbyCity: "Nashville",
+        nearbyCitySlug: "nashville",
+        timezone: "Eastern Time (ET)",
+        industries: ["Manufacturing", "Technology", "Outdoor Recreation", "Healthcare"]
     }
 ];

@@ -10,17 +10,36 @@ import ContactFormSection from '@/components/sections/ContactForm';
 import BlogPreview from '@/components/sections/BlogPreview';
 import CTA from '@/components/sections/CTA';
 import FAQ from '@/components/sections/FAQ';
+import PricingPreview from '@/components/sections/PricingPreview';
 
 export const metadata: Metadata = {
-  title: 'Top-Rated Software & Web Development Agency | AnD Innovatech',
-  description: 'AnD Innovatech delivers high-performance custom software, modern website development, and data-driven SEO for US startups and SMBs. Transparent communication, US timezone hours, and proven ROI-focused results.',
+  title: 'Offshore Software Development Partner for US SMBs & Startups | AnD Innovatech',
+  description: 'AnD Innovatech is a strategic IT partner for US-based small businesses. We provide affordable custom software development, high-performance web design, and ROI-driven SEO. Save 50% on development costs today.',
 };
 
 export default function Home() {
   return (
-    <div className="overflow-x-hidden">
+    <div className="overflow-x-hidden bg-white dark:bg-navy text-navy dark:text-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'WebSite',
+            name: 'AnD Innovatech',
+            url: 'https://andinnovatech.com',
+            potentialAction: {
+              '@type': 'SearchAction',
+              target: 'https://andinnovatech.com/blog/?q={search_term_string}',
+              'query-input': 'required name=search_term_string',
+            },
+          }),
+        }}
+      />
       {/* Hero Section */}
       <Hero
+        title={<>Strategic <span className="gradient-text">Software Development</span> & ROI-Focused SEO.</>}
+        subtitle="We build high-performance digital products for US SMBs and Startups at a fraction of the cost. Dedicated teams. Transparent communication. Proven growth."
         imageSrc="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1470&auto=format&fit=crop"
       />
 
@@ -32,6 +51,9 @@ export default function Home() {
 
       {/* Main Services Section */}
       <Services />
+
+      {/* Pricing - Conversational Friction Reducer */}
+      <PricingPreview />
 
       {/* High-Impact Portfolio Showcase */}
       <PortfolioPreview />

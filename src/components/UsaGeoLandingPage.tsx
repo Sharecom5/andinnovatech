@@ -61,6 +61,44 @@ export default function UsaGeoLandingPage({ service, city, state, stateCode, cou
 
     return (
         <div className="bg-white selection:bg-brand-blue/30 overflow-x-hidden">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        '@context': 'https://schema.org',
+                        '@type': 'Service',
+                        name: `${service} SEO in ${city}, ${stateCode}`,
+                        serviceType: 'Search Engine Optimization',
+                        provider: {
+                            '@type': 'Organization',
+                            name: 'AnD Innovatech',
+                            url: 'https://andinnovatech.com',
+                        },
+                        areaServed: {
+                            '@type': 'City',
+                            name: city,
+                        },
+                        description: `Helping ${service} Businesses in ${city} Get Found on Google, Get More Calls & Grow Faster through expert local SEO strategies.`,
+                    }),
+                }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        '@context': 'https://schema.org',
+                        '@type': 'FAQPage',
+                        mainEntity: faqs.map((faq) => ({
+                            '@type': 'Question',
+                            name: faq.q,
+                            acceptedAnswer: {
+                                '@type': 'Answer',
+                                text: faq.a,
+                            },
+                        })),
+                    }),
+                }}
+            />
             {/* STICKY HEADER CTA is handled by global header, but user wants a sticky header with CTA */}
             {/* For this specific landing page, we'll assume the global header works but we can add a page-specific floating CTA if needed */}
 
@@ -244,7 +282,7 @@ export default function UsaGeoLandingPage({ service, city, state, stateCode, cou
                             <div className="absolute inset-0 bg-brand-navy rounded-[3.5rem] rotate-3 translate-x-4 shadow-2xl overflow-hidden">
                                 <img
                                     src="https://images.unsplash.com/photo-1551288049-bbbda50a5f4e?q=80&w=1000&auto=format&fit=crop"
-                                    alt="Analytics Growth"
+                                    alt={`AnD Innovatech - SEO Growth Performance for ${service} Businesses in ${city}, ${state}`}
                                     className="w-full h-full object-cover opacity-60 mix-blend-overlay"
                                 />
                             </div>

@@ -49,6 +49,47 @@ const differences = [
 export default function AboutUs() {
     return (
         <div className="overflow-x-hidden bg-white dark:bg-navy">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        '@context': 'https://schema.org',
+                        '@graph': [
+                            {
+                                '@type': 'AboutPage',
+                                '@id': 'https://andinnovatech.com/about/#webpage',
+                                url: 'https://andinnovatech.com/about/',
+                                name: 'About AnD Innovatech',
+                                description: 'Learn about AnD Innovatech mission, heritage, and expert team.',
+                                isPartOf: { '@id': 'https://andinnovatech.com/#website' },
+                                breadcrumb: { '@id': 'https://andinnovatech.com/about/#breadcrumb' }
+                            },
+                            {
+                                '@type': 'BreadcrumbList',
+                                '@id': 'https://andinnovatech.com/about/#breadcrumb',
+                                itemListElement: [
+                                    {
+                                        '@type': 'ListItem',
+                                        position: 1,
+                                        item: {
+                                            '@id': 'https://andinnovatech.com/',
+                                            name: 'Home'
+                                        }
+                                    },
+                                    {
+                                        '@type': 'ListItem',
+                                        position: 2,
+                                        item: {
+                                            '@id': 'https://andinnovatech.com/about/',
+                                            name: 'About Us'
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    })
+                }}
+            />
             <Hero
                 title={<>Pioneering the <span className="gradient-text">Future of Digital</span> Solutions</>}
                 subtitle="Since 2017, AnD Innovatech has been at the forefront of technological transformation, helping brands navigate the complexities of the modern web."
@@ -66,7 +107,7 @@ export default function AboutUs() {
                             <div className="relative group aspect-[10/7] overflow-hidden rounded-[3rem]">
                                 <Image
                                     src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1000&auto=format&fit=crop"
-                                    alt="Technical team collaborating"
+                                    alt="The AnD Innovatech Technical Architecture and Engineering Team"
                                     fill
                                     className="object-cover relative z-10 grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700"
                                 />
@@ -132,6 +173,32 @@ export default function AboutUs() {
                                 </div>
                                 <h3 className="text-2xl font-bold text-navy dark:text-white mb-4 tracking-tight leading-tight">{item.title}</h3>
                                 <p className="text-grey dark:text-slate-400 leading-relaxed text-sm">{item.description}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Leadership Section */}
+            <section className="section-padding bg-white dark:bg-navy">
+                <div className="section-container">
+                    <SectionHeading
+                        title="Expert Leadership"
+                        subtitle="Meet the strategists and engineers driving your digital transformation."
+                    />
+                    <div className="grid md:grid-cols-3 gap-12 mt-16">
+                        {[
+                            { name: 'Abhishek Sharma', role: 'Founder & Technical Strategist', bio: 'Specialize in large-scale system architecture and ROI-focused SEO engineering.', initials: 'AS' },
+                            { name: 'Ankit Sharma', role: 'Head of Operations', bio: 'Ensuring seamless global delivery and military-grade security standards across all projects.', initials: 'AS' },
+                            { name: 'Sarah Jones', role: 'Lead Client Success (US)', bio: 'Our US-based lead bridge, ensuring West Coast & East Coast businesses get 24/7 service.', initials: 'SJ' }
+                        ].map((member, i) => (
+                            <div key={i} className="group text-center">
+                                <div className="w-32 h-32 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-primary-400 text-3xl font-black mx-auto mb-6 group-hover:bg-primary group-hover:text-white transition-all shadow-xl">
+                                    {member.initials}
+                                </div>
+                                <h4 className="text-2xl font-bold text-navy dark:text-white mb-2">{member.name}</h4>
+                                <div className="text-primary-400 font-bold uppercase tracking-widest text-[10px] mb-4">{member.role}</div>
+                                <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed italic">&ldquo;{member.bio}&rdquo;</p>
                             </div>
                         ))}
                     </div>

@@ -39,9 +39,11 @@ const highlights = [
     },
 ];
 
+import RelatedServices from '@/components/sections/RelatedServices';
+
 export default function SEOServices() {
     return (
-        <div className="overflow-x-hidden bg-white dark:bg-navy">
+        <div className="overflow-x-hidden bg-white dark:bg-navy text-navy dark:text-white">
             <Hero
                 title={<>Data-Driven <span className="gradient-text">SEO Performance</span></>}
                 subtitle="Dominate search results and capture high-intent traffic with our proven SEO methodologies. We turn organic search into your most powerful lead generator."
@@ -60,6 +62,23 @@ export default function SEOServices() {
                             <h2 className="text-4xl md:text-5xl font-bold text-navy dark:text-white mb-8 leading-tight">
                                 Own Your <span className="text-primary">First Page</span> Rankings
                             </h2>
+                            <script
+                                type="application/ld+json"
+                                dangerouslySetInnerHTML={{
+                                    __html: JSON.stringify({
+                                        '@context': 'https://schema.org',
+                                        '@type': 'Service',
+                                        name: 'SEO Services',
+                                        serviceType: 'Search Engine Optimization',
+                                        provider: {
+                                            '@type': 'Organization',
+                                            name: 'AnD Innovatech',
+                                        },
+                                        description: 'Data-driven SEO strategies for US businesses to dominate search results through technical and content excellence.',
+                                        areaServed: 'US',
+                                    }),
+                                }}
+                            />
                             <div className="prose prose-lg dark:prose-invert text-grey dark:text-slate-400 mb-12">
                                 <p>
                                     In the digital age, if you're not on the first page, you're invisible. At AnD Innovatech, we go beyond basic optimization. We build holistic search strategies that combine technical excellence with authoritative content.
@@ -144,6 +163,8 @@ export default function SEOServices() {
                     </Link>
                 </div>
             </section>
+
+            <RelatedServices currentService="SEO Services" />
         </div>
     );
 }

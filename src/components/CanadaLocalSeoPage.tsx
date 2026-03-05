@@ -52,6 +52,44 @@ export default function CanadaLocalSeoPage({ country, service, city, province, p
 
     return (
         <div className="overflow-x-hidden font-sans">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        '@context': 'https://schema.org',
+                        '@type': 'Service',
+                        name: `SEO for ${service} in ${city}, ${provinceCode}`,
+                        serviceType: 'Search Engine Optimization',
+                        provider: {
+                            '@type': 'Organization',
+                            name: 'AnD Innovatech',
+                            url: 'https://andinnovatech.com',
+                        },
+                        areaServed: {
+                            '@type': 'City',
+                            name: city,
+                        },
+                        description: `Helping ${service} businesses in ${city} get found on Google & generate more customers through expert local SEO strategies.`,
+                    }),
+                }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        '@context': 'https://schema.org',
+                        '@type': 'FAQPage',
+                        mainEntity: faqs.map((faq) => ({
+                            '@type': 'Question',
+                            name: faq.q,
+                            acceptedAnswer: {
+                                '@type': 'Answer',
+                                text: faq.a,
+                            },
+                        })),
+                    }),
+                }}
+            />
             {/* 1. HERO SECTION */}
             <section className="relative min-h-[90vh] flex items-center pt-32 pb-20 bg-canada-navy overflow-hidden">
                 <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
@@ -239,7 +277,7 @@ export default function CanadaLocalSeoPage({ country, service, city, province, p
                             <div className="absolute inset-0 bg-canada-navy rounded-[3rem] rotate-3 translate-x-4 shadow-2xl overflow-hidden">
                                 <img
                                     src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000&auto=format&fit=crop"
-                                    alt="SEO Dashboard"
+                                    alt={`AnD Innovatech - SEO Analytics and Ranking Dashboard for ${service} in ${city}, ${province}`}
                                     className="w-full h-full object-cover opacity-60 mix-blend-overlay"
                                 />
                             </div>

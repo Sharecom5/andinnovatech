@@ -7,6 +7,8 @@ import Badge from '@/components/ui/Badge';
 import Button from '@/components/ui/Button';
 import Link from 'next/link';
 
+import RelatedServices from '@/components/sections/RelatedServices';
+
 export const metadata: Metadata = {
     title: 'Mobile App Development | Android & iOS | AnD Innovatech',
     description: 'Custom mobile app development services by AnD Innovatech. We build native and cross-platform mobile apps for iOS and Android with exceptional UX.',
@@ -41,7 +43,7 @@ const capabilities = [
 
 export default function MobileAppDevelopment() {
     return (
-        <div className="overflow-x-hidden bg-white dark:bg-navy">
+        <div className="overflow-x-hidden bg-white dark:bg-navy text-navy dark:text-white">
             <Hero
                 title={<>High-Performance <span className="gradient-text">Mobile Applications</span></>}
                 subtitle="We build seamless iOS and Android experiences that engage users and drive business growth. From concept to App Store launch, we've got you covered."
@@ -60,6 +62,23 @@ export default function MobileAppDevelopment() {
                             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-navy dark:text-white mb-8 leading-tight">
                                 Bring Your Vision to <span className="text-primary">Fingertips</span>
                             </h2>
+                            <script
+                                type="application/ld+json"
+                                dangerouslySetInnerHTML={{
+                                    __html: JSON.stringify({
+                                        '@context': 'https://schema.org',
+                                        '@type': 'Service',
+                                        name: 'Mobile App Development',
+                                        serviceType: 'Mobile Engineering',
+                                        provider: {
+                                            '@type': 'Organization',
+                                            name: 'AnD Innovatech',
+                                        },
+                                        description: 'Native and cross-platform mobile app development for iOS and Android.',
+                                        areaServed: 'US',
+                                    }),
+                                }}
+                            />
                             <div className="prose prose-lg dark:prose-invert text-grey dark:text-slate-400 mb-12">
                                 <p>
                                     In a mobile-first world, your app is often the primary touchpoint for your customers. At AnD Innovatech, we don't just build apps; we build platforms that solve problems and delight users.
@@ -149,6 +168,8 @@ export default function MobileAppDevelopment() {
                     </div>
                 </div>
             </section>
+
+            <RelatedServices currentService="Mobile App Development" />
         </div>
     );
 }

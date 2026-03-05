@@ -454,8 +454,9 @@ export default function Hero({
                 <div className="relative aspect-video rounded-3xl overflow-hidden shadow-2xl border border-white/10 bg-slate-800">
                     <Image
                         src={imageSrc}
-                        alt="AnD Innovatech Hero"
+                        alt={`AnD Innovatech - Strategic IT and SEO Solutions for ${category !== 'default' ? category : 'Businesses'}`}
                         fill
+                        priority
                         className="object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-navy/40 to-transparent" />

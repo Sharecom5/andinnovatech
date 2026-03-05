@@ -21,9 +21,11 @@ const inclusions = [
     'Content Management System (CMS) Integration',
 ];
 
+import RelatedServices from '@/components/sections/RelatedServices';
+
 export default function WebsiteDevelopment() {
     return (
-        <div className="overflow-x-hidden">
+        <div className="overflow-x-hidden bg-white dark:bg-navy text-navy dark:text-white">
             <Hero
                 title={<>High-Performance <span className="gradient-text">Website Development</span></>}
                 subtitle="We build digital experiences that engage and convert. Our websites are engineered for speed, security, and measurable business growth."
@@ -39,9 +41,26 @@ export default function WebsiteDevelopment() {
                         <div className="space-y-10">
                             <div>
                                 <Badge className="mb-4 bg-primary/10 text-primary border-none font-bold italic">Transforming Ideas into Reality</Badge>
-                                <h1 className="text-4xl md:text-5xl font-bold text-navy dark:text-white leading-tight">
+                                <h2 className="text-4xl md:text-5xl font-bold text-navy dark:text-white leading-tight">
                                     Engineering Websites for the <span className="text-primary">Modern Web</span>
-                                </h1>
+                                </h2>
+                                <script
+                                    type="application/ld+json"
+                                    dangerouslySetInnerHTML={{
+                                        __html: JSON.stringify({
+                                            '@context': 'https://schema.org',
+                                            '@type': 'Service',
+                                            name: 'Website Development',
+                                            serviceType: 'Web Development',
+                                            provider: {
+                                                '@type': 'Organization',
+                                                name: 'AnD Innovatech',
+                                            },
+                                            description: 'High-performance website development for US startups and SMBs using Next.js and React.',
+                                            areaServed: 'US',
+                                        }),
+                                    }}
+                                />
                             </div>
 
                             <div className="prose prose-lg dark:prose-invert text-grey dark:text-slate-400 space-y-6">
@@ -105,6 +124,8 @@ export default function WebsiteDevelopment() {
                     </div>
                 </div>
             </section>
+
+            <RelatedServices currentService="Website Development" />
         </div>
     );
 }

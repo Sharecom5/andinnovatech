@@ -8,11 +8,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const navLinks = [
     { name: 'Home', href: '/' },
-    { name: 'About Us', href: '/about-us/' },
+    { name: 'About Us', href: '/about/' },
     { name: 'Services', href: '/services/' },
-    { name: 'Portfolio', href: '/our-portfolio/' },
-    { name: 'Blog', href: '/our-blog/' },
-    { name: 'Contact Us', href: '/contact-us/' },
+    { name: 'Portfolio', href: '/portfolio/' },
+    { name: 'Blog', href: '/blog/' },
+    { name: 'Contact Us', href: '/contact/' },
 ];
 
 export default function Navbar() {
@@ -66,7 +66,7 @@ export default function Navbar() {
                                 </Link>
                             ))}
                             <Link
-                                href="/contact-us/"
+                                href="/contact/"
                                 className="bg-blue-600 text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-blue-700 transition-all shadow-lg hover:shadow-xl"
                             >
                                 Get a Quote
@@ -110,7 +110,7 @@ export default function Navbar() {
                                 </Link>
                             ))}
                             <Link
-                                href="/contact-us/"
+                                href="/contact/"
                                 className="block w-full text-center bg-blue-600 text-white px-3 py-3 rounded-md text-base font-semibold hover:bg-blue-700 mt-4"
                             >
                                 Get a Quote

@@ -7,7 +7,7 @@ import { usaCities } from '@/lib/usa-cities';
 import { usaCitiesSeo } from '@/lib/usa-cities-seo';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://andinnovatech.com';
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.andinnovatech.com';
 
     // Static pages
     const staticPages = [
@@ -17,8 +17,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         '/portfolio/',
         '/blog/',
         '/contact/',
+        '/pricing/',
         '/privacy-policy/',
         '/terms-of-service/',
+        '/sitemap-list/',
     ].map((route) => ({
         url: `${baseUrl}${route}`,
         lastModified: new Date(),

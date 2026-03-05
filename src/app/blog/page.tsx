@@ -14,6 +14,47 @@ export default async function BlogPage() {
 
     return (
         <div className="overflow-x-hidden">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        '@context': 'https://schema.org',
+                        '@graph': [
+                            {
+                                '@type': 'Blog',
+                                '@id': 'https://andinnovatech.com/blog/#webpage',
+                                url: 'https://andinnovatech.com/blog/',
+                                name: 'AnD Innovatech Tech Insights Blog',
+                                description: 'Expert perspectives on software engineering, results-driven SEO, and digital transformation.',
+                                isPartOf: { '@id': 'https://andinnovatech.com/#website' },
+                                breadcrumb: { '@id': 'https://andinnovatech.com/blog/#breadcrumb' }
+                            },
+                            {
+                                '@type': 'BreadcrumbList',
+                                '@id': 'https://andinnovatech.com/blog/#breadcrumb',
+                                itemListElement: [
+                                    {
+                                        '@type': 'ListItem',
+                                        position: 1,
+                                        item: {
+                                            '@id': 'https://andinnovatech.com/',
+                                            name: 'Home'
+                                        }
+                                    },
+                                    {
+                                        '@type': 'ListItem',
+                                        position: 2,
+                                        item: {
+                                            '@id': 'https://andinnovatech.com/blog/',
+                                            name: 'Blog'
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    })
+                }}
+            />
             <Hero
                 title={<>Decoding the <span className="gradient-text">Future of Technology</span></>}
                 subtitle="Exploring the frontiers of innovation, digital growth, and software excellence. Join us for weekly insights from our experts."

@@ -11,6 +11,7 @@ import type { CitySEO } from '@/lib/city-seo-types';
 import Button from '@/components/ui/Button';
 import Badge from '@/components/ui/Badge';
 import SectionHeading from '@/components/ui/SectionHeading';
+import RelatedServices from '@/components/sections/RelatedServices';
 
 interface CitySeoPageProps {
     city: CitySEO;
@@ -351,6 +352,44 @@ export default function CitySeoPage({ city, cityIndex }: CitySeoPageProps) {
 
     return (
         <main className="overflow-hidden bg-white dark:bg-navy">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        '@context': 'https://schema.org',
+                        '@type': 'Service',
+                        name: `SEO Services in ${city.name}`,
+                        serviceType: 'Search Engine Optimization',
+                        provider: {
+                            '@type': 'Organization',
+                            name: 'AnD Innovatech',
+                            url: 'https://andinnovatech.com',
+                        },
+                        areaServed: {
+                            '@type': 'City',
+                            name: city.name,
+                        },
+                        description: subheading,
+                    }),
+                }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        '@context': 'https://schema.org',
+                        '@type': 'FAQPage',
+                        mainEntity: faqs.map((faq) => ({
+                            '@type': 'Question',
+                            name: faq.q,
+                            acceptedAnswer: {
+                                '@type': 'Answer',
+                                text: faq.a,
+                            },
+                        })),
+                    }),
+                }}
+            />
             {/* ── SECTION 1: HERO ── */}
             {/* ── SECTION 1: HERO ── */}
             <Hero
@@ -522,7 +561,10 @@ export default function CitySeoPage({ city, cityIndex }: CitySeoPageProps) {
                 </div>
             </section>
 
-            {/* ── SECTION 9: INTERNAL LINKS ── */}
+            {/* ── SECTION 9: RELATED SERVICES ── */}
+            <RelatedServices currentService="SEO Services" />
+
+            {/* ── SECTION 10: INTERNAL LINKS ── */}
             <section className="py-12 px-4 bg-slate-50 dark:bg-slate-900/50 border-t border-slate-100 dark:border-slate-800">
                 <div className="section-container">
                     <p className="text-grey dark:text-slate-500 text-sm mb-4 font-bold">More Local Services:</p>

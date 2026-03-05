@@ -12,12 +12,6 @@ const fallbackServices = [
         slug: 'website-development',
     },
     {
-        icon: Server,
-        title: 'IT Solutions',
-        description: 'Comprehensive IT infrastructure solutions to streamline your business operations and boost efficiency.',
-        slug: 'it-consulting',
-    },
-    {
         icon: Code2,
         title: 'Software Development',
         description: 'Tailored software solutions designed to solve your unique business challenges and drive growth.',
@@ -34,6 +28,12 @@ const fallbackServices = [
         title: 'Cloud Computing',
         description: 'Scalable cloud solutions that reduce costs and improve your business agility and performance.',
         slug: 'cloud-computing',
+    },
+    {
+        icon: Globe,
+        title: 'Mobile App Development',
+        description: 'High-performance mobile applications for iOS and Android tailored to your business needs.',
+        slug: 'mobile-app-development',
     },
     {
         icon: Lightbulb,

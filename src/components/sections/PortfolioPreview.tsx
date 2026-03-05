@@ -9,52 +9,31 @@ import Button from '@/components/ui/Button';
 const fallbackPortfolio = [
     {
         id: 1,
-        slug: 'ecommerce-platform',
-        title: 'E-Commerce Platform Redesign',
-        category: 'Web Development',
-        techStack: ['React', 'Node.js', 'MongoDB'],
-        image: 'https://images.unsplash.com/photo-1661956602116-aa6865609028?q=80&w=800&h=500&auto=format&fit=crop',
+        slug: 'seo-campaign',
+        title: 'GreenLeaf SEO Campaign',
+        category: 'SEO',
+        techStack: ['Analytics', 'Content Strategy', 'Link Building'],
+        result: '314% Organic Growth',
+        image: 'https://images.unsplash.com/photo-1432888622747-4eb9a8f2c20e?q=80&w=800&h=500&auto=format&fit=crop',
     },
     {
         id: 2,
-        slug: 'healthcare-app',
-        title: 'Healthcare Management System',
-        category: 'Software',
-        techStack: ['Next.js', 'PostgreSQL', 'AWS'],
-        image: 'https://images.unsplash.com/photo-1504813184591-01592fd03cfd?q=80&w=800&h=500&auto=format&fit=crop',
+        slug: 'ecommerce-platform',
+        title: 'Stockwell E-commerce Platform',
+        category: 'Web Dev',
+        techStack: ['Next.js', 'Shopify Plus', 'Tailwind'],
+        result: '2.5s Faster Load Time',
+        image: 'https://images.unsplash.com/photo-1661956602116-aa6865609028?q=80&w=800&h=500&auto=format&fit=crop',
     },
     {
         id: 3,
-        slug: 'seo-campaign',
-        title: 'SEO Campaign — TechStartup',
-        category: 'SEO',
-        techStack: ['Analytics', 'Content Strategy', 'Link Building'],
-        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&h=500&auto=format&fit=crop',
-    },
-    {
-        id: 4,
-        slug: 'crm-system',
-        title: 'Custom CRM Solution',
+        slug: 'healthcare-app',
+        title: 'ClearCare Health Portal',
         category: 'Software',
-        techStack: ['Vue.js', 'Laravel', 'MySQL'],
-        image: 'https://images.unsplash.com/photo-1552581234-26160f608093?q=80&w=800&h=500&auto=format&fit=crop',
-    },
-    {
-        id: 5,
-        slug: 'cloud-migration',
-        title: 'Enterprise Cloud Migration',
-        category: 'IT Solutions',
-        techStack: ['AWS', 'Docker', 'Kubernetes'],
-        image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=800&h=500&auto=format&fit=crop',
-    },
-    {
-        id: 6,
-        slug: 'mobile-banking',
-        title: 'Mobile Banking Application',
-        category: 'Software',
-        techStack: ['React Native', 'Firebase', 'Stripe'],
-        image: 'https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?q=80&w=800&h=500&auto=format&fit=crop',
-    },
+        techStack: ['React', 'HIPAA compliant', 'AWS'],
+        result: '4.2k+ Appointments',
+        image: 'https://images.unsplash.com/photo-1504813184591-01592fd03cfd?q=80&w=800&h=500&auto=format&fit=crop',
+    }
 ];
 
 export default function PortfolioPreview() {
@@ -118,6 +97,13 @@ export default function PortfolioPreview() {
                                             </span>
                                         ))}
                                     </div>
+
+                                    {item.result && (
+                                        <div className="mb-6 p-3 rounded-xl bg-primary/10 border border-primary/20">
+                                            <div className="text-[9px] text-primary font-black uppercase tracking-widest leading-none mb-1">Impact</div>
+                                            <div className="text-white font-bold text-xs">{item.result}</div>
+                                        </div>
+                                    )}
 
                                     <div className="flex items-center gap-2 text-primary font-bold text-sm">
                                         Explore Details <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />

@@ -88,7 +88,7 @@ export async function generateMetadata({ params }: DynamicPageProps): Promise<Me
         return {
             title: titleFormulas[index % titleFormulas.length],
             description: `AndInnovatech delivers enterprise-grade web development in ${city.name}. Custom websites for ${city.industries.slice(0, 2).join(', ')}.`,
-            alternates: { canonical: `https://andinnovatech.com/web-development-${city.slug}/` },
+            alternates: { canonical: `https://www.andinnovatech.com/web-development-${city.slug}/` },
         };
     }
 
@@ -109,7 +109,7 @@ export async function generateMetadata({ params }: DynamicPageProps): Promise<Me
             `AndInnovatech provides ${city.name}, ${city.stateCode} businesses with proven SEO strategies — specializing in ${city.topIndustries[0]} and ${city.topIndustries[1]}.`,
         ];
         const description = descFormulas[cityIndex % descFormulas.length].slice(0, 160);
-        const url = `https://andinnovatech.com/seo-services-${city.slug}/`;
+        const url = `https://www.andinnovatech.com/seo-services-${city.slug}/`;
 
         return {
             title,
@@ -133,7 +133,7 @@ export async function generateMetadata({ params }: DynamicPageProps): Promise<Me
                 title,
                 description,
                 openGraph: { title, description, type: 'website' },
-                alternates: { canonical: `https://andinnovatech.com/${lowerSlug}/` }
+                alternates: { canonical: `https://www.andinnovatech.com/${lowerSlug}/` }
             };
         }
     }
@@ -157,7 +157,7 @@ export async function generateMetadata({ params }: DynamicPageProps): Promise<Me
                     type: 'website'
                 },
                 alternates: {
-                    canonical: `https://andinnovatech.com/${lowerSlug}/`
+                    canonical: `https://www.andinnovatech.com/${lowerSlug}/`
                 }
             };
         }
@@ -188,7 +188,30 @@ export default async function DynamicPage({ params }: DynamicPageProps) {
         const citySlug = lowerSlug.replace('web-development-', '');
         const city = usaCities.find((c) => c.slug.toLowerCase() === citySlug);
         if (!city) notFound();
-        return <CityServicePage city={city} />;
+        return (
+            <>
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify({
+                            '@context': 'https://schema.org',
+                            '@graph': [
+                                {
+                                    '@type': 'BreadcrumbList',
+                                    '@id': `https://andinnovatech.com/${lowerSlug}/#breadcrumb`,
+                                    itemListElement: [
+                                        { '@type': 'ListItem', position: 1, item: { '@id': 'https://andinnovatech.com/', name: 'Home' } },
+                                        { '@type': 'ListItem', position: 2, item: { '@id': 'https://andinnovatech.com/services/', name: 'Services' } },
+                                        { '@type': 'ListItem', position: 3, item: { '@id': `https://andinnovatech.com/${lowerSlug}/`, name: `Web Dev in ${city.name}` } }
+                                    ]
+                                }
+                            ]
+                        })
+                    }}
+                />
+                <CityServicePage city={city} />
+            </>
+        );
     }
 
     // ── SEO Services City Pages ─────────────────────────────────
@@ -197,7 +220,30 @@ export default async function DynamicPage({ params }: DynamicPageProps) {
         const cityIndex = usaCitiesSeo.findIndex((c) => c.slug.toLowerCase() === citySlug);
         const city = usaCitiesSeo[cityIndex];
         if (!city) notFound();
-        return <CitySeoPage city={city} cityIndex={cityIndex} />;
+        return (
+            <>
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify({
+                            '@context': 'https://schema.org',
+                            '@graph': [
+                                {
+                                    '@type': 'BreadcrumbList',
+                                    '@id': `https://andinnovatech.com/${lowerSlug}/#breadcrumb`,
+                                    itemListElement: [
+                                        { '@type': 'ListItem', position: 1, item: { '@id': 'https://andinnovatech.com/', name: 'Home' } },
+                                        { '@type': 'ListItem', position: 2, item: { '@id': 'https://andinnovatech.com/services/', name: 'Services' } },
+                                        { '@type': 'ListItem', position: 3, item: { '@id': `https://andinnovatech.com/${lowerSlug}/`, name: `SEO in ${city.name}` } }
+                                    ]
+                                }
+                            ]
+                        })
+                    }}
+                />
+                <CitySeoPage city={city} cityIndex={cityIndex} />
+            </>
+        );
     }
 
     // ── USA Geo-Landing Pages ─────────────────────────────
@@ -208,13 +254,33 @@ export default async function DynamicPage({ params }: DynamicPageProps) {
             const service = serviceSlug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 
             return (
-                <UsaGeoLandingPage
-                    country="USA"
-                    service={service}
-                    city={loc.city}
-                    state={loc.state}
-                    stateCode={loc.stateCode}
-                />
+                <>
+                    <script
+                        type="application/ld+json"
+                        dangerouslySetInnerHTML={{
+                            __html: JSON.stringify({
+                                '@context': 'https://schema.org',
+                                '@graph': [
+                                    {
+                                        '@type': 'BreadcrumbList',
+                                        '@id': `https://andinnovatech.com/${lowerSlug}/#breadcrumb`,
+                                        itemListElement: [
+                                            { '@type': 'ListItem', position: 1, item: { '@id': 'https://andinnovatech.com/', name: 'Home' } },
+                                            { '@type': 'ListItem', position: 2, item: { '@id': `https://andinnovatech.com/${lowerSlug}/`, name: `${service} SEO in ${loc.city}` } }
+                                        ]
+                                    }
+                                ]
+                            })
+                        }}
+                    />
+                    <UsaGeoLandingPage
+                        country="USA"
+                        service={service}
+                        city={loc.city}
+                        state={loc.state}
+                        stateCode={loc.stateCode}
+                    />
+                </>
             );
         }
     }
@@ -227,13 +293,33 @@ export default async function DynamicPage({ params }: DynamicPageProps) {
             const service = serviceSlug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 
             return (
-                <CanadaLocalSeoPage
-                    country="Canada"
-                    service={service}
-                    city={loc.city}
-                    province={loc.province}
-                    provinceCode={loc.provinceCode}
-                />
+                <>
+                    <script
+                        type="application/ld+json"
+                        dangerouslySetInnerHTML={{
+                            __html: JSON.stringify({
+                                '@context': 'https://schema.org',
+                                '@graph': [
+                                    {
+                                        '@type': 'BreadcrumbList',
+                                        '@id': `https://andinnovatech.com/${lowerSlug}/#breadcrumb`,
+                                        itemListElement: [
+                                            { '@type': 'ListItem', position: 1, item: { '@id': 'https://andinnovatech.com/', name: 'Home' } },
+                                            { '@type': 'ListItem', position: 2, item: { '@id': `https://andinnovatech.com/${lowerSlug}/`, name: `${service} SEO in ${loc.city}` } }
+                                        ]
+                                    }
+                                ]
+                            })
+                        }}
+                    />
+                    <CanadaLocalSeoPage
+                        country="Canada"
+                        service={service}
+                        city={loc.city}
+                        province={loc.province}
+                        provinceCode={loc.provinceCode}
+                    />
+                </>
             );
         }
     }
@@ -243,18 +329,54 @@ export default async function DynamicPage({ params }: DynamicPageProps) {
     if (!post) notFound();
 
     return (
-        <article className="pt-32 pb-24 bg-white">
+        <article className="pt-32 pb-24 bg-white dark:bg-navy text-navy dark:text-white min-h-screen">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        '@context': 'https://schema.org',
+                        '@graph': [
+                            {
+                                '@type': 'BlogPosting',
+                                '@id': `https://andinnovatech.com/${slug}/#post`,
+                                headline: post.title,
+                                description: post.description,
+                                datePublished: post.date,
+                                dateModified: post.date,
+                                author: post.author
+                                    ? { '@type': 'Person', name: post.author }
+                                    : { '@id': 'https://andinnovatech.com/#organization' },
+                                publisher: { '@id': 'https://andinnovatech.com/#organization' },
+                                image: post.image || 'https://andinnovatech.com/og-image.jpg',
+                                mainEntityOfPage: {
+                                    '@type': 'WebPage',
+                                    '@id': `https://andinnovatech.com/${slug}/`
+                                }
+                            },
+                            {
+                                '@type': 'BreadcrumbList',
+                                '@id': `https://andinnovatech.com/${slug}/#breadcrumb`,
+                                itemListElement: [
+                                    { '@type': 'ListItem', position: 1, item: { '@id': 'https://andinnovatech.com/', name: 'Home' } },
+                                    { '@type': 'ListItem', position: 2, item: { '@id': 'https://andinnovatech.com/blog/', name: 'Blog' } },
+                                    { '@type': 'ListItem', position: 3, item: { '@id': `https://andinnovatech.com/${slug}/`, name: post.title } }
+                                ]
+                            }
+                        ]
+                    })
+                }}
+            />
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <Link
-                    href="/our-blog/"
-                    className="inline-flex items-center text-blue-600 font-semibold mb-12 hover:underline group"
+                    href="/blog/"
+                    className="inline-flex items-center text-primary font-bold mb-12 hover:underline group"
                 >
                     <ArrowLeft className="h-4 w-4 mr-2 transform group-hover:-translate-x-1 transition-transform" />
-                    Back to Blog
+                    Back to Insights
                 </Link>
 
                 <header className="mb-12">
-                    <div className="flex items-center text-gray-500 mb-4">
+                    <div className="flex items-center text-slate-500 dark:text-slate-400 mb-4">
                         <Calendar className="h-5 w-5 mr-2" />
                         <time dateTime={post.date}>
                             {new Date(post.date).toLocaleDateString('en-US', {
@@ -263,28 +385,35 @@ export default async function DynamicPage({ params }: DynamicPageProps) {
                                 day: 'numeric',
                             })}
                         </time>
+                        {post.author && (
+                            <>
+                                <span className="mx-3">•</span>
+                                <span className="font-bold text-primary">By {post.author}</span>
+                            </>
+                        )}
                     </div>
-                    <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-8">
+                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-navy dark:text-white leading-[1.1] mb-8 tracking-tighter">
                         {post.title}
                     </h1>
-                    <div className="h-1 w-24 bg-blue-600 rounded-full" />
+                    <div className="h-2 w-24 bg-primary rounded-full mb-8" />
                 </header>
 
-                <div className="prose prose-lg max-w-none prose-blue prose-headings:text-gray-900 prose-headings:font-bold prose-p:text-gray-600 prose-a:text-blue-600">
+                <div className="prose prose-lg lg:prose-xl max-w-none dark:prose-invert prose-headings:text-navy dark:prose-headings:text-white prose-headings:font-bold prose-p:text-grey dark:prose-p:text-slate-400 prose-a:text-primary prose-strong:text-navy dark:prose-strong:text-white prose-blockquote:border-primary prose-blockquote:bg-slate-50 dark:prose-blockquote:bg-navy/50 p-6 md:p-10 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm">
                     <MDXRemote source={post.content} />
                 </div>
 
-                <footer className="mt-16 pt-8 border-t border-gray-100">
-                    <div className="bg-blue-50 p-8 rounded-3xl flex flex-col md:flex-row items-center justify-between gap-6">
-                        <div>
-                            <h3 className="text-xl font-bold text-gray-900 mb-2">Want to learn more?</h3>
-                            <p className="text-gray-600">Discover how our expertise can help your business innovate and grow.</p>
+                <footer className="mt-20 pt-10 border-t border-slate-100 dark:border-slate-800">
+                    <div className="bg-navy p-10 md:p-16 rounded-[3rem] flex flex-col md:flex-row items-center justify-between gap-10 relative overflow-hidden border border-white/10 shadow-glow-primary">
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-[100px] opacity-40" />
+                        <div className="relative z-10">
+                            <h3 className="text-3xl font-bold text-white mb-3">Scale Your Vision</h3>
+                            <p className="text-slate-400 text-lg">Discuss your technical requirements with our engineering leads today.</p>
                         </div>
                         <Link
-                            href="/contact-us/"
-                            className="bg-blue-600 text-white px-8 py-3 rounded-full font-bold hover:bg-blue-700 transition-all shadow-md shrink-0"
+                            href="/contact/"
+                            className="bg-primary text-white px-10 py-5 rounded-full font-black text-lg hover:bg-primary-600 transition-all shadow-glow shrink-0 relative z-10"
                         >
-                            Get in Touch
+                            Build Your Plan →
                         </Link>
                     </div>
                 </footer>

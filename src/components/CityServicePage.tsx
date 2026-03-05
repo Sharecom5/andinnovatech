@@ -13,6 +13,7 @@ import SectionHeading from '@/components/ui/SectionHeading';
 import Badge from '@/components/ui/Badge';
 import Button from '@/components/ui/Button';
 import ContactForm from '@/components/sections/ContactForm';
+import RelatedServices from '@/components/sections/RelatedServices';
 
 interface CityServicePageProps {
     city: USACity;
@@ -86,8 +87,48 @@ export default function CityServicePage({ city }: CityServicePageProps) {
         { val: '99%', label: 'Uptime Guarantee', icon: Globe }
     ];
 
+    const faqs = getFAQ();
+
     return (
         <main className="overflow-x-hidden bg-white dark:bg-navy">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        '@context': 'https://schema.org',
+                        '@type': 'Service',
+                        name: `Web Development in ${city.name}`,
+                        serviceType: 'Website Development',
+                        provider: {
+                            '@type': 'Organization',
+                            name: 'AnD Innovatech',
+                            url: 'https://andinnovatech.com',
+                        },
+                        areaServed: {
+                            '@type': 'City',
+                            name: city.name,
+                        },
+                        description: getHeroSubheading(),
+                    }),
+                }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        '@context': 'https://schema.org',
+                        '@type': 'FAQPage',
+                        mainEntity: faqs.map((faq) => ({
+                            '@type': 'Question',
+                            name: faq.q,
+                            acceptedAnswer: {
+                                '@type': 'Answer',
+                                text: faq.a,
+                            },
+                        })),
+                    }),
+                }}
+            />
             {/* Hero Section */}
             <Hero
                 title={formattedH1}
@@ -204,6 +245,9 @@ export default function CityServicePage({ city }: CityServicePageProps) {
                     </div>
                 </div>
             </section>
+
+            {/* Related Services */}
+            <RelatedServices currentService="Website Development" />
 
             {/* FAQ */}
             <section className="section-padding bg-white dark:bg-navy">

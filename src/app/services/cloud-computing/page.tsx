@@ -39,9 +39,11 @@ const pillars = [
     },
 ];
 
+import RelatedServices from '@/components/sections/RelatedServices';
+
 export default function CloudComputing() {
     return (
-        <div className="overflow-x-hidden bg-white dark:bg-navy">
+        <div className="overflow-x-hidden bg-white dark:bg-navy text-navy dark:text-white">
             <Hero
                 title={<>Future-Ready <span className="gradient-text">Cloud Computing</span> Solutions</>}
                 subtitle="Modernize your infrastructure with scalable, secure, and cost-effective cloud architectures. We migrate, manage, and optimize your digital workspace."
@@ -59,6 +61,37 @@ export default function CloudComputing() {
                             <h2 className="text-4xl md:text-5xl font-bold text-navy dark:text-white mb-8 leading-tight">
                                 Scalability Without <span className="text-primary">Operational Friction</span>
                             </h2>
+                            <script
+                                type="application/ld+json"
+                                dangerouslySetInnerHTML={{
+                                    __html: JSON.stringify({
+                                        '@context': 'https://schema.org',
+                                        '@graph': [
+                                            {
+                                                '@type': 'Service',
+                                                '@id': 'https://andinnovatech.com/services/cloud-computing/#service',
+                                                name: 'Enterprise Cloud Solutions',
+                                                serviceType: 'Cloud Infrastructure',
+                                                provider: {
+                                                    '@type': 'Organization',
+                                                    '@id': 'https://andinnovatech.com/#organization'
+                                                },
+                                                description: 'AWS, Azure, and Google Cloud services for enterprise scalability and reliability.',
+                                                areaServed: 'US',
+                                            },
+                                            {
+                                                '@type': 'BreadcrumbList',
+                                                '@id': 'https://andinnovatech.com/services/cloud-computing/#breadcrumb',
+                                                itemListElement: [
+                                                    { '@type': 'ListItem', position: 1, item: { '@id': 'https://andinnovatech.com/', name: 'Home' } },
+                                                    { '@type': 'ListItem', position: 2, item: { '@id': 'https://andinnovatech.com/services/', name: 'Services' } },
+                                                    { '@type': 'ListItem', position: 3, item: { '@id': 'https://andinnovatech.com/services/cloud-computing/', name: 'Cloud Computing' } }
+                                                ]
+                                            }
+                                        ]
+                                    }),
+                                }}
+                            />
                             <div className="prose prose-lg dark:prose-invert text-grey dark:text-slate-400 mb-12">
                                 <p>
                                     The cloud is more than just storage; it's the engine of digital transformation. At AnD Innovatech, we help businesses harness AWS, Azure, and Google Cloud to drive agility and innovation.
@@ -143,6 +176,8 @@ export default function CloudComputing() {
                     </Link>
                 </div>
             </section>
+
+            <RelatedServices currentService="Cloud Computing" />
         </div>
     );
 }

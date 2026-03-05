@@ -7,6 +7,8 @@ import Badge from '@/components/ui/Badge';
 import Button from '@/components/ui/Button';
 import Link from 'next/link';
 
+import RelatedServices from '@/components/sections/RelatedServices';
+
 export const metadata: Metadata = {
     title: 'Strategic IT Consulting & Advisory | AnD Innovatech',
     description: 'Expert technical advisory for US startups and SMBs. We bridge the gap between business vision and technical execution with ROI-focused IT consulting.',
@@ -41,7 +43,7 @@ const pillars = [
 
 export default function ITConsulting() {
     return (
-        <div className="overflow-x-hidden bg-white dark:bg-navy">
+        <div className="overflow-x-hidden bg-white dark:bg-navy text-navy dark:text-white">
             <Hero
                 title={<>Strategic <span className="gradient-text">IT Consulting</span> & Advisory</>}
                 subtitle="We bridge the gap between business vision and technical execution. Our consultants help you navigate the complex digital landscape with precision."
@@ -60,6 +62,23 @@ export default function ITConsulting() {
                             <h2 className="text-4xl md:text-5xl font-bold text-navy dark:text-white mb-8 leading-tight">
                                 Transform Your Tech Into a <span className="text-primary">Growth Catalyst</span>
                             </h2>
+                            <script
+                                type="application/ld+json"
+                                dangerouslySetInnerHTML={{
+                                    __html: JSON.stringify({
+                                        '@context': 'https://schema.org',
+                                        '@type': 'Service',
+                                        name: 'IT Consulting & Advisory',
+                                        serviceType: 'IT Strategy',
+                                        provider: {
+                                            '@type': 'Organization',
+                                            name: 'AnD Innovatech',
+                                        },
+                                        description: 'Expert technical advisory and IT consulting for US startups and SMBs.',
+                                        areaServed: 'US',
+                                    }),
+                                }}
+                            />
                             <div className="prose prose-lg dark:prose-invert text-grey dark:text-slate-400 mb-12">
                                 <p>
                                     Technology should be an enabler, not a bottleneck. At AnD Innovatech, our consulting methodology is built on the synthesis of deep technical expertise and sharp business acumen.
@@ -148,6 +167,8 @@ export default function ITConsulting() {
                     </div>
                 </div>
             </section>
+
+            <RelatedServices currentService="IT Consulting" />
         </div>
     );
 }

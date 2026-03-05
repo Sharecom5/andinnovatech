@@ -21,9 +21,11 @@ const inclusions = [
     'Quality Assurance and Testing',
 ];
 
+import RelatedServices from '@/components/sections/RelatedServices';
+
 export default function SoftwareDevelopment() {
     return (
-        <div className="overflow-x-hidden">
+        <div className="overflow-x-hidden bg-white dark:bg-navy text-navy dark:text-white">
             <Hero
                 title={<>Custom <span className="gradient-text">Software Engineering</span></>}
                 subtitle="Transforming complex business challenges into seamless digital solutions. We build scalable, secure, and future-ready enterprise applications."
@@ -39,9 +41,26 @@ export default function SoftwareDevelopment() {
                         <div className="space-y-10">
                             <div>
                                 <Badge className="mb-4 bg-accent/10 text-accent border-none font-bold italic">Bespoke Enterprise Solutions</Badge>
-                                <h1 className="text-4xl md:text-5xl font-bold text-navy dark:text-white leading-tight">
+                                <h2 className="text-4xl md:text-5xl font-bold text-navy dark:text-white leading-tight">
                                     Powering Innovation through <span className="text-accent">Robust Code</span>
-                                </h1>
+                                </h2>
+                                <script
+                                    type="application/ld+json"
+                                    dangerouslySetInnerHTML={{
+                                        __html: JSON.stringify({
+                                            '@context': 'https://schema.org',
+                                            '@type': 'Service',
+                                            name: 'Software Development',
+                                            serviceType: 'Software Engineering',
+                                            provider: {
+                                                '@type': 'Organization',
+                                                name: 'AnD Innovatech',
+                                            },
+                                            description: 'Scalable custom software solutions and enterprise application development.',
+                                            areaServed: 'US',
+                                        }),
+                                    }}
+                                />
                             </div>
 
                             <div className="prose prose-lg dark:prose-invert text-grey dark:text-slate-400 space-y-6">

@@ -6,7 +6,7 @@ const testimonials: Testimonial[] = [
     {
         id: 1,
         name: 'David Kowalski',
-        location: 'Chicago, IL — GreenLeaf HVAC Solutions',
+        location: 'CEO at GreenLeaf HVAC Solutions',
         quote: 'We were paying $8,500/month to a local Chicago agency for SEO and barely moving the needle. AnD Innovatech took over in March, and by June we were ranking on page 1 for 14 of our target keywords. Organic leads went from 12/month to 67/month. The communication is better than agencies we\'ve worked with here in the US.',
         rating: 5,
         initials: 'DK',
@@ -14,7 +14,7 @@ const testimonials: Testimonial[] = [
     {
         id: 2,
         name: 'Sandra Nguyen',
-        location: 'Austin, TX — ClearCare Health',
+        location: 'Operations Director at ClearCare Health',
         quote: 'We needed a custom patient scheduling portal built fast — our previous dev team fell through 3 weeks before launch. AnD Innovatech jumped in, understood the requirements quickly, and delivered in 5 weeks. The portal has processed over 4,200 appointments since launch with zero downtime. Highly accountable team.',
         rating: 5,
         initials: 'SN',
@@ -22,7 +22,7 @@ const testimonials: Testimonial[] = [
     {
         id: 3,
         name: 'Marcus Reid',
-        location: 'Atlanta, GA — Stockwell Supply Co.',
+        location: 'Founder of Stockwell Supply Co.',
         quote: 'I was skeptical about hiring offshore. But AnD Innovatech sent weekly Loom video updates, responded to Slack within 2 hours during my work hours, and delivered our e-commerce site 4 days ahead of schedule. Our conversion rate jumped from 1.2% to 3.7% after launch. I\'ve since referred two other founders.',
         rating: 5,
         initials: 'MR',
@@ -30,7 +30,7 @@ const testimonials: Testimonial[] = [
     {
         id: 4,
         name: 'Priya Mehta',
-        location: 'San Francisco, CA — TalentBridge HR',
+        location: 'CTO at TalentBridge HR',
         quote: 'We run a SaaS startup and needed a full redesign plus a React Native app. Got quotes from US freelancers in the $45,000–$60,000 range. AnD Innovatech delivered both for $18,000 — and the quality was honestly better. They flagged UX issues we hadn\'t even thought of. They feel like a genuine part of our team.',
         rating: 5,
         initials: 'PM',
@@ -44,6 +44,30 @@ export default function Testimonials() {
                 <SectionHeading
                     title="What Our US Clients Say"
                     subtitle="Real results from real businesses — not generic reviews. These are the outcomes that matter."
+                />
+
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify({
+                            '@context': 'https://schema.org',
+                            '@type': 'Service',
+                            name: 'IT & SEO Services',
+                            provider: { '@id': 'https://andinnovatech.com/#organization' },
+                            aggregateRating: {
+                                '@type': 'AggregateRating',
+                                ratingValue: '4.9',
+                                reviewCount: '124',
+                            },
+                            review: testimonials.map(t => ({
+                                '@type': 'Review',
+                                author: { '@type': 'Person', name: t.name },
+                                reviewRating: { '@type': 'Rating', ratingValue: t.rating },
+                                reviewBody: t.quote,
+                                publisher: { '@id': 'https://andinnovatech.com/#organization' }
+                            }))
+                        })
+                    }}
                 />
 
                 {/* Testimonials Grid */}

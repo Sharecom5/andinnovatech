@@ -2,6 +2,14 @@ import SectionHeading from '@/components/ui/SectionHeading';
 
 const faqs = [
     {
+        q: 'Is it safe to hire an offshore development team for my US business?',
+        a: 'Yes, when you partner with a registered, transparent agency like AnD Innovatech. We use military-grade encryption, secure IP protocols, and legal NDAs to protect your data. Unlike generic freelancers, we are a structured agency with a physical presence and proven track record with US SMBs since 2017.',
+    },
+    {
+        q: 'How much does an offshore web development agency cost compared to a US firm?',
+        a: 'Typically, US businesses save 40–60% by partnering with us. For example, a project that might cost $45,000–$60,000 in the US is often delivered by our team for $18,000–$25,000 with the exact same technical quality and faster delivery times.',
+    },
+    {
         q: 'How is working with an India-based team different from hiring locally?',
         a: 'The work quality isn\'t different — the cost is. Our developers and SEO strategists hold the same certifications and use the same tools as US-based agencies. The main difference: you\'re not paying for US overhead. You get a dedicated, experienced team at roughly 40–60% of what a comparable US agency would charge. The tradeoff is timezone, which we solve by overlapping with US business hours from 9am–2pm ET daily and responding to all messages within 4 hours.',
     },
@@ -14,12 +22,8 @@ const faqs = [
         a: 'Every project includes a clearly defined scope, milestone-based delivery, and revision rounds built into the timeline. If something isn\'t right, we fix it — no argument, no extra charge. For ongoing work, you can cancel with 30 days\' notice. We also include 90 days of post-launch support on all website and software projects, at no additional cost.',
     },
     {
-        q: 'How do I know my project won\'t be outsourced to someone else?',
-        a: 'It won\'t be. AnD Innovatech is not a middleman. Every person who works on your project is a direct member of our team — no subcontractors, no third-party resellers. You\'re welcome to meet the actual developers and strategists assigned to your project before we begin.',
-    },
-    {
-        q: 'What\'s your typical project timeline and pricing?',
-        a: 'A standard business website takes 3–5 weeks. A custom web app or e-commerce platform typically takes 8–14 weeks. SEO results are measurable within 90 days, with significant improvements in 4–6 months. We only offer fixed-price quotes — no hourly billing surprises. Most US clients find our rates are 40–60% below comparable US agencies. We\'ll send a detailed quote within 48 hours of your inquiry.',
+        q: 'What\'s your typical project timeline for a new website or app?',
+        a: 'A standard business website takes 3–5 weeks. A custom web app or e-commerce platform typically takes 8–14 weeks. SEO results are measurable within 90 days, with significant improvements in 4–6 months. We only offer fixed-price quotes — no hourly billing surprises. We\'ll send a detailed quote within 48 hours of your inquiry.',
     },
 ];
 
@@ -33,6 +37,23 @@ export default function FAQ() {
                 />
 
                 <div className="space-y-4">
+                    <script
+                        type="application/ld+json"
+                        dangerouslySetInnerHTML={{
+                            __html: JSON.stringify({
+                                '@context': 'https://schema.org',
+                                '@type': 'FAQPage',
+                                mainEntity: faqs.map((faq) => ({
+                                    '@type': 'Question',
+                                    name: faq.q,
+                                    acceptedAnswer: {
+                                        '@type': 'Answer',
+                                        text: faq.a,
+                                    },
+                                })),
+                            }),
+                        }}
+                    />
                     {faqs.map((faq, i) => (
                         <details
                             key={i}
@@ -52,7 +73,7 @@ export default function FAQ() {
                 <div className="text-center mt-12">
                     <p className="text-slate-500 dark:text-slate-400 mb-4 text-sm">Still have questions? Talk to a real person — no bots, no call centers.</p>
                     <a
-                        href="/contact-us/"
+                        href="/contact/"
                         className="inline-flex items-center gap-2 bg-primary text-white font-bold px-8 py-4 rounded-full hover:bg-primary/90 transition-colors shadow-lg"
                     >
                         Book a Free 30-Min Call →

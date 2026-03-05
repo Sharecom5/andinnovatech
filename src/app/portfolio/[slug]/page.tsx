@@ -353,6 +353,57 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
 
     return (
         <main className="overflow-hidden bg-white dark:bg-navy">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        '@context': 'https://schema.org',
+                        '@graph': [
+                            {
+                                '@type': 'CreativeWork',
+                                '@id': `https://andinnovatech.com/portfolio/${project.slug}/#creativework`,
+                                url: `https://andinnovatech.com/portfolio/${project.slug}/`,
+                                name: project.title,
+                                description: project.description,
+                                image: project.image,
+                                author: { '@id': 'https://andinnovatech.com/#organization' },
+                                keyword: project.techStack.join(', '),
+                                isPartOf: { '@id': 'https://andinnovatech.com/portfolio/#webpage' }
+                            },
+                            {
+                                '@type': 'BreadcrumbList',
+                                '@id': `https://andinnovatech.com/portfolio/${project.slug}/#breadcrumb`,
+                                itemListElement: [
+                                    {
+                                        '@type': 'ListItem',
+                                        position: 1,
+                                        item: {
+                                            '@id': 'https://andinnovatech.com/',
+                                            name: 'Home'
+                                        }
+                                    },
+                                    {
+                                        '@type': 'ListItem',
+                                        position: 2,
+                                        item: {
+                                            '@id': 'https://andinnovatech.com/portfolio/',
+                                            name: 'Portfolio'
+                                        }
+                                    },
+                                    {
+                                        '@type': 'ListItem',
+                                        position: 3,
+                                        item: {
+                                            '@id': `https://andinnovatech.com/portfolio/${project.slug}/`,
+                                            name: project.title
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    })
+                }}
+            />
             {/* Project Hero using Central Hero Component */}
             <Hero
                 title={project.title}

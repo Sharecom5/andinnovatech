@@ -9,32 +9,32 @@ import Button from '@/components/ui/Button';
 const fallbackPosts = [
     {
         id: 1,
-        slug: 'top-web-development-trends-2024',
-        title: 'Top Web Development Trends to Watch in 2024',
-        excerpt: 'Explore the latest trends shaping the future of web development, from AI-powered tools to serverless architectures and edge computing.',
-        category: 'Web Development',
-        date: '2024-01-15',
-        readTime: '5 min read',
+        slug: 'offshore-development-india-why-choose-us',
+        title: 'Why US SMBs are Moving to Dedicated Offshore Teams in 2025',
+        excerpt: 'Discover why the traditional agency model is failing and how dedicated offshore partnerships provide 60% cost savings without quality compromise.',
+        category: 'Business Strategy',
+        date: '2025-02-15',
+        readTime: '6 min read',
         image: 'https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=600&h=400&auto=format&fit=crop',
     },
     {
         id: 2,
         slug: 'seo-strategies-small-businesses',
-        title: 'Essential SEO Strategies for Small Businesses',
-        excerpt: 'Learn practical SEO techniques that can help small businesses improve their search rankings and attract more organic traffic.',
+        title: 'Essential SEO Strategies for Small Businesses to Outrank Competitors',
+        excerpt: 'Learn the specific local SEO techniques that let smaller startups dominate search results against competitors with 10x the budget.',
         category: 'SEO',
-        date: '2024-01-10',
-        readTime: '7 min read',
+        date: '2025-02-10',
+        readTime: '8 min read',
         image: 'https://images.unsplash.com/photo-1571721795195-a2ca2d3170ad?q=80&w=600&h=400&auto=format&fit=crop',
     },
     {
         id: 3,
-        slug: 'cloud-computing-benefits',
-        title: 'Why Cloud Computing Is Essential for Modern Business',
-        excerpt: 'Discover how cloud computing can transform your business operations, reduce costs, and improve scalability.',
-        category: 'Cloud',
-        date: '2024-01-05',
-        readTime: '6 min read',
+        slug: '10-essential-features-business-app-2025',
+        title: '10 Essential Features for Business Apps in 2025',
+        excerpt: 'From AI integration to multi-platform synchronization, ensure your custom software is built for the next decade of digital business.',
+        category: 'Software',
+        date: '2025-02-01',
+        readTime: '7 min read',
         image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=600&h=400&auto=format&fit=crop',
     },
 ];
@@ -50,7 +50,7 @@ export default function BlogPreview() {
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-12">
                     {fallbackPosts.map((post) => (
-                        <Link key={post.id} href={`/blog/${post.slug}`}>
+                        <Link key={post.id} href={`/${post.slug}`}>
                             <article className="group bg-white dark:bg-slate-800 rounded-2xl overflow-hidden border border-slate-100 dark:border-slate-700 shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
                                 {/* Image Container */}
                                 <div className="relative h-52 overflow-hidden bg-slate-800">

@@ -5,10 +5,11 @@ const footerLinks = [
     {
         title: 'Quick Links',
         links: [
-            { name: 'About Us', href: '/about-us/' },
-            { name: 'Our Portfolio', href: '/our-portfolio/' },
-            { name: 'Our Blog', href: '/our-blog/' },
-            { name: 'Contact Us', href: '/contact-us/' },
+            { name: 'About Us', href: '/about/' },
+            { name: 'Portfolio', href: '/portfolio/' },
+            { name: 'Pricing & ROI', href: '/pricing/' },
+            { name: 'Blog', href: '/blog/' },
+            { name: 'Contact Us', href: '/contact/' },
         ],
     },
     {
@@ -97,6 +98,7 @@ export default function Footer() {
                 <div className="border-t border-gray-800 pt-8 mt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
                     <p>© {new Date().getFullYear()} AndInnovatech. All rights reserved.</p>
                     <div className="flex space-x-6 mt-4 md:mt-0">
+                        <Link href="/sitemap-list/" className="hover:text-white transition-colors underline decoration-blue-500/30 underline-offset-4">Sitemap (All Pages)</Link>
                         <Link href="/privacy-policy/" className="hover:text-white transition-colors">Privacy Policy</Link>
                         <Link href="/terms-of-service/" className="hover:text-white transition-colors">Terms of Service</Link>
                     </div>

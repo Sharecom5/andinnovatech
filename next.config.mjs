@@ -24,9 +24,32 @@ const nextConfig = {
     trailingSlash: true,
     async redirects() {
         return [
+            // ── Canonical: force all non-www to www ──────────────────────
+            {
+                source: '/:path*',
+                has: [{ type: 'host', value: 'andinnovatech.com' }],
+                destination: 'https://www.andinnovatech.com/:path*',
+                permanent: true,
+            },
+            // ── Legacy URL redirects ──────────────────────────────────────
             {
                 source: '/blog/:slug/',
                 destination: '/:slug/',
+                permanent: true,
+            },
+            {
+                source: '/about-us/',
+                destination: '/about/',
+                permanent: true,
+            },
+            {
+                source: '/contact-us/',
+                destination: '/contact/',
+                permanent: true,
+            },
+            {
+                source: '/services-list/',
+                destination: '/services/',
                 permanent: true,
             },
         ];

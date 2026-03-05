@@ -33,13 +33,13 @@ export default function CTA() {
                 </p>
 
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <Link href="/contact-us/" className="w-full sm:w-auto">
+                    <Link href="/contact/" className="w-full sm:w-auto">
                         <Button variant="white" size="lg" className="w-full sm:w-auto gap-2 font-bold">
                             Book a Free 30-Min Strategy Call
                             <ArrowRight size={20} />
                         </Button>
                     </Link>
-                    <Link href="/contact-us/" className="w-full sm:w-auto">
+                    <Link href="/contact/" className="w-full sm:w-auto">
                         <Button variant="outline" size="lg" className="w-full sm:w-auto gap-2 border-white/30 text-white hover:bg-white/10">
                             <Phone size={18} />
                             Start With a Free Website Audit

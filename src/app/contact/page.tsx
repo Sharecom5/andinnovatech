@@ -12,6 +12,47 @@ export const metadata: Metadata = {
 export default function ContactUs() {
     return (
         <div className="overflow-x-hidden">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        '@context': 'https://schema.org',
+                        '@graph': [
+                            {
+                                '@type': 'ContactPage',
+                                '@id': 'https://andinnovatech.com/contact/#webpage',
+                                url: 'https://andinnovatech.com/contact/',
+                                name: 'Contact AnD Innovatech',
+                                description: 'Get in touch with AnD Innovatech for custom software and SEO services.',
+                                isPartOf: { '@id': 'https://andinnovatech.com/#website' },
+                                breadcrumb: { '@id': 'https://andinnovatech.com/contact/#breadcrumb' }
+                            },
+                            {
+                                '@type': 'BreadcrumbList',
+                                '@id': 'https://andinnovatech.com/contact/#breadcrumb',
+                                itemListElement: [
+                                    {
+                                        '@type': 'ListItem',
+                                        position: 1,
+                                        item: {
+                                            '@id': 'https://andinnovatech.com/',
+                                            name: 'Home'
+                                        }
+                                    },
+                                    {
+                                        '@type': 'ListItem',
+                                        position: 2,
+                                        item: {
+                                            '@id': 'https://andinnovatech.com/contact/',
+                                            name: 'Contact'
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    })
+                }}
+            />
             <Hero
                 title={<>Let&apos;s Talk About Your <span className="gradient-text">Project</span></>}
                 subtitle="Fill out the form below or reach out via email. We reply to all inquiries from US businesses within 4 business hours."
