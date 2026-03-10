@@ -12,7 +12,7 @@ interface BlogCardProps {
 }
 
 export default function BlogCard({ title, date, description, slug, coverImage, category }: BlogCardProps) {
-    const fallbackImage = 'https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=600&h=400&auto=format&fit=crop';
+    const fallbackImage = '/images/portfolio_abstract.png';
 
     return (
         <article

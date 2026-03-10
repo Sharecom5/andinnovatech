@@ -1,9 +1,6 @@
+# *
 User-agent: *
 Allow: /
-Disallow: /_next/
-Disallow: /api/
-Disallow: /admin/
-Disallow: /cdn-cgi/
 
 # Host
 Host: https://andinnovatech.com

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Globe, Server, Code2, TrendingUp, Cloud, Lightbulb, ArrowRight } from 'lucide-react';
+import { Globe, Server, Code2, TrendingUp, Cloud, Lightbulb, ArrowRight, Bot } from 'lucide-react';
 import SectionHeading from '@/components/ui/SectionHeading';
 import { cn } from '@/lib/utils';
 
@@ -10,6 +10,12 @@ const fallbackServices = [
         title: 'Website Development',
         description: 'Custom, responsive websites built with modern technologies that convert visitors into customers.',
         slug: 'website-development',
+    },
+    {
+        icon: Bot,
+        title: 'AI Automation SaaS',
+        description: 'AI-powered chatbots, voice agents, and lead automation tailored for local service businesses.',
+        slug: 'ai-automation',
     },
     {
         icon: Code2,

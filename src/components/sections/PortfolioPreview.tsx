@@ -14,7 +14,7 @@ const fallbackPortfolio = [
         category: 'SEO',
         techStack: ['Analytics', 'Content Strategy', 'Link Building'],
         result: '314% Organic Growth',
-        image: 'https://images.unsplash.com/photo-1432888622747-4eb9a8f2c20e?q=80&w=800&h=500&auto=format&fit=crop',
+        image: '/images/portfolio_seo.png',
     },
     {
         id: 2,
@@ -23,7 +23,7 @@ const fallbackPortfolio = [
         category: 'Web Dev',
         techStack: ['Next.js', 'Shopify Plus', 'Tailwind'],
         result: '2.5s Faster Load Time',
-        image: 'https://images.unsplash.com/photo-1661956602116-aa6865609028?q=80&w=800&h=500&auto=format&fit=crop',
+        image: '/images/dev_abstract.png',
     },
     {
         id: 3,
@@ -32,7 +32,7 @@ const fallbackPortfolio = [
         category: 'Software',
         techStack: ['React', 'HIPAA compliant', 'AWS'],
         result: '4.2k+ Appointments',
-        image: 'https://images.unsplash.com/photo-1504813184591-01592fd03cfd?q=80&w=800&h=500&auto=format&fit=crop',
+        image: '/images/portfolio_abstract.png',
     }
 ];
 
@@ -57,7 +57,7 @@ export default function PortfolioPreview() {
                                 {/* Image Container */}
                                 <div className="relative h-60 overflow-hidden bg-slate-800">
                                     <Image
-                                        src={item.image || 'https://images.unsplash.com/photo-1557821552-17105176677c?q=80&w=800&h=500&auto=format&fit=crop'}
+                                        src={item.image || '/images/portfolio_abstract.png'}
                                         alt={item.title}
                                         fill
                                         className="object-cover transition-transform duration-700 group-hover:scale-110"

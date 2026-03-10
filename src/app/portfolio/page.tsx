@@ -18,7 +18,7 @@ const projects = [
         category: 'Non-Profit',
         type: 'Website Development',
         icon: Globe,
-        image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=800&h=500&auto=format&fit=crop',
+        image: '/images/dev_abstract.png',
         description: 'Complete digital transformation for a high-impact non-profit, including automated donation workflows and member portals.',
         result: '100% Mobile Optimized & Secure',
         slug: 'ramganga-organization'
@@ -28,7 +28,7 @@ const projects = [
         category: 'Healthcare',
         type: 'Medical SaaS',
         icon: Smartphone,
-        image: 'https://images.unsplash.com/photo-1576091160550-217359f42f8c?q=80&w=800&h=500&auto=format&fit=crop',
+        image: '/images/dev_abstract.png',
         description: 'Custom patient scheduling and telemedicine platform built with React and HIPAA-compliant architecture.',
         result: '4,200+ Appointments Processed',
         slug: 'healthcare-app'
@@ -38,7 +38,7 @@ const projects = [
         category: 'Retail',
         type: 'SEO Growth',
         icon: Search,
-        image: 'https://images.unsplash.com/photo-1432888622747-4eb9a8f2c20e?q=80&w=800&h=500&auto=format&fit=crop',
+        image: '/images/portfolio_seo.png',
         description: 'Global organic search dominance strategy targeting high-intent commercial keywords for a US retail brand.',
         result: '314% Organic Traffic Growth',
         slug: 'seo-campaign'
@@ -48,7 +48,7 @@ const projects = [
         category: 'Retail',
         type: 'Online Store',
         icon: Smartphone,
-        image: 'https://images.unsplash.com/photo-1557821552-17105176677c?q=80&w=800&h=500&auto=format&fit=crop',
+        image: '/images/dev_abstract.png',
         description: 'Headless e-commerce implementation using Shopify Plus and a custom Next.js frontend for maximum speed.',
         result: '2.5s Faster Load Time',
         slug: 'ecommerce-platform'
@@ -58,7 +58,7 @@ const projects = [
         category: 'Enterprise',
         type: 'Custom Software',
         icon: Layout,
-        image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800&h=500&auto=format&fit=crop',
+        image: '/images/portfolio_abstract.png',
         description: 'Full-stack resource management platform with real-time analytics and multi-tenant security layers.',
         result: '85% Efficiency Increase',
         slug: 'crm-system'
@@ -68,7 +68,7 @@ const projects = [
         category: 'Infrastructure',
         type: 'Cloud Migration',
         icon: Cloud,
-        image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=800&h=500&auto=format&fit=crop',
+        image: '/images/portfolio_abstract.png',
         description: 'Comprehensive AWS migration for a legacy manufacturing backend, reducing technical debt and operational costs.',
         result: '40% Cost Savings on Hosting',
         slug: 'cloud-migration'
@@ -140,7 +140,7 @@ export default function Portfolio() {
                             <div key={project.name} className="group bg-white dark:bg-slate-800 rounded-[2.5rem] border border-slate-100 dark:border-slate-700/50 overflow-hidden shadow-sm hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500 hover:-translate-y-3 flex flex-col">
                                 <div className="relative h-64 overflow-hidden bg-slate-800">
                                     <Image
-                                        src={project.image || 'https://images.unsplash.com/photo-1557821552-17105176677c?q=80&w=800&h=500&auto=format&fit=crop'}
+                                        src={project.image || '/images/portfolio_abstract.png'}
                                         alt={project.name}
                                         fill
                                         className="object-cover transition-transform duration-1000 group-hover:scale-110"

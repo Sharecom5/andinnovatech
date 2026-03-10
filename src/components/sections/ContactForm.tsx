@@ -21,6 +21,7 @@ const contactSchema = z.object({
 type ContactFormValues = z.infer<typeof contactSchema>;
 
 const services = [
+    'AI Automation SaaS',
     'Website Development',
     'Software Development',
     'SEO Services',

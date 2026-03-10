@@ -15,7 +15,7 @@ const fallbackPosts = [
         category: 'Business Strategy',
         date: '2025-02-15',
         readTime: '6 min read',
-        image: 'https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=600&h=400&auto=format&fit=crop',
+        image: '/images/hero_main_abstract.png',
     },
     {
         id: 2,
@@ -25,7 +25,7 @@ const fallbackPosts = [
         category: 'SEO',
         date: '2025-02-10',
         readTime: '8 min read',
-        image: 'https://images.unsplash.com/photo-1571721795195-a2ca2d3170ad?q=80&w=600&h=400&auto=format&fit=crop',
+        image: '/images/seo_abstract.png',
     },
     {
         id: 3,
@@ -35,7 +35,7 @@ const fallbackPosts = [
         category: 'Software',
         date: '2025-02-01',
         readTime: '7 min read',
-        image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=600&h=400&auto=format&fit=crop',
+        image: '/images/dev_abstract.png',
     },
 ];
 
@@ -55,7 +55,7 @@ export default function BlogPreview() {
                                 {/* Image Container */}
                                 <div className="relative h-52 overflow-hidden bg-slate-800">
                                     <Image
-                                        src={post.image || 'https://images.unsplash.com/photo-1557821552-17105176677c?q=80&w=800&h=500&auto=format&fit=crop'}
+                                        src={post.image || '/images/portfolio_abstract.png'}
                                         alt={post.title}
                                         fill
                                         className="object-cover transition-transform duration-500 group-hover:scale-110"

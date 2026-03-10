@@ -106,7 +106,7 @@ export default function AboutUs() {
                         <div className="relative">
                             <div className="relative group aspect-[10/7] overflow-hidden rounded-[3rem]">
                                 <Image
-                                    src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1000&auto=format&fit=crop"
+                                    src="/images/about_team.png"
                                     alt="The AnD Innovatech Technical Architecture and Engineering Team"
                                     fill
                                     className="object-cover relative z-10 grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700"

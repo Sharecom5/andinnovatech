@@ -11,6 +11,7 @@ import BlogPreview from '@/components/sections/BlogPreview';
 import CTA from '@/components/sections/CTA';
 import FAQ from '@/components/sections/FAQ';
 import PricingPreview from '@/components/sections/PricingPreview';
+import AiAutomationSaaS from '@/components/sections/AiAutomationSaaS';
 
 export const metadata: Metadata = {
   title: 'Offshore Software Development Partner for US SMBs & Startups | AnD Innovatech',
@@ -38,9 +39,9 @@ export default function Home() {
       />
       {/* Hero Section */}
       <Hero
-        title={<>Strategic <span className="gradient-text">Software Development</span> & ROI-Focused SEO.</>}
-        subtitle="We build high-performance digital products for US SMBs and Startups at a fraction of the cost. Dedicated teams. Transparent communication. Proven growth."
-        imageSrc="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1470&auto=format&fit=crop"
+        title={<>Strategic <span className="gradient-text">Software Development</span>, ROI-Focused SEO & <span className="gradient-text">AI Automation</span></>}
+        subtitle="We build high-performance digital products and AI Growth Platforms for local service businesses and US Startups. Automate leads, bookings, and customer support 24/7."
+        imageSrc="/images/hero_main_abstract.png"
       />
 
       {/* Trusted By Logos */}
@@ -48,6 +49,9 @@ export default function Home() {
 
       {/* Stats Quick View */}
       <Stats />
+
+      {/* AI Automation SaaS */}
+      <AiAutomationSaaS />
 
       {/* Main Services Section */}
       <Services />

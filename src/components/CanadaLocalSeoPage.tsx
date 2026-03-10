@@ -276,7 +276,7 @@ export default function CanadaLocalSeoPage({ country, service, city, province, p
                         <div className="relative">
                             <div className="absolute inset-0 bg-canada-navy rounded-[3rem] rotate-3 translate-x-4 shadow-2xl overflow-hidden">
                                 <img
-                                    src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000&auto=format&fit=crop"
+                                    src="/images/seo_abstract.png"
                                     alt={`AnD Innovatech - SEO Analytics and Ranking Dashboard for ${service} in ${city}, ${province}`}
                                     className="w-full h-full object-cover opacity-60 mix-blend-overlay"
                                 />
