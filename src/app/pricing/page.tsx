@@ -8,8 +8,8 @@ import Button from '@/components/ui/Button';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-    title: 'Transparent Pricing & ROI | Custom Software & SEO Costs | AnD Innovatech',
-    description: 'Get clear, fixed-price quotes for your next IT project. Average savings of 40-60% compared to US-based agencies with identical technical quality and support.',
+    title: 'Fixed-Price Software & SEO Plans | 40-60% Savings | AnD Innovatech',
+    description: 'No hourly billing guesswork. Get a fixed-scope quote for your website or SEO campaign within 4 hours. Enterprise quality at offshore rates. View our transparent pricing tiers.',
 };
 
 const tiers = [

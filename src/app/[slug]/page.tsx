@@ -21,13 +21,13 @@ interface DynamicPageProps {
 
 // ── SEO metadata title formulas ─────────────────────────────────
 const seoTitleFormulas = [
-    (name: string, stateCode: string) => `SEO Services in ${name}, ${stateCode} | AndInnovatech`,
-    (name: string, _sc: string, state: string) => `SEO Agency ${name}, ${state} | AndInnovatech`,
-    (name: string) => `${name} SEO Company | AndInnovatech`,
-    (name: string) => `Local SEO Services ${name} | AndInnovatech`,
-    (name: string) => `${name} Search Engine Optimization | AndInnovatech`,
-    (name: string, stateCode: string) => `SEO Services ${name} ${stateCode} | AndInnovatech`,
-    (name: string) => `${name} SEO Experts | AndInnovatech`,
+    (name: string, stateCode: string) => `#1 SEO Services in ${name}, ${stateCode} | Get More Leads`,
+    (name: string, _sc: string, state: string) => `Award-Winning SEO Agency ${name}, ${state} | AnD Innovatech`,
+    (name: string) => `${name}'s Best SEO Company | Rank #1 on Google`,
+    (name: string) => `Local SEO Services ${name} | Guaranteed Organic Growth`,
+    (name: string) => `${name} Search Engine Optimization | Scale Your ROI`,
+    (name: string, stateCode: string) => `SEO Experts in ${name} ${stateCode} | Fixed-Price SEO`,
+    (name: string) => `${name} SEO Agency | We Build High-Performance Rankings`,
 ];
 
 export async function generateStaticParams() {
@@ -80,10 +80,10 @@ export async function generateMetadata({ params }: DynamicPageProps): Promise<Me
 
         const index = city.name.length;
         const titleFormulas = [
-            `Web Development Services in ${city.name} | AndInnovatech`,
-            `Web Development Company ${city.name} ${city.stateCode} | AndInnovatech`,
-            `${city.name} Web Development Agency | AndInnovatech`,
-            `Custom Web Development ${city.name} | AndInnovatech`,
+            `Top Web Development Services in ${city.name} | AnD Innovatech`,
+            `${city.name}'s #1 Web Development Company ${city.stateCode}`,
+            `${city.name} Web Design & Development Agency | Build Your Lead Machine`,
+            `Custom High-Performance Web Development in ${city.name}`,
         ];
         return {
             title: titleFormulas[index % titleFormulas.length],

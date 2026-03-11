@@ -5,8 +5,8 @@ import { Mail, Linkedin, Phone, MapPin, Clock } from 'lucide-react';
 import SectionHeading from '@/components/ui/SectionHeading';
 
 export const metadata: Metadata = {
-    title: 'Contact Us | AnD Innovatech — Full-Service IT & SEO Partner',
-    description: 'Reach out to AnD Innovatech for a free strategy call. Our expert team is ready to discuss your custom software, website, or SEO project.',
+    title: 'Get a Free Strategy Call & Audit | Contact AnD Innovatech',
+    description: 'Ready to scale? Book a 15-minute discovery call or request a free SEO audit. We respond to all US and Canada inquiries within 4 business hours.',
 };
 
 export default function ContactUs() {

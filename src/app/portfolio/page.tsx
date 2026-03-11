@@ -8,8 +8,8 @@ import Badge from '@/components/ui/Badge';
 import SectionHeading from '@/components/ui/SectionHeading';
 
 export const metadata: Metadata = {
-    title: 'Client Success Stories & IT Case Studies | AnD Innovatech',
-    description: 'Explore our track record of excellence. From complex custom software builds to high-performance SEO campaigns, see how we deliver measurable results for US clients.',
+    title: 'Our Work: Case Studies in SEO and Software Engineering Success',
+    description: 'See real results. From 314% organic traffic growth for local US service businesses to enterprise SaaS builds. Explore our portfolio of successes and book your own story.',
 };
 
 const projects = [

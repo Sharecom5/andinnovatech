@@ -7,8 +7,8 @@ import Button from '@/components/ui/Button';
 import SectionHeading from '@/components/ui/SectionHeading';
 
 export const metadata: Metadata = {
-    title: 'Expert IT & SEO Services for US SMBs | AnD Innovatech',
-    description: 'Explore our ROI-focused services including custom software engineering, high-performance web development, ROI-driven SEO, and scalable cloud solutions for US startups and SMBs.',
+    title: 'Full-Service IT & SEO Growth Platform for US Small Businesses',
+    description: 'From custom software to technical SEO, we provide the tools to scale your business. AI-driven lead automation, cloud solutions, and senior web engineering. See our service menu.',
 };
 
 export default function ServicesPage() {

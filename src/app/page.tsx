@@ -14,8 +14,8 @@ import PricingPreview from '@/components/sections/PricingPreview';
 import AiAutomationSaaS from '@/components/sections/AiAutomationSaaS';
 
 export const metadata: Metadata = {
-  title: 'Offshore Software Development Partner for US SMBs & Startups | AnD Innovatech',
-  description: 'AnD Innovatech is a strategic IT partner for US-based small businesses. We provide affordable custom software development, high-performance web design, and ROI-driven SEO. Save 50% on development costs today.',
+  title: 'ROI-Driven Software & SEO for US Home Services | AnD Innovatech',
+  description: 'Stop losing leads to competitors. We build high-performance websites, #1 SEO rankings, and AI-powered booking systems for US service companies. Save 40-60% vs local agencies. Get a free audit!',
 };
 
 export default function Home() {

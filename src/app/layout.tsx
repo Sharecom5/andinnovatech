@@ -14,10 +14,10 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: {
-    default: 'AnD Innovatech | Strategic IT & SEO Agency for US SMBs',
+    default: 'AnD Innovatech | Software & SEO for US Service Businesses',
     template: '%s | AnD Innovatech',
   },
-  description: 'AnD Innovatech is a results-driven IT agency specializing in custom software, high-performance web development, and ROI-focused SEO campaigns for US-based businesses. Save 40-60% vs. local firms.',
+  description: 'Elite software engineering meets #1 SEO rankings. We help US and Canada small businesses scale with custom web builds and AI lead automation. Save 40-60% today.',
   metadataBase: new URL('https://www.andinnovatech.com'),
   alternates: {
     canonical: 'https://www.andinnovatech.com',
@@ -27,13 +27,13 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://www.andinnovatech.com',
     siteName: 'AnD Innovatech',
-    title: 'AnD Innovatech | Strategic IT & SEO Agency for US SMBs',
-    description: 'Empowering US businesses with innovative IT solutions and growth-focused SEO strategy. Real accountability. Proven results.',
+    title: 'Growth-Focused Software & SEO Agency | AnD Innovatech',
+    description: 'Stop losing leads to competitors. Custom web builds, technical SEO, and AI automation for US service companies. Scalable results, zero overhead.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'AnD Innovatech | Strategic IT & SEO Agency for US SMBs',
-    description: 'Empowering US businesses with innovative IT solutions and growth-focused SEO strategy.',
+    title: 'Growth-Focused Software & SEO Agency | AnD Innovatech',
+    description: 'Custom web builds, technical SEO, and AI automation for US service companies.',
   },
   verification: {
     google: 'Raoc_zOx3RRFvtK-d-PKnPlTwzUNPpEa1MQZOFyud9U',
