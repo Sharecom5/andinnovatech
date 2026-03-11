@@ -71,7 +71,7 @@
 
 @layer utilities {
   .gradient-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-400 via-primary to-accent;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-teal-400 via-primary to-accent;
   }
 
   .clip-diagonal {
@@ -89,6 +89,76 @@
   .section-container {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
+
+  .ai-card-glow {
+    @apply relative overflow-hidden;
+  }
+
+  .ai-card-glow::after {
+    content: '';
+    @apply absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none;
+    background: radial-gradient(600px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(64, 145, 145, 0.15), transparent 40%);
+  }
+
+  .text-glow {
+    text-shadow: 0 0 15px rgba(64, 145, 145, 0.4);
+  }
+
+  .grid-pattern {
+    background-size: 40px 40px;
+    background-image:
+      linear-gradient(to right, rgba(64, 145, 145, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(64, 145, 145, 0.05) 1px, transparent 1px);
+  }
+
+  .scan-line {
+    @apply absolute inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-primary/50 to-transparent pointer-events-none;
+    animation: scan 4s linear infinite;
+  }
+}
+
+@keyframes scan {
+  from {
+    top: -10%;
+  }
+
+  to {
+    top: 110%;
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    opacity: 0.3;
+    filter: blur(80px);
+  }
+
+  50% {
+    opacity: 0.6;
+    filter: blur(120px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 8s ease-in-out infinite;
 }
 
 /* Custom Scrollbar */
@@ -97,9 +167,9 @@
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-gray-50;
+  @apply bg-navy;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-gray-200 rounded-full border-4 border-transparent bg-clip-padding hover:bg-gray-300 transition-colors;
+  @apply bg-primary/20 rounded-full border-4 border-transparent bg-clip-padding hover:bg-primary/40 transition-colors;
 }

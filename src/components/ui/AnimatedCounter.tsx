@@ -60,12 +60,16 @@ export default function AnimatedCounter({
             transition={{ duration: 0.5 }}
             className={cn('text-center', className)}
         >
-            {icon && <div className="mb-3 text-primary">{icon}</div>}
-            <div className="text-4xl md:text-5xl font-heading font-extrabold gradient-text mb-2">
-                {count}
-                {suffix}
+            {icon && (
+                <div className="mb-4 text-primary relative inline-block">
+                    {icon}
+                    <div className="absolute inset-0 bg-primary/20 blur-xl rounded-full -z-10" />
+                </div>
+            )}
+            <div className="text-4xl md:text-6xl font-heading font-black gradient-text mb-3 text-glow">
+                {count}{suffix}
             </div>
-            <p className="text-grey dark:text-slate-400 font-medium">{label}</p>
+            <p className="text-slate-400 font-bold uppercase tracking-[0.2em] text-[10px] sm:text-xs">{label}</p>
         </motion.div>
     );
 }

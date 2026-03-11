@@ -20,10 +20,10 @@ export default function SectionHeading({
 }: SectionHeadingProps) {
     return (
         <motion.div
-            initial={false}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '200px', amount: 0 }}
-            transition={{ duration: 0.5 }}
+            viewport={{ once: true, margin: '100px' }}
+            transition={{ duration: 0.6 }}
             className={cn(
                 'mb-12 md:mb-16',
                 centered && 'text-center',
@@ -32,25 +32,24 @@ export default function SectionHeading({
         >
             <h2
                 className={cn(
-                    'text-3xl md:text-h2 font-heading font-bold mb-4',
+                    'text-3xl md:text-5xl lg:text-7xl font-heading font-black mb-6 tracking-tighter leading-none text-glow',
                     light ? 'text-white' : 'text-navy dark:text-white'
                 )}
             >
                 {title}
             </h2>
 
-            {/* Gradient underline */}
-            <div
-                className={cn(
-                    'h-1 w-16 rounded-full bg-gradient-primary mb-6',
-                    centered && 'mx-auto'
-                )}
-            />
+            {/* AI Decoration */}
+            <div className={cn('flex items-center gap-4 mb-8', centered && 'justify-center')}>
+                <div className="h-[1px] w-12 bg-primary/30" />
+                <div className="w-2 h-2 rounded-full bg-primary animate-pulse shadow-glow-primary" />
+                <div className="h-[1px] w-12 bg-primary/30" />
+            </div>
 
             {subtitle && (
                 <p
                     className={cn(
-                        'text-body-lg max-w-2xl',
+                        'text-lg md:text-2xl font-medium leading-relaxed max-w-4xl mx-auto',
                         centered && 'mx-auto',
                         light ? 'text-slate-300' : 'text-grey dark:text-slate-400'
                     )}
