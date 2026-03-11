@@ -82,6 +82,13 @@ export default function RootLayout({
                       contactType: 'customer service',
                     },
                   ],
+                  founder: [
+                    { '@type': 'Person', name: 'Abhishek Sharma' },
+                    { '@type': 'Person', name: 'Ankit Sharma' }
+                  ],
+                  employee: [
+                    { '@type': 'Person', name: 'Sarah Jones', jobTitle: 'Lead Client Success' }
+                  ],
                 },
                 {
                   '@type': 'ProfessionalService',
@@ -91,19 +98,13 @@ export default function RootLayout({
                   url: 'https://www.andinnovatech.com',
                   telephone: '+1 (123) 456-7890',
                   priceRange: '$$$',
+                  parentOrganization: { '@id': 'https://www.andinnovatech.com/#organization' },
                   address: {
                     '@type': 'PostalAddress',
                     addressLocality: 'New York',
                     addressRegion: 'NY',
                     addressCountry: 'US',
                   },
-                  founder: [
-                    { '@type': 'Person', name: 'Abhishek Sharma' },
-                    { '@type': 'Person', name: 'Ankit Sharma' }
-                  ],
-                  employee: [
-                    { '@type': 'Person', name: 'Sarah Jones', jobTitle: 'Lead Client Success' }
-                  ],
                   openingHoursSpecification: {
                     '@type': 'OpeningHoursSpecification',
                     dayOfWeek: [
