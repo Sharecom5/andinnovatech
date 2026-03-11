@@ -22,22 +22,22 @@ export default async function BlogPage() {
                         '@graph': [
                             {
                                 '@type': 'Blog',
-                                '@id': 'https://andinnovatech.com/blog/#webpage',
-                                url: 'https://andinnovatech.com/blog/',
+                                '@id': 'https://www.andinnovatech.com/blog/#webpage',
+                                url: 'https://www.andinnovatech.com/blog/',
                                 name: 'AnD Innovatech Tech Insights Blog',
                                 description: 'Expert perspectives on software engineering, results-driven SEO, and digital transformation.',
-                                isPartOf: { '@id': 'https://andinnovatech.com/#website' },
-                                breadcrumb: { '@id': 'https://andinnovatech.com/blog/#breadcrumb' }
+                                isPartOf: { '@id': 'https://www.andinnovatech.com/#website' },
+                                breadcrumb: { '@id': 'https://www.andinnovatech.com/blog/#breadcrumb' }
                             },
                             {
                                 '@type': 'BreadcrumbList',
-                                '@id': 'https://andinnovatech.com/blog/#breadcrumb',
+                                '@id': 'https://www.andinnovatech.com/blog/#breadcrumb',
                                 itemListElement: [
                                     {
                                         '@type': 'ListItem',
                                         position: 1,
                                         item: {
-                                            '@id': 'https://andinnovatech.com/',
+                                            '@id': 'https://www.andinnovatech.com/',
                                             name: 'Home'
                                         }
                                     },
@@ -45,7 +45,7 @@ export default async function BlogPage() {
                                         '@type': 'ListItem',
                                         position: 2,
                                         item: {
-                                            '@id': 'https://andinnovatech.com/blog/',
+                                            '@id': 'https://www.andinnovatech.com/blog/',
                                             name: 'Blog'
                                         }
                                     }

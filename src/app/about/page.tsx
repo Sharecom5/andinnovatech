@@ -57,22 +57,22 @@ export default function AboutUs() {
                         '@graph': [
                             {
                                 '@type': 'AboutPage',
-                                '@id': 'https://andinnovatech.com/about/#webpage',
-                                url: 'https://andinnovatech.com/about/',
+                                '@id': 'https://www.andinnovatech.com/about/#webpage',
+                                url: 'https://www.andinnovatech.com/about/',
                                 name: 'About AnD Innovatech',
                                 description: 'Learn about AnD Innovatech mission, heritage, and expert team.',
-                                isPartOf: { '@id': 'https://andinnovatech.com/#website' },
-                                breadcrumb: { '@id': 'https://andinnovatech.com/about/#breadcrumb' }
+                                isPartOf: { '@id': 'https://www.andinnovatech.com/#website' },
+                                breadcrumb: { '@id': 'https://www.andinnovatech.com/about/#breadcrumb' }
                             },
                             {
                                 '@type': 'BreadcrumbList',
-                                '@id': 'https://andinnovatech.com/about/#breadcrumb',
+                                '@id': 'https://www.andinnovatech.com/about/#breadcrumb',
                                 itemListElement: [
                                     {
                                         '@type': 'ListItem',
                                         position: 1,
                                         item: {
-                                            '@id': 'https://andinnovatech.com/',
+                                            '@id': 'https://www.andinnovatech.com/',
                                             name: 'Home'
                                         }
                                     },
@@ -80,7 +80,7 @@ export default function AboutUs() {
                                         '@type': 'ListItem',
                                         position: 2,
                                         item: {
-                                            '@id': 'https://andinnovatech.com/about/',
+                                            '@id': 'https://www.andinnovatech.com/about/',
                                             name: 'About Us'
                                         }
                                     }

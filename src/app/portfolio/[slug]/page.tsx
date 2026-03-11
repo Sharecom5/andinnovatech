@@ -361,24 +361,24 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                         '@graph': [
                             {
                                 '@type': 'CreativeWork',
-                                '@id': `https://andinnovatech.com/portfolio/${project.slug}/#creativework`,
-                                url: `https://andinnovatech.com/portfolio/${project.slug}/`,
+                                '@id': `https://www.andinnovatech.com/portfolio/${project.slug}/#creativework`,
+                                url: `https://www.andinnovatech.com/portfolio/${project.slug}/`,
                                 name: project.title,
                                 description: project.description,
                                 image: project.image,
-                                author: { '@id': 'https://andinnovatech.com/#organization' },
+                                author: { '@id': 'https://www.andinnovatech.com/#organization' },
                                 keyword: project.techStack.join(', '),
-                                isPartOf: { '@id': 'https://andinnovatech.com/portfolio/#webpage' }
+                                isPartOf: { '@id': 'https://www.andinnovatech.com/portfolio/#webpage' }
                             },
                             {
                                 '@type': 'BreadcrumbList',
-                                '@id': `https://andinnovatech.com/portfolio/${project.slug}/#breadcrumb`,
+                                '@id': `https://www.andinnovatech.com/portfolio/${project.slug}/#breadcrumb`,
                                 itemListElement: [
                                     {
                                         '@type': 'ListItem',
                                         position: 1,
                                         item: {
-                                            '@id': 'https://andinnovatech.com/',
+                                            '@id': 'https://www.andinnovatech.com/',
                                             name: 'Home'
                                         }
                                     },
@@ -386,7 +386,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                                         '@type': 'ListItem',
                                         position: 2,
                                         item: {
-                                            '@id': 'https://andinnovatech.com/portfolio/',
+                                            '@id': 'https://www.andinnovatech.com/portfolio/',
                                             name: 'Portfolio'
                                         }
                                     },
@@ -394,7 +394,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                                         '@type': 'ListItem',
                                         position: 3,
                                         item: {
-                                            '@id': `https://andinnovatech.com/portfolio/${project.slug}/`,
+                                            '@id': `https://www.andinnovatech.com/portfolio/${project.slug}/`,
                                             name: project.title
                                         }
                                     }

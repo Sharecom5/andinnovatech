@@ -83,12 +83,12 @@ export async function POST(request: Request) {
                             </ul>
                         </div>
 
-                        <p style="line-height: 1.6;">In the meantime, feel free to check out our <a href="https://andinnovatech.com/portfolio" style="color: #409191; font-weight: bold; text-decoration: none;">latest projects</a>.</p>
+                        <p style="line-height: 1.6;">In the meantime, feel free to check out our <a href="https://www.andinnovatech.com/portfolio" style="color: #409191; font-weight: bold; text-decoration: none;">latest projects</a>.</p>
                         
                         <p style="margin-top: 40px; border-top: 1px solid #e5e7eb; padding-top: 20px; font-size: 14px; color: #6b7280;">
                             Best Regards,<br>
                             <strong>The AnD Innovatech Team</strong><br>
-                            <a href="https://andinnovatech.com" style="color: #409191; text-decoration: none;">www.andinnovatech.com</a>
+                            <a href="https://www.andinnovatech.com" style="color: #409191; text-decoration: none;">www.andinnovatech.com</a>
                         </p>
                     </div>
                 </div>

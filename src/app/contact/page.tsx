@@ -20,22 +20,22 @@ export default function ContactUs() {
                         '@graph': [
                             {
                                 '@type': 'ContactPage',
-                                '@id': 'https://andinnovatech.com/contact/#webpage',
-                                url: 'https://andinnovatech.com/contact/',
+                                '@id': 'https://www.andinnovatech.com/contact/#webpage',
+                                url: 'https://www.andinnovatech.com/contact/',
                                 name: 'Contact AnD Innovatech',
                                 description: 'Get in touch with AnD Innovatech for custom software and SEO services.',
-                                isPartOf: { '@id': 'https://andinnovatech.com/#website' },
-                                breadcrumb: { '@id': 'https://andinnovatech.com/contact/#breadcrumb' }
+                                isPartOf: { '@id': 'https://www.andinnovatech.com/#website' },
+                                breadcrumb: { '@id': 'https://www.andinnovatech.com/contact/#breadcrumb' }
                             },
                             {
                                 '@type': 'BreadcrumbList',
-                                '@id': 'https://andinnovatech.com/contact/#breadcrumb',
+                                '@id': 'https://www.andinnovatech.com/contact/#breadcrumb',
                                 itemListElement: [
                                     {
                                         '@type': 'ListItem',
                                         position: 1,
                                         item: {
-                                            '@id': 'https://andinnovatech.com/',
+                                            '@id': 'https://www.andinnovatech.com/',
                                             name: 'Home'
                                         }
                                     },
@@ -43,7 +43,7 @@ export default function ContactUs() {
                                         '@type': 'ListItem',
                                         position: 2,
                                         item: {
-                                            '@id': 'https://andinnovatech.com/contact/',
+                                            '@id': 'https://www.andinnovatech.com/contact/',
                                             name: 'Contact'
                                         }
                                     }

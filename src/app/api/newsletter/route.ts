@@ -65,7 +65,7 @@ export async function POST(request: Request) {
 
                         <p>Have a project in mind? We'd love to help you build something extraordinary.</p>
                         
-                        <a href="https://andinnovatech.com/contact" style="display: inline-block; background-color: #409191; color: #ffffff; padding: 14px 30px; border-radius: 100px; text-decoration: none; font-weight: bold; margin-top: 10px;">Get a Free Audit</a>
+                        <a href="https://www.andinnovatech.com/contact" style="display: inline-block; background-color: #409191; color: #ffffff; padding: 14px 30px; border-radius: 100px; text-decoration: none; font-weight: bold; margin-top: 10px;">Get a Free Audit</a>
                         
                         <p style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #e5e7eb; font-size: 14px; color: #9ca3af; text-align: center;">
                             © ${new Date().getFullYear()} AnD Innovatech. All rights reserved.<br>

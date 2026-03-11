@@ -72,7 +72,7 @@ export default function UsaGeoLandingPage({ service, city, state, stateCode, cou
                         provider: {
                             '@type': 'Organization',
                             name: 'AnD Innovatech',
-                            url: 'https://andinnovatech.com',
+                            url: 'https://www.andinnovatech.com',
                         },
                         areaServed: {
                             '@type': 'City',

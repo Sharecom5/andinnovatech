@@ -63,7 +63,7 @@ export default function CanadaLocalSeoPage({ country, service, city, province, p
                         provider: {
                             '@type': 'Organization',
                             name: 'AnD Innovatech',
-                            url: 'https://andinnovatech.com',
+                            url: 'https://www.andinnovatech.com',
                         },
                         areaServed: {
                             '@type': 'City',

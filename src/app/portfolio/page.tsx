@@ -86,22 +86,22 @@ export default function Portfolio() {
                         '@graph': [
                             {
                                 '@type': 'CollectionPage',
-                                '@id': 'https://andinnovatech.com/portfolio/#webpage',
-                                url: 'https://andinnovatech.com/portfolio/',
+                                '@id': 'https://www.andinnovatech.com/portfolio/#webpage',
+                                url: 'https://www.andinnovatech.com/portfolio/',
                                 name: 'AnD Innovatech Portfolio | Case Studies',
                                 description: 'Explore our track record of excellence in custom software and SEO.',
-                                isPartOf: { '@id': 'https://andinnovatech.com/#website' },
-                                breadcrumb: { '@id': 'https://andinnovatech.com/portfolio/#breadcrumb' }
+                                isPartOf: { '@id': 'https://www.andinnovatech.com/#website' },
+                                breadcrumb: { '@id': 'https://www.andinnovatech.com/portfolio/#breadcrumb' }
                             },
                             {
                                 '@type': 'BreadcrumbList',
-                                '@id': 'https://andinnovatech.com/portfolio/#breadcrumb',
+                                '@id': 'https://www.andinnovatech.com/portfolio/#breadcrumb',
                                 itemListElement: [
                                     {
                                         '@type': 'ListItem',
                                         position: 1,
                                         item: {
-                                            '@id': 'https://andinnovatech.com/',
+                                            '@id': 'https://www.andinnovatech.com/',
                                             name: 'Home'
                                         }
                                     },
@@ -109,7 +109,7 @@ export default function Portfolio() {
                                         '@type': 'ListItem',
                                         position: 2,
                                         item: {
-                                            '@id': 'https://andinnovatech.com/portfolio/',
+                                            '@id': 'https://www.andinnovatech.com/portfolio/',
                                             name: 'Portfolio'
                                         }
                                     }

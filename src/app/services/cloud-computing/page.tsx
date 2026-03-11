@@ -69,23 +69,23 @@ export default function CloudComputing() {
                                         '@graph': [
                                             {
                                                 '@type': 'Service',
-                                                '@id': 'https://andinnovatech.com/services/cloud-computing/#service',
+                                                '@id': 'https://www.andinnovatech.com/services/cloud-computing/#service',
                                                 name: 'Enterprise Cloud Solutions',
                                                 serviceType: 'Cloud Infrastructure',
                                                 provider: {
                                                     '@type': 'Organization',
-                                                    '@id': 'https://andinnovatech.com/#organization'
+                                                    '@id': 'https://www.andinnovatech.com/#organization'
                                                 },
                                                 description: 'AWS, Azure, and Google Cloud services for enterprise scalability and reliability.',
                                                 areaServed: 'US',
                                             },
                                             {
                                                 '@type': 'BreadcrumbList',
-                                                '@id': 'https://andinnovatech.com/services/cloud-computing/#breadcrumb',
+                                                '@id': 'https://www.andinnovatech.com/services/cloud-computing/#breadcrumb',
                                                 itemListElement: [
-                                                    { '@type': 'ListItem', position: 1, item: { '@id': 'https://andinnovatech.com/', name: 'Home' } },
-                                                    { '@type': 'ListItem', position: 2, item: { '@id': 'https://andinnovatech.com/services/', name: 'Services' } },
-                                                    { '@type': 'ListItem', position: 3, item: { '@id': 'https://andinnovatech.com/services/cloud-computing/', name: 'Cloud Computing' } }
+                                                    { '@type': 'ListItem', position: 1, item: { '@id': 'https://www.andinnovatech.com/', name: 'Home' } },
+                                                    { '@type': 'ListItem', position: 2, item: { '@id': 'https://www.andinnovatech.com/services/', name: 'Services' } },
+                                                    { '@type': 'ListItem', position: 3, item: { '@id': 'https://www.andinnovatech.com/services/cloud-computing/', name: 'Cloud Computing' } }
                                                 ]
                                             }
                                         ]

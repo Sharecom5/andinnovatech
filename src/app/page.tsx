@@ -28,10 +28,10 @@ export default function Home() {
             '@context': 'https://schema.org',
             '@type': 'WebSite',
             name: 'AnD Innovatech',
-            url: 'https://andinnovatech.com',
+            url: 'https://www.andinnovatech.com',
             potentialAction: {
               '@type': 'SearchAction',
-              target: 'https://andinnovatech.com/blog/?q={search_term_string}',
+              target: 'https://www.andinnovatech.com/blog/?q={search_term_string}',
               'query-input': 'required name=search_term_string',
             },
           }),

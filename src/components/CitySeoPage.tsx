@@ -363,7 +363,7 @@ export default function CitySeoPage({ city, cityIndex }: CitySeoPageProps) {
                         provider: {
                             '@type': 'Organization',
                             name: 'AnD Innovatech',
-                            url: 'https://andinnovatech.com',
+                            url: 'https://www.andinnovatech.com',
                         },
                         areaServed: {
                             '@type': 'City',

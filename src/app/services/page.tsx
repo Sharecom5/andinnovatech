@@ -22,9 +22,9 @@ export default function ServicesPage() {
                         '@graph': [
                             {
                                 '@type': 'Service',
-                                '@id': 'https://andinnovatech.com/services/#service',
+                                '@id': 'https://www.andinnovatech.com/services/#service',
                                 name: 'AnD Innovatech IT & SEO Services',
-                                provider: { '@id': 'https://andinnovatech.com/#organization' },
+                                provider: { '@id': 'https://www.andinnovatech.com/#organization' },
                                 description: 'Comprehensive IT services including web development, software engineering, and SEO.',
                                 hasOfferCatalog: {
                                     '@type': 'OfferCatalog',
@@ -56,13 +56,13 @@ export default function ServicesPage() {
                             },
                             {
                                 '@type': 'BreadcrumbList',
-                                '@id': 'https://andinnovatech.com/services/#breadcrumb',
+                                '@id': 'https://www.andinnovatech.com/services/#breadcrumb',
                                 itemListElement: [
                                     {
                                         '@type': 'ListItem',
                                         position: 1,
                                         item: {
-                                            '@id': 'https://andinnovatech.com/',
+                                            '@id': 'https://www.andinnovatech.com/',
                                             name: 'Home'
                                         }
                                     },
@@ -70,7 +70,7 @@ export default function ServicesPage() {
                                         '@type': 'ListItem',
                                         position: 2,
                                         item: {
-                                            '@id': 'https://andinnovatech.com/services/',
+                                            '@id': 'https://www.andinnovatech.com/services/',
                                             name: 'Services'
                                         }
                                     }

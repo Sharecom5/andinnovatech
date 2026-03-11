@@ -167,14 +167,20 @@ export async function generateMetadata({ params }: DynamicPageProps): Promise<Me
     const post = await getPostBySlug(slug);
     if (!post) return { title: 'Post Not Found' };
 
+    const url = `https://www.andinnovatech.com/${slug}/`;
+
     return {
         title: post.title,
         description: post.description,
         openGraph: {
             title: post.title,
             description: post.description,
+            url,
             type: 'article',
             publishedTime: post.date,
+        },
+        alternates: {
+            canonical: url,
         },
     };
 }
@@ -198,11 +204,11 @@ export default async function DynamicPage({ params }: DynamicPageProps) {
                             '@graph': [
                                 {
                                     '@type': 'BreadcrumbList',
-                                    '@id': `https://andinnovatech.com/${lowerSlug}/#breadcrumb`,
+                                    '@id': `https://www.andinnovatech.com/${lowerSlug}/#breadcrumb`,
                                     itemListElement: [
-                                        { '@type': 'ListItem', position: 1, item: { '@id': 'https://andinnovatech.com/', name: 'Home' } },
-                                        { '@type': 'ListItem', position: 2, item: { '@id': 'https://andinnovatech.com/services/', name: 'Services' } },
-                                        { '@type': 'ListItem', position: 3, item: { '@id': `https://andinnovatech.com/${lowerSlug}/`, name: `Web Dev in ${city.name}` } }
+                                        { '@type': 'ListItem', position: 1, item: { '@id': 'https://www.andinnovatech.com/', name: 'Home' } },
+                                        { '@type': 'ListItem', position: 2, item: { '@id': 'https://www.andinnovatech.com/services/', name: 'Services' } },
+                                        { '@type': 'ListItem', position: 3, item: { '@id': `https://www.andinnovatech.com/${lowerSlug}/`, name: `Web Dev in ${city.name}` } }
                                     ]
                                 }
                             ]
@@ -230,11 +236,11 @@ export default async function DynamicPage({ params }: DynamicPageProps) {
                             '@graph': [
                                 {
                                     '@type': 'BreadcrumbList',
-                                    '@id': `https://andinnovatech.com/${lowerSlug}/#breadcrumb`,
+                                    '@id': `https://www.andinnovatech.com/${lowerSlug}/#breadcrumb`,
                                     itemListElement: [
-                                        { '@type': 'ListItem', position: 1, item: { '@id': 'https://andinnovatech.com/', name: 'Home' } },
-                                        { '@type': 'ListItem', position: 2, item: { '@id': 'https://andinnovatech.com/services/', name: 'Services' } },
-                                        { '@type': 'ListItem', position: 3, item: { '@id': `https://andinnovatech.com/${lowerSlug}/`, name: `SEO in ${city.name}` } }
+                                        { '@type': 'ListItem', position: 1, item: { '@id': 'https://www.andinnovatech.com/', name: 'Home' } },
+                                        { '@type': 'ListItem', position: 2, item: { '@id': 'https://www.andinnovatech.com/services/', name: 'Services' } },
+                                        { '@type': 'ListItem', position: 3, item: { '@id': `https://www.andinnovatech.com/${lowerSlug}/`, name: `SEO in ${city.name}` } }
                                     ]
                                 }
                             ]
@@ -263,10 +269,10 @@ export default async function DynamicPage({ params }: DynamicPageProps) {
                                 '@graph': [
                                     {
                                         '@type': 'BreadcrumbList',
-                                        '@id': `https://andinnovatech.com/${lowerSlug}/#breadcrumb`,
+                                        '@id': `https://www.andinnovatech.com/${lowerSlug}/#breadcrumb`,
                                         itemListElement: [
-                                            { '@type': 'ListItem', position: 1, item: { '@id': 'https://andinnovatech.com/', name: 'Home' } },
-                                            { '@type': 'ListItem', position: 2, item: { '@id': `https://andinnovatech.com/${lowerSlug}/`, name: `${service} SEO in ${loc.city}` } }
+                                            { '@type': 'ListItem', position: 1, item: { '@id': 'https://www.andinnovatech.com/', name: 'Home' } },
+                                            { '@type': 'ListItem', position: 2, item: { '@id': `https://www.andinnovatech.com/${lowerSlug}/`, name: `${service} SEO in ${loc.city}` } }
                                         ]
                                     }
                                 ]
@@ -302,10 +308,10 @@ export default async function DynamicPage({ params }: DynamicPageProps) {
                                 '@graph': [
                                     {
                                         '@type': 'BreadcrumbList',
-                                        '@id': `https://andinnovatech.com/${lowerSlug}/#breadcrumb`,
+                                        '@id': `https://www.andinnovatech.com/${lowerSlug}/#breadcrumb`,
                                         itemListElement: [
-                                            { '@type': 'ListItem', position: 1, item: { '@id': 'https://andinnovatech.com/', name: 'Home' } },
-                                            { '@type': 'ListItem', position: 2, item: { '@id': `https://andinnovatech.com/${lowerSlug}/`, name: `${service} SEO in ${loc.city}` } }
+                                            { '@type': 'ListItem', position: 1, item: { '@id': 'https://www.andinnovatech.com/', name: 'Home' } },
+                                            { '@type': 'ListItem', position: 2, item: { '@id': `https://www.andinnovatech.com/${lowerSlug}/`, name: `${service} SEO in ${loc.city}` } }
                                         ]
                                     }
                                 ]
@@ -338,28 +344,28 @@ export default async function DynamicPage({ params }: DynamicPageProps) {
                         '@graph': [
                             {
                                 '@type': 'BlogPosting',
-                                '@id': `https://andinnovatech.com/${slug}/#post`,
+                                '@id': `https://www.andinnovatech.com/${slug}/#post`,
                                 headline: post.title,
                                 description: post.description,
                                 datePublished: post.date,
                                 dateModified: post.date,
                                 author: post.author
                                     ? { '@type': 'Person', name: post.author }
-                                    : { '@id': 'https://andinnovatech.com/#organization' },
-                                publisher: { '@id': 'https://andinnovatech.com/#organization' },
-                                image: post.image || 'https://andinnovatech.com/og-image.jpg',
+                                    : { '@id': 'https://www.andinnovatech.com/#organization' },
+                                publisher: { '@id': 'https://www.andinnovatech.com/#organization' },
+                                image: post.image || 'https://www.andinnovatech.com/og-image.jpg',
                                 mainEntityOfPage: {
                                     '@type': 'WebPage',
-                                    '@id': `https://andinnovatech.com/${slug}/`
+                                    '@id': `https://www.andinnovatech.com/${slug}/`
                                 }
                             },
                             {
                                 '@type': 'BreadcrumbList',
-                                '@id': `https://andinnovatech.com/${slug}/#breadcrumb`,
+                                '@id': `https://www.andinnovatech.com/${slug}/#breadcrumb`,
                                 itemListElement: [
-                                    { '@type': 'ListItem', position: 1, item: { '@id': 'https://andinnovatech.com/', name: 'Home' } },
-                                    { '@type': 'ListItem', position: 2, item: { '@id': 'https://andinnovatech.com/blog/', name: 'Blog' } },
-                                    { '@type': 'ListItem', position: 3, item: { '@id': `https://andinnovatech.com/${slug}/`, name: post.title } }
+                                    { '@type': 'ListItem', position: 1, item: { '@id': 'https://www.andinnovatech.com/', name: 'Home' } },
+                                    { '@type': 'ListItem', position: 2, item: { '@id': 'https://www.andinnovatech.com/blog/', name: 'Blog' } },
+                                    { '@type': 'ListItem', position: 3, item: { '@id': `https://www.andinnovatech.com/${slug}/`, name: post.title } }
                                 ]
                             }
                         ]
