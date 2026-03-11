@@ -42,11 +42,53 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         'seo-services-canada',
         'software-development-usa',
         'website-development-canada',
+        'ai-lead-automation',
+        'website-development-hvac',
+        'website-development-plumbers',
+        'website-development-landscaping',
+        'ai-chatbot-hvac',
+        'ai-chatbot-cleaning',
+        'ai-chatbot-plumbers',
+        'ai-voice-bot-roofing',
+        'local-seo-experts',
+        'offshore-development-startups',
     ].map((service) => ({
         url: `${baseUrl}/services/${service}/`,
         lastModified: new Date(),
         changeFrequency: 'weekly' as const,
         priority: 0.8,
+    }));
+
+    // Specific High-Intent Location Landing Pages
+    const locationLandingPages = [
+        'web-development-small-business-chicago',
+        'affordable-seo-houston',
+        'ai-automation-new-york',
+        'offshore-partner-austin',
+        'website-development-hvac-dallas',
+        'seo-agency-los-angeles',
+        'web-development-small-business-miami',
+        'it-consulting-startups-san-francisco',
+        'ai-chatbot-phoenix',
+        'affordable-web-development-atlanta',
+    ].map((slug) => ({
+        url: `${baseUrl}/${slug}/`,
+        lastModified: new Date(),
+        changeFrequency: 'weekly' as const,
+        priority: 0.9,
+    }));
+
+    // Comparison Pages
+    const comparisonPages = [
+        'agency-comparison',
+        'custom-ai-vs-off-the-shelf',
+        'fixed-price-vs-hourly-development',
+        'wordpress-vs-nextjs-speed-test',
+    ].map((slug) => ({
+        url: `${baseUrl}/comparison/${slug}/`,
+        lastModified: new Date(),
+        changeFrequency: 'monthly' as const,
+        priority: 0.7,
     }));
 
     // Portfolio projects
@@ -66,6 +108,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         'ramganga-organization',
         'construction-mirror',
         'renewable-mirror',
+        'seo-optimization-los-angeles',
+        'website-development-nyc',
+        'branding-chicago-startup',
     ].map((project) => ({
         url: `${baseUrl}/portfolio/${project}/`,
         lastModified: new Date(),
@@ -77,13 +122,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const posts = await getAllPosts();
     const blogPages = posts.map((post) => ({
         url: `${baseUrl}/${post.slug}/`,
-        lastModified: new Date(post.date),
+        lastModified: new Date(post.date || new Date()),
         changeFrequency: 'monthly' as const,
         priority: 0.7,
     }));
 
     // Web Development City Pages
-    const webDevCityPages = usaCities.map((city) => ({
+    const webDevCityPages = (usaCities || []).map((city) => ({
         url: `${baseUrl}/web-development-${city.slug}/`,
         lastModified: new Date(),
         changeFrequency: 'monthly' as const,
@@ -91,7 +136,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }));
 
     // SEO Services City Pages
-    const seoCityPages = usaCitiesSeo.map((city) => ({
+    const seoCityPages = (usaCitiesSeo || []).map((city) => ({
         url: `${baseUrl}/seo-services-${city.slug}/`,
         lastModified: new Date(),
         changeFrequency: 'monthly' as const,
@@ -127,6 +172,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     return [
         ...staticPages,
         ...services,
+        ...locationLandingPages,
+        ...comparisonPages,
         ...portfolioPages,
         ...blogPages,
         ...webDevCityPages,

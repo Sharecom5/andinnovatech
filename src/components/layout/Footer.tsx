@@ -21,23 +21,23 @@ const footerLinks = {
     services: [
         { label: 'Website Development', href: '/services/website-development' },
         { label: 'Software Development', href: '/services/software-development' },
+        { label: 'AI Lead Automation', href: '/services/ai-lead-automation' },
         { label: 'SEO Services', href: '/services/seo-services' },
-        { label: 'AI Automation SaaS', href: '/services/ai-automation' },
-        { label: 'Cloud Computing', href: '/services/cloud-computing' },
-        { label: 'IT Consulting', href: '/services/it-consulting' },
+        { label: 'HVAC Web Dev', href: '/services/website-development-hvac' },
+        { label: 'Offshore Development', href: '/services/offshore-development-startups' },
+    ],
+    compare: [
+        { label: 'Vs Local Agencies', href: '/comparison/agency-comparison' },
+        { label: 'Custom vs Generic AI', href: '/comparison/custom-ai-vs-off-the-shelf' },
+        { label: 'Fixed vs Hourly', href: '/comparison/fixed-price-vs-hourly-development' },
+        { label: 'WordPress vs Next.js', href: '/comparison/wordpress-vs-nextjs-speed-test' },
     ],
     company: [
         { label: 'About Us', href: '/about' },
         { label: 'Portfolio', href: '/portfolio' },
         { label: 'Blog', href: '/blog' },
         { label: 'Contact', href: '/contact' },
-        { label: 'Careers', href: '/contact' },
-    ],
-    support: [
-        { label: 'Privacy Policy', href: '/privacy-policy' },
-        { label: 'Terms of Service', href: '/terms-of-service' },
-        { label: 'Cookie Policy', href: '/contact' },
-        { label: 'FAQ', href: '/contact' },
+        { label: 'Sitemap', href: '/sitemap-list' },
     ],
 };
 
@@ -192,7 +192,14 @@ export default function Footer() {
                                     </Link>
                                 </li>
                             ))}
-                            {footerLinks.support.slice(0, 2).map((link) => (
+                        </ul>
+                    </div>
+
+                    {/* Compare Column */}
+                    <div className="lg:col-span-2 space-y-6">
+                        <h4 className="text-white font-heading font-bold text-lg">Compare</h4>
+                        <ul className="space-y-3">
+                            {footerLinks.compare.map((link) => (
                                 <li key={link.label}>
                                     <Link
                                         href={link.href}
