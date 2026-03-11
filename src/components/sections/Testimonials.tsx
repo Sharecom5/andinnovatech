@@ -54,7 +54,7 @@ export default function Testimonials() {
                             '@type': 'ProfessionalService',
                             '@id': 'https://www.andinnovatech.com/#service',
                             name: 'AnD Innovatech IT & SEO Services',
-                            provider: { '@id': 'https://www.andinnovatech.com/#organization' },
+                            parentOrganization: { '@id': 'https://www.andinnovatech.com/#organization' },
                             aggregateRating: {
                                 '@type': 'AggregateRating',
                                 ratingValue: 4.9,
