@@ -88,6 +88,7 @@ function NewsletterForm() {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             placeholder="name@company.com"
+                            aria-label="Email address for newsletter"
                             className="block w-full h-14 px-6 bg-navy border border-white/10 rounded-xl text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
                             disabled={status === 'loading'}
                         />
@@ -255,7 +256,7 @@ export default function Footer() {
                     <div className="flex items-center gap-8 text-sm text-slate-500 font-medium">
                         <Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy</Link>
                         <Link href="/terms-of-service" className="hover:text-white transition-colors">Terms</Link>
-                        <a href="#top" className="p-2 rounded-lg bg-slate-800/50 hover:bg-primary hover:text-white transition-all">
+                        <a href="#top" className="p-2 rounded-lg bg-slate-800/50 hover:bg-primary hover:text-white transition-all" aria-label="Scroll to top">
                             <ArrowUpRight size={18} />
                         </a>
                     </div>

@@ -181,6 +181,7 @@ export default function AIChatbot() {
                             <button
                                 onClick={() => setIsOpen(false)}
                                 className="p-2 hover:bg-white/10 rounded-xl transition-all relative z-10"
+                                aria-label="Close chatbot"
                             >
                                 <X size={20} />
                             </button>
@@ -277,6 +278,7 @@ export default function AIChatbot() {
                     "w-16 h-16 rounded-[1.5rem] flex items-center justify-center shadow-glow-primary transition-all duration-500 overflow-hidden relative",
                     isOpen ? "bg-white text-navy rotate-90" : "bg-primary text-white"
                 )}
+                aria-label={isOpen ? "Close AI Assistant" : "Open AI Assistant"}
             >
                 <div className="absolute inset-0 bg-gradient-to-tr from-white/20 to-transparent opacity-50" />
                 {isOpen ? <X size={32} className="relative z-10" /> : <MessageSquare size={32} className="relative z-10 fill-current" />}

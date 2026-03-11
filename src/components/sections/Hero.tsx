@@ -289,7 +289,7 @@ function DefaultMockup() {
                 {/* Dashboard Header */}
                 <div className="flex items-center justify-between mb-6">
                     <div>
-                        <h3 className="text-white font-heading font-semibold text-lg">Analytics Dashboard</h3>
+                        <div className="text-white font-heading font-semibold text-lg">Analytics Dashboard</div>
                         <p className="text-slate-400 text-sm">Real-time performance</p>
                     </div>
                     <div className="w-3 h-3 rounded-full bg-green-400 animate-pulse" />
@@ -457,6 +457,7 @@ export default function Hero({
                         alt={`AnD Innovatech - Strategic IT and SEO Solutions for ${category !== 'default' ? category : 'Businesses'}`}
                         fill
                         priority
+                        sizes="(max-width: 1024px) 1px, 800px"
                         className="object-cover group-hover:scale-105 transition-transform duration-700"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-navy/60 via-transparent to-transparent" />
@@ -492,10 +493,10 @@ export default function Hero({
             {/* Animated gradient mesh background */}
             <div className="absolute inset-0 bg-gradient-mesh opacity-40" />
 
-            {/* AI Glowing Background Elements */}
-            <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/20 rounded-full blur-[120px] animate-pulse-glow" />
-            <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-accent/10 rounded-full blur-[150px] animate-pulse-glow" style={{ animationDelay: '2s' }} />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[200px]" />
+            {/* AI Glowing Background Elements - Optimized for mobile by reducing blur */}
+            <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/20 rounded-full blur-[60px] md:blur-[120px] animate-pulse-glow" />
+            <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-accent/10 rounded-full blur-[80px] md:blur-[150px] animate-pulse-glow" style={{ animationDelay: '2s' }} />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[100px] md:blur-[200px]" />
 
             <div className="section-container relative z-10 py-20 md:py-28 lg:py-32">
                 <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">

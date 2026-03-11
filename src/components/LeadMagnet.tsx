@@ -41,6 +41,7 @@ export default function LeadMagnet() {
                         <button
                             onClick={() => setIsOpen(true)}
                             className="group relative flex items-center gap-3 bg-gradient-primary p-4 rounded-full shadow-glow-primary hover:scale-105 transition-all text-white"
+                            aria-label="Open free AI growth audit offer"
                         >
                             <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center animate-pulse">
                                 <Bot size={24} />
@@ -67,6 +68,7 @@ export default function LeadMagnet() {
                                 <button
                                     onClick={() => setIsOpen(false)}
                                     className="absolute top-6 right-6 p-2 text-slate-400 hover:text-navy dark:hover:text-white transition-colors"
+                                    aria-label="Close offer"
                                 >
                                     <X size={24} />
                                 </button>
@@ -93,6 +95,7 @@ export default function LeadMagnet() {
                                                     type="text"
                                                     required
                                                     placeholder="Your Company Website"
+                                                    aria-label="Your Company Website"
                                                     className="w-full px-6 py-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 text-navy dark:text-white focus:outline-none focus:ring-2 focus:ring-primary/50"
                                                 />
                                             </div>
@@ -101,6 +104,7 @@ export default function LeadMagnet() {
                                                     type="email"
                                                     required
                                                     placeholder="Work Email Address"
+                                                    aria-label="Work Email Address"
                                                     className="w-full px-6 py-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 text-navy dark:text-white focus:outline-none focus:ring-2 focus:ring-primary/50"
                                                 />
                                             </div>

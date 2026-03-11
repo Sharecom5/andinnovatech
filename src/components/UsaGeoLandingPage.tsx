@@ -244,7 +244,7 @@ export default function UsaGeoLandingPage({ service, city, state, stateCode, cou
                                 <div className="text-brand-blue mb-6 group-hover:scale-110 group-hover:text-brand-orange transition-all duration-300">
                                     <s.icon size={32} />
                                 </div>
-                                <h4 className="text-xl font-bold text-white mb-2">{s.title}</h4>
+                                <h3 className="text-xl font-bold text-white mb-2">{s.title}</h3>
                                 <p className="text-slate-400 text-sm leading-relaxed">{s.desc}</p>
                             </motion.div>
                         ))}
@@ -378,7 +378,7 @@ export default function UsaGeoLandingPage({ service, city, state, stateCode, cou
                                     <div className="w-16 h-16 rounded-full bg-brand-blue text-white flex items-center justify-center text-xl font-black mb-6 relative z-10 group-hover:scale-110 group-hover:bg-brand-orange transition-all ring-8 ring-brand-navy">
                                         {s.step}
                                     </div>
-                                    <h4 className="text-lg font-bold text-white mb-3 group-hover:text-brand-orange transition-colors">{s.title}</h4>
+                                    <h3 className="text-lg font-bold text-white mb-3 group-hover:text-brand-orange transition-colors">{s.title}</h3>
                                     <p className="text-slate-400 text-xs leading-relaxed">{s.desc}</p>
                                 </motion.div>
                             ))}
@@ -541,6 +541,7 @@ export default function UsaGeoLandingPage({ service, city, state, stateCode, cou
                 target="_blank"
                 rel="noopener noreferrer"
                 className="fixed bottom-8 right-8 w-16 h-16 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all z-50 group overflow-hidden"
+                aria-label="Chat on WhatsApp"
             >
                 <div className="absolute inset-0 bg-white/20 scale-0 group-hover:scale-100 rounded-full transition-transform duration-300" />
                 <MessageSquare size={32} />

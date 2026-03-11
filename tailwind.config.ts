@@ -26,8 +26,9 @@ const config: Config = {
         secondary: "#344750",
         navy: "#1A252B",
         grey: {
-          DEFAULT: "#64748B",
+          DEFAULT: "#475569", // slate-600
           light: "#F1F5F9",
+          text: "#1E293B", // slate-800 for even higher contrast if needed
         },
         accent: "#409191",
         canada: {

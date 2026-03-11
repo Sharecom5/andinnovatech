@@ -52,7 +52,7 @@ export default function PortfolioPreview() {
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-12">
                     {fallbackPortfolio.map((item) => (
-                        <Link key={item.id} href={`/portfolio/${item.slug}`}>
+                        <Link key={item.id} href={`/portfolio/${item.slug}`} aria-label={`View details for ${item.title}`}>
                             <div className="group relative bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/10 hover:border-primary/50 transition-all duration-300 hover:-translate-y-2">
                                 {/* Image Container */}
                                 <div className="relative h-60 overflow-hidden bg-slate-800">
@@ -60,6 +60,7 @@ export default function PortfolioPreview() {
                                         src={item.image || '/images/portfolio_abstract.png'}
                                         alt={item.title}
                                         fill
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                         className="object-cover transition-transform duration-700 group-hover:scale-110"
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/20 to-transparent opacity-60" />
