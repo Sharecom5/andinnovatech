@@ -36,7 +36,7 @@ export default function LeadMagnet() {
                         initial={{ opacity: 0, scale: 0.5, y: 100 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.5, y: 100 }}
-                        className="fixed bottom-8 right-8 z-[60]"
+                        className="fixed bottom-28 right-6 z-[60]"
                     >
                         <button
                             onClick={() => setIsOpen(true)}

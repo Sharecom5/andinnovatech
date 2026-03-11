@@ -42,6 +42,7 @@ export default function Home() {
         title={<>Strategic <span className="gradient-text">Software Development</span>, ROI-Focused SEO & <span className="gradient-text">AI Automation</span></>}
         subtitle="We build high-performance digital products and AI Growth Platforms for local service businesses and US Startups. Automate leads, bookings, and customer support 24/7."
         imageSrc="/images/hero_main_abstract.png"
+        showStats={false}
       />
 
       {/* Trusted By Logos */}
