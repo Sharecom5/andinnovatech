@@ -493,6 +493,23 @@ export default function UsaGeoLandingPage({ service, city, state, stateCode, cou
                 </div>
             </section>
 
+            {/* 11.5 INTERLINKING SECTION */}
+            <section className="py-20 bg-brand-navy border-t border-white/5">
+                <div className="section-container">
+                    <div className="flex flex-col md:flex-row justify-between items-center gap-10">
+                        <div className="text-center md:text-left">
+                            <h3 className="text-2xl font-bold text-white mb-2">Need More Than SEO?</h3>
+                            <p className="text-slate-400">Discover our full range of digital engineering and AI solutions.</p>
+                        </div>
+                        <div className="flex flex-wrap justify-center gap-4">
+                            <Link href="/services/website-development" className="px-6 py-3 bg-white/5 border border-white/10 rounded-xl text-white hover:bg-white/10 transition-all text-sm font-bold">Website Development</Link>
+                            <Link href="/services/ai-automation" className="px-6 py-3 bg-white/5 border border-white/10 rounded-xl text-white hover:bg-white/10 transition-all text-sm font-bold">AI Automation</Link>
+                            <Link href="/sitemap-list" className="px-6 py-3 bg-brand-blue text-white rounded-xl hover:bg-brand-blue/90 transition-all text-sm font-bold">View Other Cities</Link>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             {/* 12. LEAD GENERATION SECTION */}
             <section id="audit-form" className="section-padding bg-brand-navy relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-full h-full bg-[url('/grid.svg')] opacity-10 pointer-events-none" />

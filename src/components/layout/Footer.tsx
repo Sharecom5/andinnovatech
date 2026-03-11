@@ -37,6 +37,7 @@ const footerLinks = {
         { label: 'Portfolio', href: '/portfolio' },
         { label: 'Blog', href: '/blog' },
         { label: 'Contact', href: '/contact' },
+        { label: 'All Locations', href: '/sitemap-list' },
         { label: 'Sitemap', href: '/sitemap-list' },
     ],
 };

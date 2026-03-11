@@ -17,6 +17,8 @@ const projects = [
         name: 'Ramganga Organization',
         category: 'Non-Profit',
         type: 'Website Development',
+        serviceUrl: '/services/website-development/',
+        serviceName: 'Website Development',
         icon: Globe,
         image: '/images/dev_abstract.png',
         description: 'Complete digital transformation for a high-impact non-profit, including automated donation workflows and member portals.',
@@ -27,6 +29,8 @@ const projects = [
         name: 'ClearCare Health Portal',
         category: 'Healthcare',
         type: 'Medical SaaS',
+        serviceUrl: '/services/software-development/',
+        serviceName: 'Software Development',
         icon: Smartphone,
         image: '/images/dev_abstract.png',
         description: 'Custom patient scheduling and telemedicine platform built with React and HIPAA-compliant architecture.',
@@ -37,6 +41,8 @@ const projects = [
         name: 'GreenLeaf SEO Campaign',
         category: 'Retail',
         type: 'SEO Growth',
+        serviceUrl: '/services/seo-services/',
+        serviceName: 'SEO Services',
         icon: Search,
         image: '/images/portfolio_seo.png',
         description: 'Global organic search dominance strategy targeting high-intent commercial keywords for a US retail brand.',
@@ -47,6 +53,8 @@ const projects = [
         name: 'Stockwell E-commerce',
         category: 'Retail',
         type: 'Online Store',
+        serviceUrl: '/services/website-development/',
+        serviceName: 'Website Development',
         icon: Smartphone,
         image: '/images/dev_abstract.png',
         description: 'Headless e-commerce implementation using Shopify Plus and a custom Next.js frontend for maximum speed.',
@@ -57,6 +65,8 @@ const projects = [
         name: 'TalentBridge SaaS',
         category: 'Enterprise',
         type: 'Custom Software',
+        serviceUrl: '/services/software-development/',
+        serviceName: 'Software Development',
         icon: Layout,
         image: '/images/portfolio_abstract.png',
         description: 'Full-stack resource management platform with real-time analytics and multi-tenant security layers.',
@@ -67,6 +77,8 @@ const projects = [
         name: 'Manufacturing Cloud',
         category: 'Infrastructure',
         type: 'Cloud Migration',
+        serviceUrl: '/services/cloud-computing/',
+        serviceName: 'Cloud Computing',
         icon: Cloud,
         image: '/images/portfolio_abstract.png',
         description: 'Comprehensive AWS migration for a legacy manufacturing backend, reducing technical debt and operational costs.',
@@ -165,9 +177,9 @@ export default function Portfolio() {
                                         <h3 className="text-2xl font-bold text-navy dark:text-white mb-2 group-hover:text-primary transition-colors leading-tight">
                                             {project.name}
                                         </h3>
-                                        <span className="text-primary-400 text-xs font-extrabold uppercase tracking-[0.2em]">
-                                            {project.type}
-                                        </span>
+                                        <Link href={project.serviceUrl} className="text-primary-400 text-xs font-extrabold uppercase tracking-[0.2em] hover:text-primary transition-colors">
+                                            {project.serviceName}
+                                        </Link>
                                     </div>
 
                                     <p className="text-grey dark:text-slate-400 text-sm leading-relaxed mb-6 flex-1">

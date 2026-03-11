@@ -4,7 +4,7 @@ import { getAllPosts, getPostBySlug } from '@/lib/mdx';
 import { usaCities } from '@/lib/usa-cities';
 import { usaCitiesSeo } from '@/lib/usa-cities-seo';
 import { MDXRemote } from 'next-mdx-remote/rsc';
-import { Calendar, ArrowLeft } from 'lucide-react';
+import { Calendar, ArrowLeft, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import CityServicePage from '@/components/CityServicePage';
 import CitySeoPage from '@/components/CitySeoPage';
@@ -404,8 +404,35 @@ export default async function DynamicPage({ params }: DynamicPageProps) {
                     <div className="h-2 w-24 bg-primary rounded-full mb-8" />
                 </header>
 
-                <div className="prose prose-lg lg:prose-xl max-w-none dark:prose-invert prose-headings:text-navy dark:prose-headings:text-white prose-headings:font-bold prose-p:text-grey dark:prose-p:text-slate-400 prose-a:text-primary prose-strong:text-navy dark:prose-strong:text-white prose-blockquote:border-primary prose-blockquote:bg-slate-50 dark:prose-blockquote:bg-navy/50 p-6 md:p-10 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm">
+                <div className="prose prose-lg lg:prose-xl max-w-none dark:prose-invert prose-headings:text-navy dark:prose-headings:text-white prose-headings:font-bold prose-p:text-grey dark:prose-p:text-slate-400 prose-a:text-primary prose-strong:text-navy dark:prose-strong:text-white prose-blockquote:border-primary prose-blockquote:bg-slate-50 dark:prose-blockquote:bg-navy/50 p-6 md:p-10 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm mb-16">
                     <MDXRemote source={post.content} />
+                </div>
+
+                {/* Related Insights */}
+                <div className="mt-16 pt-16 border-t border-slate-100 dark:border-slate-800">
+                    <h2 className="text-3xl font-heading font-bold text-navy dark:text-white mb-8">Related Insights</h2>
+                    <div className="grid md:grid-cols-3 gap-6">
+                        {(await getAllPosts())
+                            .filter(p => p.slug !== slug)
+                            .slice(0, 3)
+                            .map(relatedPost => (
+                                <Link
+                                    key={relatedPost.slug}
+                                    href={`/${relatedPost.slug}/`}
+                                    className="group flex flex-col bg-slate-50 dark:bg-navy/50 p-6 rounded-2xl border border-slate-100 dark:border-slate-800 hover:border-primary/50 transition-all shadow-sm hover:shadow-md"
+                                >
+                                    <h3 className="text-lg font-bold text-navy dark:text-white mb-2 line-clamp-2 group-hover:text-primary transition-colors">
+                                        {relatedPost.title}
+                                    </h3>
+                                    <p className="text-sm text-grey dark:text-slate-400 line-clamp-3 mb-4 flex-grow">
+                                        {relatedPost.description}
+                                    </p>
+                                    <span className="text-primary font-bold text-xs flex items-center gap-1 group-hover:gap-2 transition-all">
+                                        Read More <ArrowRight className="h-3 w-3" />
+                                    </span>
+                                </Link>
+                            ))}
+                    </div>
                 </div>
 
                 <footer className="mt-20 pt-10 border-t border-slate-100 dark:border-slate-800">
