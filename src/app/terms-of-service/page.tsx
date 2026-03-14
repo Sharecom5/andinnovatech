@@ -4,7 +4,7 @@ import Badge from '@/components/ui/Badge';
 
 export const metadata: Metadata = {
     title: 'Terms of Service',
-    description: 'Read the terms and conditions for using AnD Innovatech services and our website.',
+    description: 'Read the terms and conditions for using AnD Innovatech services and our website. Understand your rights and responsibilities when partnering with our engineering team.',
     openGraph: {
         title: 'Terms of Service',
         description: 'Our standard business agreement.',

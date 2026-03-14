@@ -4,7 +4,7 @@ import Badge from '@/components/ui/Badge';
 
 export const metadata: Metadata = {
     title: 'Privacy Policy',
-    description: 'Learn how AnD Innovatech collects, uses, and protects your personal information.',
+    description: 'Learn how AnD Innovatech collects, uses, and protects your personal information. Our privacy policy outlines our commitment to data security and your rights as a user.',
     openGraph: {
         title: 'Privacy Policy',
         description: 'Your privacy is our priority.',

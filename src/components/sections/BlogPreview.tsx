@@ -19,7 +19,7 @@ const fallbackPosts = [
     },
     {
         id: 2,
-        slug: 'seo-strategies-small-businesses',
+        slug: 'how-long-does-seo-take-small-business',
         title: 'Essential SEO Strategies for Small Businesses to Outrank Competitors',
         excerpt: 'Learn the specific local SEO techniques that let smaller startups dominate search results against competitors with 10x the budget.',
         category: 'SEO',

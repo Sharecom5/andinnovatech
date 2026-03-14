@@ -9,7 +9,7 @@ import Link from 'next/link';
 
 export const metadata: Metadata = {
     title: 'Offshore Development Partner for Startups in Austin | Save 60% on Dev',
-    description: 'Looking for a reliable offshore development partner in Austin? We help Austin startups scale their engineering teams with elite offshore talent managed by US standards. Fixed-price MVP builds.',
+    description: 'Reliable offshore development partner in Austin. We help Austin startups scale engineering teams with elite talent managed by US standards. Fixed-price MVP builds.',
     openGraph: {
         title: 'Offshore Development Partner for Startups in Austin',
         description: 'Scale your Austin startup with elite engineering at 60% lower costs.',

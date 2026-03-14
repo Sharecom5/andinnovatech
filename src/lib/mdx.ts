@@ -31,7 +31,7 @@ export async function getAllPosts(): Promise<BlogPost[]> {
                 slug: file.replace('.mdx', ''),
                 title: data.title,
                 date: data.date,
-                description: data.description,
+                description: data.description || data.excerpt,
                 image: data.image,
                 author: data.author,
                 category: data.category,
