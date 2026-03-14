@@ -61,6 +61,29 @@ const footerLinks = {
         { label: 'Automate Google Reviews', href: '/automate-google-reviews-local-business/' },
         { label: 'Upwork vs Offshore Agency', href: '/upwork-vs-offshore-agency-us-small-business/' },
         { label: 'India IT Agency for US SMBs', href: '/india-it-agency-winning-us-smb-clients-2026/' },
+        { label: 'Cloud Migration Guide 2026', href: '/cloud-migration-guide-small-business-2026/' },
+        { label: 'Custom Software Dev Cost', href: '/custom-software-development-cost-small-business-2026/' },
+        { label: 'Ecommerce Redesign Cost 2026', href: '/ecommerce-website-redesign-cost-2026/' },
+        { label: 'Future of AI Customer Support', href: '/future-of-customer-support-ai-agents/' },
+        { label: 'HIPAA Patient Portal Dev', href: '/hipaa-compliant-patient-portal-development-healthcare-startups/' },
+        { label: 'Hiring a Web Developer', href: '/hiring-web-developer-small-service-business/' },
+        { label: 'SEO & Web Dev Lead Generation', href: '/how-seo-web-development-drive-lead-generation-for-usa-canada-businesses/' },
+        { label: 'How to Brief a Dev Agency', href: '/how-to-brief-web-development-agency-template/' },
+        { label: 'How to Hire an IT Agency', href: '/how-to-hire-it-agency-small-business-checklist/' },
+        { label: 'Share Business Idea Safely', href: '/is-it-safe-share-business-idea-offshore-development-team/' },
+        { label: 'Leading Web Design & SEO', href: '/leading-web-design-and-seo-company-to-elevate-your-brand/' },
+        { label: 'Off-the-Shelf vs Custom CRM', href: '/off-the-shelf-crm-vs-custom-crm-small-business/' },
+        { label: 'Offshore Development India', href: '/offshore-development-india-why-choose-us/' },
+        { label: 'Offshore vs US Agency 2026', href: '/offshore-vs-us-agency-guide-2026/' },
+        { label: 'Real Cost of Missing Leads', href: '/real-cost-missing-lead-plumbers/' },
+        { label: 'SEO vs PPC for Local Business', href: '/seo-vs-ppc-local-service-business/' },
+        { label: 'Signs You Outgrew Your Website', href: '/signs-small-business-outgrown-website/' },
+        { label: 'Website Post-Launch Checklist', href: '/website-post-launch-90-day-checklist/' },
+        { label: 'What Is Discovery Phase?', href: '/what-is-discovery-phase-software-development/' },
+        { label: 'Delhi Startup Needs a Website', href: '/why-every-delhi-startup-needs-a-professional-website/' },
+        { label: 'Why IT Projects Go Over Budget', href: '/why-it-projects-go-over-budget-how-to-prevent/' },
+        { label: '5 Signs You Need Offshore Team', href: '/5-signs-startup-needs-offshore-team/' },
+        { label: '10 Essential Business App Features', href: '/10-essential-features-business-app-2025/' },
         { label: 'View All Articles', href: '/blog/' },
     ],
     portfolio: [
@@ -70,7 +93,27 @@ const footerLinks = {
         { label: 'Stockwell E-commerce', href: '/portfolio/ecommerce-platform/' },
         { label: 'Manufacturing Cloud', href: '/portfolio/cloud-migration/' },
         { label: 'Ramganga Organization', href: '/portfolio/ramganga-organization/' },
+        { label: 'Mobile Banking App', href: '/portfolio/mobile-banking/' },
+        { label: 'ETES Events', href: '/portfolio/etes-events/' },
+        { label: 'Taction Software', href: '/portfolio/taction-soft/' },
+        { label: 'Sevya Artisan', href: '/portfolio/sevya-artisan/' },
+        { label: 'SG Lifestyle', href: '/portfolio/sg-lifestyle/' },
+        { label: 'InvestorKey', href: '/portfolio/investor-key/' },
+        { label: 'KDB School', href: '/portfolio/kdb-school/' },
         { label: 'View Full Portfolio', href: '/portfolio/' },
+    ],
+    locations: [
+        { label: 'Web Dev for SMBs in Chicago', href: '/web-development-small-business-chicago/' },
+        { label: 'Affordable SEO in Houston', href: '/affordable-seo-houston/' },
+        { label: 'AI Automation in New York', href: '/ai-automation-new-york/' },
+        { label: 'Offshore Partner in Austin', href: '/offshore-partner-austin/' },
+        { label: 'HVAC Web Dev in Dallas', href: '/website-development-hvac-dallas/' },
+        { label: 'SEO Agency in Los Angeles', href: '/seo-agency-los-angeles/' },
+        { label: 'Web Dev for SMBs in Miami', href: '/web-development-small-business-miami/' },
+        { label: 'IT Consulting in San Francisco', href: '/it-consulting-startups-san-francisco/' },
+        { label: 'AI Chatbot in Phoenix', href: '/ai-chatbot-phoenix/' },
+        { label: 'Affordable Web Dev in Atlanta', href: '/affordable-web-development-atlanta/' },
+        { label: 'View All Locations', href: '/sitemap-list/' },
     ],
     compare: [
         { label: 'Vs Local Agencies', href: '/comparison/agency-comparison/' },
@@ -239,7 +282,7 @@ export default function Footer() {
                 </div>
 
                 {/* Full Link Grid */}
-                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-10">
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8">
                     {/* Services */}
                     <div className="space-y-4">
                         <h4 className="text-white font-heading font-bold text-base">Services</h4>
@@ -280,7 +323,25 @@ export default function Footer() {
                                 </li>
                             ))}
                         </ul>
-                        <h4 className="text-white font-heading font-bold text-base pt-4">Compare</h4>
+                    </div>
+
+                    {/* Locations */}
+                    <div className="space-y-4">
+                        <h4 className="text-white font-heading font-bold text-base">Locations</h4>
+                        <ul className="space-y-2">
+                            {footerLinks.locations.map((link) => (
+                                <li key={link.href}>
+                                    <Link href={link.href} className="text-xs text-slate-400 hover:text-primary-400 transition-colors inline-block">
+                                        {link.label}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    {/* Compare */}
+                    <div className="space-y-4">
+                        <h4 className="text-white font-heading font-bold text-base">Compare</h4>
                         <ul className="space-y-2">
                             {footerLinks.compare.map((link) => (
                                 <li key={link.href}>
@@ -293,7 +354,7 @@ export default function Footer() {
                     </div>
 
                     {/* Company */}
-                    <div className="space-y-4 col-span-2 sm:col-span-1">
+                    <div className="space-y-4">
                         <h4 className="text-white font-heading font-bold text-base">Company</h4>
                         <ul className="space-y-2">
                             {footerLinks.company.map((link) => (
