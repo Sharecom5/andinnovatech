@@ -14,7 +14,6 @@ import PricingPreview from '@/components/sections/PricingPreview';
 import AiAutomationSaaS from '@/components/sections/AiAutomationSaaS';
 
 export const metadata: Metadata = {
-  title: 'AnD Innovatech | Software & SEO for US Home Services',
   description: 'Stop losing leads. We build high-performance websites, #1 SEO rankings, and AI-powered booking for US service companies. Save 40-60%. Get a free audit!',
   openGraph: {
     title: 'AnD Innovatech | Software & SEO for US Home Services',

@@ -9,7 +9,7 @@ import SectionHeading from '@/components/ui/SectionHeading';
 import Badge from '@/components/ui/Badge';
 
 export const metadata: Metadata = {
-    title: 'About AnD Innovatech | Engineering Success Since 2017',
+    title: 'About Our Team | Engineering Success Since 2017',
     description: 'US strategy meets global engineering. How we\'ve helped hundreds of service businesses achieve #1 rankings and 50% cost savings since 2017.',
     openGraph: {
         title: 'About AnD Innovatech | Engineering Success Since 2017',

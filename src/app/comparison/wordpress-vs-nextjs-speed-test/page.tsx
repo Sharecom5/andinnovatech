@@ -11,7 +11,7 @@ export const dynamic = 'force-static';
 
 export const metadata: Metadata = {
     title: 'WordPress vs. Next.js for Local Businesses | The 2026 Speed Test',
-    description: 'Is your WordPress site killing your local search rankings? Compare WordPress vs Next.js for speed, SEO, and security. Discover why Next.js is the choice for growth-focused SMBs.',
+    description: 'Is your WordPress site killing your local search rankings? Compare WordPress vs Next.js for speed, SEO, and security. Choice for growth-focused SMBs.',
     openGraph: {
         title: 'WordPress vs. Next.js for Local Businesses | The 2026 Speed Test',
         description: 'Next.js delivers instant speeds compared to WordPress.',

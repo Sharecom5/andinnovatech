@@ -331,7 +331,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     if (!project) return { title: 'Project Not Found' };
 
     return {
-        title: `${project.title} | Portfolio | AnD Innovatech`,
+        title: `${project.title} | Portfolio`,
         description: project.description,
     };
 }

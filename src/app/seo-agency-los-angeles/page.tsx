@@ -9,7 +9,7 @@ import Link from 'next/link';
 
 export const metadata: Metadata = {
     title: 'SEO Agency Los Angeles | Top-Rated Results',
-    description: 'Looking for a Los Angeles SEO agency that delivers? We help LA local businesses dominate search results, rank on Google Maps, and grow revenue. Free SEO audit for LA businesses.',
+    description: 'Los Angeles SEO agency that delivers results. We help LA businesses dominate search results, rank on Google Maps, and grow revenue. Free SEO audit.',
     openGraph: {
         title: 'SEO Agency Los Angeles | Top-Rated Results',
         description: 'Elite SEO for Los Angeles businesses.',
