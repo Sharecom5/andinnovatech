@@ -7,6 +7,8 @@ import Badge from '@/components/ui/Badge';
 import Button from '@/components/ui/Button';
 import Link from 'next/link';
 
+export const dynamic = 'force-static';
+
 export const metadata: Metadata = {
     title: 'WordPress vs. Next.js for Local Businesses | The 2026 Speed Test',
     description: 'Is your WordPress site killing your local search rankings? Compare WordPress vs Next.js for speed, SEO, and security. Discover why Next.js is the choice for growth-focused SMBs.',

@@ -7,6 +7,8 @@ import Badge from '@/components/ui/Badge';
 import Button from '@/components/ui/Button';
 import Link from 'next/link';
 
+export const dynamic = 'force-static';
+
 export const metadata: Metadata = {
     title: 'AnD Innovatech vs. Local US Agencies | The ROI Comparison',
     description: 'Compare the cost and quality of AnD Innovatech vs. traditional US software agencies. Discover how we deliver Silicon Valley engineering at 60% lower costs.',

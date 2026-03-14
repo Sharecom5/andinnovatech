@@ -7,6 +7,8 @@ import Badge from '@/components/ui/Badge';
 import Button from '@/components/ui/Button';
 import Link from 'next/link';
 
+export const dynamic = 'force-static';
+
 export const metadata: Metadata = {
     title: 'Custom AI vs. Off-the-shelf Chatbots | Which Delivers Faster ROI?',
     description: 'Compare high-performance custom AI agents vs. generic off-the-shelf chatbots. Discover why enterprise-grade AI is the secret to scaling small businesses.',

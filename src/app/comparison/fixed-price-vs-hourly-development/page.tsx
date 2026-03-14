@@ -7,6 +7,8 @@ import Badge from '@/components/ui/Badge';
 import Button from '@/components/ui/Button';
 import Link from 'next/link';
 
+export const dynamic = 'force-static';
+
 export const metadata: Metadata = {
     title: 'Fixed-Price vs. Hourly Development | Why Startups Choose Predictability',
     description: 'Stop the hourly billing nightmare. Discover why fixed-price development cycles are the safest and most efficient way for US startups to build MVPs.',
@@ -117,7 +119,7 @@ export default function PricingComparisonPage() {
                                     When you hire an agency hourly, you are incentivizing them to work more hours. Every bug fixed and every meeting held is an additional cost to you. This creates a misalignment of goals.
                                 </p>
                                 <p>
-                                    At **AnD Innovatech**, we quote by the milestone. If a feature takes us longer than expected, that&apos;s on us. This forces 우리의 engineering team to be efficient, focused, and dedicated to delivering a bug-free product on time.
+                                    At **AnD Innovatech**, we quote by the milestone. If a feature takes us longer than expected, that&apos;s on us. This forces our engineering team to be efficient, focused, and dedicated to delivering a bug-free product on time.
                                 </p>
                             </div>
                             <Link href="/contact">
