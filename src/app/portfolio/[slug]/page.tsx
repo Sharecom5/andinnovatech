@@ -540,34 +540,28 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                 </div>
             </section>
 
-            {/* Bottom Contact Section */}
-            <section className="section-padding bg-slate-50 dark:bg-slate-900/50">
+            {/* More Case Studies — Internal Linking */}
+            <section className="py-14 bg-slate-50 dark:bg-slate-900/50 border-t border-slate-100 dark:border-slate-800">
                 <div className="section-container">
-                    <div className="grid lg:grid-cols-2 gap-16 items-center">
-                        <div>
-                            <SectionHeading
-                                title="Let's Build Something Great"
-                                subtitle="Inspired by this project? Our team is ready to deliver similar results for your business goals."
-                                centered={false}
-                            />
-                            <div className="grid sm:grid-cols-2 gap-8 mt-12">
-                                <div className="flex items-center gap-4">
-                                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
-                                        <Cpu size={24} />
-                                    </div>
-                                    <span className="font-bold dark:text-white">Modern Tech</span>
-                                </div>
-                                <div className="flex items-center gap-4">
-                                    <div className="w-12 h-12 rounded-xl bg-green-500/10 flex items-center justify-center text-green-500">
-                                        <ShieldCheck size={24} />
-                                    </div>
-                                    <span className="font-bold dark:text-white">Secure Architecture</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="bg-white dark:bg-slate-800 p-8 md:p-12 rounded-[3rem] shadow-2xl border border-slate-100 dark:border-slate-700">
-                            <ContactForm />
-                        </div>
+                    <p className="text-center text-xs font-bold uppercase tracking-widest text-slate-500 mb-8">More Case Studies</p>
+                    <div className="flex flex-wrap gap-3 justify-center">
+                        {Object.values(projectsData)
+                            .filter(p => p.slug !== project.slug)
+                            .map(p => (
+                                <Link
+                                    key={p.slug}
+                                    href={`/portfolio/${p.slug}/`}
+                                    className="px-5 py-2.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-xs font-medium text-grey dark:text-slate-300 hover:border-primary hover:text-primary transition-all"
+                                >
+                                    {p.title}
+                                </Link>
+                            ))}
+                        <Link
+                            href="/portfolio/"
+                            className="px-5 py-2.5 bg-primary/10 border border-primary/30 rounded-full text-xs font-bold text-primary hover:bg-primary hover:text-white transition-all"
+                        >
+                            View All Projects →
+                        </Link>
                     </div>
                 </div>
             </section>

@@ -100,6 +100,8 @@ const footerLinks = {
         { label: 'SG Lifestyle', href: '/portfolio/sg-lifestyle/' },
         { label: 'InvestorKey', href: '/portfolio/investor-key/' },
         { label: 'KDB School', href: '/portfolio/kdb-school/' },
+        { label: 'Construction Mirror B2B', href: '/portfolio/construction-mirror/' },
+        { label: 'Renewable Mirror Portal', href: '/portfolio/renewable-mirror/' },
         { label: 'View Full Portfolio', href: '/portfolio/' },
     ],
     locations: [
