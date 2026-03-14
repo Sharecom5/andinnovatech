@@ -14,6 +14,8 @@ import Badge from '@/components/ui/Badge';
 import Button from '@/components/ui/Button';
 import ContactForm from '@/components/sections/ContactForm';
 import RelatedServices from '@/components/sections/RelatedServices';
+import { usaCities } from '@/lib/usa-cities';
+import { usaCitiesSeo } from '@/lib/usa-cities-seo';
 
 interface CityServicePageProps {
     city: USACity;
@@ -249,7 +251,44 @@ export default function CityServicePage({ city }: CityServicePageProps) {
             {/* Related Services */}
             <RelatedServices currentService="Website Development" />
 
-            {/* FAQ */}
+            {/* We Also Build Websites In */}
+            <section className="py-16 px-4 bg-slate-50 dark:bg-slate-900/50 border-t border-slate-100 dark:border-slate-800">
+                <div className="section-container">
+                    <div className="text-center mb-10">
+                        <h2 className="text-2xl font-bold text-navy dark:text-white mb-2">We Also Build Websites In These Cities</h2>
+                        <p className="text-grey dark:text-slate-400 text-sm">Premium web development across the United States</p>
+                    </div>
+
+                    <div className="flex flex-wrap gap-2.5 justify-center mb-10">
+                        {usaCities
+                            .filter(c => c.slug !== city.slug)
+                            .slice(0, 40)
+                            .map(c => (
+                                <Link
+                                    key={c.slug}
+                                    href={`/web-development-${c.slug}/`}
+                                    className="px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-xs text-grey dark:text-slate-300 hover:border-primary hover:text-primary transition-all"
+                                >
+                                    Web Dev in {c.name}
+                                </Link>
+                            ))}
+                    </div>
+
+                    <div className="border-t border-slate-100 dark:border-slate-800 pt-8 flex flex-wrap gap-6 justify-center">
+                        {usaCitiesSeo.find(c => c.slug === city.slug) && (
+                            <Link href={`/seo-services-${city.slug}/`} className="text-sm font-bold text-primary hover:underline">
+                                → SEO Services in {city.name}
+                            </Link>
+                        )}
+                        <Link href="/services/website-development/" className="text-sm font-bold text-primary hover:underline">→ All Web Dev Services</Link>
+                        <Link href="/services/seo-services/" className="text-sm font-bold text-primary hover:underline">→ SEO Services</Link>
+                        <Link href="/sitemap-list/" className="text-sm font-bold text-primary hover:underline">→ All Locations</Link>
+                        <Link href="/contact/" className="text-sm font-bold text-primary hover:underline">→ Get a Quote</Link>
+                    </div>
+                </div>
+            </section>
+
+            {/* Final CTA */}
             <section className="section-padding bg-white dark:bg-navy">
                 <div className="section-container">
                     <div className="max-w-4xl mx-auto">

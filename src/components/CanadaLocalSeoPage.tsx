@@ -10,6 +10,8 @@ import Button from '@/components/ui/Button';
 import Link from 'next/link';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
+import { canadaLocations } from '@/lib/canada-locations';
+import { servicesList } from '@/lib/services';
 
 interface CanadaLocalSeoPageProps {
     country: string;
@@ -494,6 +496,65 @@ export default function CanadaLocalSeoPage({ country, service, city, province, p
 
                         <div className="lg:w-3/5 p-12 lg:p-16">
                             <ContactForm />
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* INTERLINKING — We Also Serve (Canada) */}
+            <section className="py-20 bg-slate-900 border-t border-white/5">
+                <div className="section-container">
+                    <div className="text-center mb-12">
+                        <h2 className="text-3xl font-bold text-white mb-3">We Also Serve These Canadian Cities</h2>
+                        <p className="text-slate-400">Providing {service} SEO services across Canada</p>
+                    </div>
+
+                    {/* Other cities — same service */}
+                    <div className="flex flex-wrap gap-3 justify-center mb-12">
+                        {canadaLocations
+                            .filter(loc => loc.city !== city)
+                            .map(loc => {
+                                const serviceSlug = service.toLowerCase().replace(/\s+/g, '-');
+                                const href = `/seo-for-${serviceSlug}-${loc.slug}/`;
+                                return (
+                                    <Link
+                                        key={loc.slug}
+                                        href={href}
+                                        className="px-5 py-2.5 bg-white/5 border border-white/10 rounded-full text-sm text-slate-300 hover:bg-primary/20 hover:border-primary/50 hover:text-white transition-all"
+                                    >
+                                        {service} SEO — {loc.city}, {loc.provinceCode}
+                                    </Link>
+                                );
+                            })}
+                    </div>
+
+                    {/* Other services — same city */}
+                    <div className="border-t border-white/5 pt-10">
+                        <p className="text-center text-slate-500 text-sm font-bold uppercase tracking-widest mb-6">Other Services in {city}</p>
+                        <div className="flex flex-wrap gap-3 justify-center">
+                            {servicesList
+                                .filter(s => s !== service)
+                                .map(s => {
+                                    const serviceSlug = s.toLowerCase().replace(/\s+/g, '-');
+                                    const cityLoc = canadaLocations.find(loc => loc.city === city);
+                                    if (!cityLoc) return null;
+                                    const href = `/seo-for-${serviceSlug}-${cityLoc.slug}/`;
+                                    return (
+                                        <Link
+                                            key={s}
+                                            href={href}
+                                            className="px-5 py-2.5 bg-white/5 border border-white/10 rounded-full text-sm text-slate-300 hover:bg-primary/20 hover:border-primary/50 hover:text-white transition-all"
+                                        >
+                                            {s} SEO in {city}
+                                        </Link>
+                                    );
+                                })}
+                            <Link
+                                href="/sitemap-list/"
+                                className="px-5 py-2.5 bg-primary/20 border border-primary/40 rounded-full text-sm text-primary font-bold hover:bg-primary hover:text-white transition-all"
+                            >
+                                View All Locations →
+                            </Link>
                         </div>
                     </div>
                 </div>

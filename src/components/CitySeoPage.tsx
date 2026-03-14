@@ -12,6 +12,8 @@ import Button from '@/components/ui/Button';
 import Badge from '@/components/ui/Badge';
 import SectionHeading from '@/components/ui/SectionHeading';
 import RelatedServices from '@/components/sections/RelatedServices';
+import { usaCitiesSeo } from '@/lib/usa-cities-seo';
+import { usaCities } from '@/lib/usa-cities';
 
 interface CitySeoPageProps {
     city: CitySEO;
@@ -565,27 +567,40 @@ export default function CitySeoPage({ city, cityIndex }: CitySeoPageProps) {
             <RelatedServices currentService="SEO Services" />
 
             {/* ── SECTION 10: INTERNAL LINKS ── */}
-            <section className="py-12 px-4 bg-slate-50 dark:bg-slate-900/50 border-t border-slate-100 dark:border-slate-800">
+            <section className="py-16 px-4 bg-slate-50 dark:bg-slate-900/50 border-t border-slate-100 dark:border-slate-800">
                 <div className="section-container">
-                    <p className="text-grey dark:text-slate-500 text-sm mb-4 font-bold">More Local Services:</p>
-                    <div className="flex flex-wrap gap-3 mb-8">
-                        <Link
-                            href={`/seo-services-${city.nearbyCitySlug}`}
-                            className="text-primary hover:text-primary-600 text-sm font-bold border border-primary/20 rounded-full px-5 py-2 transition-all hover:bg-primary/5"
-                        >
-                            SEO in {city.nearbyCity}
-                        </Link>
+                    <div className="text-center mb-10">
+                        <h2 className="text-2xl font-bold text-navy dark:text-white mb-2">We Also Provide SEO in These Cities</h2>
+                        <p className="text-grey dark:text-slate-400 text-sm">Trusted local SEO partner across the United States</p>
                     </div>
-                    <div className="flex flex-wrap gap-8 text-sm font-semibold">
-                        <Link href={`/web-development-${city.slug}`} className="text-grey dark:text-slate-400 hover:text-primary transition-colors">
-                            → Web Dev in {city.name}
-                        </Link>
-                        <Link href="/services/seo-services" className="text-grey dark:text-slate-400 hover:text-primary transition-colors">
-                            → All SEO Services
-                        </Link>
-                        <Link href="/contact" className="text-grey dark:text-slate-400 hover:text-primary transition-colors">
-                            → Get in Touch
-                        </Link>
+
+                    {/* Other SEO cities */}
+                    <div className="flex flex-wrap gap-2.5 justify-center mb-10">
+                        {usaCitiesSeo
+                            .filter(c => c.slug !== city.slug)
+                            .slice(0, 40)
+                            .map(c => (
+                                <Link
+                                    key={c.slug}
+                                    href={`/seo-services-${c.slug}/`}
+                                    className="px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-xs text-grey dark:text-slate-300 hover:border-primary hover:text-primary transition-all"
+                                >
+                                    SEO in {c.name}
+                                </Link>
+                            ))}
+                    </div>
+
+                    {/* Cross-links to web dev + services */}
+                    <div className="border-t border-slate-100 dark:border-slate-800 pt-8 flex flex-wrap gap-6 justify-center">
+                        {usaCities.find(c => c.slug === city.slug) && (
+                            <Link href={`/web-development-${city.slug}/`} className="text-sm font-bold text-primary hover:underline">
+                                → Web Development in {city.name}
+                            </Link>
+                        )}
+                        <Link href="/services/seo-services/" className="text-sm font-bold text-primary hover:underline">→ All SEO Services</Link>
+                        <Link href="/services/ai-automation/" className="text-sm font-bold text-primary hover:underline">→ AI Automation</Link>
+                        <Link href="/sitemap-list/" className="text-sm font-bold text-primary hover:underline">→ View All Locations</Link>
+                        <Link href="/contact/" className="text-sm font-bold text-primary hover:underline">→ Get Free Audit</Link>
                     </div>
                 </div>
             </section>

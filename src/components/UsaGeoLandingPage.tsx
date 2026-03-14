@@ -12,6 +12,8 @@ import Button from '@/components/ui/Button';
 import Badge from '@/components/ui/Badge';
 import ContactForm from '@/components/sections/ContactForm';
 import Link from 'next/link';
+import { usaLocations } from '@/lib/usa-locations';
+import { servicesList } from '@/lib/services';
 
 interface UsaGeoLandingPageProps {
     service: string;
@@ -493,18 +495,60 @@ export default function UsaGeoLandingPage({ service, city, state, stateCode, cou
                 </div>
             </section>
 
-            {/* 11.5 INTERLINKING SECTION */}
-            <section className="py-20 bg-brand-navy border-t border-white/5">
+            {/* 11.5 INTERLINKING — We Also Serve */}
+            <section className="py-20 bg-slate-900 border-t border-white/5">
                 <div className="section-container">
-                    <div className="flex flex-col md:flex-row justify-between items-center gap-10">
-                        <div className="text-center md:text-left">
-                            <h3 className="text-2xl font-bold text-white mb-2">Need More Than SEO?</h3>
-                            <p className="text-slate-400">Discover our full range of digital engineering and AI solutions.</p>
-                        </div>
-                        <div className="flex flex-wrap justify-center gap-4">
-                            <Link href="/services/website-development" className="px-6 py-3 bg-white/5 border border-white/10 rounded-xl text-white hover:bg-white/10 transition-all text-sm font-bold">Website Development</Link>
-                            <Link href="/services/ai-automation" className="px-6 py-3 bg-white/5 border border-white/10 rounded-xl text-white hover:bg-white/10 transition-all text-sm font-bold">AI Automation</Link>
-                            <Link href="/sitemap-list" className="px-6 py-3 bg-brand-blue text-white rounded-xl hover:bg-brand-blue/90 transition-all text-sm font-bold">View Other Cities</Link>
+                    <div className="text-center mb-12">
+                        <h2 className="text-3xl font-bold text-white mb-3">We Also Serve These Cities</h2>
+                        <p className="text-slate-400">Providing {service} SEO services across the United States</p>
+                    </div>
+
+                    {/* Other cities — same service */}
+                    <div className="flex flex-wrap gap-3 justify-center mb-12">
+                        {usaLocations
+                            .filter(loc => loc.city !== city)
+                            .map(loc => {
+                                const serviceSlug = service.toLowerCase().replace(/\s+/g, '-');
+                                const href = `/seo-for-${serviceSlug}-companies-${loc.slug}/`;
+                                return (
+                                    <Link
+                                        key={loc.slug}
+                                        href={href}
+                                        className="px-5 py-2.5 bg-white/5 border border-white/10 rounded-full text-sm text-slate-300 hover:bg-primary/20 hover:border-primary/50 hover:text-white transition-all"
+                                    >
+                                        {service} SEO — {loc.city}, {loc.stateCode}
+                                    </Link>
+                                );
+                            })}
+                    </div>
+
+                    {/* Other services — same city */}
+                    <div className="border-t border-white/5 pt-10">
+                        <p className="text-center text-slate-500 text-sm font-bold uppercase tracking-widest mb-6">Other Services in {city}</p>
+                        <div className="flex flex-wrap gap-3 justify-center">
+                            {servicesList
+                                .filter(s => s !== service)
+                                .map(s => {
+                                    const serviceSlug = s.toLowerCase().replace(/\s+/g, '-');
+                                    const cityLoc = usaLocations.find(loc => loc.city === city);
+                                    if (!cityLoc) return null;
+                                    const href = `/seo-for-${serviceSlug}-companies-${cityLoc.slug}/`;
+                                    return (
+                                        <Link
+                                            key={s}
+                                            href={href}
+                                            className="px-5 py-2.5 bg-white/5 border border-white/10 rounded-full text-sm text-slate-300 hover:bg-primary/20 hover:border-primary/50 hover:text-white transition-all"
+                                        >
+                                            {s} SEO in {city}
+                                        </Link>
+                                    );
+                                })}
+                            <Link
+                                href="/sitemap-list/"
+                                className="px-5 py-2.5 bg-primary/20 border border-primary/40 rounded-full text-sm text-primary font-bold hover:bg-primary hover:text-white transition-all"
+                            >
+                                View All Locations →
+                            </Link>
                         </div>
                     </div>
                 </div>
