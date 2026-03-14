@@ -8,8 +8,14 @@ import Button from '@/components/ui/Button';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-    title: 'AI Automation SaaS for Service Businesses | AnD Innovatech',
-    description: 'Transform your service business with AI Chatbots, Voice Agents, and Automation. Perfect for HVAC, Plumbing, Cleaning, and Roofing companies in the US.',
+    title: 'AI Automation SaaS for Service Businesses',
+    description: 'Transform your service business with AI Chatbots, Voice Agents, and Automation. Perfect for HVAC, Plumbing, Cleaning, and Roofing companies.',
+    openGraph: {
+        title: 'AI Automation SaaS for Service Businesses',
+        description: 'Elite AI automation for local businesses.',
+        url: 'https://www.andinnovatech.com/services/ai-automation/',
+        images: [{ url: 'https://www.andinnovatech.com/images/check_ai_automation.png' }],
+    }
 };
 
 const inclusions = [

@@ -10,6 +10,12 @@ import Link from 'next/link';
 export const metadata: Metadata = {
     title: 'Custom AI vs. Off-the-shelf Chatbots | Which Delivers Faster ROI?',
     description: 'Compare high-performance custom AI agents vs. generic off-the-shelf chatbots. Discover why enterprise-grade AI is the secret to scaling small businesses.',
+    openGraph: {
+        title: 'Custom AI vs. Off-the-shelf Chatbots | Which Delivers Faster ROI?',
+        description: 'Elite AI agents deliver significantly higher ROI than generic bots.',
+        url: 'https://www.andinnovatech.com/comparison/custom-ai-vs-off-the-shelf/',
+        images: [{ url: 'https://www.andinnovatech.com/images/check_ai_automation.png' }],
+    }
 };
 
 const aiComparison = [

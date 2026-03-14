@@ -8,7 +8,7 @@ import { usaLocations } from '@/lib/usa-locations';
 import { servicesList } from '@/lib/services';
 
 export const metadata: Metadata = {
-    title: 'Sitemap | All Pages - AnD Innovatech',
+    title: 'Sitemap | All Pages & Services',
     description: 'A complete list of all pages and services provided by AnD Innovatech across the USA, Canada, and India.',
 };
 

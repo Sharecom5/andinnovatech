@@ -14,8 +14,14 @@ import PricingPreview from '@/components/sections/PricingPreview';
 import AiAutomationSaaS from '@/components/sections/AiAutomationSaaS';
 
 export const metadata: Metadata = {
-  title: 'ROI-Driven Software & SEO for US Home Services | AnD Innovatech',
-  description: 'Stop losing leads to competitors. We build high-performance websites, #1 SEO rankings, and AI-powered booking systems for US service companies. Save 40-60% vs local agencies. Get a free audit!',
+  title: 'AnD Innovatech | Software & SEO for US Home Services',
+  description: 'Stop losing leads. We build high-performance websites, #1 SEO rankings, and AI-powered booking for US service companies. Save 40-60%. Get a free audit!',
+  openGraph: {
+    title: 'AnD Innovatech | Software & SEO for US Home Services',
+    description: 'Grow your service business with elite engineering and SEO.',
+    url: 'https://www.andinnovatech.com',
+    images: [{ url: 'https://www.andinnovatech.com/images/hero_main_abstract.png' }],
+  }
 };
 
 export default function Home() {

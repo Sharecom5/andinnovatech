@@ -10,6 +10,12 @@ import Link from 'next/link';
 export const metadata: Metadata = {
     title: 'AnD Innovatech vs. Local US Agencies | The ROI Comparison',
     description: 'Compare the cost and quality of AnD Innovatech vs. traditional US software agencies. Discover how we deliver Silicon Valley engineering at 60% lower costs.',
+    openGraph: {
+        title: 'AnD Innovatech vs. Local US Agencies | The ROI Comparison',
+        description: 'Elite engineering quality at a fraction of traditional US agency costs.',
+        url: 'https://www.andinnovatech.com/comparison/agency-comparison/',
+        images: [{ url: 'https://www.andinnovatech.com/images/hero_main_abstract.png' }],
+    }
 };
 
 const comparisonData = [

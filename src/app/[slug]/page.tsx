@@ -26,13 +26,13 @@ interface DynamicPageProps {
 
 // ── SEO metadata title formulas ─────────────────────────────────
 const seoTitleFormulas = [
-    (name: string, stateCode: string) => `#1 SEO Services in ${name}, ${stateCode} | Get More Leads`,
-    (name: string, _sc: string, state: string) => `Award-Winning SEO Agency ${name}, ${state} | AnD Innovatech`,
-    (name: string) => `${name}'s Best SEO Company | Rank #1 on Google`,
-    (name: string) => `Local SEO Services ${name} | Guaranteed Organic Growth`,
-    (name: string) => `${name} Search Engine Optimization | Scale Your ROI`,
-    (name: string, stateCode: string) => `SEO Experts in ${name} ${stateCode} | Fixed-Price SEO`,
-    (name: string) => `${name} SEO Agency | We Build High-Performance Rankings`,
+    (name: string, stateCode: string) => `#1 SEO Agency ${name}, ${stateCode}`,
+    (name: string, _sc: string, state: string) => `SEO Experts in ${name}, ${state}`,
+    (name: string, stateCode: string) => `${name} ${stateCode} SEO Company`,
+    (name: string) => `Local SEO Services in ${name}`,
+    (name: string) => `${name} Search Engine Optimization`,
+    (name: string, stateCode: string) => `Best SEO Agency ${name} ${stateCode}`,
+    (name: string) => `${name} SEO & Lead Automation`,
 ];
 
 export async function generateStaticParams() {
@@ -83,17 +83,25 @@ export async function generateMetadata({ params }: DynamicPageProps): Promise<Me
         const city = usaCities.find((c) => c.slug.toLowerCase() === citySlug);
         if (!city) return { title: 'Not Found' };
 
-        const index = city.name.length;
+        const index = usaCities.findIndex(c => c.slug === city.slug);
         const titleFormulas = [
-            `Top Web Development Services in ${city.name} | AnD Innovatech`,
-            `${city.name}'s #1 Web Development Company ${city.stateCode}`,
-            `${city.name} Web Design & Development Agency | Build Your Lead Machine`,
-            `Custom High-Performance Web Development in ${city.name}`,
+            `Web Development in ${city.name}, ${city.stateCode}`,
+            `${city.name}'s Best Web Design Agency`,
+            `Custom Web Development ${city.name} ${city.stateCode}`,
+            `High-Performance Web Design ${city.name}`,
         ];
+        const title = titleFormulas[index % titleFormulas.length];
+        const url = `https://www.andinnovatech.com/web-development-${city.slug}/`;
         return {
-            title: titleFormulas[index % titleFormulas.length],
-            description: `AndInnovatech delivers enterprise-grade web development in ${city.name}. Custom websites for ${city.industries.slice(0, 2).join(', ')}.`,
-            alternates: { canonical: `https://www.andinnovatech.com/web-development-${city.slug}/` },
+            title,
+            description: `AnD Innovatech delivers enterprise-grade web development in ${city.name}. Custom websites for ${city.industries.slice(0, 2).join(', ')}.`,
+            openGraph: {
+                title: `${title} | AnD Innovatech`,
+                description: `AnD Innovatech delivers web development in ${city.name}.`,
+                url,
+                images: [{ url: 'https://www.andinnovatech.com/images/dev_abstract.png' }],
+            },
+            alternates: { canonical: url },
         };
     }
 
@@ -108,10 +116,10 @@ export async function generateMetadata({ params }: DynamicPageProps): Promise<Me
         const title = titleFn(city.name, city.stateCode, city.state);
 
         const descFormulas = [
-            `Expert SEO services for ${city.name} businesses in ${city.topIndustries[0].toLowerCase()} & ${city.topIndustries[1].toLowerCase()}. AndInnovatech helps ${city.name} brands rank higher and grow organic traffic.`,
-            `${city.name} SEO services tailored for ${city.topIndustries[0]} companies. AndInnovatech delivers real keyword rankings and measurable organic growth for ${city.stateCode} businesses.`,
-            `Local SEO services for ${city.name} businesses in ${city.topIndustries[0].toLowerCase()} and beyond. Get found on Google and grow with AndInnovatech's data-driven strategies.`,
-            `AndInnovatech provides ${city.name}, ${city.stateCode} businesses with proven SEO strategies — specializing in ${city.topIndustries[0]} and ${city.topIndustries[1]}.`,
+            `Expert SEO services for ${city.name} businesses in ${city.topIndustries[0].toLowerCase()} & ${city.topIndustries[1].toLowerCase()}. AnD Innovatech helps ${city.name} brands rank higher and grow organic traffic.`,
+            `${city.name} SEO services tailored for ${city.topIndustries[0]} companies. AnD Innovatech delivers real keyword rankings and measurable organic growth for ${city.stateCode} businesses.`,
+            `Local SEO services for ${city.name} businesses in ${city.topIndustries[0].toLowerCase()} and beyond. Get found on Google and grow with AnD Innovatech's data-driven strategies.`,
+            `AnD Innovatech provides ${city.name}, ${city.stateCode} businesses with proven SEO strategies — specializing in ${city.topIndustries[0]} and ${city.topIndustries[1]}.`,
         ];
         const description = descFormulas[cityIndex % descFormulas.length].slice(0, 160);
         const url = `https://www.andinnovatech.com/seo-services-${city.slug}/`;
@@ -119,7 +127,13 @@ export async function generateMetadata({ params }: DynamicPageProps): Promise<Me
         return {
             title,
             description,
-            openGraph: { title, description, url, type: 'website' },
+            openGraph: {
+                title: `${title} | AnD Innovatech`,
+                description,
+                url,
+                type: 'website',
+                images: [{ url: 'https://www.andinnovatech.com/images/seo_abstract.png' }],
+            },
             alternates: { canonical: url },
         };
     }
@@ -131,14 +145,21 @@ export async function generateMetadata({ params }: DynamicPageProps): Promise<Me
             const serviceSlug = lowerSlug.replace('seo-for-', '').replace(`-companies-${loc.slug}`, '');
             const service = serviceSlug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 
-            const title = `SEO for ${service} Companies in ${loc.city}, ${loc.stateCode} | Andinnovatech`;
-            const description = `Andinnovatech offers expert local SEO for ${service} businesses in ${loc.city}, ${loc.state}. Get found on Google & generate more leads. Claim your free SEO audit today!`;
+            const title = `${service} SEO ${loc.city}, ${loc.stateCode}`;
+            const description = `AnD Innovatech offers expert local SEO for ${service} businesses in ${loc.city}, ${loc.state}. Rank on Google & generate more leads. Free audit today!`;
 
+            const url = `https://www.andinnovatech.com/${lowerSlug}/`;
             return {
                 title,
                 description,
-                openGraph: { title, description, type: 'website' },
-                alternates: { canonical: `https://www.andinnovatech.com/${lowerSlug}/` }
+                openGraph: {
+                    title: `${title} | AnD Innovatech`,
+                    description,
+                    url,
+                    type: 'website',
+                    images: [{ url: 'https://www.andinnovatech.com/images/seo_abstract.png' }],
+                },
+                alternates: { canonical: url }
             };
         }
     }
@@ -150,19 +171,22 @@ export async function generateMetadata({ params }: DynamicPageProps): Promise<Me
             const serviceSlug = lowerSlug.replace('seo-for-', '').replace(`-${loc.slug}`, '');
             const service = serviceSlug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 
-            const title = `SEO for ${service} Companies in ${loc.city} | Andinnovatech`;
-            const description = `Andinnovatech offers expert SEO services for ${service} businesses in ${loc.city}, ${loc.province}. Rank higher on Google & get more local customers. Free audit available!`;
+            const title = `${service} SEO in ${loc.city}, ${loc.province}`;
+            const description = `AnD Innovatech offers expert SEO services for ${service} businesses in ${loc.city}, ${loc.province}. Rank higher on Google & get more local customers.`;
 
+            const url = `https://www.andinnovatech.com/${lowerSlug}/`;
             return {
                 title,
                 description,
                 openGraph: {
-                    title,
+                    title: `${title} | AnD Innovatech`,
                     description,
-                    type: 'website'
+                    url,
+                    type: 'website',
+                    images: [{ url: 'https://www.andinnovatech.com/images/seo_abstract.png' }],
                 },
                 alternates: {
-                    canonical: `https://www.andinnovatech.com/${lowerSlug}/`
+                    canonical: url
                 }
             };
         }
@@ -174,15 +198,19 @@ export async function generateMetadata({ params }: DynamicPageProps): Promise<Me
 
     const url = `https://www.andinnovatech.com/${slug}/`;
 
+    // Ensure blog titles are concise for the layout template
+    const cleanTitle = post.title.length > 55 ? post.title.substring(0, 52) + '...' : post.title;
+
     return {
-        title: post.title,
+        title: cleanTitle,
         description: post.description,
         openGraph: {
-            title: post.title,
+            title: `${cleanTitle} | AnD Innovatech`,
             description: post.description,
             url,
             type: 'article',
             publishedTime: post.date,
+            images: [{ url: post.image || 'https://www.andinnovatech.com/images/hero_main_abstract.png' }],
         },
         alternates: {
             canonical: url,

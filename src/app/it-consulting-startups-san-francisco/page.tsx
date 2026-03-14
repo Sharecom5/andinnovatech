@@ -8,8 +8,14 @@ import Button from '@/components/ui/Button';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-    title: 'Expert IT Consulting for Startups in San Francisco | AnD Innovatech',
-    description: 'Looking for a strategic IT consulting partner in SF? We help San Francisco startups build scalable architectures, secure their data, and optimize their engineering burn rate. Local SF expertise.',
+    title: 'Expert IT Consulting for Startups in San Francisco',
+    description: 'Scale your SF startup with elite engineering and technical strategy. We provide fractional CTO services and agile development for Bay Area founders.',
+    openGraph: {
+        title: 'Expert IT Consulting for Startups in San Francisco',
+        description: 'Elite technical advisory for SF startups.',
+        url: 'https://www.andinnovatech.com/it-consulting-startups-san-francisco/',
+        images: [{ url: 'https://www.andinnovatech.com/images/hero_main_abstract.png' }],
+    }
 };
 
 const sfItFeatures = [

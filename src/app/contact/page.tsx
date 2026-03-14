@@ -5,8 +5,14 @@ import { Mail, Linkedin, Phone, MapPin, Clock } from 'lucide-react';
 import SectionHeading from '@/components/ui/SectionHeading';
 
 export const metadata: Metadata = {
-    title: 'Get a Free Strategy Call & Audit | Contact AnD Innovatech',
+    title: 'Get a Free Strategy Call & Audit',
     description: 'Ready to scale? Book a 15-minute discovery call or request a free SEO audit. We respond to all US and Canada inquiries within 4 business hours.',
+    openGraph: {
+        title: 'Get a Free Strategy Call & Audit',
+        description: 'Speak with our engineering and SEO leads today.',
+        url: 'https://www.andinnovatech.com/contact/',
+        images: [{ url: 'https://www.andinnovatech.com/images/hero_main_abstract.png' }],
+    }
 };
 
 export default function ContactUs() {

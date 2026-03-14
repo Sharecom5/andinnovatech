@@ -11,6 +11,12 @@ import RelatedServices from '@/components/sections/RelatedServices';
 export const metadata: Metadata = {
     title: 'Affordable Offshore Web Development for US Startups | Save 60%',
     description: 'Get senior-level engineering at offshore rates. We help US startups build MVPs, scalable SaaS platforms, and enterprise websites with a focus on speed, quality, and cost.',
+    openGraph: {
+        title: 'Affordable Offshore Web Development for US Startups',
+        description: 'Elite engineering quality at a fraction of traditional US costs.',
+        url: 'https://www.andinnovatech.com/services/offshore-development-startups/',
+        images: [{ url: 'https://www.andinnovatech.com/images/dev_abstract.png' }],
+    }
 };
 
 const offshoreBenefits = [

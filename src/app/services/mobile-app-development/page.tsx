@@ -10,8 +10,14 @@ import Link from 'next/link';
 import RelatedServices from '@/components/sections/RelatedServices';
 
 export const metadata: Metadata = {
-    title: 'Mobile App Development | Android & iOS | AnD Innovatech',
+    title: 'Mobile App Development | Android & iOS',
     description: 'Custom mobile app development services by AnD Innovatech. We build native and cross-platform mobile apps for iOS and Android with exceptional UX.',
+    openGraph: {
+        title: 'Mobile App Development | Android & iOS',
+        description: 'Elite mobile apps for iOS and Android.',
+        url: 'https://www.andinnovatech.com/services/mobile-app-development/',
+        images: [{ url: 'https://www.andinnovatech.com/images/dev_abstract.png' }],
+    }
 };
 
 const inclusions = [

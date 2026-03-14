@@ -11,6 +11,12 @@ import RelatedServices from '@/components/sections/RelatedServices';
 export const metadata: Metadata = {
     title: 'Website Development for Landscaping Companies | Stunning Design & SEO',
     description: 'Specialized web design for landscapers. Show off your portfolio with stunning galleries, rank for local landscaping keywords, and book more hardscape projects.',
+    openGraph: {
+        title: 'Website Development for Landscaping Companies | Stunning Design & SEO',
+        description: 'Elite web development for landscaping contractors.',
+        url: 'https://www.andinnovatech.com/services/website-development-landscaping/',
+        images: [{ url: 'https://www.andinnovatech.com/images/dev_abstract.png' }],
+    }
 };
 
 const landscaperWebBenefits = [

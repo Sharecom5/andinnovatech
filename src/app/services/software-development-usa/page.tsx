@@ -2,8 +2,14 @@ import { Metadata } from 'next';
 import GeoLandingPage from '@/components/GeoLandingPage';
 
 export const metadata: Metadata = {
-    title: 'Software Development for US Companies | AndInnovatech',
-    description: 'Scalable custom software development for businesses in the USA. We provide high-quality engineering and seamless communication for US-based projects.',
+    title: 'Software Development for US Companies',
+    description: 'Scalable software engineering for US startups. Custom ERP and SaaS solutions designed for the American market.',
+    openGraph: {
+        title: 'Software Development for US Companies',
+        description: 'Elite software engineering for US enterprises.',
+        url: 'https://www.andinnovatech.com/services/software-development-usa/',
+        images: [{ url: 'https://www.andinnovatech.com/images/dev_abstract.png' }],
+    }
 };
 
 export default function SoftwareDevUSA() {

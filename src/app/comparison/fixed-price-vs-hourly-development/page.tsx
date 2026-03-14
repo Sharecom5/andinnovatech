@@ -10,6 +10,12 @@ import Link from 'next/link';
 export const metadata: Metadata = {
     title: 'Fixed-Price vs. Hourly Development | Why Startups Choose Predictability',
     description: 'Stop the hourly billing nightmare. Discover why fixed-price development cycles are the safest and most efficient way for US startups to build MVPs.',
+    openGraph: {
+        title: 'Fixed-Price vs. Hourly Development | Why Startups Choose Predictability',
+        description: 'Predictable milestone-based pricing for startups and SMBs.',
+        url: 'https://www.andinnovatech.com/comparison/fixed-price-vs-hourly-development/',
+        images: [{ url: 'https://www.andinnovatech.com/images/hero_main_abstract.png' }],
+    }
 };
 
 const pricingComparison = [

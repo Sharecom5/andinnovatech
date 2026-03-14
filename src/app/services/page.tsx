@@ -7,8 +7,14 @@ import Button from '@/components/ui/Button';
 import SectionHeading from '@/components/ui/SectionHeading';
 
 export const metadata: Metadata = {
-    title: 'Full-Service IT & SEO Growth Platform for US Small Businesses',
-    description: 'From custom software to technical SEO, we provide the tools to scale your business. AI-driven lead automation, cloud solutions, and senior web engineering. See our service menu.',
+    title: 'Expert Engineering & SEO Services',
+    description: 'Explore our full menu of engineering and SEO services. Custom web development, AI automation, and technical SEO designed for US scale.',
+    openGraph: {
+        title: 'Expert Engineering & SEO Services',
+        description: 'Elite engineering and SEO services menu.',
+        url: 'https://www.andinnovatech.com/services/',
+        images: [{ url: 'https://www.andinnovatech.com/images/hero_main_abstract.png' }],
+    }
 };
 
 export default function ServicesPage() {

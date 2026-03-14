@@ -8,8 +8,14 @@ import Button from '@/components/ui/Button';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-    title: 'Fixed-Price Software & SEO Plans | 40-60% Savings | AnD Innovatech',
-    description: 'No hourly billing guesswork. Get a fixed-scope quote for your website or SEO campaign within 4 hours. Enterprise quality at offshore rates. View our transparent pricing tiers.',
+    title: 'Fixed-Price Software & SEO Plans | 60% Savings',
+    description: 'No hourly billing guesswork. Get a fixed-scope quote for your website or SEO campaign. Enterprise quality at offshore rates. View our transparent pricing tiers.',
+    openGraph: {
+        title: 'Fixed-Price Software & SEO Plans | 60% Savings',
+        description: 'Transparent pricing for elite software and SEO.',
+        url: 'https://www.andinnovatech.com/pricing/',
+        images: [{ url: 'https://www.andinnovatech.com/images/hero_main_abstract.png' }],
+    }
 };
 
 const tiers = [

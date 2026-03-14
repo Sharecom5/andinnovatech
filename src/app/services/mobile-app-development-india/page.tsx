@@ -4,6 +4,12 @@ import GeoLandingPage from '@/components/GeoLandingPage';
 export const metadata: Metadata = {
     title: 'Mobile App Development in India | iOS & Android App Experts',
     description: 'Top-tier mobile app development for the Indian market. We build engaging, high-performance apps for startups and enterprises across India.',
+    openGraph: {
+        title: 'Mobile App Development in India | iOS & Android App Experts',
+        description: 'Elite mobile app engineering for the Indian market.',
+        url: 'https://www.andinnovatech.com/services/mobile-app-development-india/',
+        images: [{ url: 'https://www.andinnovatech.com/images/dev_abstract.png' }],
+    }
 };
 
 export default function MobileAppDevIndia() {

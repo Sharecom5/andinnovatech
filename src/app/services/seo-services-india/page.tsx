@@ -4,6 +4,12 @@ import GeoLandingPage from '@/components/GeoLandingPage';
 export const metadata: Metadata = {
     title: 'SEO Services in India | Grow Your Business Nationally',
     description: 'Leading SEO services for businesses across India. Increase your organic visibility in Mumbai, Delhi, Bangalore, and capture the Indian digital market.',
+    openGraph: {
+        title: 'SEO Services in India | Grow Your Business Nationally',
+        description: 'Elite SEO for the Indian market.',
+        url: 'https://www.andinnovatech.com/services/seo-services-india/',
+        images: [{ url: 'https://www.andinnovatech.com/images/seo_abstract.png' }],
+    }
 };
 
 export default function SEOServicesIndia() {

@@ -8,8 +8,14 @@ import Button from '@/components/ui/Button';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-    title: 'Enterprise Cloud Solutions | AWS, Azure, GCP Experts | AnD Innovatech',
-    description: 'Modernize your digital infrastructure with scalable cloud solutions. Specialist AWS, Azure, and GCP migration, management, and cost optimization for US businesses.',
+    title: 'Cloud Solutions & AWS/GCP Experts',
+    description: 'Modernize your digital infrastructure with scalable cloud solutions. Specialist AWS, Azure, and GCP migration and cost optimization for US businesses.',
+    openGraph: {
+        title: 'Cloud Solutions & AWS/GCP Experts',
+        description: 'Elite cloud architecture and migration.',
+        url: 'https://www.andinnovatech.com/services/cloud-computing/',
+        images: [{ url: 'https://www.andinnovatech.com/images/hero_main_abstract.png' }],
+    }
 };
 
 const inclusions = [

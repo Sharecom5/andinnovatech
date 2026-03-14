@@ -5,8 +5,14 @@ import { getAllPosts } from '@/lib/mdx';
 import SectionHeading from '@/components/ui/SectionHeading';
 
 export const metadata: Metadata = {
-    title: 'Insights & Technical Strategy Blog | AnD Innovatech',
+    title: 'Insights & Technical Strategy Blog',
     description: 'Expert perspectives on software engineering, results-driven SEO, and digital transformation. Stay ahead of the curve with our weekly industry insights.',
+    openGraph: {
+        title: 'Insights & Technical Strategy Blog',
+        description: 'Elite technical and growth perspectives.',
+        url: 'https://www.andinnovatech.com/blog/',
+        images: [{ url: 'https://www.andinnovatech.com/images/hero_main_abstract.png' }],
+    }
 };
 
 export default async function BlogPage() {

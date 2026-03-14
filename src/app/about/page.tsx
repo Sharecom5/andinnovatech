@@ -9,8 +9,14 @@ import SectionHeading from '@/components/ui/SectionHeading';
 import Badge from '@/components/ui/Badge';
 
 export const metadata: Metadata = {
-    title: 'Meet AnD Innovatech | 7+ Years of Engineering Success for US SMBs',
-    description: 'US-based strategy meets global engineering. Discover how we\'ve helped hundreds of service businesses and startups achieve #1 rankings and 50% cost savings since 2017.',
+    title: 'About AnD Innovatech | Engineering Success Since 2017',
+    description: 'US strategy meets global engineering. How we\'ve helped hundreds of service businesses achieve #1 rankings and 50% cost savings since 2017.',
+    openGraph: {
+        title: 'About AnD Innovatech | Engineering Success Since 2017',
+        description: 'Discover the story behind AnD Innovatech.',
+        url: 'https://www.andinnovatech.com/about/',
+        images: [{ url: 'https://www.andinnovatech.com/images/about_team.png' }],
+    }
 };
 
 const differences = [

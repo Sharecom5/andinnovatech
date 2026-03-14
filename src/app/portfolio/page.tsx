@@ -8,8 +8,14 @@ import Badge from '@/components/ui/Badge';
 import SectionHeading from '@/components/ui/SectionHeading';
 
 export const metadata: Metadata = {
-    title: 'Our Work: Case Studies in SEO and Software Engineering Success',
-    description: 'See real results. From 314% organic traffic growth for local US service businesses to enterprise SaaS builds. Explore our portfolio of successes and book your own story.',
+    title: 'Top-Rated SEO & Software Case Studies',
+    description: 'See real results. From 314% organic traffic growth for local US service businesses to enterprise SaaS builds. Explore our portfolio of successes.',
+    openGraph: {
+        title: 'Top-Rated SEO & Software Case Studies',
+        description: 'Real results for real businesses.',
+        url: 'https://www.andinnovatech.com/portfolio/',
+        images: [{ url: 'https://www.andinnovatech.com/images/portfolio_abstract.png' }],
+    }
 };
 
 const projects = [
@@ -100,7 +106,7 @@ export default function Portfolio() {
                                 '@type': 'CollectionPage',
                                 '@id': 'https://www.andinnovatech.com/portfolio/#webpage',
                                 url: 'https://www.andinnovatech.com/portfolio/',
-                                name: 'AnD Innovatech Portfolio | Case Studies',
+                                name: 'AnD Innovatech Services',
                                 description: 'Explore our track record of excellence in custom software and SEO.',
                                 isPartOf: { '@id': 'https://www.andinnovatech.com/#website' },
                                 breadcrumb: { '@id': 'https://www.andinnovatech.com/portfolio/#breadcrumb' }

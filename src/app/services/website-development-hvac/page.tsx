@@ -11,6 +11,12 @@ import RelatedServices from '@/components/sections/RelatedServices';
 export const metadata: Metadata = {
     title: 'Website Development for HVAC Companies | High-Conversion Designs',
     description: 'We build high-performance, SEO-optimized websites for HVAC contractors. Custom Next.js builds that load in <1s and convert more emergency calls into booked jobs.',
+    openGraph: {
+        title: 'Website Development for HVAC Companies | High-Conversion Designs',
+        description: 'Elite web development for HVAC contractors.',
+        url: 'https://www.andinnovatech.com/services/website-development-hvac/',
+        images: [{ url: 'https://www.andinnovatech.com/images/dev_abstract.png' }],
+    }
 };
 
 const hvacWebBenefits = [

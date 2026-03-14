@@ -8,8 +8,14 @@ import Button from '@/components/ui/Button';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-    title: 'Top AI Chatbot Services for Businesses in Phoenix | AnD Innovatech',
+    title: 'Top AI Chatbot Services for Businesses in Phoenix',
     description: 'Looking for a Phoenix AI chatbot partner? We build intelligent, lead-generating chatbots for Phoenix businesses. Automate customer service and book more jobs 24/7.',
+    openGraph: {
+        title: 'Top AI Chatbot Services for Businesses in Phoenix',
+        description: 'Elite AI automation for Phoenix companies.',
+        url: 'https://www.andinnovatech.com/ai-chatbot-phoenix/',
+        images: [{ url: 'https://www.andinnovatech.com/images/check_ai_automation.png' }],
+    }
 };
 
 const phoenixAiFeatures = [

@@ -8,8 +8,14 @@ import Button from '@/components/ui/Button';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-    title: 'Top-Rated SEO Agency for Local Businesses in Los Angeles | AnD Innovatech',
+    title: 'SEO Agency Los Angeles | Top-Rated Results',
     description: 'Looking for a Los Angeles SEO agency that delivers? We help LA local businesses dominate search results, rank on Google Maps, and grow revenue. Free SEO audit for LA businesses.',
+    openGraph: {
+        title: 'SEO Agency Los Angeles | Top-Rated Results',
+        description: 'Elite SEO for Los Angeles businesses.',
+        url: 'https://www.andinnovatech.com/seo-agency-los-angeles/',
+        images: [{ url: 'https://www.andinnovatech.com/images/seo_abstract.png' }],
+    }
 };
 
 const laSeoFeatures = [

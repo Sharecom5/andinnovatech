@@ -2,8 +2,14 @@ import { Metadata } from 'next';
 import GeoLandingPage from '@/components/GeoLandingPage';
 
 export const metadata: Metadata = {
-    title: 'Website Development for Canadian Businesses | AndInnovatech',
-    description: 'Professional website development services for companies across Canada. We build responsive, high-performing websites optimized for the Canadian market.',
+    title: 'Website Development for Canadian Businesses',
+    description: 'High-performance web builds for Canadian startups. We deliver secure, SEO-ready digital platforms scaled for the Canadian market.',
+    openGraph: {
+        title: 'Website Development for Canadian Businesses',
+        description: 'Elite web development for Canada.',
+        url: 'https://www.andinnovatech.com/services/website-development-canada/',
+        images: [{ url: 'https://www.andinnovatech.com/images/dev_abstract.png' }],
+    }
 };
 
 export default function WebsiteDevCanada() {

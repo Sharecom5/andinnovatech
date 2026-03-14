@@ -9,8 +9,14 @@ import Link from 'next/link';
 import RelatedServices from '@/components/sections/RelatedServices';
 
 export const metadata: Metadata = {
-    title: 'Local SEO Services for Service Businesses | Rank #1 on Google Maps',
-    description: 'Dominate your local market. We provide ROI-focused SEO for HVAC, Plumbers, and Cleaning companies. Guaranteed rank improvements and lead growth. Free SEO audit.',
+    title: '#1 Local SEO Experts | Rank on Google Maps',
+    description: 'Dominate your local market. We provide ROI-focused SEO for HVAC, Plumbers, and Cleaning companies. Guaranteed rank improvements and lead growth.',
+    openGraph: {
+        title: '#1 Local SEO Experts | Rank on Google Maps',
+        description: 'Elite local SEO for service businesses.',
+        url: 'https://www.andinnovatech.com/services/local-seo-experts/',
+        images: [{ url: 'https://www.andinnovatech.com/images/seo_abstract.png' }],
+    }
 };
 
 const seoBenefits = [

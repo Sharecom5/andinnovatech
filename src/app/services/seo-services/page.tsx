@@ -8,8 +8,14 @@ import Button from '@/components/ui/Button';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-    title: 'Data-Driven SEO Performance & Growth | AnD Innovatech',
-    description: 'Specialist SEO agency for US SMBs. We deliver organic search dominance through technical excellence, strategic keyword targeting, and high-authority link building.',
+    title: 'Data-Driven SEO Performance & Growth',
+    description: 'Specialist SEO agency for US SMBs. We deliver organic search dominance through technical excellence, strategic keyword targeting, and authority building.',
+    openGraph: {
+        title: 'Data-Driven SEO Performance & Growth',
+        description: 'Elite SEO strategies for US businesses.',
+        url: 'https://www.andinnovatech.com/services/seo-services/',
+        images: [{ url: 'https://www.andinnovatech.com/images/seo_abstract.png' }],
+    }
 };
 
 const inclusions = [

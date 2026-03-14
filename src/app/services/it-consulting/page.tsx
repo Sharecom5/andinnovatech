@@ -10,8 +10,14 @@ import Link from 'next/link';
 import RelatedServices from '@/components/sections/RelatedServices';
 
 export const metadata: Metadata = {
-    title: 'Strategic IT Consulting & Advisory | AnD Innovatech',
+    title: 'Strategic IT Consulting & Advisory',
     description: 'Expert technical advisory for US startups and SMBs. We bridge the gap between business vision and technical execution with ROI-focused IT consulting.',
+    openGraph: {
+        title: 'Strategic IT Consulting & Advisory',
+        description: 'Elite technical advisory for business growth.',
+        url: 'https://www.andinnovatech.com/services/it-consulting/',
+        images: [{ url: 'https://www.andinnovatech.com/images/hero_main_abstract.png' }],
+    }
 };
 
 const inclusions = [

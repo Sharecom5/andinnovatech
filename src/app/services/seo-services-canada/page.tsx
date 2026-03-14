@@ -2,8 +2,14 @@ import { Metadata } from 'next';
 import GeoLandingPage from '@/components/GeoLandingPage';
 
 export const metadata: Metadata = {
-    title: 'SEO Services for Businesses in Canada | AndInnovatech',
-    description: 'Expert SEO services tailored for the Canadian market. Improve your rankings on Google.ca and grow your business in Toronto, Vancouver, and beyond.',
+    title: 'SEO Services for Businesses in Canada',
+    description: 'Specialist SEO for Canadian SMBs. We deliver organic search dominance through technical excellence and strategic growth.',
+    openGraph: {
+        title: 'SEO Services for Businesses in Canada',
+        description: 'Elite SEO for Canadian market growth.',
+        url: 'https://www.andinnovatech.com/services/seo-services-canada/',
+        images: [{ url: 'https://www.andinnovatech.com/images/seo_abstract.png' }],
+    }
 };
 
 export default function SEOServicesCanada() {

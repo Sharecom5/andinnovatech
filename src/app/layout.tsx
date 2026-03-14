@@ -14,7 +14,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: {
-    default: 'AnD Innovatech | Software & SEO for US Service Businesses',
+    default: 'AnD Innovatech | Software & SEO for US Home Services',
     template: '%s | AnD Innovatech',
   },
   description: 'Elite software engineering meets #1 SEO rankings. We help US and Canada small businesses scale with custom web builds and AI lead automation. Save 40-60% today.',
@@ -40,11 +40,20 @@ export const metadata: Metadata = {
     siteName: 'AnD Innovatech',
     title: 'Growth-Focused Software & SEO Agency | AnD Innovatech',
     description: 'Stop losing leads to competitors. Custom web builds, technical SEO, and AI automation for US service companies. Scalable results, zero overhead.',
+    images: [
+      {
+        url: 'https://www.andinnovatech.com/images/hero_main_abstract.png',
+        width: 1200,
+        height: 630,
+        alt: 'AnD Innovatech - SEO & Software Engineering',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Growth-Focused Software & SEO Agency | AnD Innovatech',
     description: 'Custom web builds, technical SEO, and AI automation for US service companies.',
+    images: ['https://www.andinnovatech.com/images/hero_main_abstract.png'],
   },
   verification: {
     google: 'Raoc_zOx3RRFvtK-d-PKnPlTwzUNPpEa1MQZOFyud9U',

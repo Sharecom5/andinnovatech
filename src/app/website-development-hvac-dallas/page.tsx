@@ -10,6 +10,12 @@ import Link from 'next/link';
 export const metadata: Metadata = {
     title: 'Website Development for HVAC Companies in Dallas | Rank #1 Today',
     description: 'Looking for the best HVAC website development in Dallas? We build high-conversion, SEO-optimized sites for DFW HVAC contractors. Fast, mobile-first, and leads-focused.',
+    openGraph: {
+        title: 'Website Development for HVAC Companies in Dallas',
+        description: 'Elite web development for Dallas HVAC services.',
+        url: 'https://www.andinnovatech.com/website-development-hvac-dallas/',
+        images: [{ url: 'https://www.andinnovatech.com/images/dev_abstract.png' }],
+    }
 };
 
 const dallasHvacFeatures = [
