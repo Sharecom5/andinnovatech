@@ -15,6 +15,11 @@ import { servicesList } from '@/lib/services';
 import CanadaLocalSeoPage from '@/components/CanadaLocalSeoPage';
 import UsaGeoLandingPage from '@/components/UsaGeoLandingPage';
 
+// ── CRITICAL: Force proper HTTP 404 for unknown slugs ───────────
+// Without this, Next.js serves a 200 for unmatched dynamic routes
+// (e.g. random URLs like /testing-for-404-xyz), which hurts SEO/indexing.
+export const dynamicParams = false;
+
 interface DynamicPageProps {
     params: { slug: string };
 }
