@@ -51,27 +51,20 @@ export default function Testimonials() {
                     dangerouslySetInnerHTML={{
                         __html: JSON.stringify({
                             '@context': 'https://schema.org',
-                            '@type': 'ProfessionalService',
-                            '@id': 'https://www.andinnovatech.com/#service',
-                            name: 'AnD Innovatech IT & SEO Services',
-                            parentOrganization: { '@id': 'https://www.andinnovatech.com/#organization' },
+                            '@type': 'Service',
+                            name: 'IT & SEO Services',
+                            provider: { '@id': 'https://andinnovatech.com/#organization' },
                             aggregateRating: {
                                 '@type': 'AggregateRating',
-                                ratingValue: 4.9,
-                                bestRating: 5,
-                                worstRating: 1,
-                                reviewCount: 124,
+                                ratingValue: '4.9',
+                                reviewCount: '124',
                             },
                             review: testimonials.map(t => ({
                                 '@type': 'Review',
                                 author: { '@type': 'Person', name: t.name },
-                                reviewRating: {
-                                    '@type': 'Rating',
-                                    ratingValue: t.rating,
-                                    bestRating: 5,
-                                    worstRating: 1
-                                },
-                                reviewBody: t.quote
+                                reviewRating: { '@type': 'Rating', ratingValue: t.rating },
+                                reviewBody: t.quote,
+                                publisher: { '@id': 'https://andinnovatech.com/#organization' }
                             }))
                         })
                     }}

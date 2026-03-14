@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { Globe, Server, Code2, TrendingUp, Cloud, Lightbulb, ArrowRight, Bot } from 'lucide-react';
 import SectionHeading from '@/components/ui/SectionHeading';
@@ -52,62 +51,47 @@ const fallbackServices = [
 
 export default function Services() {
     return (
-        <section className="section-padding bg-grey-light dark:bg-navy/80 overflow-hidden relative">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[150px] -z-10" />
-
-            <div className="section-container relative z-10">
+        <section className="section-padding bg-grey-light dark:bg-slate-900/50 overflow-hidden">
+            <div className="section-container">
                 <SectionHeading
-                    title={<>Elite <span className="gradient-text">Digital Services</span></>}
-                    subtitle="Empowering your business with expert IT and AI-driven excellence"
+                    title="Our Services"
+                    subtitle="Empowering your business with expert IT and SEO excellence"
                 />
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-                    {fallbackServices.map((service, index) => (
-                        <motion.div
-                            key={service.slug + service.title}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.1 }}
-                        >
-                            <Link href={`/services/${service.slug}`}>
-                                <div
-                                    className={cn(
-                                        'group relative bg-white dark:bg-slate-800 rounded-3xl p-8',
-                                        'border border-slate-100 dark:border-slate-700/50',
-                                        'shadow-xl hover:shadow-primary/10',
-                                        'transition-all duration-500 hover:-translate-y-2',
-                                        'ai-card-glow overflow-hidden'
-                                    )}
-                                >
-                                    {/* Icon Decoration */}
-                                    <div className="absolute -top-6 -right-6 w-24 h-24 bg-primary/5 rounded-full blur-2xl group-hover:bg-primary/10 transition-colors" />
-
-                                    {/* Icon */}
-                                    <div className="w-16 h-16 rounded-2xl bg-gradient-primary flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500 shadow-glow-primary">
-                                        <service.icon size={30} className="text-white" />
-                                    </div>
-
-                                    {/* Title */}
-                                    <h3 className="text-2xl font-heading font-bold text-navy dark:text-white mb-4 tracking-tight">
-                                        {service.title}
-                                    </h3>
-
-                                    {/* Description */}
-                                    <p className="text-grey dark:text-slate-400 text-sm leading-relaxed mb-6">
-                                        {service.description}
-                                    </p>
-
-                                    {/* Learn More Link */}
-                                    <span className="inline-flex items-center gap-2 text-primary font-bold text-sm group-hover:gap-4 transition-all duration-300">
-                                        Explore Solution
-                                        <ArrowRight size={18} />
-                                    </span>
-
-                                    <div className="scan-line !h-[1px] opacity-0 group-hover:opacity-10" />
+                    {fallbackServices.map((service) => (
+                        <Link key={service.slug + service.title} href={`/services/${service.slug}`}>
+                            <div
+                                className={cn(
+                                    'group relative bg-white dark:bg-slate-800 rounded-xl p-6 lg:p-8',
+                                    'border border-slate-100 dark:border-slate-700',
+                                    'shadow-card hover:shadow-card-hover',
+                                    'transition-all duration-300 hover:-translate-y-1',
+                                    'hover:border-l-4 hover:border-l-primary'
+                                )}
+                            >
+                                {/* Icon */}
+                                <div className="w-14 h-14 rounded-xl bg-gradient-primary flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+                                    <service.icon size={28} className="text-white" />
                                 </div>
-                            </Link>
-                        </motion.div>
+
+                                {/* Title */}
+                                <h3 className="text-h4 font-heading font-semibold text-navy dark:text-white mb-3">
+                                    {service.title}
+                                </h3>
+
+                                {/* Description */}
+                                <p className="text-grey dark:text-slate-400 text-sm leading-relaxed mb-4">
+                                    {service.description}
+                                </p>
+
+                                {/* Learn More Link */}
+                                <span className="inline-flex items-center gap-1.5 text-primary font-semibold text-sm group-hover:gap-3 transition-all duration-300">
+                                    Learn More
+                                    <ArrowRight size={16} />
+                                </span>
+                            </div>
+                        </Link>
                     ))}
                 </div>
             </div>

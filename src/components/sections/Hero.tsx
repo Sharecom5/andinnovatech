@@ -289,7 +289,7 @@ function DefaultMockup() {
                 {/* Dashboard Header */}
                 <div className="flex items-center justify-between mb-6">
                     <div>
-                        <div className="text-white font-heading font-semibold text-lg">Analytics Dashboard</div>
+                        <h3 className="text-white font-heading font-semibold text-lg">Analytics Dashboard</h3>
                         <p className="text-slate-400 text-sm">Real-time performance</p>
                     </div>
                     <div className="w-3 h-3 rounded-full bg-green-400 animate-pulse" />
@@ -451,18 +451,15 @@ export default function Hero({
         if (rightContent) return rightContent;
         if (imageSrc) {
             return (
-                <div className="relative aspect-video rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(64,145,145,0.3)] border border-white/10 bg-slate-800 group">
+                <div className="relative aspect-video rounded-3xl overflow-hidden shadow-2xl border border-white/10 bg-slate-800">
                     <Image
                         src={imageSrc}
                         alt={`AnD Innovatech - Strategic IT and SEO Solutions for ${category !== 'default' ? category : 'Businesses'}`}
                         fill
                         priority
-                        sizes="(max-width: 1024px) 1px, 800px"
-                        className="object-cover group-hover:scale-105 transition-transform duration-700"
+                        className="object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-navy/60 via-transparent to-transparent" />
-                    <div className="scan-line" />
-                    <div className="absolute inset-0 border-[1px] border-primary/20 rounded-3xl pointer-events-none" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-navy/40 to-transparent" />
                 </div>
             );
         }
@@ -489,14 +486,14 @@ export default function Hero({
     };
 
     return (
-        <section className="relative min-h-screen flex items-center bg-navy overflow-hidden grid-pattern">
+        <section className="relative min-h-screen flex items-center bg-navy overflow-hidden">
             {/* Animated gradient mesh background */}
-            <div className="absolute inset-0 bg-gradient-mesh opacity-40" />
+            <div className="absolute inset-0 bg-gradient-mesh opacity-60" />
 
-            {/* AI Glowing Background Elements - Optimized for mobile by reducing blur */}
-            <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/20 rounded-full blur-[60px] md:blur-[120px] animate-pulse-glow" />
-            <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-accent/10 rounded-full blur-[80px] md:blur-[150px] animate-pulse-glow" style={{ animationDelay: '2s' }} />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[100px] md:blur-[200px]" />
+            {/* Animated gradient orbs */}
+            <div className="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full blur-[120px] animate-pulse-slow" />
+            <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/15 rounded-full blur-[150px] animate-pulse-slow" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[200px]" />
 
             <div className="section-container relative z-10 py-20 md:py-28 lg:py-32">
                 <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
