@@ -31,6 +31,11 @@ const nextConfig = {
                 destination: 'https://www.andinnovatech.com/:path*',
                 permanent: true,
             },
+            {
+                source: '/our-blog/',
+                destination: '/blog/',
+                permanent: true,
+            },
             // ── Legacy URL redirects ──────────────────────────────────────
             {
                 source: '/blog/:slug/',

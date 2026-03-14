@@ -20,7 +20,18 @@ export const metadata: Metadata = {
   description: 'Elite software engineering meets #1 SEO rankings. We help US and Canada small businesses scale with custom web builds and AI lead automation. Save 40-60% today.',
   metadataBase: new URL('https://www.andinnovatech.com'),
   alternates: {
-    canonical: 'https://www.andinnovatech.com',
+    canonical: 'https://www.andinnovatech.com/',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-snippet': -1,
+      'max-image-preview': 'large',
+      'max-video-preview': -1,
+    },
   },
   openGraph: {
     type: 'website',

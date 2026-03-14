@@ -1,8 +1,8 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-    siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://andinnovatech.com',
+    siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://www.andinnovatech.com',
     generateRobotsTxt: true,
-    exclude: ['/api/*'],
+    exclude: ['/api/*', '/admin/*', '/our-blog/'],
     trailingSlash: true,
     transform: async (config, path) => {
         if (path.includes('web-development-')) {
