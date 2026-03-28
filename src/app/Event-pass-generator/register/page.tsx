@@ -17,7 +17,7 @@ export default function SaaS_Signup() {
     setError('')
 
     try {
-      const res = await fetch('/api/event-pass/register', {
+      const res = await fetch('/api/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form)
