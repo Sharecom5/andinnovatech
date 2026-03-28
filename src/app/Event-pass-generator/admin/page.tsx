@@ -24,6 +24,8 @@ export default function SaaSAdminDashboard() {
   const [successMsg, setSuccessMsg] = useState('')
   const [allowMultipleEntry, setAllowMultipleEntry] = useState(true)
   const [settingsSaved, setSettingsSaved] = useState(false)
+  const [directFormData, setDirectFormData] = useState({ name: '', email: '', phone: '', company: '', designation: '' })
+  const [directPassResult, setDirectPassResult] = useState<any>(null)
 
   useEffect(() => {
     if (status === 'unauthenticated') {
@@ -242,8 +244,32 @@ export default function SaaSAdminDashboard() {
       
       setSuccessMsg(`Massive Export Complete! Generated and downloaded ${totalProcessed} total High-Res Passes safely in batches.`)
       setStep(4)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  async function handleDirectGenerate(e: React.FormEvent) {
+    e.preventDefault()
+    setLoading(true)
+    setDirectPassResult(null)
+    try {
+      const res = await fetch('/api/event-pass/on-spot', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...directFormData,
+          eventName: campaign.name,
+          eventDate: campaign.date,
+          eventVenue: campaign.venue,
+          passType: 'Visitor'
+        })
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error)
+      setDirectPassResult(data.visitor)
     } catch (err: any) {
-      alert("Error: " + err.message)
+      alert(err.message)
     } finally {
       setLoading(false)
     }
@@ -338,13 +364,14 @@ export default function SaaSAdminDashboard() {
 
           <div className="flex items-center justify-between mb-10 relative px-2">
             <div className="absolute left-6 right-6 top-1/2 -translate-y-1/2 h-[2px] bg-zinc-200 -z-10 rounded-full"></div>
-            <div className="absolute left-6 top-1/2 -translate-y-1/2 h-[2px] bg-indigo-600 -z-10 transition-all duration-500 rounded-full" style={{ width: `calc(${(step - 1) * 33.3}% - 24px)` }}></div>
+            <div className="absolute left-6 top-1/2 -translate-y-1/2 h-[2px] bg-indigo-600 -z-10 transition-all duration-500 rounded-full" style={{ width: `calc(${(step - 1) * 25}% - 24px)` }}></div>
             
             {[
               { num: 1, label: 'Details', icon: LayoutDashboard },
               { num: 2, label: 'Design', icon: LayoutTemplate },
               { num: 3, label: 'Audience', icon: Users },
               { num: 4, label: 'Export', icon: Download },
+              { num: 5, label: 'Instant QR', icon: QrCode },
             ].map(s => (
               <div key={s.num} className="flex flex-col items-center gap-2 cursor-pointer group" onClick={() => setStep(s.num)}>
                 <div className={`w-10 h-10 rounded-xl flex items-center justify-center text-sm font-bold transition-all duration-300 ${
@@ -567,6 +594,70 @@ export default function SaaSAdminDashboard() {
                 <div className="pt-10 mt-6 border-t border-zinc-100">
                   <button onClick={() => { setStep(1); setSuccessMsg('') }} className="px-8 py-4 bg-white text-zinc-900 font-bold rounded-2xl border border-zinc-200 hover:bg-zinc-50 transition-all shadow-sm hover:shadow-md">Compile Another Campaign</button>
                 </div>
+              </div>
+            )}
+
+            {step === 5 && (
+              <div className="space-y-8 animate-in slide-in-from-right-4">
+                <div>
+                  <h3 className="text-xl font-bold text-zinc-900 tracking-tight">Direct Pass Generation</h3>
+                  <p className="text-sm text-zinc-500 font-medium">Quickly generate a single QR pass for manual entry.</p>
+                </div>
+
+                <form onSubmit={handleDirectGenerate} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-4">
+                    <div>
+                      <label className="text-[11px] font-bold text-zinc-500 uppercase tracking-wide">Name</label>
+                      <input required className="w-full mt-2 px-4 py-3 bg-zinc-50/50 border border-zinc-200 rounded-2xl outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 transition-all text-sm font-medium" value={directFormData.name} onChange={e => setDirectFormData({...directFormData, name: e.target.value})} placeholder="Attendee Name" />
+                    </div>
+                    <div>
+                      <label className="text-[11px] font-bold text-zinc-500 uppercase tracking-wide">Email</label>
+                      <input type="email" required className="w-full mt-2 px-4 py-3 bg-zinc-50/50 border border-zinc-200 rounded-2xl outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 transition-all text-sm font-medium" value={directFormData.email} onChange={e => setDirectFormData({...directFormData, email: e.target.value})} placeholder="email@example.com" />
+                    </div>
+                    <div>
+                      <label className="text-[11px] font-bold text-zinc-500 uppercase tracking-wide">Mobile / Phone</label>
+                      <input required className="w-full mt-2 px-4 py-3 bg-zinc-50/50 border border-zinc-200 rounded-2xl outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 transition-all text-sm font-medium" value={directFormData.phone} onChange={e => setDirectFormData({...directFormData, phone: e.target.value})} placeholder="+91..." />
+                    </div>
+                  </div>
+                  <div className="space-y-4">
+                    <div>
+                      <label className="text-[11px] font-bold text-zinc-500 uppercase tracking-wide">Company</label>
+                      <input className="w-full mt-2 px-4 py-3 bg-zinc-50/50 border border-zinc-200 rounded-2xl outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 transition-all text-sm font-medium" value={directFormData.company} onChange={e => setDirectFormData({...directFormData, company: e.target.value})} placeholder="Company Name" />
+                    </div>
+                    <div>
+                      <label className="text-[11px] font-bold text-zinc-500 uppercase tracking-wide">Designation</label>
+                      <input className="w-full mt-2 px-4 py-3 bg-zinc-50/50 border border-zinc-200 rounded-2xl outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 transition-all text-sm font-medium" value={directFormData.designation} onChange={e => setDirectFormData({...directFormData, designation: e.target.value})} placeholder="e.g. Exhibitor" />
+                    </div>
+                    <div className="pt-6">
+                      <button type="submit" disabled={loading} className="w-full py-4 bg-indigo-600 text-white font-bold rounded-2xl hover:bg-indigo-700 transition-all shadow-lg flex items-center justify-center gap-2">
+                        {loading ? <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div> : 'Generate & Show Pass'}
+                      </button>
+                    </div>
+                  </div>
+                </form>
+
+                {directPassResult && (
+                  <div className="mt-8 p-8 border-2 border-dashed border-indigo-200 rounded-3xl bg-indigo-50/30 flex flex-col items-center animate-in zoom-in-95">
+                    <h4 className="text-sm font-bold text-indigo-900 mb-6 uppercase tracking-widest">Pass Generated Instantly</h4>
+                    <div className="bg-white p-6 rounded-3xl shadow-xl flex flex-col items-center">
+                      <h2 className="text-xl font-black text-zinc-900 mb-1">{directPassResult.name}</h2>
+                      <p className="text-xs font-bold text-indigo-600 uppercase mb-4">{directPassResult.designation || 'Visitor'}</p>
+                      <img src={directPassResult.qrCode} alt="QR" className="w-48 h-48 rounded-xl border-4 border-zinc-50 mb-4" />
+                      <p className="text-[10px] font-mono font-bold text-zinc-400">{directPassResult.passId}</p>
+                    </div>
+                    <button 
+                      onClick={() => {
+                        const link = document.createElement('a');
+                        link.href = directPassResult.qrCode;
+                        link.download = `QR_${directPassResult.name}_${directPassResult.passId}.png`;
+                        link.click();
+                      }}
+                      className="mt-6 flex items-center gap-2 text-indigo-600 font-bold text-sm hover:underline"
+                    >
+                      <Download className="w-4 h-4" /> Download QR Code Only
+                    </button>
+                  </div>
+                )}
               </div>
             )}
 

@@ -8,7 +8,7 @@ import { sendPassEmail } from '@/lib/resend'
 export async function POST(req: Request) {
   try {
     const body = await req.json()
-    const { name, email, phone, passType, eventName, eventDate, eventVenue, company } = body
+    const { name, email, phone, passType, eventName, eventDate, eventVenue, company, designation } = body
 
     if (!name || (!email && !phone)) {
       return NextResponse.json({ error: 'Name and either Email or Phone are required' }, { status: 400 })
@@ -31,6 +31,7 @@ export async function POST(req: Request) {
       phone:      phone ? phone.trim() : '0000000000',
       company:    company ? company.trim() : '',
       passType:   passType || 'Visitor',
+      designation: designation || passType || 'Visitor',
       eventName:  eventName || 'Live Event',
       eventDate:  eventDate || new Date().toLocaleDateString('en-IN'),
       eventVenue: eventVenue || 'Main Venue',
@@ -72,6 +73,7 @@ export async function POST(req: Request) {
         phone:     visitor.phone,
         company:   visitor.company,
         passType:  visitor.passType,
+        designation: visitor.designation,
         eventName: visitor.eventName,
         qrCode:    qrDataUrl
       }
