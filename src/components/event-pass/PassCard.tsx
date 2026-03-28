@@ -11,6 +11,8 @@ interface PassCardProps {
   eventDate: string
   eventVenue: string
   qrCodeBase64: string
+  designation?: string
+  customBgUrl?: string
   showDownload?: boolean
 }
 
@@ -25,7 +27,7 @@ const PASS_TYPE_STYLES: Record<string, { badgeBg: string; badgeText: string }> =
 export default function PassCard({
   name, company, passType, passId,
   eventName, eventDate, eventVenue,
-  qrCodeBase64, showDownload = true,
+  qrCodeBase64, designation, customBgUrl, showDownload = true,
 }: PassCardProps) {
   const cardRef = useRef<HTMLDivElement>(null)
   const style = PASS_TYPE_STYLES[passType] || PASS_TYPE_STYLES.Visitor
@@ -55,6 +57,50 @@ export default function PassCard({
     }
   }
 
+  if (customBgUrl) {
+    return (
+      <div className="w-[360px] max-w-full font-sans group">
+        <div
+          ref={cardRef}
+          className="w-full relative aspect-[3/4.5] bg-white rounded-2xl overflow-hidden shadow-2xl"
+        >
+          {/* Custom Background Image */}
+          <img src={customBgUrl} className="absolute inset-0 w-full h-full object-cover" alt="Pass Background" />
+          
+          {/* Overlay Content */}
+          <div className="absolute inset-0 flex flex-col items-center justify-end pb-[10%] pt-[20%]">
+            {/* User Info Zone (Above QR) */}
+            <div className="text-center mb-4 px-4 drop-shadow-md">
+              <h2 className="text-white text-3xl font-black uppercase tracking-tight leading-none mb-1 drop-shadow-lg">{name}</h2>
+              {company && <p className="text-white/90 text-sm font-bold uppercase tracking-wider underline underline-offset-4 decoration-indigo-500/50">{company}</p>}
+            </div>
+
+            {/* QR Code (Centered) */}
+            <div className="w-32 h-32 bg-white rounded-xl p-2 shadow-xl mb-6 flex items-center justify-center">
+              {qrCodeBase64 && <img src={qrCodeBase64} alt="QR" className="w-full h-full" />}
+            </div>
+
+            {/* Designation (Bottom Bar Style) */}
+            {designation && (
+              <div className="w-full bg-orange-600/90 py-4 text-center mt-auto border-t border-white/20 backdrop-blur-sm">
+                <span className="text-white text-3xl font-black tracking-[0.1em] uppercase">{designation}</span>
+              </div>
+            )}
+          </div>
+        </div>
+        {showDownload && (
+          <button
+            onClick={() => handleDownload('png')}
+            className="w-full mt-6 flex items-center justify-center gap-2 py-4 rounded-xl bg-slate-900 border border-slate-800 text-white text-sm font-bold tracking-wide hover:bg-slate-800 hover:border-slate-700 transition-all group shadow-md"
+          >
+            <Download className="w-4 h-4 text-slate-400 group-hover:text-white transition-colors" />
+            Download Pass as Image
+          </button>
+        )}
+      </div>
+    )
+  }
+
   return (
     <div className="w-[360px] max-w-full font-sans group">
       {/* The Pass Card */}
@@ -79,7 +125,7 @@ export default function PassCard({
             <p className="text-blue-200 text-xs font-semibold tracking-widest uppercase mt-1">Official Entry Pass</p>
           </div>
           <span className={`px-3 py-1 text-[10px] font-bold uppercase tracking-widest rounded-full whitespace-nowrap ${style.badgeBg} ${style.badgeText}`}>
-            {passType}
+            {designation || passType}
           </span>
         </div>
 

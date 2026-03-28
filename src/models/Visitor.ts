@@ -15,6 +15,7 @@ export interface IVisitor extends Document {
   eventName?: string
   eventDate: string
   eventVenue: string
+  designation?: string
   createdAt: Date
   enteredAt?: Date
   scanCount: number
@@ -37,6 +38,7 @@ const VisitorSchema = new Schema<IVisitor>({
   eventName:    { type: String },
   eventDate:    { type: String, required: true },
   eventVenue:   { type: String, required: true },
+  designation:  { type: String, trim: true },
   createdAt:    { type: Date, default: Date.now },
   enteredAt:    { type: Date },
   scanCount:    { type: Number, default: 0 },

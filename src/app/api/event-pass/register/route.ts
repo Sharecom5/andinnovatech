@@ -32,7 +32,7 @@ export async function POST(req: NextRequest) {
   }
 
   const body = await req.json()
-  const { name, email, phone, company, passType } = body
+  const { name, email, phone, company, passType, designation } = body
 
   // Validate
   if (!name || !email || !phone) {
@@ -73,6 +73,7 @@ export async function POST(req: NextRequest) {
     passId, name, email: email.toLowerCase(), phone,
     company: company || '',
     passType: passType || 'Visitor',
+    designation: designation || passType || 'Visitor',
     status: 'registered',
     qrCodeUrl,
     eventName, eventDate, eventVenue,
@@ -92,5 +93,6 @@ export async function POST(req: NextRequest) {
     passId: visitor.passId,
     message: `Pass sent to ${email}`,
     qrCodeUrl,
+    designation: visitor.designation,
   })
 }

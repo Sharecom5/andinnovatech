@@ -19,7 +19,7 @@ const PASS_TYPES = [
 
 export default function RegisterPage() {
   const [form, setForm] = useState({
-    name: '', email: '', phone: '', company: '', passType: 'Visitor',
+    name: '', email: '', phone: '', company: '', passType: 'Visitor', designation: '',
   })
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
@@ -78,11 +78,13 @@ export default function RegisterPage() {
               name={form.name}
               company={form.company}
               passType={form.passType}
+              designation={form.designation}
               passId={success.passId}
               eventName={process.env.NEXT_PUBLIC_EVENT_NAME || 'Tech Summit 2025'}
               eventDate={process.env.NEXT_PUBLIC_EVENT_DATE || 'Oct 15 - 17, 2025'}
               eventVenue={process.env.NEXT_PUBLIC_EVENT_VENUE || 'Convention Center, NY'}
               qrCodeBase64={success.qrCodeUrl || ''}
+              customBgUrl={success.customBgUrl}
             />
           </div>
           <div className="m-6 p-5 rounded-2xl bg-blue-50 border border-blue-100 text-sm text-blue-700 leading-relaxed text-center">
@@ -180,6 +182,21 @@ export default function RegisterPage() {
                   onChange={e => update('company', e.target.value)}
                 />
               </div>
+            </div>
+          </div>
+
+          <div className="space-y-2">
+            <label className="text-xs font-semibold text-slate-500 uppercase tracking-wider block">Designation / Title (e.g. CEO, Developer)</label>
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                <User className="h-5 w-5 text-slate-400" />
+              </div>
+              <input
+                className="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all placeholder-slate-400"
+                placeholder="Exhibitor / Manager"
+                value={form.designation}
+                onChange={e => update('designation', e.target.value)}
+              />
             </div>
           </div>
 

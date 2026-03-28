@@ -19,7 +19,7 @@ export default function SaaSAdminDashboard() {
     logoBase64: '',
     customBackgroundBase64: '',
     templateId: 'modern-dark', // modern-dark, minimal-white, corporate-blue, custom
-    csvData: 'John Doe, john@example.com, VIP, Acme Corp\nJane Smith, jane@example.com, Speaker',
+    csvData: 'John Doe, john@example.com, Visitor, Acme Corp, GUEST\nJane Smith, jane@example.com, Exhibitor, PowerPax, EXHIBITOR',
   })
   const [successMsg, setSuccessMsg] = useState('')
   const [allowMultipleEntry, setAllowMultipleEntry] = useState(true)
@@ -156,6 +156,13 @@ export default function SaaSAdminDashboard() {
               ctx.fillStyle = '#d4d4d8'
               ctx.font = `bold ${Math.floor(canvas.width * 0.04)}px Arial`
               ctx.fillText(pass.company.toUpperCase(), canvas.width/2, canvas.height - qrSize - (canvas.height * 0.07))
+            }
+
+            // Designation (at the very bottom or specific block)
+            if (pass.designation) {
+              ctx.fillStyle = '#ffffff'
+              ctx.font = `bold ${Math.floor(canvas.width * 0.06)}px Arial`
+              ctx.fillText(pass.designation.toUpperCase(), canvas.width/2, canvas.height - (canvas.height * 0.08))
             }
           } else {
             // Standard Templates
@@ -495,7 +502,7 @@ export default function SaaSAdminDashboard() {
                     className="w-full p-5 bg-zinc-50/50 border border-zinc-200 rounded-2xl outline-none focus:bg-white focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 transition-all font-mono text-sm leading-relaxed text-zinc-800 shadow-inner resize-none"
                     value={campaign.csvData}
                     onChange={e => setCampaign({...campaign, csvData: e.target.value})}
-                    placeholder="John Doe, john@example.com, VIP, Acme Corp&#10;Alice Smith, alice@example.com, Standard, Global Tech"
+                    placeholder="John Doe, john@example.com, Visitor, Acme Corp, GUEST&#10;Alice Smith, alice@example.com, Exhibitor, PowerPax, EXHIBITOR"
                     spellCheck="false"
                   ></textarea>
                 </div>
