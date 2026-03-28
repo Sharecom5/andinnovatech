@@ -18,14 +18,42 @@ export default function LeadMagnet() {
         return () => clearTimeout(timer);
     }, []);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const [isPending, setIsPending] = useState(false);
+    const [website, setWebsite] = useState('');
+    const [email, setEmail] = useState('');
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Simulate submission
-        setIsSubmitted(true);
-        setTimeout(() => {
-            setIsOpen(false);
-            setIsVisible(false);
-        }, 5000);
+        setIsPending(true);
+
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name: 'Audit Request',
+                    email: email,
+                    service: 'Free AI Growth Audit',
+                    message: `Website: ${website}`,
+                    phone: 'Requested via Audit Popup',
+                    budget: 'Audit Lead'
+                }),
+            });
+
+            if (response.ok) {
+                setIsSubmitted(true);
+                // Reset states after some time if needed, though popup will close
+            } else {
+                const error = await response.json();
+                console.error('Audit submission failed:', error);
+                alert('Something went wrong. Please try again or contact us directly.');
+            }
+        } catch (err) {
+            console.error('Audit submission error:', err);
+            alert('An unexpected error occurred. Please try again.');
+        } finally {
+            setIsPending(false);
+        }
     };
 
     return (
@@ -36,7 +64,7 @@ export default function LeadMagnet() {
                         initial={{ opacity: 0, scale: 0.5, y: 100 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.5, y: 100 }}
-                        className="fixed bottom-28 right-6 z-[60]"
+                        className="fixed bottom-28 right-4 md:bottom-32 md:right-8 z-[60]"
                     >
                         <button
                             onClick={() => setIsOpen(true)}
@@ -94,6 +122,8 @@ export default function LeadMagnet() {
                                                 <input
                                                     type="text"
                                                     required
+                                                    value={website}
+                                                    onChange={(e) => setWebsite(e.target.value)}
                                                     placeholder="Your Company Website"
                                                     aria-label="Your Company Website"
                                                     className="w-full px-6 py-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 text-navy dark:text-white focus:outline-none focus:ring-2 focus:ring-primary/50"
@@ -103,12 +133,19 @@ export default function LeadMagnet() {
                                                 <input
                                                     type="email"
                                                     required
+                                                    value={email}
+                                                    onChange={(e) => setEmail(e.target.value)}
                                                     placeholder="Work Email Address"
                                                     aria-label="Work Email Address"
                                                     className="w-full px-6 py-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 text-navy dark:text-white focus:outline-none focus:ring-2 focus:ring-primary/50"
                                                 />
                                             </div>
-                                            <Button type="submit" size="lg" className="w-full mt-4 h-16 rounded-2xl text-lg shadow-glow-primary group">
+                                            <Button 
+                                                type="submit" 
+                                                size="lg" 
+                                                loading={isPending}
+                                                className="w-full mt-4 h-16 rounded-2xl text-lg shadow-glow-primary group"
+                                            >
                                                 Send My Free Audit <ArrowRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform" />
                                             </Button>
                                         </form>

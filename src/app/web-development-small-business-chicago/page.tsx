@@ -10,12 +10,16 @@ import Link from 'next/link';
 export const metadata: Metadata = {
     title: 'Chicago Small Business Web Development',
     description: 'Looking for a Chicago web development agency? We build stunning, high-performance websites for Chicago small businesses. Optimized for speed and local SEO. Get a free quote today.',
+        alternates: {
+        canonical: 'https://www.andinnovatech.com/web-development-small-business-chicago/',
+    },
     openGraph: {
         title: 'Chicago Small Business Web Development',
         description: 'Premium web design for Chicago businesses.',
         url: 'https://www.andinnovatech.com/web-development-small-business-chicago/',
         images: [{ url: 'https://www.andinnovatech.com/images/dev_abstract.png' }],
     }
+
 };
 
 const chicagoFeatures = [

@@ -30,11 +30,14 @@ export async function POST(request: Request) {
             });
         }
 
+        const targetEmail = process.env.CONTACT_EMAIL || 'hello@andinnovatech.com';
+
         // 1. Send detailed notification to Admin
+        console.log(`📤 ATTEMPTING ADMIN EMAIL TO: ${targetEmail}`);
         const adminEmail = await resend.emails.send({
             from: 'AnD Innovatech <hello@andinnovatech.com>',
-            to: ['hello@andinnovatech.com'],
-            replyTo: email, // Direct reply to customer
+            to: [targetEmail],
+            replyTo: email,
             subject: `🚀 New Lead: ${name} - ${service}`,
             html: `
                 <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; background-color: #f9fafb; padding: 40px; border-radius: 20px;">
@@ -53,14 +56,23 @@ export async function POST(request: Request) {
                             </div>
                         </div>
                     </div>
-                    <p style="text-align: center; color: #9ca3af; font-size: 12px; margin-top: 30px;">
-                        This lead was generated via the contact form on andinnovatech.com.
-                    </p>
                 </div>
             `,
         });
 
+        if (adminEmail.error) {
+            console.error('❌ RESEND ADMIN ERROR:', adminEmail.error);
+            return NextResponse.json({ 
+                error: 'Email delivery failed', 
+                details: adminEmail.error.message,
+                code: adminEmail.error.name 
+            }, { status: 500 });
+        }
+
+        console.log('✅ ADMIN EMAIL SUCCESS:', adminEmail.data?.id);
+
         // 2. Send professional confirmation to Customer
+        console.log(`📤 ATTEMPTING CUSTOMER EMAIL TO: ${email}`);
         const customerEmail = await resend.emails.send({
             from: 'AnD Innovatech <hello@andinnovatech.com>',
             to: [email],
@@ -73,18 +85,7 @@ export async function POST(request: Request) {
                     <div style="padding: 40px; color: #374151;">
                         <p style="font-size: 18px; margin-top: 0;">Hi ${name},</p>
                         <p style="line-height: 1.6;">Thank you for reaching out to **AnD Innovatech**. We've received your inquiry regarding <strong>${service}</strong> and our strategy team is already reviewing your details.</p>
-                        <p style="line-height: 1.6;">One of our consultants will contact you at <strong>${phone || email}</strong> within the next 24 hours to discuss your project in more detail.</p>
-                        
-                        <div style="margin: 30px 0; padding: 25px; background-color: #f9fafb; border-radius: 12px;">
-                            <h3 style="margin-top: 0; color: #1a252b; font-size: 16px;">Summary of your request:</h3>
-                            <ul style="list-style: none; padding: 0; margin: 0; font-size: 14px;">
-                                <li style="margin-bottom: 8px;">• <strong>Service:</strong> ${service}</li>
-                                <li style="margin-bottom: 8px;">• <strong>Budget:</strong> ${budget || 'To be discussed'}</li>
-                            </ul>
-                        </div>
-
-                        <p style="line-height: 1.6;">In the meantime, feel free to check out our <a href="https://www.andinnovatech.com/portfolio" style="color: #409191; font-weight: bold; text-decoration: none;">latest projects</a>.</p>
-                        
+                        <p style="line-height: 1.6;">One of our consultants will contact you within the next 24 hours.</p>
                         <p style="margin-top: 40px; border-top: 1px solid #e5e7eb; padding-top: 20px; font-size: 14px; color: #6b7280;">
                             Best Regards,<br>
                             <strong>The AnD Innovatech Team</strong><br>
@@ -95,23 +96,21 @@ export async function POST(request: Request) {
             `,
         });
 
-        if (adminEmail.error) {
-            console.error('❌ Resend Admin Email Error:', adminEmail.error);
-            return NextResponse.json({ error: `Admin Email Failed: ${adminEmail.error.message}` }, { status: 400 });
-        }
-
         if (customerEmail.error) {
-            console.warn('⚠️ Resend Customer Confirmation Failed (Admin email was sent):', customerEmail.error);
-            // We don't return 400 here if Admin email succeeded, just log it. 
-            // Or maybe we should? Let's return success but note the error.
+            console.warn('⚠️ CUSTOMER EMAIL FAILED (but Admin was sent):', customerEmail.error.message);
+        } else {
+            console.log('✅ CUSTOMER EMAIL SUCCESS:', customerEmail.data?.id);
         }
 
-        return NextResponse.json({ success: true, data: adminEmail.data });
-    } catch (error: unknown) {
-        const errMsg = error instanceof Error ? error.message : 'Unknown error';
-        console.error('❌ API Error Catch Block:', error);
+        return NextResponse.json({ 
+            success: true, 
+            message: 'Inquiry received successfully',
+            adminId: adminEmail.data?.id 
+        });
+    } catch (error: any) {
+        console.error('❌ CONTACT API CRITICAL ERROR:', error);
         return NextResponse.json(
-            { error: `API Internal Error: ${errMsg}` },
+            { error: 'Internal server error', details: error?.message || 'Unknown' },
             { status: 500 }
         );
     }

@@ -68,19 +68,23 @@ export default function ContactForm() {
             });
 
             const result = await response.json();
+            console.log('📬 API RESPONSE:', result);
 
             if (!response.ok) {
-                console.error('Submission failed. Status:', response.status, response.statusText);
-                console.error('Response body:', result);
                 setSubmitStatus('error');
-                setErrorMessage(result.error || 'Failed to send message');
+                const errorDetail = result.details ? `: ${result.details}` : '';
+                setErrorMessage(`${result.error || 'Failed to send message'}${errorDetail}`);
             } else {
+                if (result.message && result.message.includes('development mode')) {
+                    console.warn('⚠️ SUBMISSION IN DEV MODE - NO EMAIL SENT');
+                }
                 setSubmitStatus('success');
                 reset();
             }
-        } catch (_err) {
+        } catch (err: any) {
+            console.error('❌ SUBMISSION ERROR:', err);
             setSubmitStatus('error');
-            setErrorMessage('An unexpected error occurred');
+            setErrorMessage(`An unexpected error occurred: ${err.message || 'Unknown error'}`);
         }
 
         // Reset status after 5 seconds

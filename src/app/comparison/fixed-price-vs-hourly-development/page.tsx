@@ -17,6 +17,9 @@ export const metadata: Metadata = {
         description: 'Predictable milestone-based pricing for startups and SMBs.',
         url: 'https://www.andinnovatech.com/comparison/fixed-price-vs-hourly-development/',
         images: [{ url: 'https://www.andinnovatech.com/images/hero_main_abstract.png' }],
+    },
+    alternates: {
+        canonical: 'https://www.andinnovatech.com/comparison/fixed-price-vs-hourly-development/',
     }
 };
 

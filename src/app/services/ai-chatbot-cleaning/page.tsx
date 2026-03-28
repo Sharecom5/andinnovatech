@@ -11,12 +11,16 @@ import RelatedServices from '@/components/sections/RelatedServices';
 export const metadata: Metadata = {
     title: 'AI Chatbot for Cleaning | Automate Quotes & Booking',
     description: 'Transform your cleaning business with an AI chatbot that provides instant estimates, schedules recurring cleans, and handles customer support 24/7.',
+        alternates: {
+        canonical: 'https://www.andinnovatech.com/services/ai-chatbot-cleaning/',
+    },
     openGraph: {
         title: 'AI Chatbot for Cleaning | Automate Quotes & Booking',
         description: 'Elite AI automation for cleaning businesses.',
         url: 'https://www.andinnovatech.com/services/ai-chatbot-cleaning/',
         images: [{ url: 'https://www.andinnovatech.com/images/check_ai_automation.png' }],
     }
+
 };
 
 const cleaningBenefits = [

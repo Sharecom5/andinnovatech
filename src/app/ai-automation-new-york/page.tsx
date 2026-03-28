@@ -10,12 +10,16 @@ import Link from 'next/link';
 export const metadata: Metadata = {
     title: 'AI Automation for Service Businesses in New York',
     description: 'Transform your NYC service business with AI. Automated lead follow-up, AI chatbots, and 24/7 client booking. Save time and close more New York leads instantly.',
+        alternates: {
+        canonical: 'https://www.andinnovatech.com/ai-automation-new-york/',
+    },
     openGraph: {
         title: 'AI Automation for Service Businesses in New York',
         description: 'Elite AI automation for NYC companies.',
         url: 'https://www.andinnovatech.com/ai-automation-new-york/',
         images: [{ url: 'https://www.andinnovatech.com/images/check_ai_automation.png' }],
     }
+
 };
 
 const nycAiFeatures = [

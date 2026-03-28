@@ -15,6 +15,9 @@ export const metadata: Metadata = {
         description: 'Elite SEO strategies for US businesses.',
         url: 'https://www.andinnovatech.com/services/seo-services/',
         images: [{ url: 'https://www.andinnovatech.com/images/seo_abstract.png' }],
+    },
+    alternates: {
+        canonical: 'https://www.andinnovatech.com/services/seo-services/',
     }
 };
 

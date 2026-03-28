@@ -10,12 +10,16 @@ import Link from 'next/link';
 export const metadata: Metadata = {
     title: 'SEO Agency Los Angeles | Top-Rated Results',
     description: 'Los Angeles SEO agency that delivers results. We help LA businesses dominate search results, rank on Google Maps, and grow revenue. Free SEO audit.',
+        alternates: {
+        canonical: 'https://www.andinnovatech.com/seo-agency-los-angeles/',
+    },
     openGraph: {
         title: 'SEO Agency Los Angeles | Top-Rated Results',
         description: 'Elite SEO for Los Angeles businesses.',
         url: 'https://www.andinnovatech.com/seo-agency-los-angeles/',
         images: [{ url: 'https://www.andinnovatech.com/images/seo_abstract.png' }],
     }
+
 };
 
 const laSeoFeatures = [

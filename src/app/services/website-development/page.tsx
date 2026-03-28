@@ -10,12 +10,16 @@ import Link from 'next/link';
 export const metadata: Metadata = {
     title: 'Custom Website Development Services',
     description: 'High-performance, ROI-focused website development for US startups and SMBs. We build secure, SEO-optimized digital experiences using Next.js and React.',
+        alternates: {
+        canonical: 'https://www.andinnovatech.com/services/website-development/',
+    },
     openGraph: {
         title: 'Custom Website Development Services',
         description: 'Elite web design for growth-focused businesses.',
         url: 'https://www.andinnovatech.com/services/website-development/',
         images: [{ url: 'https://www.andinnovatech.com/images/dev_abstract.png' }],
     }
+
 };
 
 const inclusions = [

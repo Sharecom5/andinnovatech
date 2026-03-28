@@ -5,12 +5,16 @@ import Badge from '@/components/ui/Badge';
 export const metadata: Metadata = {
     title: 'Privacy Policy',
     description: 'Learn how AnD Innovatech collects, uses, and protects your personal information. Our privacy policy outlines our commitment to data security and your rights as a user.',
+        alternates: {
+        canonical: 'https://www.andinnovatech.com/privacy-policy/',
+    },
     openGraph: {
         title: 'Privacy Policy',
         description: 'Your privacy is our priority.',
         url: 'https://www.andinnovatech.com/privacy-policy/',
         images: [{ url: 'https://www.andinnovatech.com/images/hero_main_abstract.png' }],
     }
+
 };
 
 export default function PrivacyPolicy() {

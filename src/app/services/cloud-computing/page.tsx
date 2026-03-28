@@ -10,12 +10,16 @@ import Link from 'next/link';
 export const metadata: Metadata = {
     title: 'Cloud Solutions & AWS/GCP Experts',
     description: 'Modernize your digital infrastructure with scalable cloud solutions. Specialist AWS, Azure, and GCP migration and cost optimization for US businesses.',
+        alternates: {
+        canonical: 'https://www.andinnovatech.com/services/cloud-computing/',
+    },
     openGraph: {
         title: 'Cloud Solutions & AWS/GCP Experts',
         description: 'Elite cloud architecture and migration.',
         url: 'https://www.andinnovatech.com/services/cloud-computing/',
         images: [{ url: 'https://www.andinnovatech.com/images/hero_main_abstract.png' }],
     }
+
 };
 
 const inclusions = [

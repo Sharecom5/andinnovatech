@@ -15,6 +15,9 @@ export const metadata: Metadata = {
         description: 'Elite AI automation for local businesses.',
         url: 'https://www.andinnovatech.com/services/ai-automation/',
         images: [{ url: 'https://www.andinnovatech.com/images/check_ai_automation.png' }],
+    },
+    alternates: {
+        canonical: 'https://www.andinnovatech.com/services/ai-automation/',
     }
 };
 

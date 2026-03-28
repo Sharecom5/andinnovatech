@@ -17,6 +17,9 @@ export const metadata: Metadata = {
         description: 'Elite AI agents deliver significantly higher ROI than generic bots.',
         url: 'https://www.andinnovatech.com/comparison/custom-ai-vs-off-the-shelf/',
         images: [{ url: 'https://www.andinnovatech.com/images/check_ai_automation.png' }],
+    },
+    alternates: {
+        canonical: 'https://www.andinnovatech.com/comparison/custom-ai-vs-off-the-shelf/',
     }
 };
 

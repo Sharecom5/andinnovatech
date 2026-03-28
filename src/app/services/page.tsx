@@ -14,6 +14,9 @@ export const metadata: Metadata = {
         description: 'Elite engineering and SEO services menu.',
         url: 'https://www.andinnovatech.com/services/',
         images: [{ url: 'https://www.andinnovatech.com/images/hero_main_abstract.png' }],
+    },
+    alternates: {
+        canonical: 'https://www.andinnovatech.com/services/',
     }
 };
 

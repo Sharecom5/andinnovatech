@@ -11,12 +11,16 @@ import RelatedServices from '@/components/sections/RelatedServices';
 export const metadata: Metadata = {
     title: 'AI Chatbot for HVAC Companies | Automate Bookings 24/7',
     description: 'Transform your HVAC business with an AI chatbot that answers emergency calls, schedules maintenance, and qualifies leads while you\'re in the field.',
+        alternates: {
+        canonical: 'https://www.andinnovatech.com/services/ai-chatbot-hvac/',
+    },
     openGraph: {
         title: 'AI Chatbot for HVAC Companies | Automate Bookings 24/7',
         description: 'Elite AI automation for HVAC services.',
         url: 'https://www.andinnovatech.com/services/ai-chatbot-hvac/',
         images: [{ url: 'https://www.andinnovatech.com/images/check_ai_automation.png' }],
     }
+
 };
 
 const hvacBenefits = [

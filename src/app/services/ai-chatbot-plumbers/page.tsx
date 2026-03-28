@@ -11,12 +11,16 @@ import RelatedServices from '@/components/sections/RelatedServices';
 export const metadata: Metadata = {
     title: 'AI Chatbot for Plumbers | Stop Losing Emergency Leads',
     description: 'Transform your plumbing business with an AI chatbot that answers emergency leak calls, schedules drain cleanings, and qualifies leads 24/7. Built for plumbing pros.',
+        alternates: {
+        canonical: 'https://www.andinnovatech.com/services/ai-chatbot-plumbers/',
+    },
     openGraph: {
         title: 'AI Chatbot for Plumbers | Stop Losing Emergency Leads',
         description: 'Elite AI automation for plumbing companies.',
         url: 'https://www.andinnovatech.com/services/ai-chatbot-plumbers/',
         images: [{ url: 'https://www.andinnovatech.com/images/check_ai_automation.png' }],
     }
+
 };
 
 const plumbingBenefits = [

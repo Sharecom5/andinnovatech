@@ -17,6 +17,9 @@ export const metadata: Metadata = {
         description: 'Next.js delivers instant speeds compared to WordPress.',
         url: 'https://www.andinnovatech.com/comparison/wordpress-vs-nextjs-speed-test/',
         images: [{ url: 'https://www.andinnovatech.com/images/hero_main_abstract.png' }],
+    },
+    alternates: {
+        canonical: 'https://www.andinnovatech.com/comparison/wordpress-vs-nextjs-speed-test/',
     }
 };
 

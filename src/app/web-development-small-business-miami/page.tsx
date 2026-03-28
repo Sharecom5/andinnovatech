@@ -10,12 +10,16 @@ import Link from 'next/link';
 export const metadata: Metadata = {
     title: 'Miami Small Business Web Development',
     description: 'Looking for a Miami web development agency? We build stunning, high-performance websites for Miami small businesses. Optimized for speed and local SEO. Get a free quote today.',
+        alternates: {
+        canonical: 'https://www.andinnovatech.com/web-development-small-business-miami/',
+    },
     openGraph: {
         title: 'Miami Small Business Web Development',
         description: 'Premium web design for Miami businesses.',
         url: 'https://www.andinnovatech.com/web-development-small-business-miami/',
         images: [{ url: 'https://www.andinnovatech.com/images/dev_abstract.png' }],
     }
+
 };
 
 const miamiFeatures = [

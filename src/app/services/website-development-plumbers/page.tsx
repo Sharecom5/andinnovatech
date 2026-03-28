@@ -11,12 +11,16 @@ import RelatedServices from '@/components/sections/RelatedServices';
 export const metadata: Metadata = {
     title: 'Website Development for Plumbers | SEO-Ready Plumbing Sites',
     description: 'Custom web design and development for plumbing companies. High-conversion mobile-first websites integrated with Jobber and ServiceTitan.',
+        alternates: {
+        canonical: 'https://www.andinnovatech.com/services/website-development-plumbers/',
+    },
     openGraph: {
         title: 'Website Development for Plumbers | SEO-Ready Plumbing Sites',
         description: 'Elite web development for plumbing contractors.',
         url: 'https://www.andinnovatech.com/services/website-development-plumbers/',
         images: [{ url: 'https://www.andinnovatech.com/images/dev_abstract.png' }],
     }
+
 };
 
 const plumberWebBenefits = [

@@ -15,6 +15,9 @@ import AiAutomationSaaS from '@/components/sections/AiAutomationSaaS';
 
 export const metadata: Metadata = {
   description: 'Stop losing leads. We build high-performance websites, #1 SEO rankings, and AI-powered booking for US service companies. Save 40-60%. Get a free audit!',
+  alternates: {
+    canonical: 'https://www.andinnovatech.com/',
+  },
   openGraph: {
     title: 'AnD Innovatech | Software & SEO for US Home Services',
     description: 'Grow your service business with elite engineering and SEO.',

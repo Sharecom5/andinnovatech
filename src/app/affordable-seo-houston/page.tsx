@@ -10,12 +10,16 @@ import Link from 'next/link';
 export const metadata: Metadata = {
     title: 'Affordable SEO Services for Small Businesses in Houston | Rank #1',
     description: 'Looking for affordable SEO in Houston? We help Houston small businesses dominate Google and get more leads without the corporate price tag. Free SEO audit.',
+        alternates: {
+        canonical: 'https://www.andinnovatech.com/affordable-seo-houston/',
+    },
     openGraph: {
         title: 'Affordable SEO Services for Small Businesses in Houston',
         description: 'Elite SEO for Houston small businesses.',
         url: 'https://www.andinnovatech.com/affordable-seo-houston/',
         images: [{ url: 'https://www.andinnovatech.com/images/seo_abstract.png' }],
     }
+
 };
 
 const houstonFeatures = [

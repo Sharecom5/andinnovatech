@@ -10,6 +10,9 @@ import { servicesList } from '@/lib/services';
 export const metadata: Metadata = {
     title: 'Sitemap | All Pages & Services',
     description: 'A complete list of all pages and services provided by AnD Innovatech across the USA, Canada, and India. Explore our local SEO and web development landing pages.',
+    alternates: {
+        canonical: 'https://www.andinnovatech.com/sitemap-list/',
+    }
 };
 
 export default async function SitemapPage() {

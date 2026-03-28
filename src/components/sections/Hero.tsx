@@ -495,7 +495,7 @@ export default function Hero({
             <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/15 rounded-full blur-[150px] animate-pulse-slow" />
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[200px]" />
 
-            <div className="section-container relative z-10 py-20 md:py-28 lg:py-32">
+            <div className="section-container relative z-10 pt-32 pb-16 md:pt-40 md:pb-24 lg:pt-48 lg:pb-32">
                 <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
                     {/* Left Content */}
                     <div>

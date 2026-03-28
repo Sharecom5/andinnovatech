@@ -333,6 +333,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     return {
         title: `${project.title} | Portfolio`,
         description: project.description,
+        alternates: {
+            canonical: `https://www.andinnovatech.com/portfolio/${params.slug}/`,
+        }
     };
 }
 

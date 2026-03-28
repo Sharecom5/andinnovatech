@@ -10,12 +10,16 @@ import Link from 'next/link';
 export const metadata: Metadata = {
     title: 'Offshore Development Partner for Startups in Austin | Save 60% on Dev',
     description: 'Reliable offshore development partner in Austin. We help Austin startups scale engineering teams with elite talent managed by US standards. Fixed-price MVP builds.',
+        alternates: {
+        canonical: 'https://www.andinnovatech.com/offshore-partner-austin/',
+    },
     openGraph: {
         title: 'Offshore Development Partner for Startups in Austin',
         description: 'Scale your Austin startup with elite engineering at 60% lower costs.',
         url: 'https://www.andinnovatech.com/offshore-partner-austin/',
         images: [{ url: 'https://www.andinnovatech.com/images/dev_abstract.png' }],
     }
+
 };
 
 const austinOffshoreFeatures = [

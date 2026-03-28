@@ -11,12 +11,16 @@ import RelatedServices from '@/components/sections/RelatedServices';
 export const metadata: Metadata = {
     title: 'AI Voice Bot for Roofing | Never Miss Storm Leads',
     description: 'Specialized AI Voice Agent for Roofers. Handle emergency storm damage calls, book inspections, and qualify insurance claims automatically—24/7/365.',
+        alternates: {
+        canonical: 'https://www.andinnovatech.com/services/ai-voice-bot-roofing/',
+    },
     openGraph: {
         title: 'AI Voice Bot for Roofing | Never Miss Storm Leads',
         description: 'Elite AI voice automation for roofing contractors.',
         url: 'https://www.andinnovatech.com/services/ai-voice-bot-roofing/',
         images: [{ url: 'https://www.andinnovatech.com/images/check_ai_automation.png' }],
     }
+
 };
 
 const roofingBenefits = [

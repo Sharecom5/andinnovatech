@@ -10,12 +10,16 @@ import Link from 'next/link';
 export const metadata: Metadata = {
     title: 'Expert IT Consulting for Startups in San Francisco',
     description: 'Scale your SF startup with elite engineering and technical strategy. We provide fractional CTO services and agile development for Bay Area founders.',
+        alternates: {
+        canonical: 'https://www.andinnovatech.com/it-consulting-startups-san-francisco/',
+    },
     openGraph: {
         title: 'Expert IT Consulting for Startups in San Francisco',
         description: 'Elite technical advisory for SF startups.',
         url: 'https://www.andinnovatech.com/it-consulting-startups-san-francisco/',
         images: [{ url: 'https://www.andinnovatech.com/images/hero_main_abstract.png' }],
     }
+
 };
 
 const sfItFeatures = [

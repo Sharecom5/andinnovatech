@@ -53,3 +53,12 @@ export function getFeaturedImageAlt(
 ): string {
     return embedded?.['wp:featuredmedia']?.[0]?.alt_text || '';
 }
+
+export const PASS_COLORS: Record<string, { bg: string; text: string; label: string }> = {
+  Visitor:   { bg: '#F3F4F6', text: '#374151', label: 'VISITOR' },
+  Speaker:   { bg: '#DBEAFE', text: '#1E40AF', label: 'SPEAKER' },
+  VIP:       { bg: '#FEF3C7', text: '#92400E', label: 'VIP' },
+  Press:     { bg: '#EDE9FE', text: '#5B21B6', label: 'PRESS' },
+  Exhibitor: { bg: '#D1FAE5', text: '#065F46', label: 'EXHIBITOR' },
+}
+

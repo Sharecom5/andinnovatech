@@ -10,12 +10,16 @@ import Link from 'next/link';
 export const metadata: Metadata = {
     title: 'Custom Software Development & Engineering',
     description: 'Scalable software engineering for modern enterprises. From custom ERPs to SaaS platforms, our team delivers robust, high-availability solutions.',
+        alternates: {
+        canonical: 'https://www.andinnovatech.com/services/software-development/',
+    },
     openGraph: {
         title: 'Custom Software Development & Engineering',
         description: 'Elite software engineering for enterprises.',
         url: 'https://www.andinnovatech.com/services/software-development/',
         images: [{ url: 'https://www.andinnovatech.com/images/dev_abstract.png' }],
     }
+
 };
 
 const inclusions = [

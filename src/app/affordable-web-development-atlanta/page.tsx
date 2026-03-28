@@ -10,12 +10,16 @@ import Link from 'next/link';
 export const metadata: Metadata = {
     title: 'Affordable Web Development for Small Businesses in Atlanta | Save 50%',
     description: 'Looking for affordable web development in Atlanta? We build high-performance, lead-generating websites for Atlanta small businesses. Fixed-price custom Next.js sites.',
+        alternates: {
+        canonical: 'https://www.andinnovatech.com/affordable-web-development-atlanta/',
+    },
     openGraph: {
         title: 'Affordable Web Development for Small Businesses in Atlanta',
         description: 'Elite web development for Atlanta small businesses.',
         url: 'https://www.andinnovatech.com/affordable-web-development-atlanta/',
         images: [{ url: 'https://www.andinnovatech.com/images/dev_abstract.png' }],
     }
+
 };
 
 const atlantaFeatures = [

@@ -4,12 +4,16 @@ import GeoLandingPage from '@/components/GeoLandingPage';
 export const metadata: Metadata = {
     title: 'SEO Services for Businesses in the USA',
     description: 'Specialist SEO for US SMBs. We deliver organic search dominance through technical excellence and strategic growth across all 50 states.',
+        alternates: {
+        canonical: 'https://www.andinnovatech.com/services/seo-services-usa/',
+    },
     openGraph: {
         title: 'SEO Services for Businesses in the USA',
         description: 'Elite SEO for the US market.',
         url: 'https://www.andinnovatech.com/services/seo-services-usa/',
         images: [{ url: 'https://www.andinnovatech.com/images/seo_abstract.png' }],
     }
+
 };
 
 export default function SEOServicesUSA() {

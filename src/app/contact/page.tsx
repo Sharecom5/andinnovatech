@@ -12,6 +12,9 @@ export const metadata: Metadata = {
         description: 'Speak with our engineering and SEO leads today.',
         url: 'https://www.andinnovatech.com/contact/',
         images: [{ url: 'https://www.andinnovatech.com/images/hero_main_abstract.png' }],
+    },
+    alternates: {
+        canonical: 'https://www.andinnovatech.com/contact/',
     }
 };
 

@@ -16,6 +16,9 @@ export const metadata: Metadata = {
         description: 'Discover the story behind AnD Innovatech.',
         url: 'https://www.andinnovatech.com/about/',
         images: [{ url: 'https://www.andinnovatech.com/images/about_team.png' }],
+    },
+    alternates: {
+        canonical: 'https://www.andinnovatech.com/about/',
     }
 };
 

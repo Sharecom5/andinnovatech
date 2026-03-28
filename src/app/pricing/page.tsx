@@ -15,6 +15,9 @@ export const metadata: Metadata = {
         description: 'Transparent pricing for elite software and SEO.',
         url: 'https://www.andinnovatech.com/pricing/',
         images: [{ url: 'https://www.andinnovatech.com/images/hero_main_abstract.png' }],
+    },
+    alternates: {
+        canonical: 'https://www.andinnovatech.com/pricing/',
     }
 };
 

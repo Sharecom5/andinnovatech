@@ -15,6 +15,9 @@ export const metadata: Metadata = {
         description: 'Real results for real businesses.',
         url: 'https://www.andinnovatech.com/portfolio/',
         images: [{ url: 'https://www.andinnovatech.com/images/portfolio_abstract.png' }],
+    },
+    alternates: {
+        canonical: 'https://www.andinnovatech.com/portfolio/',
     }
 };
 

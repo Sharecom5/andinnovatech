@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import Hero from '@/components/sections/Hero';
+import BlogHero from '@/components/sections/BlogHero';
 import BlogCard from '@/components/BlogCard';
 import { getAllPosts } from '@/lib/mdx';
 import SectionHeading from '@/components/ui/SectionHeading';
@@ -12,6 +12,9 @@ export const metadata: Metadata = {
         description: 'Elite technical and growth perspectives.',
         url: 'https://www.andinnovatech.com/blog/',
         images: [{ url: 'https://www.andinnovatech.com/images/hero_main_abstract.png' }],
+    },
+    alternates: {
+        canonical: 'https://www.andinnovatech.com/blog/',
     }
 };
 
@@ -61,12 +64,10 @@ export default async function BlogPage() {
                     })
                 }}
             />
-            <Hero
+            <BlogHero
                 title={<>Decoding the <span className="gradient-text">Future of Technology</span></>}
                 subtitle="Exploring the frontiers of innovation, digital growth, and software excellence. Join us for weekly insights from our experts."
-                badgeText="📰 Tech Insights"
-                ctaText="Read Latest"
-                showStats={false}
+                badgeText="Technical insights"
             />
 
             <section className="section-padding bg-white dark:bg-navy">

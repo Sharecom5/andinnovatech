@@ -23,10 +23,12 @@ export async function POST(request: Request) {
             });
         }
 
+        const targetEmail = process.env.CONTACT_EMAIL || 'hello@andinnovatech.com';
+
         // 1. Send notification to admin
         const adminEmail = await resend.emails.send({
             from: 'AnD Innovatech <hello@andinnovatech.com>',
-            to: ['hello@andinnovatech.com'],
+            to: [targetEmail],
             subject: `🔔 New Subscriber: ${email}`,
             html: `
                 <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; background-color: #f0fdf4; padding: 40px; border-radius: 16px;">

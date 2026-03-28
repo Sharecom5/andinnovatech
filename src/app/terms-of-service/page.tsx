@@ -5,12 +5,16 @@ import Badge from '@/components/ui/Badge';
 export const metadata: Metadata = {
     title: 'Terms of Service',
     description: 'Read the terms and conditions for using AnD Innovatech services and our website. Understand your rights and responsibilities when partnering with our engineering team.',
+        alternates: {
+        canonical: 'https://www.andinnovatech.com/terms-of-service/',
+    },
     openGraph: {
         title: 'Terms of Service',
         description: 'Our standard business agreement.',
         url: 'https://www.andinnovatech.com/terms-of-service/',
         images: [{ url: 'https://www.andinnovatech.com/images/hero_main_abstract.png' }],
     }
+
 };
 
 export default function TermsOfService() {

@@ -17,6 +17,9 @@ export const metadata: Metadata = {
         description: 'Elite engineering quality at a fraction of traditional US agency costs.',
         url: 'https://www.andinnovatech.com/comparison/agency-comparison/',
         images: [{ url: 'https://www.andinnovatech.com/images/hero_main_abstract.png' }],
+    },
+    alternates: {
+        canonical: 'https://www.andinnovatech.com/comparison/agency-comparison/',
     }
 };
 

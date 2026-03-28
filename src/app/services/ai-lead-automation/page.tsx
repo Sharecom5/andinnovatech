@@ -11,12 +11,16 @@ import RelatedServices from '@/components/sections/RelatedServices';
 export const metadata: Metadata = {
     title: 'AI Lead Follow-up Automation | Close More Service Leads Fast',
     description: 'Don\'t let another lead go cold. Our AI Lead Growth platform ensures 5-minute response times, automated SMS nurturing, and seamless CRM syncing for local businesses.',
+        alternates: {
+        canonical: 'https://www.andinnovatech.com/services/ai-lead-automation/',
+    },
     openGraph: {
         title: 'AI Lead Follow-up Automation | Close More Service Leads Fast',
         description: 'Elite lead nurturing and follow-up automation for SMBs.',
         url: 'https://www.andinnovatech.com/services/ai-lead-automation/',
         images: [{ url: 'https://www.andinnovatech.com/images/check_ai_automation.png' }],
     }
+
 };
 
 const automationBenefits = [
