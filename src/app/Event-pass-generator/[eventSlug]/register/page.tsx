@@ -89,7 +89,7 @@ export default function RegisterPage() {
           </div>
           <div className="m-6 p-5 rounded-2xl bg-blue-50 border border-blue-100 text-sm text-blue-700 leading-relaxed text-center">
             <strong>Forgot your pass at the venue?</strong><br />
-            Visit <a href="/Event-pass-genrator/getpass" className="font-semibold underline underline-offset-2 hover:text-blue-900 transition-colors">/getpass</a> or scan the QR code at the entrance to recover it instantly.
+            Visit <a href="/Event-pass-generator/getpass" className="font-semibold underline underline-offset-2 hover:text-blue-900 transition-colors">/getpass</a> or scan the EntryFlow QR code at the entrance to recover it instantly.
           </div>
         </div>
       </div>
@@ -108,7 +108,7 @@ export default function RegisterPage() {
             <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-white/10 ring-1 ring-white/20 mb-4 backdrop-blur-md">
               <Ticket className="w-6 h-6 text-blue-200" />
             </div>
-            <p className="text-blue-300 text-xs uppercase tracking-widest font-semibold mb-2">Official Registration</p>
+            <p className="text-blue-300 text-[10px] uppercase tracking-[0.2em] font-bold mb-2">EntryFlow Verified Registration</p>
             <h1 className="text-3xl sm:text-4xl text-white font-extrabold tracking-tight mb-2">
               {process.env.NEXT_PUBLIC_EVENT_NAME || 'Event Registration'}
             </h1>

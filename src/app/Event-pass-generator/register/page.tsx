@@ -57,10 +57,10 @@ export default function SaaS_Signup() {
         
         {/* Header */}
         <div className="text-center mb-8">
-          <Link href="/Event-pass-generator" className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 mb-4 shadow-inner hover:scale-105 transition-transform">
-            <QrCode className="w-6 h-6 text-white" />
+          <Link href="/Event-pass-generator" className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-700 mb-4 shadow-xl hover:scale-105 transition-transform">
+            <QrCode className="w-7 h-7 text-white" />
           </Link>
-          <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">Create your account</h1>
+          <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">EntryFlow Organiser</h1>
           <p className="text-slate-500 text-sm mt-1">Start running smarter events today.</p>
         </div>
 

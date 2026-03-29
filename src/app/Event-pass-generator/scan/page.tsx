@@ -151,12 +151,12 @@ export default function MobileScannerApp() {
       {/* Header */}
       <header className="px-6 py-5 flex items-center justify-between border-b border-white/10 bg-slate-900/50 backdrop-blur-md">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center shadow-lg shadow-blue-600/20">
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center shadow-lg shadow-blue-600/30">
             <ScanLine className="w-5 h-5 text-white" />
           </div>
           <div>
-            <h1 className="text-lg font-bold">Entry Scanner</h1>
-            <p className="text-xs text-slate-400 font-medium tracking-wide uppercase">Staff Mode</p>
+            <h1 className="text-lg font-bold text-white tracking-tight">EntryFlow Scanner</h1>
+            <p className="text-[10px] text-blue-400 font-black tracking-[0.2em] uppercase mt-0.5">Verification Mode</p>
           </div>
         </div>
         {/* Authorized staff badge */}

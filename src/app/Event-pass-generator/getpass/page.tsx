@@ -60,11 +60,11 @@ export default function PassRecoveryPortal() {
         
         {/* Header */}
         <div className="text-center mb-10">
-          <Link href="/" className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-slate-900 mb-6 shadow-xl shadow-slate-900/20 hover:scale-105 transition-transform">
+          <Link href="/Event-pass-generator" className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-700 mb-6 shadow-xl shadow-blue-900/20 hover:scale-105 transition-transform">
             <QrCode className="w-7 h-7 text-white" />
           </Link>
-          <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight">Access Your Pass</h1>
-          <p className="text-slate-500 mt-2 font-medium">Lost your ticket? Recover it instantly.</p>
+          <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight">EntryFlow <span className="text-blue-600">Recovery</span></h1>
+          <p className="text-slate-500 mt-2 font-medium uppercase tracking-widest text-[10px] font-bold">Secure Ticket Access Protocol</p>
         </div>
 
         <div className="bg-white rounded-3xl p-8 shadow-2xl border border-slate-100 relative overflow-hidden">

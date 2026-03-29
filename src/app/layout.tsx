@@ -2,13 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import dynamic from 'next/dynamic';
-
-const Navbar = dynamic(() => import('@/components/layout/Navbar'), { ssr: true });
-const Footer = dynamic(() => import('@/components/layout/Footer'), { ssr: true });
-const BackToTop = dynamic(() => import('@/components/ui/BackToTop'), { ssr: false });
-const AIChatbot = dynamic(() => import('@/components/AIChatbot'), { ssr: false });
-const CookieConsent = dynamic(() => import('@/components/ui/CookieConsent'), { ssr: false });
-const LeadMagnet = dynamic(() => import('@/components/LeadMagnet'), { ssr: false });
+import ClientLayoutWrapper from '@/components/ClientLayoutWrapper';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -140,13 +134,7 @@ export default function RootLayout({
             }),
           }}
         />
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
-        <BackToTop />
-        <AIChatbot />
-        <LeadMagnet />
-        <CookieConsent />
+        <ClientLayoutWrapper>{children}</ClientLayoutWrapper>
       </body>
     </html>
   );

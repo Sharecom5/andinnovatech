@@ -48,13 +48,13 @@ export default function SelfServiceDoorRegistration() {
         
         {step === 'welcome' && (
           <div className="text-center animate-in fade-in zoom-in-95 duration-500">
-            <div className="w-24 h-24 bg-blue-600 rounded-3xl mx-auto mb-8 flex items-center justify-center shadow-2xl shadow-blue-500/30 rotate-3">
-              <Tent className="w-12 h-12 text-white -rotate-3" />
+            <div className="w-24 h-24 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-[2rem] mx-auto mb-8 flex items-center justify-center shadow-2xl shadow-blue-500/30 rotate-3 transition-transform hover:scale-105 active:scale-95 cursor-pointer">
+              <QrCode className="w-12 h-12 text-white -rotate-3" />
             </div>
-            <h1 className="text-4xl font-extrabold tracking-tight mb-4">Welcome to the Event!</h1>
-            <p className="text-slate-500 text-lg mb-10 px-4">Skip the line. Generate your official digital pass right now on your phone.</p>
-            <button onClick={() => setStep('form')} className="w-full py-5 bg-slate-900 text-white font-bold text-lg rounded-2xl hover:bg-slate-800 transition-colors shadow-xl shadow-slate-900/20 flex justify-center items-center gap-2">
-              Get Started <ArrowRight className="w-5 h-5" />
+            <h1 className="text-4xl font-black tracking-tighter mb-4 text-slate-900">EntryFlow <span className="text-blue-600 underline decoration-blue-500/30 underline-offset-8">Direct</span></h1>
+            <p className="text-slate-500 text-lg mb-10 px-4 font-medium leading-relaxed">Skip the line. Generate your secure digital pass in seconds.</p>
+            <button onClick={() => setStep('form')} className="w-full py-5 bg-slate-950 text-white font-black text-lg rounded-2xl hover:bg-slate-900 transition-all shadow-xl shadow-slate-900/40 flex justify-center items-center gap-3 active:scale-[0.98]">
+              Start Self-Check <ArrowRight className="w-6 h-6 border-2 border-white/20 rounded-full p-0.5" />
             </button>
             <div className="mt-8 text-sm font-semibold text-slate-400 flex items-center justify-center gap-2">
               <QrCode className="w-4 h-4" /> Scan at the gate

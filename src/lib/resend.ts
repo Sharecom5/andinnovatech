@@ -47,7 +47,7 @@ export async function sendPassEmail(data: PassEmailData): Promise<boolean> {
         <!-- Header -->
         <tr>
           <td style="background:linear-gradient(135deg,#0a1628 0%,#1a2f52 100%);padding:32px 40px;text-align:center;">
-            <p style="margin:0;font-size:13px;color:#85B7EB;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;">Official Entry Pass</p>
+            <p style="margin:0;font-size:13px;color:#85B7EB;letter-spacing:0.2em;text-transform:uppercase;font-weight:700;">EntryFlow Verified</p>
             <h1 style="margin:8px 0 0;font-size:28px;color:#ffffff;font-weight:700;letter-spacing:-0.5px;">${eventName}</h1>
             <p style="margin:8px 0 0;font-size:14px;color:#85B7EB;">${eventDate} &nbsp;|&nbsp; ${eventVenue}</p>
           </td>
@@ -139,7 +139,7 @@ export async function sendPassEmail(data: PassEmailData): Promise<boolean> {
               text-decoration:none;padding:12px 28px;border-radius:8px;font-size:14px;
               font-weight:600;margin-right:12px;">Download PDF Pass</a>
             ` : ''}
-            <a href="${process.env.NEXT_PUBLIC_APP_URL}/getpass"
+            <a href="${process.env.NEXT_PUBLIC_APP_URL}/Event-pass-generator/getpass"
               style="display:inline-block;background:#F3F4F6;color:#374151;text-decoration:none;
               padding:12px 28px;border-radius:8px;font-size:14px;font-weight:600;">View My Pass</a>
           </td>
@@ -151,8 +151,8 @@ export async function sendPassEmail(data: PassEmailData): Promise<boolean> {
             <div style="background:#EFF6FF;border-left:3px solid #3B82F6;padding:14px 16px;border-radius:0 8px 8px 0;">
               <p style="margin:0;font-size:13px;color:#1E40AF;font-weight:600;">Forgot your pass at the venue?</p>
               <p style="margin:6px 0 0;font-size:12px;color:#3B82F6;line-height:1.5;">
-                Scan the QR code displayed at the entrance gate or visit
-                <a href="${process.env.NEXT_PUBLIC_APP_URL}/getpass" style="color:#1D4ED8;">${process.env.NEXT_PUBLIC_APP_URL}/getpass</a>
+                Scan any EntryFlow QR code at the entrance gate or visit
+                <a href="${process.env.NEXT_PUBLIC_APP_URL}/Event-pass-generator/getpass" style="color:#1D4ED8;">Registration Desk</a>
                 to recover your pass instantly.
               </p>
             </div>
@@ -162,9 +162,9 @@ export async function sendPassEmail(data: PassEmailData): Promise<boolean> {
         <!-- Footer -->
         <tr>
           <td style="background:#F9FAFB;padding:20px 40px;text-align:center;border-top:1px solid #E5E7EB;">
-            <p style="margin:0;font-size:11px;color:#9CA3AF;">
-              This pass is non-transferable and valid for one-time entry only.<br>
-              For support, reply to this email.
+            <p style="margin:0;font-size:11px;color:#9CA3AF;font-weight:bold;letter-spacing:0.05em;">
+              Powered by EntryFlow Protocol<br>
+              Secure &bull; Fast &bull; Reliable
             </p>
           </td>
         </tr>

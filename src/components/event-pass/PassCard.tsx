@@ -122,7 +122,7 @@ export default function PassCard({
         <div className="p-5 border-b border-white/10 relative z-10 flex justify-between items-start">
           <div className="pr-4">
             <h3 className="text-white text-lg font-bold tracking-tight leading-tight">{eventName}</h3>
-            <p className="text-blue-200 text-xs font-semibold tracking-widest uppercase mt-1">Official Entry Pass</p>
+            <p className="text-blue-200 text-[10px] font-bold tracking-[0.2em] uppercase mt-1">EntryFlow Verified</p>
           </div>
           <span className={`px-3 py-1 text-[10px] font-bold uppercase tracking-widest rounded-full whitespace-nowrap ${style.badgeBg} ${style.badgeText}`}>
             {designation || passType}
@@ -179,7 +179,7 @@ export default function PassCard({
 
         {/* Security watermark */}
         <div className="py-2 text-center bg-black/60 relative z-10">
-          <p className="text-white/30 text-[9px] font-bold tracking-[0.2em]">NON-TRANSFERABLE &middot; ONE-TIME USE</p>
+          <p className="text-white/30 text-[8px] font-black tracking-[0.3em] uppercase">EntryFlow Security Protocol &middot; Secure Entry</p>
         </div>
       </div>
 

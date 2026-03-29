@@ -29,7 +29,7 @@ export default function SaaSAdminDashboard() {
 
   useEffect(() => {
     if (status === 'unauthenticated') {
-      router.push('/login')
+      router.push('/Event-pass-generator/login')
     }
     if (status === 'authenticated') {
       fetch('/api/settings').then(r => r.json()).then(d => setAllowMultipleEntry(d.allowMultipleEntry))

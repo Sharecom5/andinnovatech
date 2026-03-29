@@ -8,8 +8,7 @@ interface QRData {
 }
 
 // Returns base64 PNG data URL — embed directly in email/PDF
-export async function generateQRCodeBase64(data: QRData): Promise<string> {
-  const payload = JSON.stringify(data)
+export async function generateQRCodeBase64(payload: string): Promise<string> {
   const dataUrl = await QRCode.toDataURL(payload, {
     errorCorrectionLevel: 'M',
     type: 'image/png',
@@ -23,21 +22,8 @@ export async function generateQRCodeBase64(data: QRData): Promise<string> {
   return dataUrl
 }
 
-// Returns SVG string — for embedding in HTML emails
-export async function generateQRCodeSVG(data: QRData): Promise<string> {
-  const payload = JSON.stringify(data)
-  const svg = await QRCode.toString(payload, {
-    type: 'svg',
-    errorCorrectionLevel: 'M',
-    width: 200,
-    margin: 1,
-  })
-  return svg
-}
-
 // Returns Buffer — for saving to Cloudinary
-export async function generateQRCodeBuffer(data: QRData): Promise<Buffer> {
-  const payload = JSON.stringify(data)
+export async function generateQRCodeBuffer(payload: string): Promise<Buffer> {
   const buffer = await QRCode.toBuffer(payload, {
     errorCorrectionLevel: 'M',
     type: 'png',

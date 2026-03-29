@@ -8,10 +8,10 @@ export default function Home() {
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 px-6 py-4 sm:px-12 flex justify-between items-center bg-white/60 backdrop-blur-xl border-b border-white/20 shadow-[0_4px_30px_rgba(0,0,0,0.03)] supports-[backdrop-filter]:bg-white/40">
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-500 via-purple-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-indigo-500/30">
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 via-indigo-600 to-indigo-700 flex items-center justify-center shadow-lg shadow-blue-600/30">
             <QrCode className="w-5 h-5 text-white" />
           </div>
-          <span className="text-slate-900 font-extrabold text-xl tracking-tight">EventPass</span>
+          <span className="text-slate-900 font-extrabold text-2xl tracking-tight">EntryFlow</span>
         </div>
         <div className="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
           <a href="#features" className="hover:text-indigo-600 transition-colors">Features</a>
@@ -33,14 +33,14 @@ export default function Home() {
         <div className="max-w-5xl mx-auto text-center relative z-10">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-indigo-50/80 border border-indigo-100 text-indigo-700 text-xs font-bold tracking-wide uppercase mb-8 backdrop-blur-sm animate-in slide-in-from-bottom-5">
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
             </span>
-            EventPass Beta is live
+            EntryFlow Pro is live
           </div>
           <h1 className="text-5xl lg:text-7xl font-extrabold text-slate-900 tracking-tighter leading-[1.05] mb-6 animate-in slide-in-from-bottom-8">
-            The ultimate ticketing <br className="hidden lg:block" />
-            system for <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-600 bg-[length:200%_auto] animate-gradient">smart organisers.</span>
+            The ultimate event <br className="hidden lg:block" />
+            access for <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-600 bg-[length:200%_auto] animate-gradient">modern organisers.</span>
           </h1>
           <p className="text-lg lg:text-xl text-slate-500 max-w-2xl mx-auto mb-10 leading-relaxed animate-in slide-in-from-bottom-10 fade-in duration-500 font-medium">
             Create beautiful events, generate smart QR passes, and securely scan attendees at the door in milliseconds. Built for modern events of all sizes.
@@ -156,12 +156,13 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-slate-900 text-slate-500 py-12 text-center">
+      <footer className="bg-slate-950 text-slate-500 py-16 text-center border-t border-white/5">
         <div className="max-w-6xl mx-auto px-6 flex flex-col items-center">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center mb-6 opacity-80">
-            <QrCode className="w-4 h-4 text-white" />
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center mb-6 opacity-90 shadow-lg shadow-blue-500/20">
+            <QrCode className="w-5 h-5 text-white" />
           </div>
-          <p className="font-medium text-sm">© 2026 EventPass SaaS. All rights reserved.</p>
+          <p className="font-bold text-slate-400 text-lg mb-2">EntryFlow</p>
+          <p className="font-medium text-xs uppercase tracking-widest text-slate-600">© 2026 Professional Event Solutions. All rights reserved.</p>
         </div>
       </footer>
     </div>

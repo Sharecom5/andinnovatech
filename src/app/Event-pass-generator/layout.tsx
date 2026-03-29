@@ -1,8 +1,13 @@
 import './globals.css'
 
 export const metadata = {
-  title: 'Event Pass System',
-  description: 'Event Management and Registration',
+  title: {
+    absolute: 'EntryFlow — Modern Event Access',
+  },
+  description: 'Professional Event Registration and QR Pass System.',
+  icons: {
+    icon: '/favicon-event.png', // We'll need to ensure this or a generic icon exists
+  }
 }
 
 import { Providers } from '@/components/event-pass/Providers'

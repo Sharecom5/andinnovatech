@@ -58,9 +58,11 @@ export async function POST(req: NextRequest) {
   const eventVenue = process.env.NEXT_PUBLIC_EVENT_VENUE || ''
 
   const passId = generatePassId()
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://www.andinnovatech.com'
+  const verificationUrl = `${appUrl}/Event-pass-generator/verify/${passId}`
 
   // Generate QR code
-  const qrBase64 = await generateQRCodeBase64({ passId, name, event: eventName, type: passType || 'Visitor' })
+  const qrBase64 = await generateQRCodeBase64(verificationUrl)
 
   // Upload QR to Cloudinary
   let qrCodeUrl = ''
@@ -91,8 +93,8 @@ export async function POST(req: NextRequest) {
   return NextResponse.json({
     success: true,
     passId: visitor.passId,
-    message: `Pass sent to ${email}`,
-    qrCodeUrl,
+    message: `EntryFlow Pass Sent to ${email}`,
+    qrCodeUrl: visitor.qrCodeUrl,
     designation: visitor.designation,
   })
 }
