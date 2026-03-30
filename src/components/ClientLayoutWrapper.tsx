@@ -12,7 +12,7 @@ const LeadMagnet = dynamic(() => import('@/components/LeadMagnet'), { ssr: false
 
 export default function ClientLayoutWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
-  const isEventPassGenerator = pathname?.startsWith('/Event-pass-generator')
+  const isEventPassGenerator = pathname?.startsWith('/entryflow')
 
   if (isEventPassGenerator) {
     return (

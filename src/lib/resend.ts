@@ -139,7 +139,7 @@ export async function sendPassEmail(data: PassEmailData): Promise<boolean> {
               text-decoration:none;padding:12px 28px;border-radius:8px;font-size:14px;
               font-weight:600;margin-right:12px;">Download PDF Pass</a>
             ` : ''}
-            <a href="${process.env.NEXT_PUBLIC_APP_URL}/Event-pass-generator/getpass"
+            <a href="${process.env.NEXT_PUBLIC_APP_URL}/entryflow/getpass"
               style="display:inline-block;background:#F3F4F6;color:#374151;text-decoration:none;
               padding:12px 28px;border-radius:8px;font-size:14px;font-weight:600;">View My Pass</a>
           </td>
@@ -152,7 +152,7 @@ export async function sendPassEmail(data: PassEmailData): Promise<boolean> {
               <p style="margin:0;font-size:13px;color:#1E40AF;font-weight:600;">Forgot your pass at the venue?</p>
               <p style="margin:6px 0 0;font-size:12px;color:#3B82F6;line-height:1.5;">
                 Scan any EntryFlow QR code at the entrance gate or visit
-                <a href="${process.env.NEXT_PUBLIC_APP_URL}/Event-pass-generator/getpass" style="color:#1D4ED8;">Registration Desk</a>
+                <a href="${process.env.NEXT_PUBLIC_APP_URL}/entryflow/getpass" style="color:#1D4ED8;">Registration Desk</a>
                 to recover your pass instantly.
               </p>
             </div>
