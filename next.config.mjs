@@ -38,6 +38,16 @@ const nextConfig = {
             },
             // ── Legacy URL redirects ──────────────────────────────────────
             {
+                source: '/event-pass/:path*',
+                destination: '/entryflow/:path*',
+                permanent: true,
+            },
+            {
+                source: '/api/event-pass/:path*',
+                destination: '/api/entryflow/:path*',
+                permanent: true,
+            },
+            {
                 source: '/blog/:slug/',
                 destination: '/:slug/',
                 permanent: true,
