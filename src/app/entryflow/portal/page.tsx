@@ -106,13 +106,18 @@ export default function TicketPortal() {
 
               {/* Pass Mini-Card */}
               <div className="bg-slate-900 text-white rounded-2xl p-6 relative overflow-hidden mb-6 text-left shadow-2xl">
-                <div className="absolute top-0 right-0 p-4 opacity-10">
-                  <img src={passData.qrCode} alt="Pass QR" className="w-32 h-32 rounded-lg" style={{ filter: 'brightness(0) invert(1)' }} />
+                <div className="flex justify-between items-start mb-6 border-b border-white/10 pb-6">
+                  <div>
+                    <span className="bg-blue-500 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest">{passData.passType || 'Visitor'}</span>
+                    <h4 className="text-2xl font-bold mt-4 mb-1">{passData.name}</h4>
+                    <p className="text-slate-400 text-sm font-medium">{passData.eventName || 'Event'}</p>
+                  </div>
+                  <div className="bg-white p-2 rounded-xl flex-shrink-0 shadow-lg">
+                    <img src={passData.qrCode} alt="Pass QR" className="w-32 h-32 rounded-lg" />
+                  </div>
                 </div>
-                <span className="bg-blue-500 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest">{passData.passType || 'Visitor'}</span>
-                <h4 className="text-2xl font-bold mt-4 mb-1">{passData.name}</h4>
-                <p className="text-slate-400 text-sm font-medium">{passData.eventName || 'Event'}</p>
-                <div className="mt-6 pt-4 border-t border-white/10 flex justify-between items-center">
+                
+                <div className="flex justify-between items-center">
                   <span className="font-mono text-xs text-slate-500">{passData.passId}</span>
                   {passData.status === 'entered' && <span className="text-emerald-400 text-xs font-bold uppercase tracking-widest">Already Entered</span>}
                 </div>

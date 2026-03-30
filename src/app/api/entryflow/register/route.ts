@@ -55,7 +55,7 @@ export async function POST(req: NextRequest) {
       success: true,
       passId: existing.passId,
       message: 'Welcome back! Here is your saved entry pass.',
-      qrCodeUrl: existing.qrCodeUrl || qrDataUrl,
+      qrCodeUrl: qrDataUrl,
       designation: existing.designation,
       isExisting: true,
       visitor: {
@@ -66,7 +66,7 @@ export async function POST(req: NextRequest) {
         company: existing.company,
         eventName: existing.eventName,
         status: existing.status,
-        qrCode: existing.qrCodeUrl || qrDataUrl
+        qrCode: qrDataUrl
       }
     })
   }
@@ -137,7 +137,7 @@ export async function POST(req: NextRequest) {
     success: true,
     passId: visitor.passId,
     message: `EntryFlow Pass Sent to ${email}`,
-    qrCodeUrl: visitor.qrCodeUrl || qrBase64,
+    qrCodeUrl: qrBase64,
     designation: visitor.designation,
     visitor: {
       name: visitor.name,
@@ -147,7 +147,7 @@ export async function POST(req: NextRequest) {
       company: visitor.company,
       eventName: visitor.eventName,
       status: visitor.status,
-      qrCode: visitor.qrCodeUrl || qrBase64
+      qrCode: qrBase64
     }
   })
 }
