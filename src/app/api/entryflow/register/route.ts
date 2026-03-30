@@ -44,13 +44,31 @@ export async function POST(req: NextRequest) {
 
   await connectDB()
 
-  // Duplicate check
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://www.andinnovatech.com'
+
+  // Duplicate check: assign the same pass if they already registered
   const existing = await Visitor.findOne({ email: email.toLowerCase() })
   if (existing) {
-    return NextResponse.json(
-      { error: 'already_registered', passId: existing.passId, message: 'Already registered' },
-      { status: 409 }
-    )
+    const verificationUrl = `${appUrl}/entryflow/verify/${existing.passId}`
+    const qrDataUrl = await generateQRCodeBase64(verificationUrl)
+    return NextResponse.json({
+      success: true,
+      passId: existing.passId,
+      message: 'Welcome back! Here is your saved entry pass.',
+      qrCodeUrl: existing.qrCodeUrl || qrDataUrl,
+      designation: existing.designation,
+      isExisting: true,
+      visitor: {
+        name: existing.name,
+        email: existing.email,
+        passId: existing.passId,
+        passType: existing.passType,
+        company: existing.company,
+        eventName: existing.eventName,
+        status: existing.status,
+        qrCode: existing.qrCodeUrl || qrDataUrl
+      }
+    })
   }
 
   const eventName  = process.env.NEXT_PUBLIC_EVENT_NAME  || 'Event'
@@ -58,7 +76,6 @@ export async function POST(req: NextRequest) {
   const eventVenue = process.env.NEXT_PUBLIC_EVENT_VENUE || ''
 
   const passId = generatePassId()
-  const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://www.andinnovatech.com'
   const verificationUrl = `${appUrl}/entryflow/verify/${passId}`
 
   // Generate QR code
@@ -90,11 +107,47 @@ export async function POST(req: NextRequest) {
     passImageUrl: qrCodeUrl,
   }).catch(console.error)
 
+  // Send to Google Sheets if Webhook is configured
+  const webhookUrl = process.env.GOOGLE_SHEET_WEBHOOK_URL
+  if (webhookUrl) {
+    try {
+      await fetch(webhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          passId: visitor.passId,
+          name: visitor.name,
+          email: visitor.email,
+          phone: visitor.phone,
+          company: visitor.company,
+          passType: visitor.passType,
+          designation: visitor.designation,
+          eventName: visitor.eventName,
+          status: visitor.status,
+          date: new Date().toISOString()
+        })
+      })
+      console.log(`[Google Sheets] Pushed ${visitor.email}`)
+    } catch (err) {
+      console.error('[Google Sheets] Webhook error:', err)
+    }
+  }
+
   return NextResponse.json({
     success: true,
     passId: visitor.passId,
     message: `EntryFlow Pass Sent to ${email}`,
-    qrCodeUrl: visitor.qrCodeUrl,
+    qrCodeUrl: visitor.qrCodeUrl || qrBase64,
     designation: visitor.designation,
+    visitor: {
+      name: visitor.name,
+      email: visitor.email,
+      passId: visitor.passId,
+      passType: visitor.passType,
+      company: visitor.company,
+      eventName: visitor.eventName,
+      status: visitor.status,
+      qrCode: visitor.qrCodeUrl || qrBase64
+    }
   })
 }
