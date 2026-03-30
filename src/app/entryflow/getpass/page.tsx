@@ -4,43 +4,21 @@ import Link from 'next/link'
 import { Mail, KeyRound, QrCode, ArrowRight, Download, RefreshCw, AlertCircle, CheckCircle2 } from 'lucide-react'
 
 export default function PassRecoveryPortal() {
-  const [step, setStep] = useState<'contact' | 'otp' | 'pass'>('contact')
+  const [step, setStep] = useState<'contact' | 'pass'>('contact')
   const [contact, setContact] = useState('')
-  const [otp, setOtp] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [passData, setPassData] = useState<any>(null)
 
-  async function requestOtp(e: React.FormEvent) {
+  async function fetchPass(e: React.FormEvent) {
     e.preventDefault()
     setLoading(true)
     setError('')
     try {
       const res = await fetch('/api/entryflow/recovery', {
-                method: 'POST',
+        method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action: 'request_otp', contact })
-      })
-      const data = await res.json()
-      if (!res.ok) throw new Error(data.error)
-      
-      setStep('otp')
-    } catch (err: any) {
-      setError(err.message || 'Failed to request OTP')
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  async function verifyOtp(e: React.FormEvent) {
-    e.preventDefault()
-    setLoading(true)
-    setError('')
-    try {
-      const res = await fetch('/api/entryflow/recovery', {
-                method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action: 'verify_otp', contact, otp })
+        body: JSON.stringify({ action: 'get_pass', contact })
       })
       const data = await res.json()
       if (!res.ok) throw new Error(data.error)
@@ -48,7 +26,7 @@ export default function PassRecoveryPortal() {
       setPassData(data.visitor)
       setStep('pass')
     } catch (err: any) {
-      setError(err.message || 'Invalid OTP')
+      setError(err.message || 'Failed to fetch pass')
     } finally {
       setLoading(false)
     }
@@ -79,7 +57,7 @@ export default function PassRecoveryPortal() {
           )}
 
           {step === 'contact' && (
-            <form onSubmit={requestOtp} className="space-y-6 animate-in slide-in-from-right-4">
+            <form onSubmit={fetchPass} className="space-y-6 animate-in slide-in-from-right-4">
               <div>
                 <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Email or Phone Number</label>
                 <div className="relative mt-2">
@@ -89,33 +67,7 @@ export default function PassRecoveryPortal() {
               </div>
 
               <button type="submit" disabled={loading} className="w-full py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-500/30 flex justify-center items-center gap-2 group disabled:opacity-70">
-                {loading ? <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div> : <>Get Security Code <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" /></>}
-              </button>
-            </form>
-          )}
-
-          {step === 'otp' && (
-            <form onSubmit={verifyOtp} className="space-y-6 animate-in slide-in-from-right-4">
-              <div className="text-center mb-6">
-                <div className="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <KeyRound className="w-8 h-8 text-blue-600" />
-                </div>
-                <h3 className="font-bold text-slate-900 text-lg">Check your email</h3>
-                <p className="text-sm text-slate-500 mt-1">We sent a 6-digit code to <strong>{contact}</strong></p>
-              </div>
-
-              <div>
-                <div className="relative">
-                  <input type="text" required maxLength={6} value={otp} onChange={e => setOtp(e.target.value.replace(/\D/g, ''))} className="w-full px-4 py-4 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 transition-all font-mono text-center text-2xl font-bold tracking-[0.5em]" placeholder="000000" />
-                </div>
-              </div>
-
-              <button type="submit" disabled={loading || otp.length !== 6} className="w-full py-4 bg-slate-900 text-white font-bold rounded-xl hover:bg-slate-800 transition-colors shadow-lg flex justify-center items-center gap-2 group disabled:opacity-70">
-                {loading ? <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div> : <>Verify & Access Pass</>}
-              </button>
-
-              <button type="button" onClick={() => setStep('contact')} className="w-full text-center text-sm font-semibold text-slate-500 hover:text-slate-700 pt-2">
-                Use a different email or phone
+                {loading ? <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div> : <>Get Pass <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" /></>}
               </button>
             </form>
           )}
@@ -148,7 +100,7 @@ export default function PassRecoveryPortal() {
                 </button>
               </div>
               
-              <button onClick={() => {setStep('contact'); setContact(''); setOtp(''); setPassData(null)}} className="mt-6 w-full text-center text-sm font-semibold text-slate-500 hover:text-slate-700 flex justify-center items-center gap-1">
+              <button onClick={() => {setStep('contact'); setContact(''); setPassData(null)}} className="mt-6 w-full text-center text-sm font-semibold text-slate-500 hover:text-slate-700 flex justify-center items-center gap-1">
                 <RefreshCw className="w-4 h-4" /> Start Over
               </button>
             </div>

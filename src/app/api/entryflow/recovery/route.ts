@@ -25,45 +25,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'No ticket found for this contact detail' }, { status: 404 })
     }
 
-    if (action === 'request_otp') {
-      const newOtp = Math.floor(100000 + Math.random() * 900000).toString()
-      
-      visitor.otp = newOtp
-      visitor.otpExpiry = new Date(Date.now() + 10 * 60 * 1000)
-      await visitor.save()
-
-      if (contact.includes('@')) {
-        const emailSent = await sendOTPEmail(visitor.email, newOtp, visitor.name)
-        if (!emailSent) {
-          return NextResponse.json({ error: 'Failed to send OTP email. Please try again.' }, { status: 500 })
-        }
-        return NextResponse.json({ success: true, message: 'OTP sent to Email successfully' })
-      } else {
-        // NOTE: Here you would integrate Twilio or your SMS provider
-        // e.g. await sendTwilioSMS(visitor.phone, `Your OTP is ${newOtp}`)
-        console.log(`[SMS MOCK] Sending OTP ${newOtp} to phone ${visitor.phone}`)
-        
-        return NextResponse.json({ success: true, message: 'OTP sent to Phone successfully' })
-      }
-    }
-
-    if (action === 'verify_otp') {
-      if (!otp) {
-        return NextResponse.json({ error: 'OTP is required' }, { status: 400 })
-      }
-
-      if (!visitor.otp || visitor.otp !== otp) {
-        return NextResponse.json({ error: 'Invalid OTP code' }, { status: 400 })
-      }
-
-      if (!visitor.otpExpiry || new Date() > visitor.otpExpiry) {
-        return NextResponse.json({ error: 'OTP has expired. Please request a new one.' }, { status: 400 })
-      }
-
-      visitor.otp = undefined
-      visitor.otpExpiry = undefined
-      await visitor.save()
-
+    if (action === 'get_pass') {
       // Generate the real QR string immediately for the frontend
       const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://www.andinnovatech.com'
       const verificationUrl = `${appUrl}/entryflow/verify/${visitor.passId}`
@@ -77,7 +39,7 @@ export async function POST(req: Request) {
           passId: visitor.passId,
           passType: visitor.passType,
           company: visitor.company,
-          eventName: visitor.eventName || 'Premium Event Pass', // fallback
+          eventName: visitor.eventName || 'Event',
           status: visitor.status,
           qrCode: qrDataUrl
         }
@@ -91,3 +53,4 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
 }
+
