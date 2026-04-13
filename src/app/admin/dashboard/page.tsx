@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { signOut } from "next-auth/react";
 
 export default function MyEventsDashboard() {
   const router = useRouter();
@@ -42,14 +43,15 @@ export default function MyEventsDashboard() {
   const fetchEvents = async () => {
     try {
       const res = await fetch("/api/admin/events");
-      if (!res.ok) throw new Error("Unauthorized or server error");
+      if (res.status === 401) {
+        router.push("/admin/login");
+        return;
+      }
+      if (!res.ok) throw new Error("Server error");
       const data = await res.json();
       setEvents(data.events || []);
     } catch (err) {
       console.error(err);
-      // If unauthorized, we might be redirected by middleware, 
-      // but for client side handling:
-      // router.push("/entryflow/login"); 
     } finally {
       setLoading(false);
     }
@@ -166,7 +168,11 @@ export default function MyEventsDashboard() {
           <div className="hidden md:flex items-center gap-1 text-xs font-bold text-grey-500 uppercase tracking-widest">
             <LayoutDashboard className="w-3 h-3" /> Dashboard
           </div>
-          <button className="text-grey-400 hover:text-white transition-colors">
+        <button 
+            onClick={() => signOut({ callbackUrl: '/admin/login' })}
+            className="text-grey-400 hover:text-white transition-colors"
+            title="Sign Out"
+          >
             <LogOut className="w-5 h-5" />
           </button>
         </div>

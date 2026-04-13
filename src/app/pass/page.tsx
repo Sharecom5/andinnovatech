@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { QrCode, Zap, Users, Download, ShieldCheck, CheckCircle2 } from "lucide-react";
+import { QrCode, Zap, Users, Download, ShieldCheck, CheckCircle2, LogIn, ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 export default function EventPassLandingPage() {
@@ -97,8 +97,32 @@ export default function EventPassLandingPage() {
       {/* Background Mesh */}
       <div className="absolute inset-0 z-0 bg-gradient-mesh opacity-50 pointer-events-none"></div>
 
+      {/* Sticky Navbar */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-navy/80 backdrop-blur-xl border-b border-white/5 px-6 py-4">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <Link href="/pass" className="flex items-center gap-3">
+            <div className="bg-primary-500 w-8 h-8 rounded-lg flex items-center justify-center font-black text-sm shadow-glow-primary">E</div>
+            <span className="text-xl font-black tracking-tight">EntryFlow</span>
+          </Link>
+          <div className="flex items-center gap-3">
+            <Link
+              href="/admin/login"
+              className="flex items-center gap-2 text-grey-400 hover:text-white px-4 py-2 rounded-xl font-bold text-sm transition-all"
+            >
+              <LogIn className="w-4 h-4" /> Sign In
+            </Link>
+            <Link
+              href="/admin/signup"
+              className="bg-primary hover:bg-primary-500 text-white px-5 py-2.5 rounded-xl font-bold text-sm transition-all shadow-glow-primary flex items-center gap-2"
+            >
+              Get Started <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+      </nav>
+
       {/* Hero Section */}
-      <section className="relative z-10 pt-32 pb-20 px-6 max-w-7xl mx-auto text-center">
+      <section className="relative z-10 pt-40 pb-20 px-6 max-w-7xl mx-auto text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -115,12 +139,12 @@ export default function EventPassLandingPage() {
             Streamline your event check-ins with our powerful QR-code based pass generator. Built for speed, security, and exceptional user experience.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button
-              onClick={() => document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" })}
-              className="bg-primary hover:bg-primary-500 text-white px-8 py-4 rounded-xl font-semibold transition-all shadow-glow-primary hover:shadow-lg w-full sm:w-auto"
+            <Link
+              href="/admin/signup"
+              className="bg-primary hover:bg-primary-500 text-white px-8 py-4 rounded-xl font-bold transition-all shadow-glow-primary hover:shadow-lg w-full sm:w-auto flex items-center justify-center gap-2"
             >
-              View Pricing
-            </button>
+              Start for Free <ArrowRight className="w-5 h-5" />
+            </Link>
             <Link
               href="/pass/demo-event"
               className="bg-secondary/50 hover:bg-secondary border border-white/10 text-white px-8 py-4 rounded-xl font-semibold transition-all w-full sm:w-auto"

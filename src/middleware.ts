@@ -1,25 +1,28 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import { getToken } from 'next-auth/jwt';
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
     const { pathname } = request.nextUrl;
 
-    // Protect admin dashboard routes (but not the login page)
-    /*
-    if (pathname.startsWith('/admin/dashboard')) {
-        const token = request.cookies.get('wp_token')?.value;
-
-        if (!token) {
-            const loginUrl = new URL('/admin', request.url);
-            loginUrl.searchParams.set('redirect', pathname);
-            return NextResponse.redirect(loginUrl);
-        }
+    // Public admin paths — never redirect these
+    const publicPaths = ['/admin/login', '/admin/signup'];
+    if (publicPaths.some(p => pathname.startsWith(p))) {
+        return NextResponse.next();
     }
-    */
+
+    // Protect all /admin routes except login/signup
+    const token = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET });
+
+    if (!token) {
+        const loginUrl = new URL('/admin/login', request.url);
+        loginUrl.searchParams.set('callbackUrl', pathname);
+        return NextResponse.redirect(loginUrl);
+    }
 
     return NextResponse.next();
 }
 
 export const config = {
-    matcher: ['/admin/dashboard/:path*'],
+    matcher: ['/admin/:path*'],
 };

@@ -74,7 +74,7 @@ const authOptions: NextAuthOptions = {
   },
   session: { strategy: 'jwt' },
   pages: {
-    signIn: '/entryflow/login',
+    signIn: '/admin/login',
   },
   secret: process.env.NEXTAUTH_SECRET || "fallback_secret_key",
 }
