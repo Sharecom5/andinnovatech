@@ -4,7 +4,7 @@ export interface IVisitor extends Document {
   passId: string
   name: string
   email: string
-  phone: string
+  phone?: string
   company?: string
   passType: 'VIP' | 'Speaker' | 'Press' | 'Exhibitor' | 'Visitor'
   status: 'registered' | 'entered' | 'cancelled'
@@ -16,6 +16,7 @@ export interface IVisitor extends Document {
   eventDate: string
   eventVenue: string
   designation?: string
+  address?: string
   createdAt: Date
   enteredAt?: Date
   scanCount: number
@@ -26,8 +27,8 @@ export interface IVisitor extends Document {
 const VisitorSchema = new Schema<IVisitor>({
   passId:       { type: String, required: true, unique: true, index: true },
   name:         { type: String, required: true, trim: true },
-  email:        { type: String, required: true, unique: true, lowercase: true, trim: true },
-  phone:        { type: String, required: true, trim: true },
+  email:        { type: String, required: true, lowercase: true, trim: true },
+  phone:        { type: String, trim: true },
   company:      { type: String, trim: true },
   passType:     { type: String, enum: ['Visitor','Speaker','VIP','Press','Exhibitor'], default: 'Visitor' },
   status:       { type: String, enum: ['registered','entered','cancelled'], default: 'registered' },
@@ -39,11 +40,15 @@ const VisitorSchema = new Schema<IVisitor>({
   eventDate:    { type: String, required: true },
   eventVenue:   { type: String, required: true },
   designation:  { type: String, trim: true },
+  address:      { type: String, trim: true },
   createdAt:    { type: Date, default: Date.now },
   enteredAt:    { type: Date },
   scanCount:    { type: Number, default: 0 },
   otp:          { type: String },
   otpExpiry:    { type: Date },
 })
+
+// Compound index: Email must be unique per Event, but allowed across different Events
+VisitorSchema.index({ email: 1, eventId: 1 }, { unique: true });
 
 export const Visitor = (mongoose.models.Visitor as mongoose.Model<IVisitor>) || mongoose.model<IVisitor>('Visitor', VisitorSchema)

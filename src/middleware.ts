@@ -5,6 +5,7 @@ export function middleware(request: NextRequest) {
     const { pathname } = request.nextUrl;
 
     // Protect admin dashboard routes (but not the login page)
+    /*
     if (pathname.startsWith('/admin/dashboard')) {
         const token = request.cookies.get('wp_token')?.value;
 
@@ -14,6 +15,7 @@ export function middleware(request: NextRequest) {
             return NextResponse.redirect(loginUrl);
         }
     }
+    */
 
     return NextResponse.next();
 }

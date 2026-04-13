@@ -32,8 +32,8 @@ export default function PricingPreview() {
                         {[
                             { label: 'Websites', price: '$5k - $15k', save: 'Save $10k+' },
                             { label: 'Custom Apps', price: '$20k - $50k', save: 'Save $30k+' },
+                            { label: 'Events Platform', price: '₹7,999+', save: 'One-Time' },
                             { label: 'SEO Campaign', price: '$2.5k/mo', save: 'Save 40%' },
-                            { label: 'Cloud Audit', price: '$0.00', save: 'Free First' }
                         ].map((item, i) => (
                             <div key={i} className="p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-xl hover:bg-white/10 transition-all group">
                                 <div className="text-primary-400 font-black text-xs uppercase tracking-[0.2em] mb-4">{item.label}</div>

@@ -10,9 +10,9 @@ const navLinks = [
     { name: 'Home', href: '/' },
     { name: 'About Us', href: '/about/' },
     { name: 'Services', href: '/services/' },
+    { name: 'Event System', href: '/pass/' },
     { name: 'Portfolio', href: '/portfolio/' },
     { name: 'Blog', href: '/blog/' },
-    { name: 'Contact Us', href: '/contact/' },
 ];
 
 export default function Navbar() {
