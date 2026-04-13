@@ -108,6 +108,19 @@ export async function POST(req: NextRequest) {
 
     await connectDB();
 
+    // ─── Free Plan Event Limit ─────────────────────────────────────────
+    const organizer = await Organizer.findById(organizerId).select('plan');
+    if (organizer?.plan === 'free') {
+      const eventCount = await Event.countDocuments({ organizerId });
+      if (eventCount >= 1) {
+        return NextResponse.json({
+          error: 'EVENT_LIMIT_REACHED',
+          message: 'Free plan allows only 1 event. Please upgrade to create more events.',
+        }, { status: 402 });
+      }
+    }
+    // ─────────────────────────────────────────────────────────────────
+
     const existing = await Event.findOne({ slug });
     if (existing) {
       return NextResponse.json({ error: 'Slug already in use. Please choose a different one.' }, { status: 400 });

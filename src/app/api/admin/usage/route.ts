@@ -61,13 +61,19 @@ export async function GET(req: NextRequest) {
     const allEvents = await Event.find({ organizerId }).select('_id');
     const eventIdList = allEvents.map((e: any) => e._id);
     const totalPasses = await Visitor.countDocuments({ eventId: { $in: eventIdList } });
+    const totalEvents = allEvents.length;
+    const plan = organizer?.plan || 'free';
 
     return NextResponse.json({
       success: true,
-      plan: organizer?.plan || 'free',
+      plan,
       totalPasses,
       freeLimit: 10,
-      isLimited: (organizer?.plan || 'free') === 'free' && totalPasses >= 10,
+      totalEvents,
+      eventLimit: 1,
+      isPassLimited: plan === 'free' && totalPasses >= 10,
+      isEventLimited: plan === 'free' && totalEvents >= 1,
+      isLimited: plan === 'free' && (totalPasses >= 10 || totalEvents >= 1),
     });
   } catch (error: any) {
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });

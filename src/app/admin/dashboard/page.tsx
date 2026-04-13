@@ -17,7 +17,7 @@ export default function MyEventsDashboard() {
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [search, setSearch] = useState("");
-  const [usage, setUsage] = useState<{ plan: string; totalPasses: number; freeLimit: number; isLimited: boolean } | null>(null);
+  const [usage, setUsage] = useState<{ plan: string; totalPasses: number; freeLimit: number; totalEvents: number; eventLimit: number; isPassLimited: boolean; isEventLimited: boolean; isLimited: boolean } | null>(null);
   const [formData, setFormData] = useState({
     name: "", slug: "", date: "", endDate: "", venue: "", description: "",
     passSettings: { showName: true, showDesignation: true, showPhone: false, showCompany: true, customBackgroundUrl: "", qrPosition: 40, infoPosition: 65 }
@@ -117,35 +117,52 @@ export default function MyEventsDashboard() {
             <p className="text-slate-500">Manage your event registrations and entry flows.</p>
           </div>
           <button onClick={() => setShowModal(true)}
-            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-bold flex items-center gap-2 shadow-lg transition-all active:scale-95">
+            disabled={!!(usage?.plan === 'free' && usage?.isEventLimited)}
+            className="bg-blue-600 hover:bg-blue-700 disabled:bg-slate-300 disabled:cursor-not-allowed text-white px-6 py-3 rounded-xl font-bold flex items-center gap-2 shadow-lg transition-all active:scale-95 disabled:active:scale-100"
+            title={usage?.plan === 'free' && usage?.isEventLimited ? 'Upgrade to create more events' : 'Create New Event'}>
             <PlusCircle className="w-5 h-5" /> Create New Event
+            {usage?.plan === 'free' && usage?.isEventLimited && <span className="text-xs bg-white/20 px-1.5 py-0.5 rounded-md">Upgrade</span>}
           </button>
         </div>
 
         {/* Freemium Usage Banner */}
         {usage && usage.plan === 'free' && (
           <div className={`mb-8 p-5 rounded-2xl border flex flex-col md:flex-row md:items-center gap-4 ${
-            usage.isLimited
-              ? 'bg-red-50 border-red-200'
-              : usage.totalPasses >= 7
-              ? 'bg-orange-50 border-orange-200'
-              : 'bg-blue-50 border-blue-200'
+            usage.isEventLimited || usage.isPassLimited ? 'bg-red-50 border-red-200' : 'bg-blue-50 border-blue-200'
           }`}>
-            <div className="flex-1">
-              <div className="flex items-center gap-2 mb-2">
-                <TrendingUp className={`w-4 h-4 ${usage.isLimited ? 'text-red-500' : usage.totalPasses >= 7 ? 'text-orange-500' : 'text-blue-600'}`} />
-                <p className={`text-sm font-black ${ usage.isLimited ? 'text-red-700' : 'text-slate-800'}`}>
-                  {usage.isLimited ? '🚫 Free Pass Limit Reached' : `Free Plan: ${usage.totalPasses} / ${usage.freeLimit} passes used`}
-                </p>
+            <div className="flex-1 space-y-3">
+              {/* Event limit row */}
+              <div>
+                <div className="flex items-center justify-between mb-1.5">
+                  <div className="flex items-center gap-2">
+                    <TrendingUp className={`w-4 h-4 ${usage.isEventLimited ? 'text-red-500' : 'text-blue-600'}`} />
+                    <p className={`text-sm font-black ${usage.isEventLimited ? 'text-red-700' : 'text-slate-800'}`}>
+                      Events: {usage.totalEvents} / {usage.eventLimit} {usage.isEventLimited ? '— Limit Reached' : ''}
+                    </p>
+                  </div>
+                </div>
+                <div className="w-full bg-white rounded-full h-2 border border-slate-200">
+                  <div className={`h-2 rounded-full transition-all ${usage.isEventLimited ? 'bg-red-500' : 'bg-blue-500'}`}
+                    style={{ width: `${Math.min((usage.totalEvents / usage.eventLimit) * 100, 100)}%` }} />
+                </div>
               </div>
-              <div className="w-full bg-white rounded-full h-2 border border-slate-200">
-                <div
-                  className={`h-2 rounded-full transition-all ${ usage.isLimited ? 'bg-red-500' : usage.totalPasses >= 7 ? 'bg-orange-500' : 'bg-blue-500'}`}
-                  style={{ width: `${Math.min((usage.totalPasses / usage.freeLimit) * 100, 100)}%` }}
-                />
+              {/* Pass limit row */}
+              <div>
+                <div className="flex items-center justify-between mb-1.5">
+                  <div className="flex items-center gap-2">
+                    <TrendingUp className={`w-4 h-4 ${usage.isPassLimited ? 'text-red-500' : usage.totalPasses >= 7 ? 'text-orange-500' : 'text-blue-600'}`} />
+                    <p className={`text-sm font-black ${usage.isPassLimited ? 'text-red-700' : 'text-slate-800'}`}>
+                      Passes: {usage.totalPasses} / {usage.freeLimit} {usage.isPassLimited ? '— Limit Reached' : ''}
+                    </p>
+                  </div>
+                </div>
+                <div className="w-full bg-white rounded-full h-2 border border-slate-200">
+                  <div className={`h-2 rounded-full transition-all ${usage.isPassLimited ? 'bg-red-500' : usage.totalPasses >= 7 ? 'bg-orange-500' : 'bg-blue-500'}`}
+                    style={{ width: `${Math.min((usage.totalPasses / usage.freeLimit) * 100, 100)}%` }} />
+                </div>
               </div>
-              {usage.isLimited && (
-                <p className="text-xs text-red-600 mt-2">New registrations are blocked. Upgrade to continue accepting passes.</p>
+              {(usage.isEventLimited || usage.isPassLimited) && (
+                <p className="text-xs text-red-600 font-medium">Upgrade your plan to unlock unlimited events and passes.</p>
               )}
             </div>
             <a href="mailto:contact@andinnovatech.com?subject=EntryFlow Upgrade Request"
