@@ -7,6 +7,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { Organizer } from "@/models/Organizer";
 import bcrypt from "bcryptjs";
 import { NextAuthOptions } from "next-auth";
+import { getPlanLimits, isWithinLimit, PlanId } from '@/lib/plans';
 
 // We inline authOptions here to avoid circular imports in the API route
 const authOptions: NextAuthOptions = {
@@ -108,18 +109,20 @@ export async function POST(req: NextRequest) {
 
     await connectDB();
 
-    // ─── Free Plan Event Limit ─────────────────────────────────────────
+    // ─── Plan Event Limit ──────────────────────────────────────────────
     const organizer = await Organizer.findById(organizerId).select('plan');
-    if (organizer?.plan === 'free') {
-      const eventCount = await Event.countDocuments({ organizerId });
-      if (eventCount >= 1) {
-        return NextResponse.json({
-          error: 'EVENT_LIMIT_REACHED',
-          message: 'Free plan allows only 1 event. Please upgrade to create more events.',
-        }, { status: 402 });
-      }
+    const plan = (organizer?.plan ?? 'free') as PlanId;
+    const limits = getPlanLimits(plan);
+    const eventCount = await Event.countDocuments({ organizerId });
+
+    if (!isWithinLimit(eventCount, limits.eventLimit)) {
+      return NextResponse.json({
+        error: 'EVENT_LIMIT_REACHED',
+        message: `Your ${limits.name} plan allows up to ${limits.eventLimit} event(s). Please upgrade to create more.`,
+      }, { status: 402 });
     }
-    // ─────────────────────────────────────────────────────────────────
+    // ─────────────────────────────────────────────────────────────────────
+
 
     const existing = await Event.findOne({ slug });
     if (existing) {

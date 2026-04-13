@@ -8,6 +8,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { Organizer } from "@/models/Organizer";
 import bcrypt from "bcryptjs";
 import { NextAuthOptions } from "next-auth";
+import { getPlanLimits, PlanId } from '@/lib/plans';
 
 const authOptions: NextAuthOptions = {
   providers: [
@@ -58,22 +59,28 @@ export async function GET(req: NextRequest) {
     await connectDB();
 
     const organizer = await Organizer.findById(organizerId).select('plan');
+    const plan = (organizer?.plan ?? 'free') as PlanId;
+    const limits = getPlanLimits(plan);
+
     const allEvents = await Event.find({ organizerId }).select('_id');
     const eventIdList = allEvents.map((e: any) => e._id);
     const totalPasses = await Visitor.countDocuments({ eventId: { $in: eventIdList } });
     const totalEvents = allEvents.length;
-    const plan = organizer?.plan || 'free';
+
+    const isEventLimited = limits.eventLimit !== -1 && totalEvents >= limits.eventLimit;
+    const isPassLimited = limits.passLimit !== -1 && totalPasses >= limits.passLimit;
 
     return NextResponse.json({
       success: true,
       plan,
+      planName: limits.name,
       totalPasses,
-      freeLimit: 10,
+      passLimit: limits.passLimit,
       totalEvents,
-      eventLimit: 1,
-      isPassLimited: plan === 'free' && totalPasses >= 10,
-      isEventLimited: plan === 'free' && totalEvents >= 1,
-      isLimited: plan === 'free' && (totalPasses >= 10 || totalEvents >= 1),
+      eventLimit: limits.eventLimit,
+      isPassLimited,
+      isEventLimited,
+      isLimited: isEventLimited || isPassLimited,
     });
   } catch (error: any) {
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });

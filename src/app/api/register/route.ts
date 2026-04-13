@@ -4,10 +4,9 @@ import { Event } from '@/models/Event';
 import { Visitor } from '@/models/Visitor';
 import { Organizer } from '@/models/Organizer';
 import { sendPassEmail } from '@/lib/resend';
+import { getPlanLimits, isWithinLimit, PlanId } from '@/lib/plans';
 import QRCode from 'qrcode';
 import crypto from 'crypto';
-
-const FREE_PASS_LIMIT = 10;
 
 export async function POST(req: NextRequest) {
   try {
@@ -22,57 +21,46 @@ export async function POST(req: NextRequest) {
     // Find the event
     let event = await Event.findOne({ slug: eventSlug });
 
-    // Auto-create demo event if not exists (for demo-event slug only)
     if (!event && eventSlug === 'demo-event') {
-      event = await Event.create({
-        name: 'Demo Event',
-        slug: 'demo-event',
-        venue: 'Virtual/Local Venue',
-        date: '2026-12-31'
-      });
+      event = await Event.create({ name: 'Demo Event', slug: 'demo-event', venue: 'Virtual/Local Venue', date: '2026-12-31' });
     }
 
     if (!event) {
       return NextResponse.json({ error: 'Event not found.' }, { status: 404 });
     }
 
-    // ─── Freemium Gate ────────────────────────────────────────────────
+    // ─── Plan Limit Gate ──────────────────────────────────────────────────
     if (event.organizerId) {
-      const organizer = await Organizer.findById(event.organizerId);
-      
-      if (organizer && organizer.plan === 'free') {
-        // Count total passes ever generated across ALL of this organizer's events
-        const allEventIds = await Event.find({ organizerId: event.organizerId }).select('_id');
-        const eventIdList = allEventIds.map((e: any) => e._id);
-        const totalPasses = await Visitor.countDocuments({ eventId: { $in: eventIdList } });
+      const organizer = await Organizer.findById(event.organizerId).select('plan');
+      const plan = (organizer?.plan ?? 'free') as PlanId;
+      const limits = getPlanLimits(plan);
 
-        if (totalPasses >= FREE_PASS_LIMIT) {
-          return NextResponse.json({
-            error: 'PLAN_LIMIT_REACHED',
-            message: `Free plan limit of ${FREE_PASS_LIMIT} passes reached. The event organizer needs to upgrade to continue accepting registrations.`,
-            totalPasses,
-            limit: FREE_PASS_LIMIT,
-          }, { status: 402 });
-        }
+      // Count total passes across all organizer's events
+      const allEventIds = (await Event.find({ organizerId: event.organizerId }).select('_id')).map((e: any) => e._id);
+      const totalPasses = await Visitor.countDocuments({ eventId: { $in: allEventIds } });
+
+      if (!isWithinLimit(totalPasses, limits.passLimit)) {
+        return NextResponse.json({
+          error: 'PLAN_LIMIT_REACHED',
+          message: `This event has reached its pass limit (${limits.passLimit} passes on the ${limits.name} plan). The organizer needs to upgrade.`,
+          totalPasses,
+          limit: limits.passLimit,
+          plan,
+        }, { status: 402 });
       }
     }
-    // ─────────────────────────────────────────────────────────────────
+    // ─────────────────────────────────────────────────────────────────────
 
     // Check if already registered for this event
     const existing = await Visitor.findOne({ email: email.toLowerCase(), eventId: event._id });
     if (existing) {
-      return NextResponse.json({
-        success: true,
-        message: 'Already registered',
-        passId: existing.passId
-      });
+      return NextResponse.json({ success: true, message: 'Already registered', passId: existing.passId });
     }
 
-    // Generate unique passId: EVENTPREFIX-XXXXXX
+    // Generate unique passId
     let passId = "";
     let isUnique = false;
     const prefix = (event.name || "EVT").substring(0, 3).toUpperCase();
-
     while (!isUnique) {
       const uniquePart = crypto.randomBytes(3).toString('hex').toUpperCase();
       passId = `${prefix}-${uniquePart}`;
@@ -85,7 +73,6 @@ export async function POST(req: NextRequest) {
     const verificationUrl = `${baseUrl}/pass/verify/${passId}`;
     const qrCodeDataUri = await QRCode.toDataURL(verificationUrl);
 
-    // Create new Visitor
     const newVisitor = new Visitor({
       passId, name, email: email.toLowerCase(), phone, company, address, designation,
       passType: passType || 'Visitor',
@@ -96,10 +83,9 @@ export async function POST(req: NextRequest) {
       eventDate: event.date,
       eventVenue: event.venue,
     });
-
     await newVisitor.save();
 
-    // Send automated pass email via Resend
+    // Send pass email
     try {
       await sendPassEmail({
         to: email.toLowerCase(),
@@ -115,12 +101,7 @@ export async function POST(req: NextRequest) {
       console.error('Failed to send pass email:', emailErr);
     }
 
-    return NextResponse.json({
-      success: true,
-      passId,
-      qrCodeUrl: qrCodeDataUri,
-      message: 'Registration successful'
-    });
+    return NextResponse.json({ success: true, passId, qrCodeUrl: qrCodeDataUri, message: 'Registration successful' });
 
   } catch (error: any) {
     console.error('Registration error:', error.message);

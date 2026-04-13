@@ -2,81 +2,24 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { QrCode, Zap, Users, Download, ShieldCheck, CheckCircle2, LogIn, ArrowRight, Star } from "lucide-react";
+import { CheckCircle2, LogIn, ArrowRight, Star, Zap, QrCode, Users, Download, ShieldCheck } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
+import { PLANS } from "@/lib/plans";
 
 export default function EventPassLandingPage() {
   const features = [
-    {
-      icon: <Zap className="w-6 h-6 text-blue-600" />,
-      title: "Lightning Fast Setup",
-      description: "Create an event URL in seconds and start accepting registrations immediately. No coding required.",
-    },
-    {
-      icon: <QrCode className="w-6 h-6 text-blue-600" />,
-      title: "Instant QR Generation",
-      description: "Every attendee automatically receives a unique, scannable QR ticket directly on their device.",
-    },
-    {
-      icon: <Users className="w-6 h-6 text-blue-600" />,
-      title: "Multi-Event Scalability",
-      description: "Host multiple events simultaneously with separate data silos and customized configurations.",
-    },
-    {
-      icon: <ShieldCheck className="w-6 h-6 text-blue-600" />,
-      title: "Secure Verification",
-      description: "Scan QR codes at the gate to instantly verify authenticity and prevent duplication.",
-    },
-    {
-      icon: <Download className="w-6 h-6 text-blue-600" />,
-      title: "One-Click Exports",
-      description: "Download your entire attendee list as a CSV file to import into your CRM easily.",
-    },
+    { icon: <Zap className="w-6 h-6 text-blue-600" />, title: "Lightning Fast Setup", description: "Create an event URL in seconds and start accepting registrations immediately. No coding required." },
+    { icon: <QrCode className="w-6 h-6 text-blue-600" />, title: "Instant QR Generation", description: "Every attendee automatically receives a unique, scannable QR ticket directly on their device." },
+    { icon: <Users className="w-6 h-6 text-blue-600" />, title: "Multi-Event Scalability", description: "Host multiple events simultaneously with separate data silos and customized configurations." },
+    { icon: <ShieldCheck className="w-6 h-6 text-blue-600" />, title: "Secure Verification", description: "Scan QR codes at the gate to instantly verify authenticity and prevent duplication." },
+    { icon: <Download className="w-6 h-6 text-blue-600" />, title: "One-Click Exports", description: "Download your entire attendee list as a CSV file to import into your CRM easily." },
   ];
 
-  const pricingPlans = [
-    {
-      name: "Starter",
-      price: "₹7,999",
-      period: "1 event",
-      description: "Perfect for simple digital check-ins.",
-      features: ["1 Event", "Basic QR Pass", "Email delivery", "Pass recovery portal"],
-      cta: "Get Started",
-      highlight: false,
-    },
-    {
-      name: "Pro",
-      price: "₹14,999",
-      period: "2 events",
-      description: "Most popular choice for regular organizers.",
-      features: ["2 Events", "Custom branding", "WhatsApp integration", "Admin dashboard", "CSV export"],
-      cta: "Get Started",
-      highlight: true,
-    },
-    {
-      name: "Business",
-      price: "₹24,999",
-      period: "5 events",
-      description: "The sweet spot for event management companies.",
-      features: ["5 Events", "Full branding", "Priority support", "Custom background designs", "CSV export"],
-      cta: "Get Started",
-      highlight: false,
-    },
-    {
-      name: "Enterprise",
-      price: "₹39,999+",
-      period: "unlimited",
-      description: "Unlimited usage and true white-label solution.",
-      features: ["Unlimited events", "White-label", "Custom domain", "Self-host option", "Dedicated support"],
-      cta: "Contact Sales",
-      highlight: false,
-    },
-  ];
+  const pricingPlans = Object.values(PLANS);
 
   return (
     <div className="min-h-screen bg-white text-slate-900 font-sans">
-      
+
       {/* Sticky Navbar */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-xl border-b border-slate-100 px-6 py-4 shadow-sm">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -85,52 +28,35 @@ export default function EventPassLandingPage() {
             <span className="text-xl font-black tracking-tight text-slate-900">Entry<span className="text-blue-600">Flow</span></span>
           </Link>
           <div className="flex items-center gap-3">
-            <Link
-              href="/admin/login"
-              className="flex items-center gap-2 text-slate-500 hover:text-slate-900 px-4 py-2 rounded-xl font-semibold text-sm transition-all"
-            >
+            <Link href="/admin/login" className="flex items-center gap-2 text-slate-500 hover:text-slate-900 px-4 py-2 rounded-xl font-semibold text-sm transition-all">
               <LogIn className="w-4 h-4" /> Sign In
             </Link>
-            <Link
-              href="/admin/signup"
-              className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-xl font-bold text-sm transition-all shadow-md flex items-center gap-2"
-            >
+            <Link href="/admin/signup" className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-xl font-bold text-sm transition-all shadow-md flex items-center gap-2">
               Get Started <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
         </div>
       </nav>
 
-      {/* Hero Section */}
+      {/* Hero */}
       <section className="pt-36 pb-24 px-6 max-w-7xl mx-auto text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="max-w-4xl mx-auto"
-        >
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="max-w-4xl mx-auto">
           <span className="inline-block py-1.5 px-4 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-sm font-semibold tracking-wide mb-6">
             ✨ Smart Event Management, Simplified
           </span>
           <h1 className="text-5xl md:text-7xl font-black leading-tight mb-8 text-slate-900">
-            The Ultimate{" "}
-            <span className="text-blue-600">Event Pass</span>{" "}
-            System
+            The Ultimate <span className="text-blue-600">Event Pass</span> System
           </h1>
           <p className="text-lg md:text-xl text-slate-500 mb-10 max-w-2xl mx-auto leading-relaxed">
             Create events, distribute QR passes, and handle gate check-ins — all from one clean, powerful dashboard.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/admin/signup"
-              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-2xl font-bold transition-all shadow-lg hover:shadow-xl w-full sm:w-auto flex items-center justify-center gap-2 text-lg"
-            >
+            <Link href="/admin/signup"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-2xl font-bold transition-all shadow-lg hover:shadow-xl w-full sm:w-auto flex items-center justify-center gap-2 text-lg">
               Start for Free <ArrowRight className="w-5 h-5" />
             </Link>
-            <Link
-              href="/pass/demo-event"
-              className="bg-slate-100 hover:bg-slate-200 text-slate-800 px-8 py-4 rounded-2xl font-semibold transition-all w-full sm:w-auto text-lg"
-            >
+            <Link href="/pass/demo-event"
+              className="bg-slate-100 hover:bg-slate-200 text-slate-800 px-8 py-4 rounded-2xl font-semibold transition-all w-full sm:w-auto text-lg">
               Try Live Demo
             </Link>
           </div>
@@ -141,12 +67,7 @@ export default function EventPassLandingPage() {
       {/* Stats Bar */}
       <section className="py-10 px-6 bg-slate-50 border-y border-slate-100">
         <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          {[
-            { value: "500+", label: "Events Hosted" },
-            { value: "50K+", label: "Passes Generated" },
-            { value: "99.9%", label: "Uptime" },
-            { value: "< 2s", label: "Gate Scan Time" },
-          ].map((stat, i) => (
+          {[{ value: "500+", label: "Events Hosted" }, { value: "50K+", label: "Passes Generated" }, { value: "99.9%", label: "Uptime" }, { value: "< 2s", label: "Gate Scan Time" }].map((stat, i) => (
             <div key={i}>
               <p className="text-3xl font-black text-blue-600 mb-1">{stat.value}</p>
               <p className="text-sm text-slate-500 font-medium">{stat.label}</p>
@@ -155,26 +76,17 @@ export default function EventPassLandingPage() {
         </div>
       </section>
 
-      {/* Features Grid */}
+      {/* Features */}
       <section className="py-24 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-black text-slate-900 mb-4">Everything You Need</h2>
-            <p className="text-slate-500 max-w-2xl mx-auto text-lg">
-              A complete event pass system replacing complex ticketing platforms with a fast, minimal experience.
-            </p>
+            <p className="text-slate-500 max-w-2xl mx-auto text-lg">A complete event pass system replacing complex ticketing platforms with a fast, minimal experience.</p>
           </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {features.map((feature, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.5 }}
-                className="bg-white border border-slate-100 p-8 rounded-3xl hover:border-blue-200 hover:shadow-lg transition-all group"
-              >
+              <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
+                className="bg-white border border-slate-100 p-8 rounded-3xl hover:border-blue-200 hover:shadow-lg transition-all group">
                 <div className="bg-blue-50 w-14 h-14 rounded-2xl flex items-center justify-center mb-6 border border-blue-100 group-hover:bg-blue-100 transition-colors">
                   {feature.icon}
                 </div>
@@ -186,57 +98,57 @@ export default function EventPassLandingPage() {
         </div>
       </section>
 
-      {/* Pricing Section */}
-      <section id="pricing" className="py-24 px-6 bg-slate-50">
+      {/* Pricing */}
+      <section id="pricing" className="py-24 px-6 bg-slate-50 border-t border-slate-100">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-black text-slate-900 mb-4">Simple, Transparent Pricing</h2>
+            <h2 className="text-4xl font-black text-slate-900 mb-4">Simple, Pass-Based Pricing</h2>
             <p className="text-slate-500 max-w-2xl mx-auto text-lg">
-              Choose the plan that fits your execution model.
+              Pay once per plan. No monthly fees, no per-attendee surprises. Your passes, your way.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-5">
             {pricingPlans.map((plan, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, scale: 0.97 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.05 }}
-                className={`relative rounded-3xl overflow-hidden ${plan.highlight ? 'ring-2 ring-blue-600 shadow-2xl shadow-blue-200' : 'border border-slate-200 shadow-sm'} bg-white`}
-              >
+              <motion.div key={plan.id} initial={{ opacity: 0, scale: 0.97 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.05 }}
+                className={`relative rounded-3xl overflow-hidden flex flex-col ${plan.highlight ? 'ring-2 ring-blue-600 shadow-2xl shadow-blue-200' : 'border border-slate-200 shadow-sm'} bg-white`}>
                 {plan.highlight && (
-                  <div className="bg-blue-600 text-white text-[11px] font-black uppercase tracking-widest text-center py-2">
-                    Most Popular
+                  <div className="bg-blue-600 text-white text-[10px] font-black uppercase tracking-widest text-center py-2 flex items-center justify-center gap-1">
+                    <Star className="w-3 h-3" /> Most Popular
                   </div>
                 )}
-                <div className="p-8 flex flex-col h-full">
-                  <h3 className="text-2xl font-black text-slate-900 mb-2">{plan.name}</h3>
-                  <p className="text-slate-400 text-sm mb-6 min-h-[36px]">{plan.description}</p>
+                <div className="p-6 flex flex-col flex-1">
+                  <h3 className="text-xl font-black text-slate-900 mb-1">{plan.name}</h3>
+                  <p className="text-slate-400 text-xs mb-5 min-h-[32px]">{plan.description}</p>
 
-                  <div className="mb-8 pb-8 border-b border-slate-100">
-                    <span className="text-5xl font-black text-slate-900">{plan.price}</span>
-                    <span className="text-slate-400 ml-2 text-sm">/ {plan.period}</span>
+                  <div className="mb-5 pb-5 border-b border-slate-100">
+                    <span className="text-4xl font-black text-slate-900">{plan.price}</span>
+                    <span className="text-slate-400 ml-1.5 text-xs">/ {plan.period}</span>
                   </div>
 
-                  <ul className="space-y-3 mb-10 flex-grow">
+                  {/* Key Limits Highlight */}
+                  <div className="grid grid-cols-2 gap-2 mb-5 bg-blue-50 rounded-xl p-3 border border-blue-100">
+                    <div className="text-center">
+                      <p className="text-[10px] text-slate-400 uppercase font-bold tracking-widest">Events</p>
+                      <p className="text-lg font-black text-blue-700">{plan.eventLimit === -1 ? '∞' : plan.eventLimit}</p>
+                    </div>
+                    <div className="text-center border-l border-blue-200">
+                      <p className="text-[10px] text-slate-400 uppercase font-bold tracking-widest">Passes</p>
+                      <p className="text-lg font-black text-blue-700">{plan.passLimit === -1 ? '∞' : plan.passLimit.toLocaleString()}</p>
+                    </div>
+                  </div>
+
+                  <ul className="space-y-2.5 mb-6 flex-grow">
                     {plan.features.map((item, j) => (
-                      <li key={j} className="flex items-center gap-3">
+                      <li key={j} className="flex items-center gap-2.5">
                         <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0" />
-                        <span className="text-slate-600 text-sm">{item}</span>
+                        <span className="text-slate-600 text-xs">{item}</span>
                       </li>
                     ))}
                   </ul>
 
-                  <Link
-                    href="/admin/signup"
-                    className={`w-full py-4 rounded-2xl font-bold text-center transition-all block ${
-                      plan.highlight
-                        ? "bg-blue-600 hover:bg-blue-700 text-white shadow-lg"
-                        : "bg-slate-100 hover:bg-slate-200 text-slate-800"
-                    }`}
-                  >
+                  <Link href={plan.id === 'enterprise' ? 'mailto:contact@andinnovatech.com?subject=EntryFlow Enterprise' : '/admin/signup'}
+                    className={`w-full py-3.5 rounded-2xl font-bold text-center transition-all block text-sm ${plan.highlight ? 'bg-blue-600 hover:bg-blue-700 text-white shadow-lg' : 'bg-slate-100 hover:bg-slate-200 text-slate-800'}`}>
                     {plan.cta}
                   </Link>
                 </div>
@@ -246,11 +158,10 @@ export default function EventPassLandingPage() {
 
           <div className="mt-12 text-center max-w-2xl mx-auto bg-blue-50 border border-blue-100 p-6 rounded-2xl">
             <p className="text-sm text-slate-600">
-              <span className="font-bold text-slate-900">Agency or Enterprise?</span> We offer white-label reseller panels and custom licensing.{" "}
+              <span className="font-bold text-slate-900">Need a custom quote?</span> We offer white-label reseller panels, custom licensing, and annual contracts.{" "}
               <a href="mailto:contact@andinnovatech.com" className="text-blue-600 hover:text-blue-700 underline font-semibold">
-                Contact our sales team
-              </a>{" "}
-              for volume discounts.
+                Talk to our team
+              </a>
             </p>
           </div>
         </div>
@@ -264,11 +175,7 @@ export default function EventPassLandingPage() {
             <span className="font-black tracking-tight text-slate-900">EntryFlow</span>
           </div>
           <p className="text-sm text-slate-400 text-center">
-            A product by{" "}
-            <a href="https://www.andinnovatech.com" className="text-blue-600 hover:underline font-medium" target="_blank" rel="noopener noreferrer">
-              AnD Innovatech
-            </a>
-            {" "}&bull; {new Date().getFullYear()}
+            A product by <a href="https://www.andinnovatech.com" className="text-blue-600 hover:underline font-medium" target="_blank" rel="noopener noreferrer">AnD Innovatech</a> • {new Date().getFullYear()}
           </p>
           <div className="flex gap-6 text-sm text-slate-500">
             <Link href="/pass/recover" className="hover:text-blue-600 transition-colors">Recover Pass</Link>
