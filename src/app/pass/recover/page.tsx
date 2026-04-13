@@ -2,10 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  Search, Mail, Ticket, Loader2, ArrowRight, 
-  MapPin, Calendar, CheckCircle2, AlertCircle 
-} from "lucide-react";
+import { Search, Mail, Ticket, Loader2, ArrowRight, MapPin, Calendar, AlertCircle } from "lucide-react";
 import Link from "next/link";
 
 export default function PassRecoveryPage() {
@@ -23,13 +20,9 @@ export default function PassRecoveryPage() {
     try {
       const res = await fetch(`/api/pass/recover?email=${encodeURIComponent(email)}`);
       const data = await res.json();
-      
       if (!res.ok) throw new Error(data.error || "Failed to find passes");
-      
       setResults(data.passes);
-      if (data.passes.length === 0) {
-        setError("No active passes found for this email address.");
-      }
+      if (data.passes.length === 0) setError("No active passes found for this email address.");
     } catch (err: any) {
       setError(err.message);
     } finally {
@@ -38,58 +31,63 @@ export default function PassRecoveryPage() {
   };
 
   return (
-    <div className="min-h-screen bg-navy text-white font-sans selection:bg-primary-500/30">
-      <div className="absolute inset-0 z-0 bg-gradient-mesh opacity-20 pointer-events-none"></div>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 font-sans">
+      {/* Header */}
+      <div className="bg-white border-b border-slate-100 px-6 py-4">
+        <Link href="/pass" className="flex items-center gap-3">
+          <div className="bg-blue-600 w-8 h-8 rounded-lg flex items-center justify-center font-black text-white text-sm">E</div>
+          <span className="font-black text-slate-900">Entry<span className="text-blue-600">Flow</span></span>
+        </Link>
+      </div>
 
-      <main className="relative z-10 max-w-2xl mx-auto px-6 pt-32 pb-20">
-        <div className="text-center mb-12">
-           <div className="bg-primary-500/10 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-primary-500/20 shadow-glow-primary">
-              <Search className="w-10 h-10 text-primary-500" />
-           </div>
-           <h1 className="text-4xl font-bold font-heading mb-4 tracking-tight">Recover Your Pass</h1>
-           <p className="text-grey-400 text-lg">Enter the email you used during registration to access your digital entry passes.</p>
+      <main className="max-w-xl mx-auto px-6 pt-16 pb-20">
+        <div className="text-center mb-10">
+          <div className="bg-blue-50 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-blue-100">
+            <Search className="w-10 h-10 text-blue-600" />
+          </div>
+          <h1 className="text-4xl font-black text-slate-900 mb-3 tracking-tight">Recover Your Pass</h1>
+          <p className="text-slate-500 text-lg">Enter the email you used to register and we'll find all your passes.</p>
         </div>
 
         {/* Search Form */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-secondary/20 backdrop-blur-3xl border border-white/10 p-8 rounded-[2.5rem] shadow-2xl mb-12"
+          className="bg-white border border-slate-200 p-8 rounded-3xl shadow-xl mb-8"
         >
-          <form onSubmit={handleSearch} className="space-y-6">
-            <div className="space-y-2">
-              <label className="text-xs font-bold text-grey-500 uppercase tracking-widest px-1">Registration Email</label>
+          <form onSubmit={handleSearch} className="space-y-5">
+            <div>
+              <label className="text-xs font-bold text-slate-500 uppercase tracking-widest block mb-2">Registration Email</label>
               <div className="relative">
-                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-grey-600" />
-                <input 
+                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+                <input
                   required
-                  type="email" 
-                  placeholder="name@example.com" 
+                  type="email"
+                  placeholder="name@example.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value.toLowerCase())}
-                  className="w-full bg-black/30 border border-white/10 rounded-xl py-4 pl-12 pr-4 outline-none focus:ring-2 focus:ring-primary-500 transition-all font-medium text-white"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl py-4 pl-12 pr-4 outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all text-slate-900"
                 />
               </div>
             </div>
-
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               disabled={loading}
-              className="w-full bg-primary hover:bg-primary-500 text-white font-bold py-5 rounded-2xl shadow-glow-primary transition-all flex items-center justify-center gap-2 active:scale-95 disabled:opacity-50"
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-2xl shadow-lg transition-all flex items-center justify-center gap-2 active:scale-95"
             >
-              {loading ? <Loader2 className="w-6 h-6 animate-spin" /> : <>Find My Passes <ArrowRight className="w-5 h-5" /></>}
+              {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : <>Find My Passes <ArrowRight className="w-5 h-5" /></>}
             </button>
           </form>
         </motion.div>
 
-        {/* Results Area */}
+        {/* Results */}
         <AnimatePresence mode="wait">
           {error && (
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.97 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              className="bg-canada-red/10 border border-canada-red/20 text-canada-red p-6 rounded-2xl flex items-center gap-4"
+              exit={{ opacity: 0, scale: 0.97 }}
+              className="bg-red-50 border border-red-200 text-red-600 p-5 rounded-2xl flex items-center gap-4"
             >
               <AlertCircle className="w-6 h-6 shrink-0" />
               <p className="font-medium text-sm">{error}</p>
@@ -97,42 +95,38 @@ export default function PassRecoveryPage() {
           )}
 
           {results && results.length > 0 && (
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="space-y-4"
-            >
-              <p className="text-xs font-bold text-grey-500 uppercase tracking-widest mb-4 px-1">Found {results.length} Passes</p>
-              {results.map((pass, i) => (
-                <Link 
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Found {results.length} Passes</p>
+              {results.map((pass) => (
+                <Link
                   key={pass.passId}
                   href={`/pass/${pass.eventSlug || 'event'}/${pass.passId}`}
-                  className="block bg-secondary/10 hover:bg-secondary/20 border border-white/5 hover:border-white/10 p-6 rounded-3xl transition-all group"
+                  className="block bg-white hover:bg-blue-50 border border-slate-200 hover:border-blue-300 p-6 rounded-2xl transition-all shadow-sm group"
                 >
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-5">
-                       <div className="bg-primary-500/10 w-14 h-14 rounded-2xl flex items-center justify-center border border-primary-500/20 text-primary-500 font-bold group-hover:scale-110 transition-transform">
-                          <Ticket className="w-6 h-6" />
-                       </div>
-                       <div>
-                          <h3 className="text-xl font-bold mb-1 tracking-tight">{pass.eventName || 'Official Event'}</h3>
-                          <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
-                             <div className="flex items-center gap-1.5 text-xs text-grey-500 font-medium">
-                                <Calendar className="w-3.5 h-3.5" />
-                                {new Date(pass.eventDate).toLocaleDateString([], {month: 'short', day: 'numeric', year: 'numeric'})}
-                             </div>
-                             <div className="flex items-center gap-1.5 text-xs text-grey-500 font-medium max-w-[150px] truncate">
-                                <MapPin className="w-3.5 h-3.5" />
-                                {pass.eventVenue}
-                             </div>
+                    <div className="flex items-center gap-4">
+                      <div className="bg-blue-50 w-12 h-12 rounded-xl flex items-center justify-center border border-blue-100 group-hover:bg-blue-100 transition-colors">
+                        <Ticket className="w-6 h-6 text-blue-600" />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-bold text-slate-900 mb-1">{pass.eventName || 'Official Event'}</h3>
+                        <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+                          <div className="flex items-center gap-1.5 text-xs text-slate-400 font-medium">
+                            <Calendar className="w-3.5 h-3.5" />
+                            {new Date(pass.eventDate).toLocaleDateString([], {month:'short', day:'numeric', year:'numeric'})}
                           </div>
-                       </div>
+                          <div className="flex items-center gap-1.5 text-xs text-slate-400 font-medium truncate max-w-[140px]">
+                            <MapPin className="w-3.5 h-3.5 shrink-0" />
+                            {pass.eventVenue}
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <div className="flex flex-col items-end gap-2">
-                       <div className={`text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded ${pass.status === 'entered' ? 'bg-green-500/20 text-green-500' : 'bg-primary-500/20 text-primary-500'}`}>
-                          {pass.status === 'entered' ? 'Used' : 'Active'}
-                       </div>
-                       <div className="font-mono text-[10px] text-grey-600 font-bold tracking-widest">{pass.passId}</div>
+                    <div className="flex flex-col items-end gap-1 ml-4">
+                      <span className={`text-[10px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full ${pass.status === 'entered' ? 'bg-green-100 text-green-700' : 'bg-blue-100 text-blue-700'}`}>
+                        {pass.status === 'entered' ? 'Used' : 'Active'}
+                      </span>
+                      <span className="font-mono text-[10px] text-slate-400 font-bold">{pass.passId}</span>
                     </div>
                   </div>
                 </Link>
@@ -141,7 +135,7 @@ export default function PassRecoveryPage() {
           )}
         </AnimatePresence>
 
-        <p className="mt-20 text-center text-[10px] text-grey-600 uppercase tracking-[0.3em] font-bold">
+        <p className="mt-16 text-center text-[10px] text-slate-400 uppercase tracking-[0.3em] font-bold">
           EntryFlow Secure Pass Recovery
         </p>
       </main>

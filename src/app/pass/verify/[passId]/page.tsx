@@ -2,17 +2,13 @@
 
 import React, { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
-import { 
-  ShieldCheck, AlertCircle, CheckCircle2, 
-  XCircle, Loader2, ArrowLeft, User, 
-  Building2, Calendar, MapPin, UserCheck 
-} from "lucide-react";
+import { motion } from "framer-motion";
+import { ShieldCheck, CheckCircle2, XCircle, Loader2, UserCheck, Calendar, MapPin } from "lucide-react";
+import Link from "next/link";
 
 export default function PublicVerificationPage() {
   const { passId } = useParams();
   const router = useRouter();
-  
   const [visitor, setVisitor] = useState<any>(null);
   const [event, setEvent] = useState<any>(null);
   const [loading, setLoading] = useState(true);
@@ -33,14 +29,13 @@ export default function PublicVerificationPage() {
         setLoading(false);
       }
     };
-
     if (passId) fetchPassData();
   }, [passId]);
 
   const handleManualCheckIn = async () => {
     setVerifying(true);
     try {
-      const res = await fetch(`/api/pass/${passId}`, { 
+      const res = await fetch(`/api/pass/${passId}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ eventSlug: event?.slug })
@@ -57,107 +52,89 @@ export default function PublicVerificationPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-navy flex items-center justify-center">
-        <Loader2 className="w-10 h-10 text-primary-500 animate-spin" />
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
+        <Loader2 className="w-10 h-10 text-blue-600 animate-spin" />
       </div>
     );
   }
 
   if (error || !visitor) {
     return (
-      <div className="min-h-screen bg-navy flex flex-col items-center justify-center p-6 text-center text-white">
-        <motion.div
-           initial={{ opacity: 0, scale: 0.9 }}
-           animate={{ opacity: 1, scale: 1 }}
-           className="bg-secondary/20 backdrop-blur-3xl border border-white/10 p-10 rounded-[2.5rem] shadow-2xl max-w-sm w-full"
-        >
-          <XCircle className="w-20 h-20 text-canada-red mb-6 mx-auto" />
-          <h1 className="text-3xl font-bold font-heading mb-2 uppercase tracking-tight text-canada-red">Invalid Pass</h1>
-          <p className="text-grey-400 mb-8">This QR code does not point to a valid EntryFlow pass.</p>
-          <button 
-            onClick={() => router.push("/pass")}
-            className="w-full bg-white/10 hover:bg-white/20 text-white py-4 rounded-2xl font-bold transition-all"
-          >
+      <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-6 text-center">
+        <div className="bg-red-50 border border-red-200 p-10 rounded-3xl max-w-sm w-full shadow-xl">
+          <XCircle className="w-20 h-20 text-red-500 mb-6 mx-auto" />
+          <h1 className="text-3xl font-black text-red-600 mb-2 uppercase">Invalid Pass</h1>
+          <p className="text-slate-500 mb-8">This QR code does not link to a valid EntryFlow pass.</p>
+          <Link href="/pass" className="w-full block bg-slate-100 hover:bg-slate-200 text-slate-800 py-4 rounded-2xl font-bold transition-all text-center">
             Go to Landing Page
-          </button>
-        </motion.div>
+          </Link>
+        </div>
       </div>
     );
   }
 
-  const isEntered = visitor.status === 'entered';
+  const isEntered = visitor.status === "entered";
 
   return (
-    <div className="min-h-screen bg-navy text-white font-sans relative overflow-hidden flex flex-col items-center py-20 px-6">
-      <div className="absolute inset-0 z-0 bg-gradient-mesh opacity-20 pointer-events-none"></div>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 font-sans flex flex-col items-center py-20 px-6">
+      {/* Header */}
+      <div className="bg-white border-b border-slate-100 fixed top-0 left-0 right-0 px-6 py-4 flex items-center gap-3 z-10">
+        <div className="bg-blue-600 w-8 h-8 rounded-lg flex items-center justify-center font-black text-white text-sm">E</div>
+        <span className="font-black text-slate-900">Entry<span className="text-blue-600">Flow</span> <span className="font-normal text-slate-400 text-sm">· Verification</span></span>
+      </div>
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="relative z-10 w-full max-w-md"
+        className="w-full max-w-md mt-16"
       >
-        {/* Header Ribbon */}
-        <div className={`py-4 text-center rounded-t-[2.5rem] border-x border-t border-white/10 backdrop-blur-md ${isEntered ? 'bg-green-600/20' : 'bg-primary-600/20'}`}>
-           <p className={`text-[10px] font-black uppercase tracking-[0.3em] ${isEntered ? 'text-green-400' : 'text-primary-400'}`}>
-             {isEntered ? 'Verification Confirmed' : 'Security Checkpoint'}
-           </p>
+        {/* Status Header */}
+        <div className={`py-5 text-center rounded-t-3xl border border-b-0 ${isEntered ? 'bg-green-50 border-green-200' : 'bg-white border-slate-200'}`}>
+          <p className={`text-[10px] font-black uppercase tracking-[0.3em] ${isEntered ? 'text-green-600' : 'text-blue-600'}`}>
+            {isEntered ? "Verification Confirmed" : "Security Checkpoint"}
+          </p>
         </div>
 
         {/* Main Card */}
-        <div className="bg-secondary/20 backdrop-blur-3xl border-x border-b border-white/10 p-10 rounded-b-[2.5rem] shadow-2xl overflow-hidden relative">
-          
-          <div className="text-center mb-10">
-            <div className={`w-28 h-28 rounded-full flex items-center justify-center mx-auto mb-6 border-4 shadow-2xl transition-all ${isEntered ? 'bg-green-500/10 border-green-500/50 shadow-green-500/20' : 'bg-primary-500/10 border-primary-500/50 shadow-primary-500/20'}`}>
-              {isEntered ? (
-                <CheckCircle2 className="w-16 h-16 text-green-500" />
-              ) : (
-                <ShieldCheck className="w-16 h-16 text-primary-500" />
-              )}
-            </div>
-            <h1 className={`text-4xl font-extrabold font-heading mb-1 tracking-tight ${isEntered ? 'text-green-500' : 'text-white'}`}>
-              {isEntered ? 'ACCESS GRANTED' : 'PENDING ENTRY'}
+        <div className={`bg-white border border-t-0 ${isEntered ? 'border-green-200' : 'border-slate-200'} p-10 rounded-b-3xl shadow-xl`}>
+          {/* Icon */}
+          <div className={`w-28 h-28 rounded-full flex items-center justify-center mx-auto mb-6 border-4 ${isEntered ? 'bg-green-50 border-green-400 shadow-green-200 shadow-lg' : 'bg-blue-50 border-blue-400 shadow-blue-200 shadow-lg'}`}>
+            {isEntered ? <CheckCircle2 className="w-14 h-14 text-green-600" /> : <ShieldCheck className="w-14 h-14 text-blue-600" />}
+          </div>
+
+          <div className="text-center mb-8">
+            <h1 className={`text-4xl font-black tracking-tight mb-1 ${isEntered ? 'text-green-600' : 'text-slate-900'}`}>
+              {isEntered ? "ACCESS GRANTED" : "PENDING ENTRY"}
             </h1>
-            <p className="text-grey-400 text-sm font-medium tracking-tight">Attendee Official Verification</p>
+            <p className="text-slate-400 text-sm">Attendee Official Verification</p>
           </div>
 
-          {/* Attendee Info Block */}
-          <div className="bg-black/30 border border-white/5 rounded-3xl p-8 space-y-6 mb-10">
+          {/* Info Block */}
+          <div className="bg-slate-50 border border-slate-100 rounded-2xl p-6 space-y-5 mb-8">
             <div>
-              <p className="text-[10px] text-grey-500 uppercase font-black tracking-widest leading-none mb-2">Attendee Name</p>
-              <div className="flex items-center gap-3">
-                 <User className="w-5 h-5 text-primary-400" />
-                 <p className="text-xl font-bold">{visitor.name}</p>
-              </div>
+              <p className="text-[10px] text-slate-400 uppercase font-black tracking-widest mb-1">Attendee Name</p>
+              <p className="text-xl font-bold text-slate-900">{visitor.name}</p>
             </div>
-
-            <div className="grid grid-cols-1 gap-6 pt-4 border-t border-white/5">
+            <div className="grid grid-cols-2 gap-4 pt-4 border-t border-slate-200">
               <div>
-                <p className="text-[10px] text-grey-500 uppercase font-black tracking-widest leading-none mb-2">Company / Organization</p>
-                <div className="flex items-center gap-3">
-                   <Building2 className="w-4 h-4 text-grey-400" />
-                   <p className="text-sm font-bold">{visitor.company || 'Not Specified'}</p>
-                </div>
+                <p className="text-[10px] text-slate-400 uppercase font-black tracking-widest mb-1">Company</p>
+                <p className="text-sm font-bold text-slate-700">{visitor.company || "—"}</p>
               </div>
               <div>
-                <p className="text-[10px] text-grey-500 uppercase font-black tracking-widest leading-none mb-2">Pass Identification</p>
-                <div className="flex items-center gap-3">
-                   <p className="font-mono text-primary-400 font-bold bg-primary-400/10 px-2 py-0.5 rounded text-xs">{visitor.passId}</p>
-                   <span className="text-[10px] bg-white/5 px-2 py-0.5 rounded text-grey-400 font-bold">{visitor.passType.toUpperCase()}</span>
-                </div>
+                <p className="text-[10px] text-slate-400 uppercase font-black tracking-widest mb-1">Pass ID</p>
+                <p className="font-mono text-blue-600 font-bold text-sm">{visitor.passId}</p>
               </div>
             </div>
           </div>
 
-          {/* Action Button */}
+          {/* Action */}
           {!isEntered ? (
             <button
               onClick={handleManualCheckIn}
               disabled={verifying}
-              className="w-full bg-primary hover:bg-primary-500 text-white font-black py-6 rounded-2xl shadow-glow-primary transition-all flex flex-col items-center justify-center gap-1 active:scale-[0.98]"
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-black py-5 rounded-2xl shadow-lg transition-all flex flex-col items-center gap-1 active:scale-[0.98]"
             >
-              {verifying ? (
-                <Loader2 className="w-8 h-8 animate-spin" />
-              ) : (
+              {verifying ? <Loader2 className="w-8 h-8 animate-spin" /> : (
                 <>
                   <UserCheck className="w-7 h-7 mb-1" />
                   <span className="text-lg">CONFIRM ENTRY</span>
@@ -166,29 +143,18 @@ export default function PublicVerificationPage() {
               )}
             </button>
           ) : (
-            <div className="w-full bg-green-500/10 border-2 border-green-500 text-green-500 font-black py-6 rounded-2xl flex flex-col items-center justify-center">
+            <div className="w-full bg-green-600 text-white font-black py-5 rounded-2xl flex flex-col items-center border-b-4 border-green-800">
               <span className="text-lg">ENTRY VERIFIED</span>
-              <span className="text-[10px] opacity-100 tracking-widest font-bold uppercase mt-1 px-3 py-0.5 bg-green-500 text-navy rounded">
-                Scanned at {visitor.enteredAt ? new Date(visitor.enteredAt).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) : 'Just Now'}
+              <span className="text-[10px] font-bold uppercase mt-1">
+                {visitor.enteredAt ? new Date(visitor.enteredAt).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'}) : 'Just Now'}
               </span>
             </div>
           )}
         </div>
 
-        {/* Footer info */}
-        <div className="mt-8 text-center space-y-4">
-           <div className="flex items-center justify-center gap-8 text-grey-500 text-[10px] font-bold tracking-widest uppercase">
-              <div className="flex items-center gap-1">
-                 <Calendar className="w-3 h-3" /> {new Date(visitor.eventDate).toLocaleDateString()}
-              </div>
-              <div className="flex items-center gap-1">
-                 <MapPin className="w-3 h-3" /> Gate Area
-              </div>
-           </div>
-           <p className="text-[10px] text-grey-600 uppercase tracking-[0.2em] font-bold">
-              EntryFlow Protocol &bull; Secure Chain Verification
-           </p>
-        </div>
+        <p className="mt-8 text-center text-[10px] text-slate-400 uppercase tracking-[0.2em] font-bold">
+          EntryFlow Protocol • Secure Chain Verification
+        </p>
       </motion.div>
     </div>
   );

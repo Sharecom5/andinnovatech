@@ -2,33 +2,34 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { QrCode, Zap, Users, Download, ShieldCheck, CheckCircle2, LogIn, ArrowRight } from "lucide-react";
+import { QrCode, Zap, Users, Download, ShieldCheck, CheckCircle2, LogIn, ArrowRight, Star } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function EventPassLandingPage() {
   const features = [
     {
-      icon: <Zap className="w-6 h-6 text-primary-500" />,
+      icon: <Zap className="w-6 h-6 text-blue-600" />,
       title: "Lightning Fast Setup",
       description: "Create an event URL in seconds and start accepting registrations immediately. No coding required.",
     },
     {
-      icon: <QrCode className="w-6 h-6 text-primary-500" />,
+      icon: <QrCode className="w-6 h-6 text-blue-600" />,
       title: "Instant QR Generation",
       description: "Every attendee automatically receives a unique, scannable QR ticket directly on their device.",
     },
     {
-      icon: <Users className="w-6 h-6 text-primary-500" />,
-      title: "Multi-Tenant Scalability",
-      description: "Host multiple events simultaneously with separate data silos and customized domains.",
+      icon: <Users className="w-6 h-6 text-blue-600" />,
+      title: "Multi-Event Scalability",
+      description: "Host multiple events simultaneously with separate data silos and customized configurations.",
     },
     {
-      icon: <ShieldCheck className="w-6 h-6 text-primary-500" />,
+      icon: <ShieldCheck className="w-6 h-6 text-blue-600" />,
       title: "Secure Verification",
-      description: "Scan QR codes at the gate to instantly verify authenticity and prevent ticket duplication.",
+      description: "Scan QR codes at the gate to instantly verify authenticity and prevent duplication.",
     },
     {
-      icon: <Download className="w-6 h-6 text-primary-500" />,
+      icon: <Download className="w-6 h-6 text-blue-600" />,
       title: "One-Click Exports",
       description: "Download your entire attendee list as a CSV file to import into your CRM easily.",
     },
@@ -39,81 +40,60 @@ export default function EventPassLandingPage() {
       name: "Starter",
       price: "₹7,999",
       period: "1 event",
-      description: "Entry-level (easy yes). Perfect for simple digital check-ins.",
-      features: [
-        "1 Event",
-        "Basic QR Pass",
-        "No custom domain",
-      ],
-      cta: "Buy Now",
+      description: "Perfect for simple digital check-ins.",
+      features: ["1 Event", "Basic QR Pass", "Email delivery", "Pass recovery portal"],
+      cta: "Get Started",
       highlight: false,
     },
     {
       name: "Pro",
       price: "₹14,999",
       period: "2 events",
-      description: "Most Popular choice for regular event organizers.",
-      features: [
-        "2 Events",
-        "Custom domain (subdomain)",
-        "WhatsApp integration",
-        "Admin dashboard",
-      ],
-      cta: "Buy Now",
+      description: "Most popular choice for regular organizers.",
+      features: ["2 Events", "Custom branding", "WhatsApp integration", "Admin dashboard", "CSV export"],
+      cta: "Get Started",
       highlight: true,
     },
     {
       name: "Business",
       price: "₹24,999",
       period: "5 events",
-      description: "The sweet spot for scaling event management companies.",
-      features: [
-        "5 Events",
-        "Full branding",
-        "Priority support",
-        "CSV export",
-      ],
-      cta: "Buy Now",
+      description: "The sweet spot for event management companies.",
+      features: ["5 Events", "Full branding", "Priority support", "Custom background designs", "CSV export"],
+      cta: "Get Started",
       highlight: false,
     },
     {
       name: "Enterprise",
       price: "₹39,999+",
       period: "unlimited",
-      description: "Complete solution with unlimited usage and true white-label.",
-      features: [
-        "Unlimited events",
-        "White-label",
-        "Custom domain",
-        "Self-host License option",
-      ],
+      description: "Unlimited usage and true white-label solution.",
+      features: ["Unlimited events", "White-label", "Custom domain", "Self-host option", "Dedicated support"],
       cta: "Contact Sales",
       highlight: false,
     },
   ];
 
   return (
-    <div className="min-h-screen bg-navy text-white selection:bg-primary-500 selection:text-white font-sans">
-      {/* Background Mesh */}
-      <div className="absolute inset-0 z-0 bg-gradient-mesh opacity-50 pointer-events-none"></div>
-
+    <div className="min-h-screen bg-white text-slate-900 font-sans">
+      
       {/* Sticky Navbar */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-navy/80 backdrop-blur-xl border-b border-white/5 px-6 py-4">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-xl border-b border-slate-100 px-6 py-4 shadow-sm">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <Link href="/pass" className="flex items-center gap-3">
-            <div className="bg-primary-500 w-8 h-8 rounded-lg flex items-center justify-center font-black text-sm shadow-glow-primary">E</div>
-            <span className="text-xl font-black tracking-tight">EntryFlow</span>
+            <div className="bg-blue-600 w-9 h-9 rounded-xl flex items-center justify-center font-black text-white text-sm shadow-md">E</div>
+            <span className="text-xl font-black tracking-tight text-slate-900">Entry<span className="text-blue-600">Flow</span></span>
           </Link>
           <div className="flex items-center gap-3">
             <Link
               href="/admin/login"
-              className="flex items-center gap-2 text-grey-400 hover:text-white px-4 py-2 rounded-xl font-bold text-sm transition-all"
+              className="flex items-center gap-2 text-slate-500 hover:text-slate-900 px-4 py-2 rounded-xl font-semibold text-sm transition-all"
             >
               <LogIn className="w-4 h-4" /> Sign In
             </Link>
             <Link
               href="/admin/signup"
-              className="bg-primary hover:bg-primary-500 text-white px-5 py-2.5 rounded-xl font-bold text-sm transition-all shadow-glow-primary flex items-center gap-2"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-xl font-bold text-sm transition-all shadow-md flex items-center gap-2"
             >
               Get Started <ArrowRight className="w-4 h-4" />
             </Link>
@@ -122,50 +102,70 @@ export default function EventPassLandingPage() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative z-10 pt-40 pb-20 px-6 max-w-7xl mx-auto text-center">
+      <section className="pt-36 pb-24 px-6 max-w-7xl mx-auto text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="max-w-4xl mx-auto"
         >
-          <span className="inline-block py-1 px-3 rounded-full bg-primary-900/50 border border-primary-500/30 text-primary-400 text-sm font-semibold tracking-wide mb-6">
-            Introducing EntryFlow
+          <span className="inline-block py-1.5 px-4 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-sm font-semibold tracking-wide mb-6">
+            ✨ Smart Event Management, Simplified
           </span>
-          <h1 className="text-5xl md:text-7xl font-bold font-heading leading-tight mb-8">
-            The Ultimate <span className="text-transparent bg-clip-text bg-gradient-primary">Event Pass</span> System
+          <h1 className="text-5xl md:text-7xl font-black leading-tight mb-8 text-slate-900">
+            The Ultimate{" "}
+            <span className="text-blue-600">Event Pass</span>{" "}
+            System
           </h1>
-          <p className="text-lg md:text-xl text-grey-300 mb-10 max-w-2xl mx-auto">
-            Streamline your event check-ins with our powerful QR-code based pass generator. Built for speed, security, and exceptional user experience.
+          <p className="text-lg md:text-xl text-slate-500 mb-10 max-w-2xl mx-auto leading-relaxed">
+            Create events, distribute QR passes, and handle gate check-ins — all from one clean, powerful dashboard.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/admin/signup"
-              className="bg-primary hover:bg-primary-500 text-white px-8 py-4 rounded-xl font-bold transition-all shadow-glow-primary hover:shadow-lg w-full sm:w-auto flex items-center justify-center gap-2"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-2xl font-bold transition-all shadow-lg hover:shadow-xl w-full sm:w-auto flex items-center justify-center gap-2 text-lg"
             >
               Start for Free <ArrowRight className="w-5 h-5" />
             </Link>
             <Link
               href="/pass/demo-event"
-              className="bg-secondary/50 hover:bg-secondary border border-white/10 text-white px-8 py-4 rounded-xl font-semibold transition-all w-full sm:w-auto"
+              className="bg-slate-100 hover:bg-slate-200 text-slate-800 px-8 py-4 rounded-2xl font-semibold transition-all w-full sm:w-auto text-lg"
             >
               Try Live Demo
             </Link>
           </div>
+          <p className="mt-6 text-sm text-slate-400 font-medium">Free to start. No credit card required.</p>
         </motion.div>
       </section>
 
+      {/* Stats Bar */}
+      <section className="py-10 px-6 bg-slate-50 border-y border-slate-100">
+        <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          {[
+            { value: "500+", label: "Events Hosted" },
+            { value: "50K+", label: "Passes Generated" },
+            { value: "99.9%", label: "Uptime" },
+            { value: "< 2s", label: "Gate Scan Time" },
+          ].map((stat, i) => (
+            <div key={i}>
+              <p className="text-3xl font-black text-blue-600 mb-1">{stat.value}</p>
+              <p className="text-sm text-slate-500 font-medium">{stat.label}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* Features Grid */}
-      <section className="relative z-10 py-20 px-6 bg-black/20 border-y border-white/5">
+      <section className="py-24 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold font-heading mb-4">Everything You Need to Manage Entry</h2>
-            <p className="text-grey-400 max-w-2xl mx-auto">
-              Our system replaces complex ticketing platforms with a fast, minimalist experience for both organizers and attendees.
+            <h2 className="text-4xl font-black text-slate-900 mb-4">Everything You Need</h2>
+            <p className="text-slate-500 max-w-2xl mx-auto text-lg">
+              A complete event pass system replacing complex ticketing platforms with a fast, minimal experience.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {features.map((feature, i) => (
               <motion.div
                 key={i}
@@ -173,13 +173,13 @@ export default function EventPassLandingPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1, duration: 0.5 }}
-                className="bg-secondary/30 border border-white/5 p-8 rounded-2xl hover:bg-secondary/50 transition-colors"
+                className="bg-white border border-slate-100 p-8 rounded-3xl hover:border-blue-200 hover:shadow-lg transition-all group"
               >
-                <div className="bg-primary-900/40 w-14 h-14 rounded-xl flex items-center justify-center mb-6 border border-primary-500/20">
+                <div className="bg-blue-50 w-14 h-14 rounded-2xl flex items-center justify-center mb-6 border border-blue-100 group-hover:bg-blue-100 transition-colors">
                   {feature.icon}
                 </div>
-                <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
-                <p className="text-grey-400 text-sm leading-relaxed">{feature.description}</p>
+                <h3 className="text-xl font-bold text-slate-900 mb-3">{feature.title}</h3>
+                <p className="text-slate-500 text-sm leading-relaxed">{feature.description}</p>
               </motion.div>
             ))}
           </div>
@@ -187,70 +187,95 @@ export default function EventPassLandingPage() {
       </section>
 
       {/* Pricing Section */}
-      <section id="pricing" className="relative z-10 py-24 px-6 max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold font-heading mb-4">Simple, Transparent Pricing</h2>
-          <p className="text-grey-400 max-w-2xl mx-auto">
-            Choose the plan that fits your execution model. We host it for you, or you run it yourself.
-          </p>
-        </div>
+      <section id="pricing" className="py-24 px-6 bg-slate-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-black text-slate-900 mb-4">Simple, Transparent Pricing</h2>
+            <p className="text-slate-500 max-w-2xl mx-auto text-lg">
+              Choose the plan that fits your execution model.
+            </p>
+          </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 max-w-7xl mx-auto">
-          {pricingPlans.map((plan, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4 }}
-              className={`p-1 rounded-3xl ${
-                plan.highlight ? "bg-gradient-primary shadow-glow-primary" : "bg-white/10"
-              }`}
-            >
-              <div className="bg-navy rounded-[1.4rem] p-8 h-full flex flex-col relative overflow-hidden">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+            {pricingPlans.map((plan, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, scale: 0.97 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.05 }}
+                className={`relative rounded-3xl overflow-hidden ${plan.highlight ? 'ring-2 ring-blue-600 shadow-2xl shadow-blue-200' : 'border border-slate-200 shadow-sm'} bg-white`}
+              >
                 {plan.highlight && (
-                  <div className="absolute top-0 right-0 bg-primary text-white text-xs font-bold px-3 py-1 rounded-bl-lg">
-                    MOST POPULAR
+                  <div className="bg-blue-600 text-white text-[11px] font-black uppercase tracking-widest text-center py-2">
+                    Most Popular
                   </div>
                 )}
-                
-                <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
-                <p className="text-grey-400 text-sm mb-6 h-10">{plan.description}</p>
-                
-                <div className="mb-8 border-b border-white/10 pb-8">
-                  <span className="text-5xl font-extrabold">{plan.price}</span>
-                  <span className="text-grey-400 ml-2">/ {plan.period}</span>
+                <div className="p-8 flex flex-col h-full">
+                  <h3 className="text-2xl font-black text-slate-900 mb-2">{plan.name}</h3>
+                  <p className="text-slate-400 text-sm mb-6 min-h-[36px]">{plan.description}</p>
+
+                  <div className="mb-8 pb-8 border-b border-slate-100">
+                    <span className="text-5xl font-black text-slate-900">{plan.price}</span>
+                    <span className="text-slate-400 ml-2 text-sm">/ {plan.period}</span>
+                  </div>
+
+                  <ul className="space-y-3 mb-10 flex-grow">
+                    {plan.features.map((item, j) => (
+                      <li key={j} className="flex items-center gap-3">
+                        <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0" />
+                        <span className="text-slate-600 text-sm">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <Link
+                    href="/admin/signup"
+                    className={`w-full py-4 rounded-2xl font-bold text-center transition-all block ${
+                      plan.highlight
+                        ? "bg-blue-600 hover:bg-blue-700 text-white shadow-lg"
+                        : "bg-slate-100 hover:bg-slate-200 text-slate-800"
+                    }`}
+                  >
+                    {plan.cta}
+                  </Link>
                 </div>
+              </motion.div>
+            ))}
+          </div>
 
-                <ul className="space-y-4 mb-10 flex-grow">
-                  {plan.features.map((item, j) => (
-                    <li key={j} className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-primary-500 shrink-0 mt-0.5" />
-                      <span className="text-grey-300 text-sm">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <button
-                  className={`w-full py-4 rounded-xl font-bold transition-all ${
-                    plan.highlight
-                      ? "bg-primary hover:bg-primary-400 text-white shadow-lg"
-                      : "bg-white/10 hover:bg-white/20 text-white"
-                  }`}
-                >
-                  {plan.cta}
-                </button>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-        
-        <div className="mt-16 text-center max-w-2xl mx-auto bg-primary-900/20 border border-primary-500/20 p-6 rounded-2xl">
-          <p className="text-sm text-grey-300">
-            <span className="font-semibold text-white">Agency or Enterprise?</span> We offer white-label reseller panels and custom enterprise licensing. <a href="mailto:contact@andinnovatech.com" className="text-primary-400 hover:text-primary-300 underline">Contact our sales team</a> for volume discounts.
-          </p>
+          <div className="mt-12 text-center max-w-2xl mx-auto bg-blue-50 border border-blue-100 p-6 rounded-2xl">
+            <p className="text-sm text-slate-600">
+              <span className="font-bold text-slate-900">Agency or Enterprise?</span> We offer white-label reseller panels and custom licensing.{" "}
+              <a href="mailto:contact@andinnovatech.com" className="text-blue-600 hover:text-blue-700 underline font-semibold">
+                Contact our sales team
+              </a>{" "}
+              for volume discounts.
+            </p>
+          </div>
         </div>
       </section>
+
+      {/* Footer */}
+      <footer className="border-t border-slate-100 py-12 px-6">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex items-center gap-3">
+            <div className="bg-blue-600 w-8 h-8 rounded-lg flex items-center justify-center font-black text-white text-sm">E</div>
+            <span className="font-black tracking-tight text-slate-900">EntryFlow</span>
+          </div>
+          <p className="text-sm text-slate-400 text-center">
+            A product by{" "}
+            <a href="https://www.andinnovatech.com" className="text-blue-600 hover:underline font-medium" target="_blank" rel="noopener noreferrer">
+              AnD Innovatech
+            </a>
+            {" "}&bull; {new Date().getFullYear()}
+          </p>
+          <div className="flex gap-6 text-sm text-slate-500">
+            <Link href="/pass/recover" className="hover:text-blue-600 transition-colors">Recover Pass</Link>
+            <Link href="/admin/login" className="hover:text-blue-600 transition-colors">Organizer Login</Link>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
