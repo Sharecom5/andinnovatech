@@ -31,7 +31,11 @@ export default function LoginPage() {
     });
 
     if (result?.error) {
-      setError(result.error === "CredentialsSignin" ? "Invalid email or password." : result.error);
+      // NextAuth passes the actual thrown error message through result.error
+      const knownErrors: Record<string, string> = {
+        CredentialsSignin: "Invalid email or password.",
+      };
+      setError(knownErrors[result.error] || result.error);
       setLoading(false);
     } else {
       router.push("/admin/dashboard");

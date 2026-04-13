@@ -26,19 +26,21 @@ const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
-          throw new Error("Missing email or password")
+          throw new Error("Please provide both email and password.")
         }
         await connectDB()
         const user = await Organizer.findOne({ email: credentials.email.toLowerCase() })
-        if (!user || (!user.passwordHash && user.googleId)) {
-          throw new Error("Invalid email or logged in via Google previously")
+        
+        if (!user) {
+          throw new Error("No account found with this email. Please sign up first.")
         }
+        
         if (!user.passwordHash) {
-          throw new Error("Invalid credentials")
+          throw new Error("This account was created with Google. Please sign in with Google instead.")
         }
         
         const isValid = await bcrypt.compare(credentials.password, user.passwordHash)
-        if (!isValid) throw new Error("Invalid password")
+        if (!isValid) throw new Error("Incorrect password. Please try again.")
 
         return { id: user._id.toString(), email: user.email, name: user.name }
       }
