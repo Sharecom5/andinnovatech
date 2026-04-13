@@ -4,7 +4,8 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Plus, Calendar, MapPin, Globe, Settings, Loader2, Search,
-  PlusCircle, LayoutDashboard, LogOut, ChevronRight, Camera, X, AlertCircle, Upload, Image as ImageIcon
+  PlusCircle, LayoutDashboard, LogOut, ChevronRight, Camera, X, AlertCircle, Upload, Image as ImageIcon,
+  Zap, TrendingUp
 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -16,6 +17,7 @@ export default function MyEventsDashboard() {
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [search, setSearch] = useState("");
+  const [usage, setUsage] = useState<{ plan: string; totalPasses: number; freeLimit: number; isLimited: boolean } | null>(null);
   const [formData, setFormData] = useState({
     name: "", slug: "", date: "", endDate: "", venue: "", description: "",
     passSettings: { showName: true, showDesignation: true, showPhone: false, showCompany: true, customBackgroundUrl: "", qrPosition: 40, infoPosition: 65 }
@@ -26,11 +28,18 @@ export default function MyEventsDashboard() {
 
   const fetchEvents = async () => {
     try {
-      const res = await fetch("/api/admin/events");
-      if (res.status === 401) { router.push("/admin/login"); return; }
-      if (!res.ok) throw new Error("Server error");
-      const data = await res.json();
-      setEvents(data.events || []);
+      const [evRes, usageRes] = await Promise.all([
+        fetch("/api/admin/events"),
+        fetch("/api/admin/usage")
+      ]);
+      if (evRes.status === 401) { router.push("/admin/login"); return; }
+      if (!evRes.ok) throw new Error("Server error");
+      const evData = await evRes.json();
+      setEvents(evData.events || []);
+      if (usageRes.ok) {
+        const usageData = await usageRes.json();
+        setUsage(usageData);
+      }
     } catch (err) { console.error(err); } finally { setLoading(false); }
   };
 
@@ -112,6 +121,39 @@ export default function MyEventsDashboard() {
             <PlusCircle className="w-5 h-5" /> Create New Event
           </button>
         </div>
+
+        {/* Freemium Usage Banner */}
+        {usage && usage.plan === 'free' && (
+          <div className={`mb-8 p-5 rounded-2xl border flex flex-col md:flex-row md:items-center gap-4 ${
+            usage.isLimited
+              ? 'bg-red-50 border-red-200'
+              : usage.totalPasses >= 7
+              ? 'bg-orange-50 border-orange-200'
+              : 'bg-blue-50 border-blue-200'
+          }`}>
+            <div className="flex-1">
+              <div className="flex items-center gap-2 mb-2">
+                <TrendingUp className={`w-4 h-4 ${usage.isLimited ? 'text-red-500' : usage.totalPasses >= 7 ? 'text-orange-500' : 'text-blue-600'}`} />
+                <p className={`text-sm font-black ${ usage.isLimited ? 'text-red-700' : 'text-slate-800'}`}>
+                  {usage.isLimited ? '🚫 Free Pass Limit Reached' : `Free Plan: ${usage.totalPasses} / ${usage.freeLimit} passes used`}
+                </p>
+              </div>
+              <div className="w-full bg-white rounded-full h-2 border border-slate-200">
+                <div
+                  className={`h-2 rounded-full transition-all ${ usage.isLimited ? 'bg-red-500' : usage.totalPasses >= 7 ? 'bg-orange-500' : 'bg-blue-500'}`}
+                  style={{ width: `${Math.min((usage.totalPasses / usage.freeLimit) * 100, 100)}%` }}
+                />
+              </div>
+              {usage.isLimited && (
+                <p className="text-xs text-red-600 mt-2">New registrations are blocked. Upgrade to continue accepting passes.</p>
+              )}
+            </div>
+            <a href="mailto:contact@andinnovatech.com?subject=EntryFlow Upgrade Request"
+              className="shrink-0 flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-black px-5 py-3 rounded-xl shadow-md transition-all text-sm">
+              <Zap className="w-4 h-4" /> Upgrade Plan
+            </a>
+          </div>
+        )}
 
         {/* Search */}
         <div className="relative mb-8">

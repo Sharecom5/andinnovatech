@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Ticket, User, Mail, Phone, Building2, Send, Loader2, AlertCircle, MapPin, Briefcase, ArrowLeft } from "lucide-react";
+import { Ticket, User, Mail, Phone, Building2, Send, Loader2, AlertCircle, MapPin, Briefcase, ArrowLeft, Lock } from "lucide-react";
 import Link from "next/link";
 
 export default function RegistrationPage() {
@@ -13,6 +13,7 @@ export default function RegistrationPage() {
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const [planLimitReached, setPlanLimitReached] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -51,6 +52,14 @@ export default function RegistrationPage() {
       });
 
       const data = await res.json();
+
+      // Handle freemium plan limit
+      if (res.status === 402 || data.error === 'PLAN_LIMIT_REACHED') {
+        setPlanLimitReached(true);
+        setSubmitting(false);
+        return;
+      }
+
       if (!res.ok) throw new Error(data.error || "Registration failed");
       router.push(`/pass/${slug}/${data.passId}`);
     } catch (err: any) {
@@ -70,6 +79,30 @@ export default function RegistrationPage() {
   const settings = event?.passSettings || { showName: true, showDesignation: true, showPhone: true, showCompany: true };
   const displayEventName = event?.name || "Event Registration";
 
+  // Plan limit screen
+  if (planLimitReached) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-orange-50 font-sans flex items-center justify-center px-6">
+        <div className="bg-white border border-orange-200 rounded-3xl shadow-2xl p-10 max-w-md w-full text-center">
+          <div className="bg-orange-50 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-orange-200">
+            <Lock className="w-10 h-10 text-orange-500" />
+          </div>
+          <h1 className="text-2xl font-black text-slate-900 mb-3">Registration Temporarily Unavailable</h1>
+          <p className="text-slate-500 text-sm leading-relaxed mb-8">
+            This event organizer has reached their <strong>free plan limit</strong> of 10 passes.
+            To resume registrations, the organizer needs to upgrade their EntryFlow plan.
+          </p>
+          <a href="mailto:contact@andinnovatech.com"
+            className="block w-full bg-orange-500 hover:bg-orange-600 text-white font-black py-4 rounded-2xl shadow-lg transition-all mb-4">
+            Contact Organizer
+          </a>
+          <Link href="/pass" className="block text-slate-400 hover:text-slate-700 text-sm font-medium transition-colors">
+            Learn about EntryFlow →
+          </Link>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 font-sans relative">
       {/* Header */}

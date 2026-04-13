@@ -2,9 +2,12 @@ import { NextRequest, NextResponse } from 'next/server';
 import { connectDB } from '@/lib/mongodb';
 import { Event } from '@/models/Event';
 import { Visitor } from '@/models/Visitor';
+import { Organizer } from '@/models/Organizer';
 import { sendPassEmail } from '@/lib/resend';
 import QRCode from 'qrcode';
 import crypto from 'crypto';
+
+const FREE_PASS_LIMIT = 10;
 
 export async function POST(req: NextRequest) {
   try {
@@ -18,25 +21,50 @@ export async function POST(req: NextRequest) {
 
     // Find the event
     let event = await Event.findOne({ slug: eventSlug });
-    
-    // Auto-create demo event if not exists, for ease of use
-    if (!event) {
+
+    // Auto-create demo event if not exists (for demo-event slug only)
+    if (!event && eventSlug === 'demo-event') {
       event = await Event.create({
         name: 'Demo Event',
-        slug: eventSlug || 'demo',
+        slug: 'demo-event',
         venue: 'Virtual/Local Venue',
         date: '2026-12-31'
       });
     }
 
-    // Check if already registered for this event (allowing duplicate name if same email)
+    if (!event) {
+      return NextResponse.json({ error: 'Event not found.' }, { status: 404 });
+    }
+
+    // ─── Freemium Gate ────────────────────────────────────────────────
+    if (event.organizerId) {
+      const organizer = await Organizer.findById(event.organizerId);
+      
+      if (organizer && organizer.plan === 'free') {
+        // Count total passes ever generated across ALL of this organizer's events
+        const allEventIds = await Event.find({ organizerId: event.organizerId }).select('_id');
+        const eventIdList = allEventIds.map((e: any) => e._id);
+        const totalPasses = await Visitor.countDocuments({ eventId: { $in: eventIdList } });
+
+        if (totalPasses >= FREE_PASS_LIMIT) {
+          return NextResponse.json({
+            error: 'PLAN_LIMIT_REACHED',
+            message: `Free plan limit of ${FREE_PASS_LIMIT} passes reached. The event organizer needs to upgrade to continue accepting registrations.`,
+            totalPasses,
+            limit: FREE_PASS_LIMIT,
+          }, { status: 402 });
+        }
+      }
+    }
+    // ─────────────────────────────────────────────────────────────────
+
+    // Check if already registered for this event
     const existing = await Visitor.findOne({ email: email.toLowerCase(), eventId: event._id });
     if (existing) {
-       // Return existing pass instead of error
-       return NextResponse.json({ 
-        success: true, 
-        message: 'Already registered', 
-        passId: existing.passId 
+      return NextResponse.json({
+        success: true,
+        message: 'Already registered',
+        passId: existing.passId
       });
     }
 
@@ -44,11 +72,10 @@ export async function POST(req: NextRequest) {
     let passId = "";
     let isUnique = false;
     const prefix = (event.name || "EVT").substring(0, 3).toUpperCase();
-    
+
     while (!isUnique) {
       const uniquePart = crypto.randomBytes(3).toString('hex').toUpperCase();
       passId = `${prefix}-${uniquePart}`;
-      
       const existingPass = await Visitor.findOne({ passId });
       if (!existingPass) isUnique = true;
     }
@@ -60,13 +87,7 @@ export async function POST(req: NextRequest) {
 
     // Create new Visitor
     const newVisitor = new Visitor({
-      passId,
-      name,
-      email: email.toLowerCase(),
-      phone,
-      company,
-      address,
-      designation,
+      passId, name, email: email.toLowerCase(), phone, company, address, designation,
       passType: passType || 'Visitor',
       status: 'registered',
       qrCodeUrl: qrCodeDataUri,
@@ -76,7 +97,6 @@ export async function POST(req: NextRequest) {
       eventVenue: event.venue,
     });
 
-    console.log('Attempting to save visitor:', newVisitor.passId);
     await newVisitor.save();
 
     // Send automated pass email via Resend
@@ -91,10 +111,8 @@ export async function POST(req: NextRequest) {
         eventVenue: event.venue,
         qrCodeBase64: qrCodeDataUri
       });
-      console.log('Email sent successfully to:', email);
     } catch (emailErr) {
       console.error('Failed to send pass email:', emailErr);
-      // We don't fail the registration if email fails, but we log it
     }
 
     return NextResponse.json({
@@ -105,14 +123,7 @@ export async function POST(req: NextRequest) {
     });
 
   } catch (error: any) {
-    console.error('Registration error details:', {
-      message: error.message,
-      stack: error.stack,
-      errors: error.errors // This captures Mongoose validation errors
-    });
-    return NextResponse.json({ 
-      error: 'Internal Server Error', 
-      details: error.message 
-    }, { status: 500 });
+    console.error('Registration error:', error.message);
+    return NextResponse.json({ error: 'Internal Server Error', details: error.message }, { status: 500 });
   }
 }
