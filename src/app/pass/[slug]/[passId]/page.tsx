@@ -126,11 +126,6 @@ export default function PassPage() {
 
             <div className={`w-full h-full flex flex-col items-center ${settings?.customBackgroundUrl ? 'p-0' : 'p-8'}`}>
               
-              {/* Status Badge */}
-              <div className={`${settings?.customBackgroundUrl ? 'absolute top-4 right-4 z-20 shadow-md backdrop-blur-sm' : 'mb-6 z-10'} px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest ${visitor.status === 'entered' ? 'bg-green-100 text-green-700 border border-green-200' : 'bg-blue-50 text-blue-700 border border-blue-200'}`}>
-                {visitor.status === "entered" ? "✅ Checked In" : "🎟️ Active Pass"}
-              </div>
-
               {/* QR Code */}
               <div 
                 className={`${settings?.customBackgroundUrl ? 'absolute left-1/2 -translate-x-1/2 bg-white p-3 rounded-2xl border-4' : 'bg-white p-4 rounded-2xl border-4 mb-6'} ${visitor.status === 'entered' ? 'border-green-500 shadow-lg shadow-green-200' : settings?.customBackgroundUrl ? 'border-slate-100 shadow-lg' : 'border-blue-500 shadow-lg shadow-blue-200'}`}
@@ -155,22 +150,7 @@ export default function PassPage() {
                 )}
               </div>
 
-              {/* Action Area */}
-              <div className={`w-full ${settings?.customBackgroundUrl ? 'px-8 absolute bottom-8' : 'mt-auto'}`}>
-                {visitor.status !== "entered" ? (
-                  <div className="w-full bg-slate-100/80 backdrop-blur-sm border border-slate-200 text-slate-500 font-bold py-4 rounded-2xl flex flex-col items-center">
-                    <span className="text-sm">PRESENT QR CODE FOR ENTRY</span>
-                    <span className="text-[10px] opacity-80 tracking-widest font-black mt-1">STAFF SCAN REQUIRED</span>
-                  </div>
-                ) : (
-                  <div className="w-full bg-green-600 text-white font-black py-4 rounded-2xl flex flex-col items-center shadow-xl border-b-4 border-green-800">
-                    <span className="text-lg">ENTRY VERIFIED</span>
-                    <span className="text-[10px] opacity-80 tracking-widest font-bold uppercase">
-                      Authorized at {visitor.enteredAt ? new Date(visitor.enteredAt).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'}) : 'Just Now'}
-                    </span>
-                  </div>
-                )}
-              </div>
+
             </div>
 
             {!settings?.customBackgroundUrl && (

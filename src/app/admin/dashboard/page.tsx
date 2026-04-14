@@ -20,7 +20,7 @@ export default function MyEventsDashboard() {
   const [usage, setUsage] = useState<{ plan: string; totalPasses: number; freeLimit: number; totalEvents: number; eventLimit: number; isPassLimited: boolean; isEventLimited: boolean; isLimited: boolean } | null>(null);
   const [formData, setFormData] = useState({
     name: "", slug: "", date: "", endDate: "", venue: "", description: "", checkinPin: "1234",
-    passSettings: { showName: true, showDesignation: true, showPhone: false, showCompany: true, customBackgroundUrl: "", qrPosition: 40, infoPosition: 65 }
+    passSettings: { showName: true, showDesignation: true, showPhone: true, showCompany: true, customBackgroundUrl: "", qrPosition: 40, infoPosition: 65 }
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
@@ -65,7 +65,7 @@ export default function MyEventsDashboard() {
     if (!showModal) {
       setIsEditing(false);
       setEditEventId(null);
-      setFormData({ name: "", slug: "", date: "", endDate: "", venue: "", description: "", checkinPin: "1234", passSettings: { showName: true, showDesignation: true, showPhone: false, showCompany: true, customBackgroundUrl: "", qrPosition: 40, infoPosition: 65 } });
+      setFormData({ name: "", slug: "", date: "", endDate: "", venue: "", description: "", checkinPin: "1234", passSettings: { showName: true, showDesignation: true, showPhone: true, showCompany: true, customBackgroundUrl: "", qrPosition: 40, infoPosition: 65 } });
     }
     return () => { document.body.style.overflow = 'unset'; };
   }, [showModal]);
@@ -358,6 +358,16 @@ export default function MyEventsDashboard() {
                     <label className={labelCls}>Gate Check-In PIN *</label>
                     <input type="text" required maxLength={6} placeholder="1234" value={formData.checkinPin}
                       onChange={(e) => setFormData(prev => ({ ...prev, checkinPin: e.target.value.replace(/\D/g, '') }))} className={inputCls} />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Phone Number</label>
+                  <div className="relative">
+                    <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+                    <input type="tel" required placeholder="+91 98765 43210" value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3.5 pl-12 pr-4 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all text-slate-900 placeholder:text-slate-400" />
                   </div>
                 </div>
 

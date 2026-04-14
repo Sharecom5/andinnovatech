@@ -56,10 +56,10 @@ export async function sendPassEmail(data: PassEmailData): Promise<boolean> {
         <!-- Greeting -->
         <tr>
           <td style="padding:32px 40px 0;">
-            <p style="margin:0;font-size:16px;color:#111827;">Hello <strong>${visitorName}</strong>,</p>
+            <p style="margin:0;font-size:16px;color:#111827;">Thank you for registering, <strong>${visitorName}</strong>!</p>
             <p style="margin:12px 0 0;font-size:14px;color:#6B7280;line-height:1.6;">
-              Your registration is confirmed. Your entry pass is ready below.
-              Please show this QR code at the entrance gate.
+              We're excited to have you join us. Your entry pass for <strong>${eventName}</strong> is confirmed and ready below.
+              Please show this QR code at the entrance gate for quick entry.
             </p>
           </td>
         </tr>
@@ -179,7 +179,7 @@ export async function sendPassEmail(data: PassEmailData): Promise<boolean> {
     await resend.emails.send({
       from: `${process.env.RESEND_FROM_NAME} <${process.env.RESEND_FROM_EMAIL}>`,
       to: [to],
-      subject: `Your Entry Pass — ${eventName}`,
+      subject: `Thank you for registering! Your Pass for ${eventName}`,
       html,
     })
     return true
