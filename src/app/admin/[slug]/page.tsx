@@ -7,7 +7,7 @@ import {
   Users, Search, Download, CheckCircle, Clock, 
   UserCheck, ShieldAlert, PlusCircle, X,
   Building2, Briefcase, Mail, Phone, User,
-  Loader2, RefreshCcw, ChevronRight, LogOut, Ticket
+  Loader2, RefreshCcw, ChevronRight, LogOut, Ticket, Lock
 } from "lucide-react";
 
 export default function AdminDashboard() {
@@ -151,10 +151,20 @@ export default function AdminDashboard() {
          {/* Top Header */}
          <div className="flex flex-col md:flex-row md:items-center justify-between mb-10 gap-6">
             <div>
-               <h1 className="text-3xl font-black mb-1 text-slate-900">{data?.event?.name}</h1>
+               <h1 className="text-3xl font-black mb-1 text-slate-900">{data?.event?.name || 'Loading...'}</h1>
                <p className="text-slate-500 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider">
                  Attendee Management Dashboard <ChevronRight className="w-3.5 h-3.5 opacity-40" /> Overview
                </p>
+               {data?.event && (
+                 <div className="mt-4 flex items-center gap-2 bg-blue-50 w-max px-3 py-1.5 rounded-xl border border-blue-100">
+                    <span className="text-[10px] font-bold text-blue-600 uppercase tracking-widest flex items-center gap-1.5">
+                      <Lock className="w-3 h-3" /> Gate Scanner PIN:
+                    </span>
+                    <code className="text-sm font-mono font-black text-slate-900 tracking-wider">
+                      {data.event.checkinPin || '1234'}
+                    </code>
+                 </div>
+               )}
             </div>
             <div className="flex items-center gap-3">
                <button 

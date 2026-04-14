@@ -19,7 +19,7 @@ export default function MyEventsDashboard() {
   const [search, setSearch] = useState("");
   const [usage, setUsage] = useState<{ plan: string; totalPasses: number; freeLimit: number; totalEvents: number; eventLimit: number; isPassLimited: boolean; isEventLimited: boolean; isLimited: boolean } | null>(null);
   const [formData, setFormData] = useState({
-    name: "", slug: "", date: "", endDate: "", venue: "", description: "",
+    name: "", slug: "", date: "", endDate: "", venue: "", description: "", checkinPin: "1234",
     passSettings: { showName: true, showDesignation: true, showPhone: false, showCompany: true, customBackgroundUrl: "", qrPosition: 40, infoPosition: 65 }
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -73,7 +73,7 @@ export default function MyEventsDashboard() {
       if (!res.ok) throw new Error(data.error || "Failed to create event");
       setEvents([data.event, ...events]);
       setShowModal(false);
-      setFormData({ name: "", slug: "", date: "", endDate: "", venue: "", description: "", passSettings: { showName: true, showDesignation: true, showPhone: false, showCompany: true, customBackgroundUrl: "", qrPosition: 40, infoPosition: 65 } });
+      setFormData({ name: "", slug: "", date: "", endDate: "", venue: "", description: "", checkinPin: "1234", passSettings: { showName: true, showDesignation: true, showPhone: false, showCompany: true, customBackgroundUrl: "", qrPosition: 40, infoPosition: 65 } });
     } catch (err: any) { setError(err.message); } finally { setIsSubmitting(false); }
   };
 
@@ -295,10 +295,17 @@ export default function MyEventsDashboard() {
                   </div>
                 </div>
 
-                <div>
-                  <label className={labelCls}>Venue *</label>
-                  <input type="text" required placeholder="Main Convention Center, New Delhi" value={formData.venue}
-                    onChange={(e) => setFormData(prev => ({ ...prev, venue: e.target.value }))} className={inputCls} />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <div>
+                    <label className={labelCls}>Venue *</label>
+                    <input type="text" required placeholder="Convention Center" value={formData.venue}
+                      onChange={(e) => setFormData(prev => ({ ...prev, venue: e.target.value }))} className={inputCls} />
+                  </div>
+                  <div>
+                    <label className={labelCls}>Gate Check-In PIN *</label>
+                    <input type="text" required maxLength={6} placeholder="1234" value={formData.checkinPin}
+                      onChange={(e) => setFormData(prev => ({ ...prev, checkinPin: e.target.value.replace(/\D/g, '') }))} className={inputCls} />
+                  </div>
                 </div>
 
                 <div>

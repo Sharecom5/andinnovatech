@@ -106,66 +106,85 @@ export default function PassPage() {
           id="pass-card"
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="w-full max-w-md bg-white border border-slate-200 rounded-3xl shadow-2xl overflow-hidden"
+          className={`w-full max-w-md bg-white border border-slate-200 rounded-3xl shadow-2xl overflow-hidden relative ${settings?.customBackgroundUrl ? 'min-h-[600px]' : ''}`}
         >
-          {/* Pass Header Ribbon */}
-          <div className="bg-blue-600 py-4 text-center">
-            <p className="text-[11px] font-black uppercase tracking-[0.3em] text-blue-200">EntryFlow Digital Pass</p>
-            <p className="text-white font-black text-xl mt-1">{visitor.eventName || "Event Pass"}</p>
-          </div>
+          {settings?.customBackgroundUrl && (
+            <img 
+              src={settings.customBackgroundUrl} 
+              alt="Pass Background" 
+              className="absolute inset-0 w-full h-full object-cover z-0" 
+            />
+          )}
 
-          <div className="p-8 flex flex-col items-center">
-            {/* Status Badge */}
-            <div className={`mb-6 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest ${visitor.status === 'entered' ? 'bg-green-100 text-green-700 border border-green-200' : 'bg-blue-50 text-blue-700 border border-blue-200'}`}>
-              {visitor.status === "entered" ? "✅ Checked In" : "🎟️ Active Pass"}
-            </div>
-
-            {/* QR Code */}
-            <div className={`bg-white p-4 rounded-2xl border-4 ${visitor.status === 'entered' ? 'border-green-500 shadow-lg shadow-green-200' : 'border-blue-500 shadow-lg shadow-blue-200'} mb-6`}>
-              <img src={visitor.qrCodeUrl} alt="QR Code" className="w-48 h-48 md:w-56 md:h-56" />
-            </div>
-
-            {/* Attendee Info */}
-            <div className="text-center mb-8">
-              <h2 className="text-2xl font-black text-slate-900 mb-1">{visitor.name}</h2>
-              {visitor.designation && (
-                <p className="text-blue-600 font-bold text-sm uppercase tracking-widest">{visitor.designation}</p>
-              )}
-              {visitor.company && (
-                <p className="text-slate-500 text-sm mt-1">{visitor.company}</p>
-              )}
-            </div>
-
-            {/* Check-in Button */}
-            {visitor.status !== "entered" ? (
-              <button
-                onClick={markAsUsed}
-                disabled={updating}
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-black py-4 rounded-2xl shadow-lg transition-all flex flex-col items-center gap-1 active:scale-[0.98]"
-              >
-                {updating ? <Loader2 className="w-6 h-6 animate-spin" /> : <span className="text-lg">TAP TO CHECK-IN</span>}
-                <span className="text-[10px] opacity-70 tracking-widest font-bold">ONLY TAP WHEN AT ENTRANCE</span>
-              </button>
-            ) : (
-              <div className="w-full bg-green-600 text-white font-black py-4 rounded-2xl flex flex-col items-center border-b-4 border-green-800">
-                <span className="text-lg">ENTRY VERIFIED</span>
-                <span className="text-[10px] opacity-80 tracking-widest font-bold uppercase">
-                  Authorized at {visitor.enteredAt ? new Date(visitor.enteredAt).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'}) : 'Just Now'}
-                </span>
+          <div className="relative z-10 h-full flex flex-col">
+            {!settings?.customBackgroundUrl && (
+              <div className="bg-blue-600 py-4 text-center">
+                <p className="text-[11px] font-black uppercase tracking-[0.3em] text-blue-200">EntryFlow Digital Pass</p>
+                <p className="text-white font-black text-xl mt-1">{visitor.eventName || "Event Pass"}</p>
               </div>
             )}
-          </div>
 
-          {/* Footer Details */}
-          <div className="px-8 pb-8 grid grid-cols-2 gap-4 border-t border-slate-100 pt-6 bg-slate-50">
-            <div>
-              <p className="text-[9px] text-slate-400 uppercase font-bold tracking-widest">Venue</p>
-              <p className="text-sm font-bold text-slate-800 truncate">{visitor.eventVenue}</p>
+            <div className={`flex-1 flex flex-col items-center ${settings?.customBackgroundUrl ? 'p-0' : 'p-8'}`}>
+              
+              {/* Status Badge */}
+              <div className={`absolute top-4 right-4 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest z-20 ${visitor.status === 'entered' ? 'bg-green-100 text-green-700 border border-green-200 shadow-md' : 'bg-white/90 text-blue-700 border border-blue-200 shadow-md backdrop-blur-sm'}`}>
+                {visitor.status === "entered" ? "✅ Checked In" : "🎟️ Active Pass"}
+              </div>
+
+              {/* QR Code */}
+              <div 
+                className={`${settings?.customBackgroundUrl ? 'absolute left-1/2 -translate-x-1/2' : 'mb-6'} bg-white p-3 rounded-2xl border-4 ${visitor.status === 'entered' ? 'border-green-500 shadow-lg shadow-green-200' : 'border-slate-100 shadow-lg'}`}
+                style={settings?.customBackgroundUrl ? { top: `${settings.qrPosition || 35}%` } : {}}
+              >
+                <img src={visitor.qrCodeUrl} alt="QR Code" className={`${settings?.customBackgroundUrl ? 'w-40 h-40' : 'w-48 h-48 md:w-56 md:h-56'}`} />
+              </div>
+
+              {/* Attendee Info */}
+              <div 
+                className={`${settings?.customBackgroundUrl ? 'absolute left-0 w-full px-6' : 'mb-8'} text-center`}
+                style={settings?.customBackgroundUrl ? { top: `${settings.infoPosition || 65}%` } : {}}
+              >
+                {settings?.showName !== false && (
+                  <h2 className="text-2xl font-black text-slate-900 mb-1 drop-shadow-sm">{visitor.name}</h2>
+                )}
+                {settings?.showDesignation !== false && visitor.designation && (
+                  <p className="text-blue-700 font-bold text-sm uppercase tracking-widest drop-shadow-sm">{visitor.designation}</p>
+                )}
+                {settings?.showCompany !== false && visitor.company && (
+                  <p className="text-slate-800 text-sm mt-1 font-semibold">{visitor.company}</p>
+                )}
+              </div>
+
+              {/* Action Area */}
+              <div className={`w-full px-8 ${settings?.customBackgroundUrl ? 'absolute bottom-8' : 'mt-auto'}`}>
+                {visitor.status !== "entered" ? (
+                  <div className="w-full bg-slate-100/80 backdrop-blur-sm border border-slate-200 text-slate-500 font-bold py-4 rounded-2xl flex flex-col items-center">
+                    <span className="text-sm">PRESENT QR CODE FOR ENTRY</span>
+                    <span className="text-[10px] opacity-80 tracking-widest font-black mt-1">STAFF SCAN REQUIRED</span>
+                  </div>
+                ) : (
+                  <div className="w-full bg-green-600 text-white font-black py-4 rounded-2xl flex flex-col items-center shadow-xl border-b-4 border-green-800">
+                    <span className="text-lg">ENTRY VERIFIED</span>
+                    <span className="text-[10px] opacity-80 tracking-widest font-bold uppercase">
+                      Authorized at {visitor.enteredAt ? new Date(visitor.enteredAt).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'}) : 'Just Now'}
+                    </span>
+                  </div>
+                )}
+              </div>
             </div>
-            <div className="text-right">
-              <p className="text-[9px] text-slate-400 uppercase font-bold tracking-widest">Pass ID</p>
-              <p className="text-sm font-mono font-bold text-blue-600">{visitor.passId}</p>
-            </div>
+
+            {!settings?.customBackgroundUrl && (
+              <div className="px-8 pb-8 grid grid-cols-2 gap-4 border-t border-slate-100 pt-6 bg-slate-50 mt-8">
+                <div>
+                  <p className="text-[9px] text-slate-400 uppercase font-bold tracking-widest">Venue</p>
+                  <p className="text-sm font-bold text-slate-800 truncate">{visitor.eventVenue}</p>
+                </div>
+                <div className="text-right">
+                  <p className="text-[9px] text-slate-400 uppercase font-bold tracking-widest">Pass ID</p>
+                  <p className="text-sm font-mono font-bold text-blue-600">{visitor.passId}</p>
+                </div>
+              </div>
+            )}
           </div>
         </motion.div>
 

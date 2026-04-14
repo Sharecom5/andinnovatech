@@ -21,6 +21,7 @@ export interface IEvent extends Document {
     qrPosition?: number // Percentage from top
     infoPosition?: number // Percentage from top
   }
+  checkinPin?: string
   createdAt: Date
 }
 
@@ -45,6 +46,7 @@ const EventSchema = new Schema<IEvent>({
     qrPosition: { type: Number, default: 40 },
     infoPosition: { type: Number, default: 65 }
   },
+  checkinPin: { type: String, default: '1234' },
   createdAt: { type: Date, default: Date.now },
 })
 

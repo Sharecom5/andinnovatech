@@ -15,8 +15,8 @@ export async function GET(req: NextRequest, { params }: { params: { passId: stri
       return NextResponse.json({ error: 'Pass not found' }, { status: 404 });
     }
 
-    // Also fetch event details
-    const event = await Event.findById(visitor.eventId);
+    // Also fetch event details, excluding the PIN for security
+    const event = await Event.findById(visitor.eventId).select('-checkinPin');
 
     return NextResponse.json({ 
       success: true, 
@@ -33,18 +33,31 @@ export async function GET(req: NextRequest, { params }: { params: { passId: stri
 export async function POST(req: NextRequest, { params }: { params: { passId: string } }) {
   try {
     const { passId } = params;
-    const { eventSlug } = await req.json().catch(() => ({}));
+    const body = await req.json().catch(() => ({}));
+    const { eventSlug, checkinPin } = body;
 
     await connectDB();
 
     const query: any = { passId };
+    let event = null;
     
     // If eventSlug is provided (from the scanner), ensure it matches
     if (eventSlug) {
-      const event = await Event.findOne({ slug: eventSlug });
+      event = await Event.findOne({ slug: eventSlug });
       if (event) {
         query.eventId = event._id;
       }
+    } else {
+      // Find the pass first to get the event
+      const passTemp = await Visitor.findOne(query);
+      if (passTemp) {
+        event = await Event.findById(passTemp.eventId);
+      }
+    }
+
+    // Verify PIN if the event has one
+    if (event && event.checkinPin && event.checkinPin !== checkinPin) {
+      return NextResponse.json({ error: 'Invalid or missing Check-in PIN' }, { status: 401 });
     }
 
     // Verify pass exists

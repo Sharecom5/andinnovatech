@@ -101,7 +101,7 @@ export async function POST(req: NextRequest) {
 
     const organizerId = session.user.id;
 
-    const { name, slug, date, venue, description, passSettings, endDate } = await req.json();
+    const { name, slug, date, venue, description, passSettings, endDate, checkinPin } = await req.json();
 
     if (!name || !slug || !date || !venue) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
@@ -137,6 +137,7 @@ export async function POST(req: NextRequest) {
       endDate,
       venue,
       description,
+      checkinPin: checkinPin || '1234',
       registrationOpen: true,
       passTypes: ['Visitor', 'VIP', 'Speaker'],
       passSettings: passSettings || {
