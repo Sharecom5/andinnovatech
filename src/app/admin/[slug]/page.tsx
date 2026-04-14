@@ -7,7 +7,7 @@ import {
   Users, Search, Download, CheckCircle, Clock, 
   UserCheck, ShieldAlert, PlusCircle, X,
   Building2, Briefcase, Mail, Phone, User,
-  Loader2, RefreshCcw, ChevronRight, LogOut, Ticket, Lock
+  Loader2, RefreshCcw, ChevronRight, LogOut, Ticket, Lock, Globe, Copy
 } from "lucide-react";
 
 export default function AdminDashboard() {
@@ -26,6 +26,7 @@ export default function AdminDashboard() {
   const [newAttendee, setNewAttendee] = useState({
     name: "", email: "", phone: "", company: "", designation: ""
   });
+  const [copied, setCopied] = useState(false);
 
   const fetchData = async () => {
     try {
@@ -44,6 +45,13 @@ export default function AdminDashboard() {
   useEffect(() => {
     if (slug) fetchData();
   }, [slug]);
+
+  const handleCopyLink = () => {
+    const url = `${window.location.origin}/pass/${slug}`;
+    navigator.clipboard.writeText(url);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   const handleAddAttendee = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -166,13 +174,31 @@ export default function AdminDashboard() {
                  Attendee Management Dashboard <ChevronRight className="w-3.5 h-3.5 opacity-40" /> Overview
                </p>
                {data?.event && (
-                 <div className="mt-4 flex items-center gap-2 bg-blue-50 w-max px-3 py-1.5 rounded-xl border border-blue-100">
-                    <span className="text-[10px] font-bold text-blue-600 uppercase tracking-widest flex items-center gap-1.5">
-                      <Lock className="w-3 h-3" /> Gate Scanner PIN:
-                    </span>
-                    <code className="text-sm font-mono font-black text-slate-900 tracking-wider">
-                      {data.event.checkinPin || '1234'}
-                    </code>
+                 <div className="mt-4 flex flex-col md:flex-row md:items-center gap-3">
+                   <div className="flex items-center gap-2 bg-blue-50 w-max px-3 py-1.5 rounded-xl border border-blue-100">
+                      <span className="text-[10px] font-bold text-blue-600 uppercase tracking-widest flex items-center gap-1.5">
+                        <Lock className="w-3 h-3" /> Gate Scanner PIN:
+                      </span>
+                      <code className="text-sm font-mono font-black text-slate-900 tracking-wider">
+                        {data.event.checkinPin || '1234'}
+                      </code>
+                   </div>
+
+                   <div className="flex items-center gap-2 bg-slate-50 w-max pr-1.5 pl-3 py-1.5 rounded-xl border border-slate-200">
+                      <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest flex items-center gap-1.5">
+                        <Globe className="w-3 h-3" /> Public Registration Link:
+                      </span>
+                      <a href={`/pass/${slug}`} target="_blank" rel="noreferrer" className="text-sm font-mono font-bold text-blue-600 hover:text-blue-700 hover:underline tracking-tight ml-1 mr-2">
+                         /{slug}
+                      </a>
+                      <button 
+                        onClick={handleCopyLink} 
+                        className={`p-1.5 rounded-lg transition-all border ${copied ? 'bg-green-100 border-green-200 text-green-700 scale-105' : 'bg-white border-slate-200 text-slate-400 hover:bg-slate-100 hover:text-slate-700'}`}
+                        title="Copy Public Link"
+                      >
+                         {copied ? <CheckCircle className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+                      </button>
+                   </div>
                  </div>
                )}
             </div>
