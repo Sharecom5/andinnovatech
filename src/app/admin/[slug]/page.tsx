@@ -7,7 +7,7 @@ import {
   Users, Search, Download, CheckCircle, Clock, 
   UserCheck, ShieldAlert, PlusCircle, X,
   Building2, Briefcase, Mail, Phone, User,
-  Loader2, RefreshCcw, ChevronRight, LogOut, Ticket, Lock, Globe, Copy
+  Loader2, RefreshCcw, ChevronRight, LogOut, Ticket, Lock, Globe, Copy, Printer
 } from "lucide-react";
 
 export default function AdminDashboard() {
@@ -27,6 +27,7 @@ export default function AdminDashboard() {
     name: "", email: "", phone: "", company: "", designation: ""
   });
   const [copied, setCopied] = useState(false);
+  const [printData, setPrintData] = useState<any>(null);
 
   const fetchData = async () => {
     try {
@@ -51,6 +52,13 @@ export default function AdminDashboard() {
     navigator.clipboard.writeText(url);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
+  };
+
+  const triggerPrint = (attendee: any) => {
+    setPrintData(attendee);
+    setTimeout(() => {
+      window.print();
+    }, 100);
   };
 
   const handleAddAttendee = async (e: React.FormEvent) => {
@@ -142,6 +150,12 @@ export default function AdminDashboard() {
                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl font-bold transition-all ${activeTab === 'attendees' ? 'bg-blue-50 text-blue-700' : 'text-slate-500 hover:bg-slate-50 hover:text-slate-900'}`}
             >
                <Users className="w-4 h-4" /> Attendees
+            </button>
+            <button 
+               onClick={() => setActiveTab("instant-badge")}
+               className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl font-bold transition-all ${activeTab === 'instant-badge' ? 'bg-blue-50 text-blue-700' : 'text-slate-500 hover:bg-slate-50 hover:text-slate-900'}`}
+            >
+               <Printer className="w-4 h-4" /> Instant Badge
             </button>
             <button 
                onClick={() => setActiveTab("activity")}
@@ -351,12 +365,21 @@ export default function AdminDashboard() {
                                      </div>
                                   </td>
                                   <td className="px-6 py-5 text-right">
-                                     <button 
-                                       onClick={() => window.open(`/pass/${slug}/${attendee.passId}`, '_blank')}
-                                       className="bg-white hover:bg-slate-50 text-slate-600 hover:text-blue-600 text-xs font-bold px-4 py-2 rounded-xl border border-slate-200 transition-all flex items-center gap-2 ml-auto shadow-sm"
-                                     >
-                                        <Ticket className="w-3.5 h-3.5" /> View Pass
-                                     </button>
+                                     <div className="flex items-center justify-end gap-2">
+                                       <button 
+                                         onClick={() => triggerPrint(attendee)}
+                                         className="bg-white hover:bg-slate-50 text-slate-600 hover:text-blue-600 text-xs font-bold px-3 py-2 rounded-xl border border-slate-200 transition-all flex items-center gap-1.5 shadow-sm"
+                                         title="Quick Print Badge"
+                                       >
+                                          <Printer className="w-3.5 h-3.5" /> Print
+                                       </button>
+                                       <button 
+                                         onClick={() => window.open(`/pass/${slug}/${attendee.passId}`, '_blank')}
+                                         className="bg-white hover:bg-slate-50 text-slate-600 hover:text-blue-600 text-xs font-bold px-3 py-2 rounded-xl border border-slate-200 transition-all flex items-center gap-1.5 shadow-sm"
+                                       >
+                                          <Ticket className="w-3.5 h-3.5" /> View
+                                       </button>
+                                     </div>
                                   </td>
                                </motion.tr>
                             ))}
@@ -399,7 +422,65 @@ export default function AdminDashboard() {
               </div>
            </div>
          )}
+
+         {activeTab === 'instant-badge' && (
+           <div className="bg-white border border-slate-200 p-8 md:p-16 text-center rounded-3xl shadow-sm flex flex-col items-center justify-center">
+              <Printer className="w-16 h-16 text-blue-100 mb-6" />
+              <h2 className="text-2xl font-black text-slate-900 mb-3">Instant Name Badge</h2>
+              <p className="text-slate-500 max-w-md font-medium mb-8">Generate a minimal, print-friendly badge for walk-ins with no background. Automatically registers the attendee and launches the print dialog.</p>
+              
+              <form onSubmit={async (e) => {
+                e.preventDefault();
+                setAdding(true);
+                try {
+                  const res = await fetch("/api/register", { 
+                    method: "POST", 
+                    headers: { "Content-Type": "application/json" }, 
+                    body: JSON.stringify({ name: newAttendee.name, company: newAttendee.company, email: `${Date.now()}@walkin.local`, phone: 'Walk-In', eventSlug: slug, passType: 'Visitor' }) 
+                  });
+                  const data = await res.json();
+                  if (!res.ok) throw new Error(data.error);
+                  
+                  // Trigger Print automatically
+                  triggerPrint({ name: newAttendee.name, company: newAttendee.company, passId: data.passId, qrCodeUrl: data.qrCodeUrl });
+                  setNewAttendee({ name: "", email: "", phone: "", company: "", designation: "" });
+                  fetchData();
+                } catch(err: any) { 
+                  alert("Failed to generate: " + err.message); 
+                } finally { 
+                  setAdding(false); 
+                }
+              }} className="w-full max-w-sm space-y-4 text-left">
+                <div>
+                  <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest pl-1">Full Name *</label>
+                  <input required placeholder="e.g. John Doe" value={newAttendee.name} onChange={(e) => setNewAttendee({...newAttendee, name: e.target.value})} className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 mt-1 outline-none focus:ring-2 focus:ring-blue-500 font-medium text-slate-900" />
+                </div>
+                <div>
+                  <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest pl-1">Company (Optional)</label>
+                  <input placeholder="Organization Name" value={newAttendee.company} onChange={(e) => setNewAttendee({...newAttendee, company: e.target.value})} className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 mt-1 outline-none focus:ring-2 focus:ring-blue-500 font-medium text-slate-900" />
+                </div>
+                <button type="submit" disabled={adding} className="w-full flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-black py-4 rounded-xl transition-all shadow-md mt-6 disabled:opacity-50">
+                  {adding ? <Loader2 className="w-5 h-5 animate-spin" /> : <><Printer className="w-5 h-5"/> Generate & Print Badge</>}
+                </button>
+              </form>
+           </div>
+         )}
       </main>
+
+      {/* Hidden Print Layout */}
+      {printData && (
+        <div className="hidden print:flex fixed inset-0 bg-white z-[99999] justify-center pt-10">
+          <div className="w-[3.5in] h-[2.25in] border-2 border-black flex flex-col items-center justify-center text-center p-4 bg-white text-black relative">
+             <div className="absolute top-2 left-0 right-0 text-center">
+               <span className="text-[10px] uppercase tracking-widest font-bold">Visitor Badge</span>
+             </div>
+             <h1 className="text-2xl font-black uppercase text-black mt-4 leading-tight">{printData.name}</h1>
+             {printData.company && <h2 className="text-sm font-bold text-gray-700 mt-1">{printData.company}</h2>}
+             {printData.qrCodeUrl && <img src={printData.qrCodeUrl} alt="QR Code" className="w-[1.2in] h-[1.2in] mt-2 mb-1 border border-gray-200 p-1" />}
+             <span className="text-[9px] font-mono text-black">{printData.passId}</span>
+          </div>
+        </div>
+      )}
 
       {/* Add Attendee Modal */}
       <AnimatePresence>
