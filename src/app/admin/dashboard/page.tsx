@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   Plus, Calendar, MapPin, Globe, Settings, Loader2, Search,
   PlusCircle, LayoutDashboard, LogOut, ChevronRight, Camera, X, AlertCircle, Upload, Image as ImageIcon,
-  Zap, TrendingUp
+  Zap, TrendingUp, Pencil, Trash2, Smartphone
 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -24,6 +24,8 @@ export default function MyEventsDashboard() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editEventId, setEditEventId] = useState<string | null>(null);
   const [error, setError] = useState("");
 
   const fetchEvents = async () => {
@@ -60,20 +62,66 @@ export default function MyEventsDashboard() {
   useEffect(() => { fetchEvents(); }, []);
   useEffect(() => {
     document.body.style.overflow = showModal ? 'hidden' : 'unset';
+    if (!showModal) {
+      setIsEditing(false);
+      setEditEventId(null);
+      setFormData({ name: "", slug: "", date: "", endDate: "", venue: "", description: "", checkinPin: "1234", passSettings: { showName: true, showDesignation: true, showPhone: false, showCompany: true, customBackgroundUrl: "", qrPosition: 40, infoPosition: 65 } });
+    }
     return () => { document.body.style.overflow = 'unset'; };
   }, [showModal]);
+
+  const handleEditClick = (event: any) => {
+    setFormData({
+      name: event.name,
+      slug: event.slug,
+      date: event.date.split('T')[0],
+      endDate: event.endDate ? event.endDate.split('T')[0] : "",
+      venue: event.venue,
+      description: event.description || "",
+      checkinPin: event.checkinPin || "1234",
+      passSettings: event.passSettings || { showName: true, showDesignation: true, showPhone: false, showCompany: true, customBackgroundUrl: "", qrPosition: 40, infoPosition: 65 }
+    });
+    setEditEventId(event._id);
+    setIsEditing(true);
+    setShowModal(true);
+  };
+
+  const handleDeleteEvent = async (id: string, name: string) => {
+    if (!confirm(`Are you sure you want to delete "${name}"? This will also delete ALL attendees. This cannot be undone.`)) return;
+    
+    try {
+      const res = await fetch(`/api/admin/events/${id}`, { method: 'DELETE' });
+      if (res.ok) {
+        setEvents(events.filter(e => e._id !== id));
+      } else {
+        const d = await res.json();
+        alert(d.error || "Failed to delete");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Error deleting event");
+    }
+  };
 
   const handleCreateEvent = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     setError("");
     try {
-      const res = await fetch("/api/admin/events", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(formData) });
+      const url = isEditing ? `/api/admin/events/${editEventId}` : "/api/admin/events";
+      const method = isEditing ? "PUT" : "POST";
+      
+      const res = await fetch(url, { method, headers: { "Content-Type": "application/json" }, body: JSON.stringify(formData) });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Failed to create event");
-      setEvents([data.event, ...events]);
+      if (!res.ok) throw new Error(data.error || "Failed to save event");
+      
+      if (isEditing) {
+        setEvents(events.map(e => e._id === editEventId ? data.event : e));
+      } else {
+        setEvents([data.event, ...events]);
+      }
+      
       setShowModal(false);
-      setFormData({ name: "", slug: "", date: "", endDate: "", venue: "", description: "", checkinPin: "1234", passSettings: { showName: true, showDesignation: true, showPhone: false, showCompany: true, customBackgroundUrl: "", qrPosition: 40, infoPosition: 65 } });
     } catch (err: any) { setError(err.message); } finally { setIsSubmitting(false); }
   };
 
@@ -193,10 +241,14 @@ export default function MyEventsDashboard() {
                     className="p-2 rounded-lg bg-green-50 hover:bg-green-100 text-green-600 transition-all border border-green-100" title="Gate Scanner">
                     <Camera className="w-4 h-4" />
                   </Link>
-                  <Link href={`/admin/${event.slug}`}
-                    className="p-2 rounded-lg bg-slate-50 hover:bg-slate-100 text-slate-500 hover:text-slate-800 transition-all border border-slate-200" title="Admin Panel">
-                    <Settings className="w-4 h-4" />
-                  </Link>
+                  <button onClick={() => handleEditClick(event)}
+                    className="p-2 rounded-lg bg-blue-50 hover:bg-blue-100 text-blue-600 transition-all border border-blue-100" title="Edit Event">
+                    <Pencil className="w-4 h-4" />
+                  </button>
+                  <button onClick={() => handleDeleteEvent(event._id, event.name)}
+                    className="p-2 rounded-lg bg-red-50 hover:bg-red-100 text-red-500 transition-all border border-red-100" title="Delete Event">
+                    <Trash2 className="w-4 h-4" />
+                  </button>
                   <Link href={`/pass/${event.slug}`} target="_blank"
                     className="p-2 rounded-lg bg-slate-50 hover:bg-slate-100 text-slate-500 hover:text-slate-800 transition-all border border-slate-200" title="Public Page">
                     <Globe className="w-4 h-4" />
@@ -252,17 +304,18 @@ export default function MyEventsDashboard() {
             <motion.div initial={{ opacity: 0, scale: 0.94, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.94, y: 20 }}
               className="relative bg-white rounded-3xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto z-10">
 
-              <div className="flex items-center justify-between p-8 pb-0 mb-6">
+              <div className="flex items-center justify-between p-8 pb-0 mb-6 font-sans">
                 <div>
-                  <h2 className="text-2xl font-black text-slate-900">Create New Event</h2>
-                  <p className="text-slate-500 text-sm mt-1">Set up your event to start accepting registrations.</p>
+                  <h2 className="text-2xl font-black text-slate-900">{isEditing ? "Edit Event" : "Create New Event"}</h2>
+                  <p className="text-slate-500 text-sm mt-1">Configure your event and custom pass layout.</p>
                 </div>
                 <button onClick={() => setShowModal(false)} className="bg-slate-100 hover:bg-slate-200 p-2 rounded-xl transition-colors">
                   <X className="w-5 h-5 text-slate-600" />
                 </button>
               </div>
 
-              <form onSubmit={handleCreateEvent} className="px-8 pb-8 space-y-5">
+              <div className="flex flex-col lg:flex-row">
+                <form onSubmit={handleCreateEvent} className="px-8 pb-8 space-y-5 flex-1 max-w-full lg:max-w-[60%] border-r border-slate-100">
                 {error && (
                   <div className="bg-red-50 border border-red-200 text-red-600 p-4 rounded-xl flex items-center gap-3 text-sm">
                     <AlertCircle className="w-5 h-5 shrink-0" />{error}
@@ -392,10 +445,61 @@ export default function MyEventsDashboard() {
                   </button>
                   <button type="submit" disabled={isSubmitting}
                     className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-2xl font-black shadow-lg transition-all flex items-center justify-center gap-2 disabled:opacity-60">
-                    {isSubmitting ? <Loader2 className="w-5 h-5 animate-spin" /> : <><PlusCircle className="w-5 h-5" /> Create Event</>}
+                    {isSubmitting ? <Loader2 className="w-5 h-5 animate-spin" /> : <>{isEditing ? <CheckCircle className="w-5 h-5" /> : <PlusCircle className="w-5 h-5" />} {isEditing ? "Save Changes" : "Create Event"}</>}
                   </button>
                 </div>
-              </form>
+                </form>
+
+                {/* Live Preview Panel */}
+                <div className="hidden lg:block flex-1 bg-slate-50 p-8">
+                   <div className="sticky top-0">
+                      <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest text-center mb-4">Live Pass Preview</p>
+                      
+                      {/* Preview Container */}
+                      <div className="relative w-full aspect-[2.25/3.5] bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-200 mx-auto max-w-[280px]">
+                         {formData.passSettings.customBackgroundUrl ? (
+                           <img src={formData.passSettings.customBackgroundUrl} className="absolute inset-0 w-full h-full object-cover" alt="Pass Background" />
+                         ) : (
+                           <div className="absolute inset-0 bg-gradient-to-br from-slate-50 to-slate-100 flex items-center justify-center">
+                              <ImageIcon className="w-12 h-12 text-slate-200" />
+                           </div>
+                         )}
+                         
+                         {/* Mock QR Code */}
+                         <div 
+                           className="absolute left-1/2 -translate-x-1/2 w-28 h-28 bg-white p-2 rounded-lg shadow-md flex items-center justify-center border border-slate-100"
+                           style={{ top: `${formData.passSettings.qrPosition}%` }}
+                         >
+                            <div className="w-full h-full bg-slate-900 flex flex-col items-center justify-center gap-1 opacity-20">
+                               <div className="flex gap-1"><div className="w-2 h-2 bg-white" /><div className="w-2 h-2 bg-white" /></div>
+                               <div className="flex gap-1"><div className="w-2 h-2 bg-white" /><div className="w-2 h-2 bg-white" /></div>
+                            </div>
+                         </div>
+                         
+                         {/* Mock Attendee Info */}
+                         <div 
+                           className="absolute left-0 right-0 text-center px-4 pointer-events-none"
+                           style={{ top: `${formData.passSettings.infoPosition}%` }}
+                         >
+                            <div className={`${formData.passSettings.customBackgroundUrl ? 'bg-white/90 backdrop-blur-sm py-2 rounded-xl shadow-sm border border-slate-100' : ''}`}>
+                               <div className="h-4 bg-slate-900/20 rounded w-2/3 mx-auto mb-1" />
+                               <div className="h-2 bg-slate-900/10 rounded w-1/2 mx-auto" />
+                            </div>
+                         </div>
+                      </div>
+                      
+                      <div className="mt-8 space-y-3">
+                         <div className="flex items-center gap-3 text-slate-400">
+                            <Smartphone className="w-4 h-4" />
+                            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500">Device Mockup View</span>
+                         </div>
+                         <p className="text-[10px] text-slate-400 leading-relaxed italic">
+                           This is a real-time visualization. The elements will appear at these relative positions on the final physical and digital passes.
+                         </p>
+                      </div>
+                   </div>
+                </div>
+              </div>
             </motion.div>
           </div>
         )}

@@ -7,7 +7,7 @@ import {
   Users, Search, Download, CheckCircle, Clock, 
   UserCheck, ShieldAlert, PlusCircle, X,
   Building2, Briefcase, Mail, Phone, User,
-  Loader2, RefreshCcw, ChevronRight, LogOut, Ticket, Lock, Globe, Copy, Printer, ClipboardList
+  Loader2, RefreshCcw, ChevronRight, LogOut, Ticket, Lock, Globe, Copy, Printer, ClipboardList, Trash2
 } from "lucide-react";
 
 export default function AdminDashboard() {
@@ -80,6 +80,26 @@ export default function AdminDashboard() {
       alert(err.message);
     } finally {
       setAdding(false);
+    }
+  };
+
+  const handleDeleteVisitor = async (id: string, name: string) => {
+    if (!confirm(`Are you sure you want to delete the pass for "${name}"? This action cannot be undone.`)) return;
+    
+    try {
+      const res = await fetch(`/api/admin/visitors/${id}`, { method: 'DELETE' });
+      if (res.ok) {
+        setData((prev: any) => ({
+          ...prev,
+          attendees: prev.attendees.filter((a: any) => a._id !== id)
+        }));
+      } else {
+        const d = await res.json();
+        alert(d.error || "Failed to delete attendee");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Error deleting attendee");
     }
   };
 
@@ -388,6 +408,13 @@ export default function AdminDashboard() {
                                        >
                                           <Ticket className="w-3.5 h-3.5" /> View
                                        </button>
+                                       <button 
+                                         onClick={() => handleDeleteVisitor(attendee._id, attendee.name)}
+                                         className="bg-white hover:bg-red-50 text-slate-400 hover:text-red-600 p-2 rounded-xl border border-slate-200 transition-all shadow-sm"
+                                         title="Delete Pass"
+                                       >
+                                          <Trash2 className="w-3.5 h-3.5" />
+                                       </button>
                                      </div>
                                   </td>
                                </motion.tr>
@@ -582,6 +609,13 @@ export default function AdminDashboard() {
                                        title="View Digital Pass"
                                      >
                                         <Ticket className="w-4 h-4" />
+                                     </button>
+                                     <button 
+                                       onClick={() => handleDeleteVisitor(attendee._id, attendee.name)}
+                                       className="bg-white hover:bg-red-50 text-slate-400 hover:text-red-600 p-2 rounded-xl border border-slate-200 transition-all shadow-sm"
+                                       title="Delete Pass"
+                                     >
+                                        <Trash2 className="w-4 h-4" />
                                      </button>
                                    </div>
                                 </td>
