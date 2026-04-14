@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server"
 import { connectDB } from "@/lib/mongodb"
 import { Organizer } from "@/models/Organizer"
+import { sendWelcomeEmail } from '@/lib/resend'
 import bcrypt from "bcryptjs"
 
 export async function POST(req: Request) {
@@ -20,13 +21,20 @@ export async function POST(req: Request) {
 
     const passwordHash = await bcrypt.hash(password, 10)
 
-    await Organizer.create({
+    const organizer = await Organizer.create({
       name,
       companyName,
       email: email.toLowerCase(),
       passwordHash,
       plan: 'free',
     })
+
+    // Send Welcome Email
+    try {
+      await sendWelcomeEmail(email.toLowerCase(), name);
+    } catch (e) {
+      console.error('Failed to send welcome email:', e);
+    }
 
     return NextResponse.json({ success: true, message: "Account created successfully" })
   } catch (error: any) {

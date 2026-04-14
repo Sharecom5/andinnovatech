@@ -56,10 +56,10 @@ export async function sendPassEmail(data: PassEmailData): Promise<boolean> {
         <!-- Greeting -->
         <tr>
           <td style="padding:32px 40px 0;">
-            <p style="margin:0;font-size:16px;color:#111827;">Thank you for registering, <strong>${visitorName}</strong>!</p>
+            <p style="margin:0;font-size:16px;color:#111827;">Hello <strong>${visitorName}</strong>,</p>
             <p style="margin:12px 0 0;font-size:14px;color:#6B7280;line-height:1.6;">
-              We're excited to have you join us. Your entry pass for <strong>${eventName}</strong> is confirmed and ready below.
-              Please show this QR code at the entrance gate for quick entry.
+              Your registration for <strong>${eventName}</strong> is confirmed. Your entry pass is ready below.
+              Please show this QR code at the entrance gate.
             </p>
           </td>
         </tr>
@@ -179,7 +179,7 @@ export async function sendPassEmail(data: PassEmailData): Promise<boolean> {
     await resend.emails.send({
       from: `${process.env.RESEND_FROM_NAME} <${process.env.RESEND_FROM_EMAIL}>`,
       to: [to],
-      subject: `Thank you for registering! Your Pass for ${eventName}`,
+      subject: `Your Entry Pass — ${eventName}`,
       html,
     })
     return true
@@ -236,6 +236,53 @@ export async function sendOTPEmail(
     return true
   } catch (err) {
     console.error('OTP email error:', err)
+    return false
+  }
+}
+
+// ─── Organizer Welcome Email ─────────────────────────────────────
+export async function sendWelcomeEmail(to: string, name: string): Promise<boolean> {
+  const html = `
+<!DOCTYPE html>
+<html>
+<body style="margin:0;padding:0;background:#f4f4f5;font-family:'Segoe UI',Arial,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f4f4f5;padding:32px 0;">
+    <tr><td align="center">
+      <table width="560" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.08);">
+        <tr>
+          <td style="background:#0a1628;padding:32px 40px;text-align:center;">
+             <h1 style="margin:0;font-size:24px;color:#ffffff;font-weight:700;">Welcome to EntryFlow</h1>
+             <p style="margin:8px 0 0;font-size:14px;color:#85B7EB;">Your Event Management Command Center</p>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:40px;">
+            <p style="margin:0;font-size:16px;color:#111827;">Hello <strong>${name}</strong>,</p>
+            <p style="margin:16px 0 0;font-size:14px;color:#4B5563;line-height:1.6;">
+              Thank you for signing up with EntryFlow! We're excited to help you manage your events more efficiently.
+              Your account is now active and you can start creating events, generating digital passes, and managing registrations immediately.
+            </p>
+            <div style="margin:32px 0;text-align:center;">
+              <a href="${process.env.NEXT_PUBLIC_APP_URL}/admin/login" style="background:#1D4ED8;color:#ffffff;text-decoration:none;padding:12px 32px;border-radius:8px;font-weight:600;font-size:14px;">Go to Dashboard</a>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>`
+
+  try {
+    await resend.emails.send({
+      from: `${process.env.RESEND_FROM_NAME} <${process.env.RESEND_FROM_EMAIL}>`,
+      to: [to],
+      subject: `Welcome to EntryFlow! — Account Confirmed`,
+      html,
+    })
+    return true
+  } catch (err) {
+    console.error('Welcome email error:', err)
     return false
   }
 }
