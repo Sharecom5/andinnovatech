@@ -1,0 +1,50 @@
+---
+title: "Inside the Stack: How We Built EntryFlow for High-Performance Scalability"
+date: "2026-04-14"
+author: "AnD Innovatech Team"
+description: "A technical deep-dive into the AnD Innovatech engineering behind EntryFlow. Next.js, Serverless, and Real-time APIs for the modern event era."
+---
+
+When we set out to build **EntryFlow**, we weren't just building a "form and a PDF generator." We were building a high-concurrency SaaS product that needed to handle thousands of registrations per minute and sub-second verification at the gate.
+
+For the developers and technical founders interested in how **AnD Innovatech** approaches product engineering, here is the breakdown of the EntryFlow tech stack.
+
+## 1. The Frontend: Next.js 14 & App Router
+We chose **Next.js** for its unparalleled performance in both server-side rendering (SSR) and static generation.
+*   **Dynamic Landing Pages:** The landing pages are statically generated for SEO speed but hydrated with real-time data for availability.
+*   **The Check-in Interface:** Built as a Progressive Web App (PWA) component, allowing gate staff to use the scanner on mobile devices with zero lag.
+
+---
+
+## 2. Real-Time Protocol: WebSockets & Serverless
+Gate check-in data cannot have "lag." If an attendee scans at Gate A, Gate B must know instantly. 
+*   **Live Sync:** We use a real-time messaging layer to propagate "Checked-In" status across all scanning instances globally. 
+*   **Serverless APIs:** Our backend is distributed across global edge locations. This ensures that whether your event is in London, New York, or New Delhi, the latency between a scan and a database confirmation is under 100ms.
+
+---
+
+## 3. QR Generation & Cryptography
+Most systems generate QR codes on the fly using heavy libraries that can slow down the page. 
+*   **Pre-Generated Hashes:** We separate the "Logic" from the "Visual." We generate a unique cryptographic hash for each attendee at the time of registration.
+*   **SVG-Native QR:** The QR codes on EntryFlow passes are rendered as lightweight SVGs. This ensures they are readable even at low brightness or on older phone screens, and they don't impact the pass's load time.
+
+---
+
+## 4. The Database: Scalable Consistency
+When handling ticketing, "Eventual Consistency" isn't good enough. You cannot have two people "eventually" checking in with the same pass.
+*   **Atomic Transactions:** We use a high-performance database with strict atomic operations. Every scan triggers a transaction that must complete before the next scan of the same pass can be attempted. This is the core of the **EntryFlow Protocol**.
+
+---
+
+## 5. Automated Mail & Recovery Layer
+Registration is useless if the confirmation ends up in spam.
+*   **Dedicated IP Warming:** We use a specialized mail infrastructure with redundant delivery paths to ensure that digital passes arrive in the inbox within 5 seconds of registration.
+*   **The Recovery Engine:** Our pass recovery system uses a secure email-based look-up, allowing guests to re-access their passes without needing to remember a password or create a full account.
+
+## Engineering Excellence at AnD Innovatech
+
+EntryFlow isn't just a product; it’s a demonstration of our engineering philosophy: **Eliminate Friction. Increase Performance. Secure the Data.**
+
+If you are looking for a development partner to build your next custom SaaS, look at EntryFlow. This is the level of engineering we bring to every project.
+
+[Build your custom SaaS with us →](/services/software-development/)
