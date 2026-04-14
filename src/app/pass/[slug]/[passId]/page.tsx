@@ -127,13 +127,13 @@ export default function PassPage() {
             <div className={`flex-1 flex flex-col items-center ${settings?.customBackgroundUrl ? 'p-0' : 'p-8'}`}>
               
               {/* Status Badge */}
-              <div className={`absolute top-4 right-4 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest z-20 ${visitor.status === 'entered' ? 'bg-green-100 text-green-700 border border-green-200 shadow-md' : 'bg-white/90 text-blue-700 border border-blue-200 shadow-md backdrop-blur-sm'}`}>
+              <div className={`${settings?.customBackgroundUrl ? 'absolute top-4 right-4 z-20 shadow-md backdrop-blur-sm' : 'mb-6 z-10'} px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest ${visitor.status === 'entered' ? 'bg-green-100 text-green-700 border border-green-200' : 'bg-blue-50 text-blue-700 border border-blue-200'}`}>
                 {visitor.status === "entered" ? "✅ Checked In" : "🎟️ Active Pass"}
               </div>
 
               {/* QR Code */}
               <div 
-                className={`${settings?.customBackgroundUrl ? 'absolute left-1/2 -translate-x-1/2' : 'mb-6'} bg-white p-3 rounded-2xl border-4 ${visitor.status === 'entered' ? 'border-green-500 shadow-lg shadow-green-200' : 'border-slate-100 shadow-lg'}`}
+                className={`${settings?.customBackgroundUrl ? 'absolute left-1/2 -translate-x-1/2 bg-white p-3 rounded-2xl border-4' : 'bg-white p-4 rounded-2xl border-4 mb-6'} ${visitor.status === 'entered' ? 'border-green-500 shadow-lg shadow-green-200' : settings?.customBackgroundUrl ? 'border-slate-100 shadow-lg' : 'border-blue-500 shadow-lg shadow-blue-200'}`}
                 style={settings?.customBackgroundUrl ? { top: `${settings.qrPosition || 35}%` } : {}}
               >
                 <img src={visitor.qrCodeUrl} alt="QR Code" className={`${settings?.customBackgroundUrl ? 'w-40 h-40' : 'w-48 h-48 md:w-56 md:h-56'}`} />
@@ -156,7 +156,7 @@ export default function PassPage() {
               </div>
 
               {/* Action Area */}
-              <div className={`w-full px-8 ${settings?.customBackgroundUrl ? 'absolute bottom-8' : 'mt-auto'}`}>
+              <div className={`w-full ${settings?.customBackgroundUrl ? 'px-8 absolute bottom-8' : 'mt-auto'}`}>
                 {visitor.status !== "entered" ? (
                   <div className="w-full bg-slate-100/80 backdrop-blur-sm border border-slate-200 text-slate-500 font-bold py-4 rounded-2xl flex flex-col items-center">
                     <span className="text-sm">PRESENT QR CODE FOR ENTRY</span>
