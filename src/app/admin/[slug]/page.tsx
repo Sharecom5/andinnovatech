@@ -501,6 +501,7 @@ export default function AdminDashboard() {
                 </button>
               </form>
            </div>
+         )}
          {activeTab === 'instant-log' && (
            <div className="bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm">
               <div className="p-8 border-b border-slate-100 bg-slate-50/50">
