@@ -95,7 +95,6 @@ export default function RootLayout({
                     },
                   ],
                   founder: [
-                    { '@type': 'Person', name: 'Abhishek Sharma' },
                     { '@type': 'Person', name: 'Ankit Sharma' }
                   ],
                   employee: [

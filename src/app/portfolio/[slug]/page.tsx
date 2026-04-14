@@ -222,38 +222,8 @@ const projectsData: Record<string, ProjectDetail> = {
         techStack: ['Node.js', 'React', 'MongoDB', 'Socket.io'],
         features: ['Real-time Parent-Teacher Messaging', 'Automated Attendance Reports', 'Online Report Card Generation', 'Fee Management Portal']
     },
-    'renewable-mirror': {
-        slug: 'renewable-mirror',
-        title: 'Renewable Mirror News Portal',
-        category: 'Energy',
-        client: 'Mirror Media Group',
-        duration: '3 Months',
-        year: '2022',
-        role: 'Web Development & SEO',
-        image: 'https://images.unsplash.com/photo-1466611653911-95282fc3656b?q=80&w=1200&h=800&auto=format&fit=crop',
-        description: 'See how we developed the Renewable Mirror news portal, a high-authority energy publication platform handling 500k+ monthly users with optimized technical SEO.',
-        challenge: 'The client needed a platform capable of handling high daily traffic while maintaining excellent SEO rankings.',
-        solution: 'Built a high-performance publishing platform with deep-nested categorization and advanced search.',
-        results: ['500k+ Monthly active users', 'Domain Authority increased from 10 to 45', 'Featured in Top 5 industry news portals'],
-        techStack: ['Next.js', 'WordPress (Headless)', 'Apollo GraphQL', 'S3'],
-        features: ['Advanced Search & Filtering', 'Integrated Ad-Management', 'Social Media Auto-Publishing', 'Custom Data Visualizations']
-    },
-    'taction-soft': {
-        slug: 'taction-soft',
-        title: 'Taction Soft Corporate Presence',
-        category: 'SaaS',
-        client: 'Taction Solutions',
-        duration: '3 Months',
-        year: '2023',
-        role: 'Enterprise Web Development',
-        image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&h=800&auto=format&fit=crop',
-        description: 'Explore the corporate branding and lead generation platform we built for Taction Solutions, reflecting technical maturity and driving enterprise-level growth.',
-        challenge: 'A global IT firm needed a website that reflected their technical maturity and high-level consulting services.',
-        solution: 'Designed a minimal yet premium identity with focus on case studies and service-specific landing pages.',
-        results: ['3x Increase in qualified enterprise leads', 'Average session time improved by 200%', 'Mobile accessibility score of 100/100'],
-        techStack: ['Next.js', 'Framer Motion', 'Tailwind CSS', 'Sanity.io'],
-        features: ['Interactive Service Modules', 'Dynamic Case Study Grid', 'Seamless Careers Portal', 'Strategic CTA Placement']
-    },
+
+
     'investor-key': {
         slug: 'investor-key',
         title: 'Investor Key FinTech Portal',
@@ -302,22 +272,7 @@ const projectsData: Record<string, ProjectDetail> = {
         techStack: ['Laravel', 'React', 'MySQL', 'DigitalOcean'],
         features: ['Interactive Exhibition Floor-plans', 'Automated Vendor Dashboard', 'Multi-currency Payment Support', 'On-site Check-in Integration']
     },
-    'construction-mirror': {
-        slug: 'construction-mirror',
-        title: 'Construction Mirror B2B Portal',
-        category: 'B2B',
-        client: 'HeavyLink Construction',
-        duration: '6 Months',
-        year: '2023',
-        role: 'Enterprise Web Development',
-        image: 'https://images.unsplash.com/photo-1503387762-592dee58c460?q=80&w=1200&h=800&auto=format&fit=crop',
-        description: 'B2B marketplace solution for HeavyLink Construction, revolutionizing material procurement and heavy equipment rental with a robust architecture.',
-        challenge: 'The industry lacked a unified digital marketplace for material procurement and equipment rental.',
-        solution: 'Built a robust marketplace with verified sellers and integrated quote-management system.',
-        results: ['1,000+ Verified sellers onboarded', 'Average quote turnaround time reduced by 50%', 'Transaction volume of $1M+ in first 6 months'],
-        techStack: ['Node.js', 'NestJS', 'PostgreSQL', 'AWS Cloudfront'],
-        features: ['Verified Vendor Badge System', 'Real-time Quote Management', 'Equipment Rental Calendar', 'B2B Logistics Integration']
-    }
+
 };
 
 export async function generateStaticParams() {

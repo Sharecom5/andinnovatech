@@ -101,14 +101,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         'cloud-migration',
         'seo-campaign',
         'etes-events',
-        'taction-soft',
+
         'sevya-artisan',
         'sg-lifestyle',
         'investor-key',
         'kdb-school',
         'ramganga-organization',
-        'construction-mirror',
-        'renewable-mirror',
+
         'seo-optimization-los-angeles',
         'website-development-nyc',
         'branding-chicago-startup',

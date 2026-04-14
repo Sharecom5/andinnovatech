@@ -95,13 +95,12 @@ const footerLinks = {
         { label: 'Ramganga Organization', href: '/portfolio/ramganga-organization/' },
         { label: 'Mobile Banking App', href: '/portfolio/mobile-banking/' },
         { label: 'ETES Events', href: '/portfolio/etes-events/' },
-        { label: 'Taction Software', href: '/portfolio/taction-soft/' },
+
         { label: 'Sevya Artisan', href: '/portfolio/sevya-artisan/' },
         { label: 'SG Lifestyle', href: '/portfolio/sg-lifestyle/' },
         { label: 'InvestorKey', href: '/portfolio/investor-key/' },
         { label: 'KDB School', href: '/portfolio/kdb-school/' },
-        { label: 'Construction Mirror B2B', href: '/portfolio/construction-mirror/' },
-        { label: 'Renewable Mirror Portal', href: '/portfolio/renewable-mirror/' },
+
         { label: 'View Full Portfolio', href: '/portfolio/' },
     ],
     locations: [

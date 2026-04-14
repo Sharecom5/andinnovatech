@@ -60,14 +60,13 @@ export default async function SitemapPage() {
                 { name: 'Cloud Migration', href: '/portfolio/cloud-migration/' },
                 { name: 'SEO Campaign', href: '/portfolio/seo-campaign/' },
                 { name: 'Etes Events', href: '/portfolio/etes-events/' },
-                { name: 'Taction Soft', href: '/portfolio/taction-soft/' },
+
                 { name: 'Sevya Artisan', href: '/portfolio/sevya-artisan/' },
                 { name: 'SG Lifestyle', href: '/portfolio/sg-lifestyle/' },
                 { name: 'Investor Key', href: '/portfolio/investor-key/' },
                 { name: 'KDB School', href: '/portfolio/kdb-school/' },
                 { name: 'Ramganga Organization', href: '/portfolio/ramganga-organization/' },
-                { name: 'Construction Mirror', href: '/portfolio/construction-mirror/' },
-                { name: 'Renewable Mirror', href: '/portfolio/renewable-mirror/' },
+
             ],
         },
         {

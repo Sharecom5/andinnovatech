@@ -197,7 +197,6 @@ export default function AboutUs() {
                     />
                     <div className="grid md:grid-cols-3 gap-12 mt-16">
                         {[
-                            { name: 'Abhishek Sharma', role: 'Founder & Technical Strategist', bio: 'Specialize in large-scale system architecture and ROI-focused SEO engineering.', initials: 'AS' },
                             { name: 'Ankit Sharma', role: 'Head of Operations', bio: 'Ensuring seamless global delivery and military-grade security standards across all projects.', initials: 'AS' },
                             { name: 'Sarah Jones', role: 'Lead Client Success (US)', bio: 'Our US-based lead bridge, ensuring West Coast & East Coast businesses get 24/7 service.', initials: 'SJ' }
                         ].map((member, i) => (
