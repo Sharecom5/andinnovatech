@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   Plus, Calendar, MapPin, Globe, Settings, Loader2, Search,
   PlusCircle, LayoutDashboard, LogOut, ChevronRight, Camera, X, AlertCircle, Upload, Image as ImageIcon,
-  Zap, TrendingUp, Pencil, Trash2, Smartphone
+  Zap, TrendingUp, Pencil, Trash2, Smartphone, CheckCircle
 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -74,8 +74,8 @@ export default function MyEventsDashboard() {
     setFormData({
       name: event.name,
       slug: event.slug,
-      date: event.date.split('T')[0],
-      endDate: event.endDate ? event.endDate.split('T')[0] : "",
+      date: event.date ? (typeof event.date === 'string' ? event.date.split('T')[0] : new Date(event.date).toISOString().split('T')[0]) : "",
+      endDate: event.endDate ? (typeof event.endDate === 'string' ? event.endDate.split('T')[0] : new Date(event.endDate).toISOString().split('T')[0]) : "",
       venue: event.venue,
       description: event.description || "",
       checkinPin: event.checkinPin || "1234",
