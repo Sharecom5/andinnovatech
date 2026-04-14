@@ -608,14 +608,17 @@ export default function AdminDashboard() {
       {/* Hidden Print Layout */}
       {printData && (
         <div className="hidden print:flex fixed inset-0 bg-white z-[99999] justify-center pt-10">
-          <div className="w-[3.5in] h-[2.25in] border-2 border-black flex flex-col items-center justify-center text-center p-4 bg-white text-black relative">
-             <div className="absolute top-2 left-0 right-0 text-center">
-               <span className="text-[10px] uppercase tracking-widest font-bold">Visitor Badge</span>
-             </div>
-             <h1 className="text-2xl font-black uppercase text-black mt-4 leading-tight">{printData.name}</h1>
-             {printData.company && <h2 className="text-sm font-bold text-gray-700 mt-1">{printData.company}</h2>}
-             {printData.qrCodeUrl && <img src={printData.qrCodeUrl} alt="QR Code" className="w-[1.2in] h-[1.2in] mt-2 mb-1 border border-gray-200 p-1" />}
-             <span className="text-[9px] font-mono text-black">{printData.passId}</span>
+          <div className="w-[3.5in] h-[2.25in] flex flex-col items-center justify-center text-center p-4 bg-white text-black relative">
+             <h1 className="text-3xl font-black uppercase text-black leading-tight">{printData.name}</h1>
+             {printData.company && <h2 className="text-base font-bold text-gray-800 mt-1">{printData.company}</h2>}
+             {printData.qrCodeUrl && (
+               <img 
+                 src={printData.qrCodeUrl} 
+                 alt="QR Code" 
+                 className="w-[1in] h-[1in] mt-3 mb-1 border border-gray-100 p-0.5" 
+               />
+             )}
+             <span className="text-[10px] font-mono font-bold text-black mt-1 tracking-tighter">{printData.passId}</span>
           </div>
         </div>
       )}

@@ -54,7 +54,7 @@ export async function POST(req: NextRequest) {
     // Check if already registered for this event
     const existing = await Visitor.findOne({ email: email.toLowerCase(), eventId: event._id });
     if (existing) {
-      return NextResponse.json({ success: true, message: 'Already registered', passId: existing.passId });
+      return NextResponse.json({ success: true, message: 'Already registered', passId: existing.passId, qrCodeUrl: existing.qrCodeUrl });
     }
 
     // Generate unique passId
