@@ -7,7 +7,7 @@ import {
   Users, Search, Download, CheckCircle, Clock, 
   UserCheck, ShieldAlert, PlusCircle, X,
   Building2, Briefcase, Mail, Phone, User,
-  Loader2, RefreshCcw, ChevronRight, LogOut, Ticket, Lock, Globe, Copy, Printer
+  Loader2, RefreshCcw, ChevronRight, LogOut, Ticket, Lock, Globe, Copy, Printer, ClipboardList
 } from "lucide-react";
 
 export default function AdminDashboard() {
@@ -126,6 +126,9 @@ export default function AdminDashboard() {
     return matchesSearch;
   });
 
+  const mainFilteredAttendees = filteredAttendees?.filter((a: any) => a.passType !== 'Instant Badge');
+  const instantFilteredAttendees = filteredAttendees?.filter((a: any) => a.passType === 'Instant Badge');
+
   if (loading) {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center">
@@ -156,6 +159,12 @@ export default function AdminDashboard() {
                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl font-bold transition-all ${activeTab === 'instant-badge' ? 'bg-blue-50 text-blue-700' : 'text-slate-500 hover:bg-slate-50 hover:text-slate-900'}`}
             >
                <Printer className="w-4 h-4" /> Instant Badge
+            </button>
+            <button 
+               onClick={() => setActiveTab("instant-log")}
+               className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl font-bold transition-all ${activeTab === 'instant-log' ? 'bg-blue-50 text-blue-700' : 'text-slate-500 hover:bg-slate-50 hover:text-slate-900'}`}
+            >
+               <ClipboardList className="w-4 h-4" /> Walk-Ins Database
             </button>
             <button 
                onClick={() => setActiveTab("activity")}
@@ -325,7 +334,7 @@ export default function AdminDashboard() {
                       </thead>
                       <tbody className="divide-y divide-slate-100">
                          <AnimatePresence>
-                            {filteredAttendees?.map((attendee: any, i: number) => (
+                            {mainFilteredAttendees?.map((attendee: any, i: number) => (
                                <motion.tr 
                                  key={attendee._id}
                                  initial={{ opacity: 0 }}
@@ -436,7 +445,15 @@ export default function AdminDashboard() {
                   const res = await fetch("/api/register", { 
                     method: "POST", 
                     headers: { "Content-Type": "application/json" }, 
-                    body: JSON.stringify({ name: newAttendee.name, company: newAttendee.company, email: `${Date.now()}@walkin.local`, phone: 'Walk-In', eventSlug: slug, passType: 'Visitor' }) 
+                    body: JSON.stringify({ 
+                      name: newAttendee.name, 
+                      company: newAttendee.company, 
+                      email: newAttendee.email, 
+                      phone: newAttendee.phone, 
+                      designation: newAttendee.designation,
+                      eventSlug: slug, 
+                      passType: 'Instant Badge' 
+                    }) 
                   });
                   const data = await res.json();
                   if (!res.ok) throw new Error(data.error);
@@ -450,19 +467,139 @@ export default function AdminDashboard() {
                 } finally { 
                   setAdding(false); 
                 }
-              }} className="w-full max-w-sm space-y-4 text-left">
-                <div>
-                  <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest pl-1">Full Name *</label>
-                  <input required placeholder="e.g. John Doe" value={newAttendee.name} onChange={(e) => setNewAttendee({...newAttendee, name: e.target.value})} className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 mt-1 outline-none focus:ring-2 focus:ring-blue-500 font-medium text-slate-900" />
+              }} className="w-full max-w-2xl space-y-4 text-left">
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest pl-1">Full Name *</label>
+                    <input required placeholder="e.g. John Doe" value={newAttendee.name} onChange={(e) => setNewAttendee({...newAttendee, name: e.target.value})} className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 mt-1 outline-none focus:ring-2 focus:ring-blue-500 font-medium text-slate-900" />
+                  </div>
+                  <div>
+                    <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest pl-1">Email Address *</label>
+                    <input required type="email" placeholder="john@example.com" value={newAttendee.email} onChange={(e) => setNewAttendee({...newAttendee, email: e.target.value})} className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 mt-1 outline-none focus:ring-2 focus:ring-blue-500 font-medium text-slate-900" />
+                  </div>
                 </div>
-                <div>
-                  <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest pl-1">Company (Optional)</label>
-                  <input placeholder="Organization Name" value={newAttendee.company} onChange={(e) => setNewAttendee({...newAttendee, company: e.target.value})} className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 mt-1 outline-none focus:ring-2 focus:ring-blue-500 font-medium text-slate-900" />
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest pl-1">Phone Number *</label>
+                    <input required placeholder="+1 234 567 890" value={newAttendee.phone} onChange={(e) => setNewAttendee({...newAttendee, phone: e.target.value})} className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 mt-1 outline-none focus:ring-2 focus:ring-blue-500 font-medium text-slate-900" />
+                  </div>
+                  <div>
+                    <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest pl-1">Company *</label>
+                    <input required placeholder="Organization Name" value={newAttendee.company} onChange={(e) => setNewAttendee({...newAttendee, company: e.target.value})} className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 mt-1 outline-none focus:ring-2 focus:ring-blue-500 font-medium text-slate-900" />
+                  </div>
                 </div>
+
+                <div>
+                  <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest pl-1">Designation *</label>
+                  <input required placeholder="Job Title" value={newAttendee.designation} onChange={(e) => setNewAttendee({...newAttendee, designation: e.target.value})} className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 mt-1 outline-none focus:ring-2 focus:ring-blue-500 font-medium text-slate-900" />
+                </div>
+                
                 <button type="submit" disabled={adding} className="w-full flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-black py-4 rounded-xl transition-all shadow-md mt-6 disabled:opacity-50">
                   {adding ? <Loader2 className="w-5 h-5 animate-spin" /> : <><Printer className="w-5 h-5"/> Generate & Print Badge</>}
                 </button>
               </form>
+           </div>
+         {activeTab === 'instant-log' && (
+           <div className="bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm">
+              <div className="p-8 border-b border-slate-100 bg-slate-50/50">
+                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div>
+                       <h2 className="text-xl font-black text-slate-900">Walk-Ins Database</h2>
+                       <p className="text-slate-500 text-xs font-medium mt-1 uppercase tracking-wider">Historical log of all instant-issued badges</p>
+                    </div>
+                    <div className="relative w-full md:w-64">
+                       <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                       <input 
+                         type="text" 
+                         placeholder="Search walk-ins..." 
+                         value={search}
+                         onChange={(e) => setSearch(e.target.value)}
+                         className="w-full bg-white border border-slate-200 rounded-xl py-2 pl-9 pr-4 outline-none focus:ring-2 focus:ring-blue-500 transition-all text-xs"
+                       />
+                    </div>
+                 </div>
+              </div>
+              <div className="overflow-x-auto">
+                 <table className="w-full text-left">
+                    <thead>
+                       <tr className="bg-slate-50/50 border-b border-slate-100 text-[10px] uppercase tracking-widest text-slate-400 font-bold">
+                          <th className="px-8 py-4">Attendee Info</th>
+                          <th className="px-8 py-4">Contact Details</th>
+                          <th className="px-8 py-4">Pass ID</th>
+                          <th className="px-8 py-4">Status</th>
+                          <th className="px-8 py-4 text-right">Actions</th>
+                       </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-50">
+                       <AnimatePresence mode="popLayout">
+                          {instantFilteredAttendees?.map((attendee: any, i: number) => (
+                             <motion.tr 
+                               key={attendee._id}
+                               initial={{ opacity: 0, y: 10 }}
+                               animate={{ opacity: 1, y: 0 }}
+                               transition={{ delay: i * 0.03 }}
+                               className="hover:bg-slate-50/50 transition-colors group"
+                             >
+                                <td className="px-8 py-5">
+                                   <div className="flex items-center gap-3">
+                                      <div className="w-10 h-10 rounded-xl bg-orange-50 flex items-center justify-center text-orange-600 font-black border border-orange-100 group-hover:scale-110 transition-transform shadow-sm">
+                                         {attendee.name.charAt(0)}
+                                      </div>
+                                      <div>
+                                         <p className="font-bold text-slate-900 text-sm mb-0.5">{attendee.name}</p>
+                                         <p className="text-slate-400 text-[10px] font-black uppercase tracking-wider">{attendee.designation || "Visitor"}</p>
+                                      </div>
+                                   </div>
+                                </td>
+                                <td className="px-8 py-5">
+                                   <p className="text-slate-600 font-bold text-xs">{attendee.email}</p>
+                                   <p className="text-slate-400 text-xs mt-0.5 font-medium">{attendee.phone}</p>
+                                </td>
+                                <td className="px-8 py-5 text-xs font-mono font-bold text-slate-400">
+                                   {attendee.passId}
+                                </td>
+                                <td className="px-8 py-5">
+                                   <div className={`flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full border ${attendee.status === 'entered' ? 'bg-green-50 text-green-700 border-green-200' : 'bg-orange-50 text-orange-700 border-orange-200'}`}>
+                                      <div className={`w-1.5 h-1.5 rounded-full ${attendee.status === 'entered' ? 'bg-green-500' : 'bg-orange-400 animate-pulse'}`}></div>
+                                      {attendee.status === 'entered' ? 'In Event' : 'Registered'}
+                                   </div>
+                                </td>
+                                <td className="px-8 py-5 text-right">
+                                   <div className="flex items-center justify-end gap-2">
+                                     <button 
+                                       onClick={() => triggerPrint(attendee)}
+                                       className="bg-white hover:bg-slate-50 text-slate-600 hover:text-blue-600 p-2 rounded-xl border border-slate-200 transition-all shadow-sm"
+                                       title="Re-Print Badge"
+                                     >
+                                        <Printer className="w-4 h-4" />
+                                     </button>
+                                     <button 
+                                       onClick={() => window.open(`/pass/${slug}/${attendee.passId}`, '_blank')}
+                                       className="bg-white hover:bg-slate-50 text-slate-600 hover:text-blue-600 p-2 rounded-xl border border-slate-200 transition-all shadow-sm"
+                                       title="View Digital Pass"
+                                     >
+                                        <Ticket className="w-4 h-4" />
+                                     </button>
+                                   </div>
+                                </td>
+                             </motion.tr>
+                          ))}
+                       </AnimatePresence>
+                       {instantFilteredAttendees?.length === 0 && (
+                          <tr>
+                             <td colSpan={5} className="px-8 py-24 text-center text-slate-400 italic font-medium">
+                                <div className="flex flex-col items-center">
+                                   <ClipboardList className="w-12 h-12 text-slate-100 mb-4" />
+                                   No instant walk-in registrations found.
+                                </div>
+                             </td>
+                          </tr>
+                       )}
+                    </tbody>
+                 </table>
+              </div>
            </div>
          )}
       </main>
