@@ -106,17 +106,17 @@ export default function PassPage() {
           id="pass-card"
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          className={`w-full max-w-md bg-white border border-slate-200 rounded-3xl shadow-2xl overflow-hidden relative ${settings?.customBackgroundUrl ? 'min-h-[600px]' : ''}`}
+          className={`w-full max-w-md bg-white border border-slate-200 rounded-3xl shadow-2xl overflow-hidden relative ${settings?.customBackgroundUrl ? 'aspect-[2.25/3.5]' : ''}`}
         >
           {settings?.customBackgroundUrl && (
             <img 
               src={settings.customBackgroundUrl} 
               alt="Pass Background" 
-              className="absolute inset-0 w-full h-full object-cover z-0" 
+              className="absolute inset-0 w-full h-full object-fill z-0" 
             />
           )}
 
-          <div className="relative z-10 h-full flex flex-col">
+          <div className="relative z-10 w-full h-full">
             {!settings?.customBackgroundUrl && (
               <div className="bg-blue-600 py-4 text-center">
                 <p className="text-[11px] font-black uppercase tracking-[0.3em] text-blue-200">EntryFlow Digital Pass</p>
@@ -124,7 +124,7 @@ export default function PassPage() {
               </div>
             )}
 
-            <div className={`flex-1 flex flex-col items-center ${settings?.customBackgroundUrl ? 'p-0' : 'p-8'}`}>
+            <div className={`w-full h-full flex flex-col items-center ${settings?.customBackgroundUrl ? 'p-0' : 'p-8'}`}>
               
               {/* Status Badge */}
               <div className={`${settings?.customBackgroundUrl ? 'absolute top-4 right-4 z-20 shadow-md backdrop-blur-sm' : 'mb-6 z-10'} px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest ${visitor.status === 'entered' ? 'bg-green-100 text-green-700 border border-green-200' : 'bg-blue-50 text-blue-700 border border-blue-200'}`}>
@@ -134,15 +134,15 @@ export default function PassPage() {
               {/* QR Code */}
               <div 
                 className={`${settings?.customBackgroundUrl ? 'absolute left-1/2 -translate-x-1/2 bg-white p-3 rounded-2xl border-4' : 'bg-white p-4 rounded-2xl border-4 mb-6'} ${visitor.status === 'entered' ? 'border-green-500 shadow-lg shadow-green-200' : settings?.customBackgroundUrl ? 'border-slate-100 shadow-lg' : 'border-blue-500 shadow-lg shadow-blue-200'}`}
-                style={settings?.customBackgroundUrl ? { top: `${settings.qrPosition || 35}%` } : {}}
+                style={settings?.customBackgroundUrl ? { top: `${settings.qrPosition}%` } : {}}
               >
-                <img src={visitor.qrCodeUrl} alt="QR Code" className={`${settings?.customBackgroundUrl ? 'w-40 h-40' : 'w-48 h-48 md:w-56 md:h-56'}`} />
+                <img src={visitor.qrCodeUrl} alt="QR Code" className={`${settings?.customBackgroundUrl ? 'w-32 h-32 md:w-36 md:h-36' : 'w-48 h-48 md:w-56 md:h-56'}`} />
               </div>
 
               {/* Attendee Info */}
               <div 
                 className={`${settings?.customBackgroundUrl ? 'absolute left-0 w-full px-6' : 'mb-8'} text-center`}
-                style={settings?.customBackgroundUrl ? { top: `${settings.infoPosition || 65}%` } : {}}
+                style={settings?.customBackgroundUrl ? { top: `${settings.infoPosition}%` } : {}}
               >
                 {settings?.showName !== false && (
                   <h2 className="text-2xl font-black text-slate-900 mb-1 drop-shadow-sm">{visitor.name}</h2>
