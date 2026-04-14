@@ -336,14 +336,54 @@ export default function MyEventsDashboard() {
 
                 <div>
                   <label className={labelCls}>Custom Pass Background</label>
-                  <label className="flex items-center gap-3 bg-slate-50 border-2 border-dashed border-slate-200 hover:border-blue-400 rounded-xl p-4 cursor-pointer transition-colors">
-                    {isUploading ? <Loader2 className="w-5 h-5 animate-spin text-blue-600" /> : formData.passSettings.customBackgroundUrl ? <ImageIcon className="w-5 h-5 text-green-500" /> : <Upload className="w-5 h-5 text-slate-400" />}
-                    <span className="text-slate-500 text-sm font-medium">
-                      {isUploading ? "Uploading..." : formData.passSettings.customBackgroundUrl ? "✅ Background set" : "Upload image (max 2MB)"}
-                    </span>
-                    <input type="file" accept="image/*" className="sr-only" onChange={handleFileUpload} />
-                  </label>
+                  <div className="flex items-center gap-3 mb-2">
+                    <label className="flex-1 flex items-center gap-3 bg-slate-50 border-2 border-dashed border-slate-200 hover:border-blue-400 rounded-xl p-4 cursor-pointer transition-colors">
+                      {isUploading ? <Loader2 className="w-5 h-5 animate-spin text-blue-600" /> : formData.passSettings.customBackgroundUrl ? <ImageIcon className="w-5 h-5 text-green-500" /> : <Upload className="w-5 h-5 text-slate-400" />}
+                      <span className="text-slate-500 text-sm font-medium">
+                        {isUploading ? "Uploading..." : formData.passSettings.customBackgroundUrl ? "✅ Background set" : "Upload image (max 2MB)"}
+                      </span>
+                      <input type="file" accept="image/*" className="sr-only" onChange={handleFileUpload} />
+                    </label>
+                    {formData.passSettings.customBackgroundUrl && (
+                      <button type="button" onClick={() => setFormData(prev => ({ ...prev, passSettings: { ...prev.passSettings, customBackgroundUrl: "" } }))}
+                        className="bg-red-50 hover:bg-red-100 text-red-600 p-4 rounded-xl border border-red-200 transition-colors" title="Remove Background">
+                        <X className="w-5 h-5" />
+                      </button>
+                    )}
+                  </div>
                 </div>
+
+                {formData.passSettings.customBackgroundUrl && (
+                  <div className="border border-blue-100 bg-blue-50/50 rounded-2xl p-5 space-y-4">
+                    <p className="text-xs font-black text-slate-600 uppercase tracking-widest text-center mb-2">Adjust Custom Layout</p>
+                    
+                    <div>
+                      <div className="flex justify-between mb-1">
+                        <span className="text-xs font-bold text-slate-600">QR Code Top Position</span>
+                        <span className="text-xs text-blue-600 font-black">{formData.passSettings.qrPosition}%</span>
+                      </div>
+                      <input 
+                        type="range" min="10" max="90" 
+                        value={formData.passSettings.qrPosition}
+                        onChange={(e) => setFormData(prev => ({ ...prev, passSettings: { ...prev.passSettings, qrPosition: parseInt(e.target.value) } }))}
+                        className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
+                      />
+                    </div>
+                    
+                    <div>
+                      <div className="flex justify-between mb-1">
+                        <span className="text-xs font-bold text-slate-600">Attendee Info Top Position</span>
+                        <span className="text-xs text-blue-600 font-black">{formData.passSettings.infoPosition}%</span>
+                      </div>
+                      <input 
+                        type="range" min="10" max="90" 
+                        value={formData.passSettings.infoPosition}
+                        onChange={(e) => setFormData(prev => ({ ...prev, passSettings: { ...prev.passSettings, infoPosition: parseInt(e.target.value) } }))}
+                        className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
+                      />
+                    </div>
+                  </div>
+                )}
 
                 <div className="flex gap-3 pt-2">
                   <button type="button" onClick={() => setShowModal(false)}
