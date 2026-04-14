@@ -22,6 +22,7 @@ export default function AdminDashboard() {
   const [showAddModal, setShowAddModal] = useState(false);
   const [adding, setAdding] = useState(false);
   const [successPassId, setSuccessPassId] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState("attendees");
   const [newAttendee, setNewAttendee] = useState({
     name: "", email: "", phone: "", company: "", designation: ""
   });
@@ -128,13 +129,22 @@ export default function AdminDashboard() {
          </div>
 
          <nav className="space-y-1">
-            <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl bg-blue-50 text-blue-700 font-bold transition-all">
+            <button 
+               onClick={() => setActiveTab("attendees")}
+               className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl font-bold transition-all ${activeTab === 'attendees' ? 'bg-blue-50 text-blue-700' : 'text-slate-500 hover:bg-slate-50 hover:text-slate-900'}`}
+            >
                <Users className="w-4 h-4" /> Attendees
             </button>
-            <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 hover:bg-slate-50 hover:text-slate-900 font-semibold transition-all">
+            <button 
+               onClick={() => setActiveTab("activity")}
+               className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl font-bold transition-all ${activeTab === 'activity' ? 'bg-blue-50 text-blue-700' : 'text-slate-500 hover:bg-slate-50 hover:text-slate-900'}`}
+            >
                <RefreshCcw className="w-4 h-4" /> Activity Log
             </button>
-            <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 hover:bg-slate-50 hover:text-slate-900 font-semibold transition-all">
+            <button 
+               onClick={() => setActiveTab("stats")}
+               className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl font-bold transition-all ${activeTab === 'stats' ? 'bg-blue-50 text-blue-700' : 'text-slate-500 hover:bg-slate-50 hover:text-slate-900'}`}
+            >
                <ShieldAlert className="w-4 h-4" /> License Stats
             </button>
          </nav>
@@ -220,122 +230,149 @@ export default function AdminDashboard() {
             </div>
          </div>
 
-         {/* Filter & Search Bar */}
-         <div className="bg-white border border-slate-200 p-4 rounded-2xl mb-6 flex flex-col md:flex-row items-center justify-between gap-4 shadow-sm">
-            <div className="relative w-full md:w-96">
-               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-               <input 
-                 type="text" 
-                 placeholder="Search by name, email or pass ID..." 
-                 value={search}
-                 onChange={(e) => setSearch(e.target.value)}
-                 className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 pl-10 pr-4 outline-none focus:ring-2 focus:ring-blue-500 transition-all text-slate-900"
-               />
-            </div>
-            <div className="flex items-center gap-2 w-full md:w-auto">
-               <div className="bg-slate-50 border border-slate-200 rounded-xl p-1 flex items-center w-full md:w-auto">
-                  <button 
-                    onClick={() => setFilter("all")}
-                    className={`px-4 py-2 rounded-lg text-xs font-bold transition-all ${filter === 'all' ? 'bg-white shadow-sm text-slate-900 border border-slate-200' : 'text-slate-500 hover:text-slate-700'}`}
-                  >
-                    All
-                  </button>
-                  <button 
-                    onClick={() => setFilter("entered")}
-                    className={`px-4 py-2 rounded-lg text-xs font-bold transition-all ${filter === 'entered' ? 'bg-green-100 text-green-700 shadow-sm border border-green-200' : 'text-slate-500 hover:text-slate-700'}`}
-                  >
-                    Entered
-                  </button>
-                  <button 
-                    onClick={() => setFilter("pending")}
-                    className={`px-4 py-2 rounded-lg text-xs font-bold transition-all ${filter === 'pending' ? 'bg-orange-100 text-orange-700 shadow-sm border border-orange-200' : 'text-slate-500 hover:text-slate-700'}`}
-                  >
-                    Pending
-                  </button>
-               </div>
-            </div>
-         </div>
+         {/* Tab Content */}
+         {activeTab === 'attendees' && (
+           <>
+             {/* Filter & Search Bar */}
+             <div className="bg-white border border-slate-200 p-4 rounded-2xl mb-6 flex flex-col md:flex-row items-center justify-between gap-4 shadow-sm">
+                <div className="relative w-full md:w-96">
+                   <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                   <input 
+                     type="text" 
+                     placeholder="Search by name, email or pass ID..." 
+                     value={search}
+                     onChange={(e) => setSearch(e.target.value)}
+                     className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 pl-10 pr-4 outline-none focus:ring-2 focus:ring-blue-500 transition-all text-slate-900"
+                   />
+                </div>
+                <div className="flex items-center gap-2 w-full md:w-auto">
+                   <div className="bg-slate-50 border border-slate-200 rounded-xl p-1 flex items-center w-full md:w-auto">
+                      <button 
+                        onClick={() => setFilter("all")}
+                        className={`px-4 py-2 rounded-lg text-xs font-bold transition-all ${filter === 'all' ? 'bg-white shadow-sm text-slate-900 border border-slate-200' : 'text-slate-500 hover:text-slate-700'}`}
+                      >
+                        All
+                      </button>
+                      <button 
+                        onClick={() => setFilter("entered")}
+                        className={`px-4 py-2 rounded-lg text-xs font-bold transition-all ${filter === 'entered' ? 'bg-green-100 text-green-700 shadow-sm border border-green-200' : 'text-slate-500 hover:text-slate-700'}`}
+                      >
+                        Entered
+                      </button>
+                      <button 
+                        onClick={() => setFilter("pending")}
+                        className={`px-4 py-2 rounded-lg text-xs font-bold transition-all ${filter === 'pending' ? 'bg-orange-100 text-orange-700 shadow-sm border border-orange-200' : 'text-slate-500 hover:text-slate-700'}`}
+                      >
+                        Pending
+                      </button>
+                   </div>
+                </div>
+             </div>
 
-         {/* Table Section */}
-         <div className="bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm">
-            <div className="overflow-x-auto">
-               <table className="w-full text-left">
-                  <thead>
-                     <tr className="bg-slate-50 border-b border-slate-200 text-[10px] uppercase tracking-widest text-slate-500 font-bold">
-                        <th className="px-6 py-4">Attendee Info</th>
-                        <th className="px-6 py-4">Contact Details</th>
-                        <th className="px-6 py-4">Pass ID</th>
-                        <th className="px-6 py-4">Type</th>
-                        <th className="px-6 py-4">Status</th>
-                        <th className="px-6 py-4 text-right">Actions</th>
-                     </tr>
-                  </thead>
-                  <tbody className="divide-y divide-slate-100">
-                     <AnimatePresence>
-                        {filteredAttendees?.map((attendee: any, i: number) => (
-                           <motion.tr 
-                             key={attendee._id}
-                             initial={{ opacity: 0 }}
-                             animate={{ opacity: 1 }}
-                             transition={{ delay: i * 0.05 }}
-                             className="hover:bg-slate-50 transition-colors group"
-                           >
-                              <td className="px-6 py-5">
-                                 <div className="flex items-center gap-3">
-                                    <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 font-black border border-blue-100 group-hover:scale-105 transition-transform">
-                                       {attendee.name.charAt(0)}
-                                    </div>
-                                    <div>
-                                       <p className="font-bold text-slate-900 text-base leading-none mb-1">{attendee.name}</p>
-                                       <p className="text-slate-500 text-xs font-medium">{attendee.company || "No Company"}</p>
-                                    </div>
-                                 </div>
-                              </td>
-                              <td className="px-6 py-5">
-                                 <p className="text-slate-700 font-medium">{attendee.email}</p>
-                                 <p className="text-slate-500 text-xs mt-0.5">{attendee.phone}</p>
-                              </td>
-                              <td className="px-6 py-5">
-                                 <code className="text-blue-600 font-mono text-xs font-bold tracking-tight bg-blue-50 px-2 py-1 rounded-md border border-blue-100">
-                                    {attendee.passId}
-                                 </code>
-                              </td>
-                              <td className="px-6 py-5">
-                                 <span className="text-[10px] font-black uppercase tracking-widest text-slate-500 border border-slate-200 bg-slate-50 px-2.5 py-1 rounded-lg">
-                                    {attendee.passType}
-                                 </span>
-                              </td>
-                              <td className="px-6 py-5">
-                                 <div className={`flex items-center gap-2 text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-lg inline-flex ${attendee.status === 'entered' ? 'bg-green-50 text-green-700 border border-green-200' : 'bg-orange-50 text-orange-700 border border-orange-200'}`}>
-                                    <div className={`w-1.5 h-1.5 rounded-full ${attendee.status === 'entered' ? 'bg-green-500' : 'bg-orange-500 animate-pulse'}`}></div>
-                                    {attendee.status === 'entered' ? 'Checked-In' : 'Pending'}
-                                 </div>
-                              </td>
-                              <td className="px-6 py-5 text-right">
-                                 <button 
-                                   onClick={() => window.open(`/pass/${slug}/${attendee.passId}`, '_blank')}
-                                   className="bg-white hover:bg-slate-50 text-slate-600 hover:text-blue-600 text-xs font-bold px-4 py-2 rounded-xl border border-slate-200 transition-all flex items-center gap-2 ml-auto shadow-sm"
-                                 >
-                                    <Ticket className="w-3.5 h-3.5" /> View Pass
-                                 </button>
-                              </td>
-                           </motion.tr>
-                        ))}
-                     </AnimatePresence>
-                     {filteredAttendees?.length === 0 && (
-                        <tr>
-                           <td colSpan={6} className="px-6 py-20 text-center text-slate-500 bg-slate-50/50">
-                              <div className="flex flex-col items-center justify-center">
-                                <Search className="w-8 h-8 text-slate-300 mb-3" />
-                                <span className="font-medium text-slate-500">No attendees found matching your search.</span>
-                              </div>
-                           </td>
-                        </tr>
-                     )}
-                  </tbody>
-               </table>
-            </div>
-         </div>
+             {/* Table Section */}
+             <div className="bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm">
+                <div className="overflow-x-auto">
+                   <table className="w-full text-left">
+                      <thead>
+                         <tr className="bg-slate-50 border-b border-slate-200 text-[10px] uppercase tracking-widest text-slate-500 font-bold">
+                            <th className="px-6 py-4">Attendee Info</th>
+                            <th className="px-6 py-4">Contact Details</th>
+                            <th className="px-6 py-4">Pass ID</th>
+                            <th className="px-6 py-4">Type</th>
+                            <th className="px-6 py-4">Status</th>
+                            <th className="px-6 py-4 text-right">Actions</th>
+                         </tr>
+                      </thead>
+                      <tbody className="divide-y divide-slate-100">
+                         <AnimatePresence>
+                            {filteredAttendees?.map((attendee: any, i: number) => (
+                               <motion.tr 
+                                 key={attendee._id}
+                                 initial={{ opacity: 0 }}
+                                 animate={{ opacity: 1 }}
+                                 transition={{ delay: i * 0.05 }}
+                                 className="hover:bg-slate-50 transition-colors group"
+                               >
+                                  <td className="px-6 py-5">
+                                     <div className="flex items-center gap-3">
+                                        <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 font-black border border-blue-100 group-hover:scale-105 transition-transform">
+                                           {attendee.name.charAt(0)}
+                                        </div>
+                                        <div>
+                                           <p className="font-bold text-slate-900 text-base leading-none mb-1">{attendee.name}</p>
+                                           <p className="text-slate-500 text-xs font-medium">{attendee.company || "No Company"}</p>
+                                        </div>
+                                     </div>
+                                  </td>
+                                  <td className="px-6 py-5">
+                                     <p className="text-slate-700 font-medium">{attendee.email}</p>
+                                     <p className="text-slate-500 text-xs mt-0.5">{attendee.phone}</p>
+                                  </td>
+                                  <td className="px-6 py-5">
+                                     <code className="text-blue-600 font-mono text-xs font-bold tracking-tight bg-blue-50 px-2 py-1 rounded-md border border-blue-100">
+                                        {attendee.passId}
+                                     </code>
+                                  </td>
+                                  <td className="px-6 py-5">
+                                     <span className="text-[10px] font-black uppercase tracking-widest text-slate-500 border border-slate-200 bg-slate-50 px-2.5 py-1 rounded-lg">
+                                        {attendee.passType}
+                                     </span>
+                                  </td>
+                                  <td className="px-6 py-5">
+                                     <div className={`flex items-center gap-2 text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-lg inline-flex ${attendee.status === 'entered' ? 'bg-green-50 text-green-700 border border-green-200' : 'bg-orange-50 text-orange-700 border border-orange-200'}`}>
+                                        <div className={`w-1.5 h-1.5 rounded-full ${attendee.status === 'entered' ? 'bg-green-500' : 'bg-orange-500 animate-pulse'}`}></div>
+                                        {attendee.status === 'entered' ? 'Checked-In' : 'Pending'}
+                                     </div>
+                                  </td>
+                                  <td className="px-6 py-5 text-right">
+                                     <button 
+                                       onClick={() => window.open(`/pass/${slug}/${attendee.passId}`, '_blank')}
+                                       className="bg-white hover:bg-slate-50 text-slate-600 hover:text-blue-600 text-xs font-bold px-4 py-2 rounded-xl border border-slate-200 transition-all flex items-center gap-2 ml-auto shadow-sm"
+                                     >
+                                        <Ticket className="w-3.5 h-3.5" /> View Pass
+                                     </button>
+                                  </td>
+                               </motion.tr>
+                            ))}
+                         </AnimatePresence>
+                         {filteredAttendees?.length === 0 && (
+                            <tr>
+                               <td colSpan={6} className="px-6 py-20 text-center text-slate-500 bg-slate-50/50">
+                                  <div className="flex flex-col items-center justify-center">
+                                    <Search className="w-8 h-8 text-slate-300 mb-3" />
+                                    <span className="font-medium text-slate-500">No attendees found matching your search.</span>
+                                  </div>
+                               </td>
+                            </tr>
+                         )}
+                      </tbody>
+                   </table>
+                </div>
+             </div>
+           </>
+         )}
+
+         {activeTab === 'activity' && (
+           <div className="bg-white border border-slate-200 p-16 text-center rounded-3xl shadow-sm flex flex-col items-center justify-center">
+              <RefreshCcw className="w-16 h-16 text-slate-200 mb-6" />
+              <h2 className="text-2xl font-black text-slate-900 mb-3">Live Activity Feed</h2>
+              <p className="text-slate-500 max-w-sm font-medium">Real-time scan logs, entry denials, and gate activity will go live in an upcoming Pro update.</p>
+              <div className="mt-8 px-4 py-2 bg-blue-50 border border-blue-100 text-blue-700 font-bold text-xs rounded-lg uppercase tracking-widest">
+                Coming Soon
+              </div>
+           </div>
+         )}
+
+         {activeTab === 'stats' && (
+           <div className="bg-white border border-slate-200 p-16 text-center rounded-3xl shadow-sm flex flex-col items-center justify-center">
+              <ShieldAlert className="w-16 h-16 text-slate-200 mb-6" />
+              <h2 className="text-2xl font-black text-slate-900 mb-3">License & Telemetry</h2>
+              <p className="text-slate-500 max-w-sm font-medium">Detailed usage limits, active license tracking, and event telemetry dashboard are currently in development.</p>
+              <div className="mt-8 px-4 py-2 bg-blue-50 border border-blue-100 text-blue-700 font-bold text-xs rounded-lg uppercase tracking-widest">
+                Coming Soon
+              </div>
+           </div>
+         )}
       </main>
 
       {/* Add Attendee Modal */}
